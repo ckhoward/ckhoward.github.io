@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on Chris Howard</title>
+    <link>https://example.com/blog/index.xml</link>
+    <description>Recent content in Blog on Chris Howard</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 21 Feb 2017 23:12:45 -0700</lastBuildDate>
+    <atom:link href="https://example.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>A Working Example of a Conceptual Model</title>
+      <link>https://example.com/blog/a-working-example-of-a-conceptual-model/</link>
+      <pubDate>Tue, 21 Feb 2017 23:12:45 -0700</pubDate>
+      
+      <guid>https://example.com/blog/a-working-example-of-a-conceptual-model/</guid>
+      <description>
+
+&lt;p&gt;&lt;em&gt;A Working Example of a Conceptual Model&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;An Object/Action Analysis&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Conceptual models are all about representation. And the way something is represented is important, both when understanding something, and when creating something. When attempting to understand a thing, we try to make sure our conceptual models aren’t faulty, so we practice logic and critical thinking. Else, biases or fallacious thoughts may steer us in a wrong direction while we experience a discussion with somebody, and miscommunications may happen, and/or the discussion is derailed. Likewise, in an early phase of building a product, we flesh out our conceptual model of that product, so as to not be steered in a wrong direction. We avoid adding unneeded features early. We explicate the most essential features and stay focused on them, that way we can get a clear picture of the relationships between our objects and their functionalities, if multiple actions in an app can use the same functionality.&lt;/p&gt;
+
+&lt;p&gt;Defining a conceptual model early will inform UI design in a way that avoids redundancy and it can keep people on track, so they don’t design and implement unneeded features. And when the design phase starts, it will be more efficient. Prototyping can begin earlier.&lt;/p&gt;
+
+&lt;p&gt;Below is an example of a hypothetical Object/Action analysis before designing an email system. I am posting this because there are not a great number of examples online for this kind of thing. This example will consist of a first version and a final version; in our first versions of these models, it is very easy to add excessive features and to needlessly complicate things. For this reason, as with most works, it is often necessary to go back and revise. Cut. Cut. Cut. Until the conceptual model is as simple as can be and represents the absolute bare-bones of the application you have in mind, trim all excess.&lt;/p&gt;
+
+&lt;h3 id=&#34;first-draft-flawed&#34;&gt;First Draft (Flawed):&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;Objects&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Attributes&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Operations&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Mailbox&lt;/td&gt;
+&lt;td&gt;Owner, Current Focus, Inbox,   Starred, Sent, Draft, Spam, Trash&lt;/td&gt;
+&lt;td&gt;Examine, Compose, Delete, Mark as   Read, Search, Archive&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Mail Message&lt;/td&gt;
+&lt;td&gt;Sender, Recipient, Date, Subject,   Content, Attachment Description (if any)&lt;/td&gt;
+&lt;td&gt;Compose, Delete, Print, Reply, Forward, Report, Block&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;As noted, the first version is often flawed, and should be iterated on. The second table illustrates edits that were made to the first table.&lt;/p&gt;
+
+&lt;h3 id=&#34;final-draft&#34;&gt;Final Draft:&lt;/h3&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;Objects&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Attributes&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Operations&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Mailbox&lt;/td&gt;
+&lt;td&gt;User, Current Focus, &lt;s&gt;Inbox, Starred, Sent, Draft, Spam, Trash&lt;/s&gt;, +Mail Message&lt;/td&gt;
+&lt;td&gt;Examine, &lt;s&gt;Compose, Delete, Mark   as Read&lt;/s&gt;, Search, &lt;s&gt;Archive&lt;/s&gt; +Organize&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;Message&lt;/td&gt;
+&lt;td&gt;&lt;s&gt;Sender, Recipient&lt;/s&gt;, +User, Date, Subject,   Content, Attachment Description (if any)&lt;/td&gt;
+&lt;td&gt;&lt;s&gt;Compose&lt;/s&gt;, +Send, Delete, Print, &lt;s&gt;Reply,   Forward, Report, Block&lt;/s&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;User&lt;/td&gt;
+&lt;td&gt;Name, Address&lt;/td&gt;
+&lt;td&gt;Examine, Message, Add, Remove&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Mailbox:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;For Attributes, I’ve crossed out Inbox, Starred, Sent, Draft, Spam, and Trash because they are not fundamental to the object and operations. I also replaced ‘Owner’ with ‘User’ as it interacts better with the Mail Message object (describing creator and receiver of messages). I also added Mail Message because they are contained (fundamentally) within the mailbox. I’ve added Organize to the operations because it is a verb that summarizes multiple actions: Delete is organizing into a Trashcan, Archiving is organizing, and placing into Spam and Drafts are also both organizing actions. I removed Compose because it is not essential to the mailbox itself; I only considered it an operation because there is a compose button in the CatMail interface, in other words, because of an implementation.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;s&gt;Mail&lt;/s&gt; Message (to be concise):&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;For attributes, I’ve removed Sender and Recipient and replaced both with User. For Operations, I removed Compose, Reply, and Forward; Send is an operation that condenses all of these actions, that isn’t implementation-based. Forward and Block were removed because they do not have a fundamental link to messages.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;User:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;For attributes, I’ve added Name and Address because they are user properties. For operations, I added Examine, Message, Add, and Delete because these simple terms can represent addition to lists (like report or block, reply list, forward list, etc.), and users are obviously attached to messages (and the mailbox is owned by the user, too).&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Your Education at Random</title>
+      <link>https://example.com/blog/your-education-at-random/</link>
+      <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/blog/your-education-at-random/</guid>
+      <description>
+
+&lt;h2 id=&#34;a-160-hour-1-500-4-000-mistake&#34;&gt;A 160-hour, $1,500-4,000 mistake.&lt;/h2&gt;
+
+&lt;p&gt;You&amp;rsquo;re picking classes for next semester. You have four selected, and you&amp;rsquo;re now looking for a fifth. There are three options. How do you know which to pick? They&amp;rsquo;re equally interesting, albeit different routes, and they have different professors. The fact of the matter is, you have little information to base your choice off of. Likely no syllabus. Likely no knowledge of the professor. And likely no real insights.&lt;/p&gt;
+
+&lt;h2 id=&#34;there-are-really-only-a-few-routes-to-try-to-get-more-information-in-these-regards&#34;&gt;There are really only a few routes to try to get more information in these regards.&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Visit &lt;em&gt;Rate my Professor&lt;/em&gt;: This is a weak option. The site has declined in popularity and has a word-count to keep posts concise, which basically leads to &amp;lsquo;it was good&amp;rsquo;-esque responses from students. There is no room for specificity. There is no room for discussion.&lt;/li&gt;
+&lt;li&gt;Ask around: This is not a viable option. It&amp;rsquo;s incredibly inefficient, and even if you manage to find somebody that had a particular class, the lack of a relationship and the spontaneity of the question will likely result in a poorly- and rashly-thought out response. I think people would articulate their experiences better in an online platform, devoid of awkward social encounters.&lt;/li&gt;
+&lt;li&gt;Request a syllabus: I don&amp;rsquo;t know why syllabi aren&amp;rsquo;t more accessible. I&amp;rsquo;ve often wanted to see what would be covered in a class, only to not be able to find a syllabus. And I&amp;rsquo;ve had experiences where I have emailed a professor multiple times for one, only for no response. Then I&amp;rsquo;ve even gone to the program adviser to get a copy of a course syllabus, which was also not helpful. Still, even if I did get one, there is a great deal of information that would be lacking. Learning experiences (and teaching styles) tend to be more nuanced than syllabi content.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is why we need a new site to facilitate &lt;em&gt;insightful&lt;/em&gt; discussions about courses.&lt;/p&gt;
+
+&lt;h2 id=&#34;what-do-i-mean-by-insightful&#34;&gt;What do I mean by insightful?&lt;/h2&gt;
+
+&lt;p&gt;Maybe a particular student took Course &amp;lsquo;A&amp;rsquo; alongside Course &amp;lsquo;H&amp;rsquo;. This student found that the courses complemented each other unexpectedly, and extraordinarily. She was able to build parallels between two disciplines, and find much more meaning in both subjects. This information would surely be beneficial to students selecting their classes for the next semester.&lt;/p&gt;
+
+&lt;p&gt;Or maybe one professor talks very quietly and has illegible handwriting. Some professors assign homework and classwork that don&amp;rsquo;t seem to have any real-world application, discouraging students from pursuing the field further. If a professor killed this student&amp;rsquo;s dreams with their choices in assignments, that might be significant information; it could cause a student to change major (and likely, career), but it could also be a tremendous waste of time and money (yay, tuition!)&lt;/p&gt;
+
+&lt;p&gt;You will always get insubstantial reviews. Students will irrationally pin blame on professors, failing to take responsibility for their own lack of effort or whatever. You might even get advertisements of some sort: Take this CLASS with PROFESSIRE MIRANDA, you&amp;rsquo;ll have your dream career in ONE MONTH!! But people can use their intuition to judge the quality of a review for themselves. Given the advent of spam filters and verification methods, this is trivial. Less trivial, schools could try to sabotage each other&amp;rsquo;s programs.&lt;/p&gt;
+
+&lt;h2 id=&#34;implementation&#34;&gt;Implementation.&lt;/h2&gt;
+
+&lt;p&gt;The site would be relatively simple. Create a database of schools. Allow somebody to post a review about a program or class for a particular school. If somebody is interested in a program or class that has yet to be posted, they can create a request. A school might be inclined to use alumni mailing-lists to try to fulfill a request (though admittedly, this might ignore important groups, like those that switched programs, or dropped out). The community can respond to different reviews; it would be useful to have the ability to ask more questions, or to agree/disagree with a post, or to give relevant feedback (like a professor switching school).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; the core functionality is post, request, and discuss. +1 for allowing anonymity.&lt;/p&gt;
+
+&lt;h2 id=&#34;would-the-site-be-successful&#34;&gt;Would the site be successful?&lt;/h2&gt;
+
+&lt;p&gt;There is a natural incentive for universities to subtly promote a website like this—if you have a great neuroscience program, wouldn&amp;rsquo;t you want the world to know? That would be a great way to instill confidence in students to travel and pay ridiculous out-of-state tuition. It would then be beneficial for students and the school itself to not force the hand of students in completing these sorts of class/professor-reviews. End-of-grade bonus points would get the participation of students that may not have anything valuable or insightful to contribute. It&amp;rsquo;s best if the students post &lt;em&gt;if they want to&lt;/em&gt;, if they really feel compelled. Of course, that requires knowledge of the site&amp;rsquo;s existence, and a student that wants to participate. I&amp;rsquo;m sure many wouldn&amp;rsquo;t want to share their experiences, even if others would find them useful. I don&amp;rsquo;t believe a site like this would be difficult to market. It would just need a mission statement that students can identify and connect with. Like not leaving education up to chance, by making informed decisions.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Terrorist Targets [Exploratory]</title>
+      <link>https://example.com/blog/terrorist-targets-exploratory/</link>
+      <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
+      
+      <guid>https://example.com/blog/terrorist-targets-exploratory/</guid>
+      <description>&lt;p&gt;If you were to start some Google searches for terrorist attacks, while specifying the terrorist organization (e.g. Boko Haram, or the Lord&amp;rsquo;s Resistance Army), you will likely see different themes within the listed results. Going to a page that aggregates LRA attacks, you get:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/LRA aggregation.png&#34; alt=&#34;alt text&#34; title=&#34;lracrisistracker.com&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;and for Boko Haram:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/bokoharamv2.png&#34; alt=&#34;alt text&#34; title=&#34;breakingnews.com - sadly shut down 12/31/16&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Assuming these sources weren&amp;rsquo;t cherry-picked, we might infer that the LRA tends to attack people and their property, with assault rifles, while Boko Haram might be more likely to attack crowded public places, with explosives.&lt;/p&gt;
+
+&lt;p&gt;It would be interesting to see how accurately media reporting reflects actual data. The &lt;a href=&#34;http://www.start.umd.edu/data-tools/global-terrorism-database-gtd&#34;&gt;Global Terrorism Database&lt;/a&gt; provides a large dataset that we can use to explore attacks, containing variables like terrorist organization involved, location, target, means of attack (like weapon detail), and many others. This database will give us the means of exploring terrorism, particular terrorist organizations, and their similarities and differences. Providing this context for particular groups, we can see the proportions of targeted groups. It mostly comes down to private citizens and &lt;em&gt;the establishment&lt;/em&gt; (business, military, police, and government).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/target_frequency.png&#34; alt=&#34;alt text&#34; title=&#34;Frequency of Attack on Indicated Target&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So these are the primary targets in terrorist attacks; how do individual groups play into this? To compare relatively diverse groups, we can factor in different regions, or groups within different affiliations and alliances (e.g., some branches may be associated with the Islamic State, and some may not be).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/targets.png&#34; alt=&#34;alt text&#34; title=&#34;Terrorist Targets&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/attack_type.png&#34; alt=&#34;alt text&#34; title=&#34;Terrorist Attack Types&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Between these two charts, we can see striking differences in who they attack and how they carry out the attack, possibly pointing to different objectives, structures of leadership, and resources. The data reflects what the media observed earlier: the LRA kidnaps and assaults citizens, and Boko Haram uses explosives frequently, though they do still favor armed assaults. But why is there such a significant difference between the Kurdistan Workers&amp;rsquo; Party (the PKK), notably attacking the establishment, while the LRA attacks people? These are rhetorical questions—answers exist, but they are outside the scope of this post.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Considering objectives:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;When looking at high levels of hostage taking (kidnapping) and armed assault by the LRA, this may be an indicator that they use these means as a primary &lt;a href=&#34;http://www.iiss.org/en/topics/terrorism/how-kidnapping-funds-terrorism-d704&#34;&gt;source of income&lt;/a&gt;. The logs above show citizens&amp;rsquo; homes being looted. We could look further to see if the noted abductions have ransoms attached, or if it is primarily means of recruitment. Since Boko Haram&amp;rsquo;s assaults are comparable to the LRA&amp;rsquo;s, it may be interesting to show whether or not Boko Haram&amp;rsquo;s tendencies shifted after splitting; part went into ISIL&amp;rsquo;s West Africa branch, while the other joined an al-Qaida branch. If these attacks are the LRA&amp;rsquo;s source of income, it is non-sustainable. If the primary objective isn&amp;rsquo;t gains in income and recruitment, and it is to establish power to rule over citizens, that is another story.&lt;/p&gt;
+
+&lt;p&gt;The PKK on the otherhand primarily attacks military, police, business, and government targets. It makes more sense that these attacks are politically motivated rather than financially motivated.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;an alternative possibility:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The motivations may not correlate well with actions. Explosives are commonly used, so even if a target is a military convoy or building, there may be civilian casualties within range of the explosion. A terrorist organization&amp;rsquo;s leadership may intend to carry out a strategy for acheiving some goal, but if leadership has little control over its followers, attacks may be carried out that do not follow strategy. This could prompt further investigation into the structures of these terrorist organizations, whether they&amp;rsquo;re more network-like, or more heirarchical. Both have their own &lt;a href=&#34;https://www.hsaj.org/articles/122&#34;&gt;pros and cons&lt;/a&gt;, but these structures can have significant influences on recruitment, efficiency of attacks, safety of its members, and more.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>this is a no-handed post</title>
+      <link>https://example.com/blog/this-is-a-no-handed-post/</link>
+      <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
+      
+      <guid>https://example.com/blog/this-is-a-no-handed-post/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

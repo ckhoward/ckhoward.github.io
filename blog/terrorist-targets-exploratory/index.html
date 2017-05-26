@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Example blog">
+
+<base href="https://example.com/">
+<title>
+
+
+     Chris Howard - Terrorist Targets [Exploratory] 
+
+</title>
+<link rel="canonical" href="https://example.com/blog/terrorist-targets-exploratory/">
+
+
+<script type="text/javascript">
+    var baseURL = 'https:\/\/example.com\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+
+
+<link rel="stylesheet" href="https://example.com/css/reset.css">
+<link rel="stylesheet" href="https://example.com/css/pygments.css">
+<link rel="stylesheet" href="https://example.com/css/main.css">
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://example.com/img/datcactus.png"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+
+
+</section>
+<section class="header"> 
+
+    <div class="container">
+        <a href="https://example.com/"><img class="logo" src="https://example.com/img/datcactus.png" /></a>
+        <div class="content">
+            <a href="https://example.com/"><div class="name"><h1>Chris Howard</h1></div></a>
+            <nav>
+                <ul>
+                    <a href="https://example.com/"><li>Blog</li></a>
+                    <a href="https://example.com/about/"><li>About</li></a>
+                    <a href="https://example.com/projects/"><li>Projects</li></a>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="https://github.com/example" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+        
+        
+        
+            <a href="@example" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+        
+
+        
+            <a href="example" target="_blank">
+                <i class="icon ion-social-linkedin"></i>
+            </a>
+        
+
+        
+            <a href="mailto:you@example.com">
+                <i class="icon ion-ios-email larger"></i>
+            </a>
+        
+
+        
+            <a href="https://example.com/index.xml">
+                <i class="icon ion-social-rss larger"></i>
+            </a>
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Terrorist Targets [Exploratory]
+
+</div>
+
+                    <div class="initials"><a href="https://example.com/"></a></div>
+                </div>
+                <div class="meta">
+                    <div class="date" title="Tue Jan 3 2017 16:46:12 MST">Jan 3, 2017</div>
+                    <div class="reading-time"><div class="middot"></div>3 minutes read</div>
+                </div>
+            </div>
+            <div class="markdown">
+                <p>If you were to start some Google searches for terrorist attacks, while specifying the terrorist organization (e.g. Boko Haram, or the Lord&rsquo;s Resistance Army), you will likely see different themes within the listed results. Going to a page that aggregates LRA attacks, you get:</p>
+
+<p><img src="img/LRA aggregation.png" alt="alt text" title="lracrisistracker.com" /></p>
+
+<p>and for Boko Haram:</p>
+
+<p><img src="img/bokoharamv2.png" alt="alt text" title="breakingnews.com - sadly shut down 12/31/16" /></p>
+
+<p>Assuming these sources weren&rsquo;t cherry-picked, we might infer that the LRA tends to attack people and their property, with assault rifles, while Boko Haram might be more likely to attack crowded public places, with explosives.</p>
+
+<p>It would be interesting to see how accurately media reporting reflects actual data. The <a href="http://www.start.umd.edu/data-tools/global-terrorism-database-gtd">Global Terrorism Database</a> provides a large dataset that we can use to explore attacks, containing variables like terrorist organization involved, location, target, means of attack (like weapon detail), and many others. This database will give us the means of exploring terrorism, particular terrorist organizations, and their similarities and differences. Providing this context for particular groups, we can see the proportions of targeted groups. It mostly comes down to private citizens and <em>the establishment</em> (business, military, police, and government).</p>
+
+<p><img src="img/target_frequency.png" alt="alt text" title="Frequency of Attack on Indicated Target" /></p>
+
+<p>So these are the primary targets in terrorist attacks; how do individual groups play into this? To compare relatively diverse groups, we can factor in different regions, or groups within different affiliations and alliances (e.g., some branches may be associated with the Islamic State, and some may not be).</p>
+
+<p><img src="img/targets.png" alt="alt text" title="Terrorist Targets" /></p>
+
+<p><img src="img/attack_type.png" alt="alt text" title="Terrorist Attack Types" /></p>
+
+<p>Between these two charts, we can see striking differences in who they attack and how they carry out the attack, possibly pointing to different objectives, structures of leadership, and resources. The data reflects what the media observed earlier: the LRA kidnaps and assaults citizens, and Boko Haram uses explosives frequently, though they do still favor armed assaults. But why is there such a significant difference between the Kurdistan Workers&rsquo; Party (the PKK), notably attacking the establishment, while the LRA attacks people? These are rhetorical questions—answers exist, but they are outside the scope of this post.</p>
+
+<p><strong>Considering objectives:</strong></p>
+
+<p>When looking at high levels of hostage taking (kidnapping) and armed assault by the LRA, this may be an indicator that they use these means as a primary <a href="http://www.iiss.org/en/topics/terrorism/how-kidnapping-funds-terrorism-d704">source of income</a>. The logs above show citizens&rsquo; homes being looted. We could look further to see if the noted abductions have ransoms attached, or if it is primarily means of recruitment. Since Boko Haram&rsquo;s assaults are comparable to the LRA&rsquo;s, it may be interesting to show whether or not Boko Haram&rsquo;s tendencies shifted after splitting; part went into ISIL&rsquo;s West Africa branch, while the other joined an al-Qaida branch. If these attacks are the LRA&rsquo;s source of income, it is non-sustainable. If the primary objective isn&rsquo;t gains in income and recruitment, and it is to establish power to rule over citizens, that is another story.</p>
+
+<p>The PKK on the otherhand primarily attacks military, police, business, and government targets. It makes more sense that these attacks are politically motivated rather than financially motivated.</p>
+
+<p><strong>an alternative possibility:</strong></p>
+
+<p>The motivations may not correlate well with actions. Explosives are commonly used, so even if a target is a military convoy or building, there may be civilian casualties within range of the explosion. A terrorist organization&rsquo;s leadership may intend to carry out a strategy for acheiving some goal, but if leadership has little control over its followers, attacks may be carried out that do not follow strategy. This could prompt further investigation into the structures of these terrorist organizations, whether they&rsquo;re more network-like, or more heirarchical. Both have their own <a href="https://www.hsaj.org/articles/122">pros and cons</a>, but these structures can have significant influences on recruitment, efficiency of attacks, safety of its members, and more.</p>
+
+                <br>
+                <p><a href="https://example.com/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+</body>
+</html>
+
