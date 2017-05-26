@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on Chris Howard</title>
-    <link>https://example.com/blog/index.xml</link>
+    <link>https://ckhoward.github.io/blog/index.xml</link>
     <description>Recent content in Blog on Chris Howard</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 21 Feb 2017 23:12:45 -0700</lastBuildDate>
-    <atom:link href="https://example.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ckhoward.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>A Working Example of a Conceptual Model</title>
-      <link>https://example.com/blog/a-working-example-of-a-conceptual-model/</link>
+      <link>https://ckhoward.github.io/blog/a-working-example-of-a-conceptual-model/</link>
       <pubDate>Tue, 21 Feb 2017 23:12:45 -0700</pubDate>
       
-      <guid>https://example.com/blog/a-working-example-of-a-conceptual-model/</guid>
+      <guid>https://ckhoward.github.io/blog/a-working-example-of-a-conceptual-model/</guid>
       <description>
 
 &lt;p&gt;&lt;em&gt;A Working Example of a Conceptual Model&lt;/em&gt;&lt;/p&gt;
@@ -103,10 +103,10 @@
     
     <item>
       <title>Your Education at Random</title>
-      <link>https://example.com/blog/your-education-at-random/</link>
+      <link>https://ckhoward.github.io/blog/your-education-at-random/</link>
       <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://example.com/blog/your-education-at-random/</guid>
+      <guid>https://ckhoward.github.io/blog/your-education-at-random/</guid>
       <description>
 
 &lt;h2 id=&#34;a-160-hour-1-500-4-000-mistake&#34;&gt;A 160-hour, $1,500-4,000 mistake.&lt;/h2&gt;
@@ -145,10 +145,10 @@
     
     <item>
       <title>Terrorist Targets [Exploratory]</title>
-      <link>https://example.com/blog/terrorist-targets-exploratory/</link>
+      <link>https://ckhoward.github.io/blog/terrorist-targets-exploratory/</link>
       <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
       
-      <guid>https://example.com/blog/terrorist-targets-exploratory/</guid>
+      <guid>https://ckhoward.github.io/blog/terrorist-targets-exploratory/</guid>
       <description>&lt;p&gt;If you were to start some Google searches for terrorist attacks, while specifying the terrorist organization (e.g. Boko Haram, or the Lord&amp;rsquo;s Resistance Army), you will likely see different themes within the listed results. Going to a page that aggregates LRA attacks, you get:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;img/LRA aggregation.png&#34; alt=&#34;alt text&#34; title=&#34;lracrisistracker.com&#34; /&gt;&lt;/p&gt;
@@ -185,10 +185,10 @@
     
     <item>
       <title>this is a no-handed post</title>
-      <link>https://example.com/blog/this-is-a-no-handed-post/</link>
+      <link>https://ckhoward.github.io/blog/this-is-a-no-handed-post/</link>
       <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
       
-      <guid>https://example.com/blog/this-is-a-no-handed-post/</guid>
+      <guid>https://ckhoward.github.io/blog/this-is-a-no-handed-post/</guid>
       <description></description>
     </item>
     
