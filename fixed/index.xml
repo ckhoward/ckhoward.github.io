@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Fixed on Chris Howard</title>
-    <link>https://example.com/fixed/index.xml</link>
+    <link>https://ckhoward.github.io/fixed/index.xml</link>
     <description>Recent content in Fixed on Chris Howard</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Tue, 03 Jan 2017 16:52:01 -0700</lastBuildDate>
-    <atom:link href="https://example.com/fixed/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ckhoward.github.io/fixed/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>projects</title>
-      <link>https://example.com/projects/</link>
+      <link>https://ckhoward.github.io/projects/</link>
       <pubDate>Tue, 03 Jan 2017 16:52:01 -0700</pubDate>
       
-      <guid>https://example.com/projects/</guid>
+      <guid>https://ckhoward.github.io/projects/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;blog/terrorist-targets-exploratory/&#34;&gt;Terrorist Targets&lt;/a&gt; is a brief exploratory analysis on the targets of some elected terrorist organizations. The dataset was taken from The Global Terrorism Database. A histogram was created to look at which entities were the most popular targets that terrorists choose to attack. From there, mosaic plots are made to show the differences in terrorist organizations, not only in who they attack, but also in how they carry out that attack. This is the one project that code will not be posted for, in the name of academic integrity.&lt;/p&gt;
 </description>
     </item>
     
     <item>
       <title>about</title>
-      <link>https://example.com/about/</link>
+      <link>https://ckhoward.github.io/about/</link>
       <pubDate>Tue, 03 Jan 2017 16:46:22 -0700</pubDate>
       
-      <guid>https://example.com/about/</guid>
+      <guid>https://ckhoward.github.io/about/</guid>
       <description>&lt;p&gt;Hi. I live in Tucson, Arizona, and I&amp;rsquo;m looking for interesting work in analytics.&lt;/p&gt;
 
 &lt;p&gt;I created this site as a means to learn. If it seems like I&amp;rsquo;m talking to myself in the blog, I am. I find it to be a useful way to articulate my thoughts, and I&amp;rsquo;ve learned that the social element helps with retention. In other words, if I talk to somebody about something I just read, it becomes more ingrained in memory. While blogging can be audienceless and is written rather than spoken, I&amp;rsquo;m hoping to acheive the same social effect.&lt;/p&gt;

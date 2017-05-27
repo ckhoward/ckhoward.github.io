@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nlp Natural Langauge Processing Evalb Parsers F Measure Precision Recall on Chris Howard</title>
+    <link>https://example.com/tags/nlp-natural-langauge-processing-evalb-parsers-f-measure-precision-recall/index.xml</link>
+    <description>Recent content in Nlp Natural Langauge Processing Evalb Parsers F Measure Precision Recall on Chris Howard</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <atom:link href="https://example.com/tags/nlp-natural-langauge-processing-evalb-parsers-f-measure-precision-recall/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Evalb; Bracket Scoring Parsers</title>
+      <link>https://example.com/blog/evalb-bracket-scoring-parsers/</link>
+      <pubDate>Mon, 27 Mar 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/blog/evalb-bracket-scoring-parsers/</guid>
+      <description>&lt;p&gt;&lt;em&gt;A Noob&amp;rsquo;s Guide to Bracket Scoring&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Chances are, if you&amp;rsquo;re here, you aren&amp;rsquo;t a complete noob. Though, if you&amp;rsquo;re like I was before getting involved with this domain of NLP, you might become confused quite quickly. Hopefully this little introduction/tutorial can provide enough guidance to get you started,
+relativley hassle-free. Maybe this can be considered a curation of resources.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;A Quick Primer on Bracket Scoring&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Definitions&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;-Parser:- A parser bla bla bla bla..&lt;/p&gt;
+
+&lt;p&gt;Parsers vary; some do this, some do that. They make different kinds of errors and need a standardized way of evaluating them. Otherwise, you get parsers that cheat scores. A parser evaluator that we will talk about is evalb, linked here*. We will get to installing evalb soon enough, but to continue with the definitions..&lt;/p&gt;
+
+&lt;p&gt;-Erroneous:-&lt;/p&gt;
+
+&lt;p&gt;-Gold:-&lt;/p&gt;
+
+&lt;p&gt;-F-Measure:-&lt;/p&gt;
+
+&lt;p&gt;-Precision:-&lt;/p&gt;
+
+&lt;p&gt;-Recall:-&lt;/p&gt;
+
+&lt;p&gt;==========For these definitions and explanations, a strong analogy would be useful ======================================================&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,8 +6,73 @@
     <description>Recent content in Blog on Chris Howard</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 21 Feb 2017 23:12:45 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 26 May 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ckhoward.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Visibility Analysis [GIS]</title>
+      <link>https://ckhoward.github.io/blog/visibility-analysis-gis/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://ckhoward.github.io/blog/visibility-analysis-gis/</guid>
+      <description>
+
+&lt;p&gt;&lt;em&gt;This post is intended to be informative, and not so much reproducible.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;viewshed-analysis&#34;&gt;Viewshed Analysis&lt;/h2&gt;
+
+&lt;p&gt;A viewshed is an area that is visible from an observer at a given location. The problem of visibility lends itself to many domains:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;a guard on a prison tower must see the entire prison yard to ensure everyone&amp;rsquo;s safety&lt;/li&gt;
+&lt;li&gt;a scout must maximize visibility of a battlefield for intelligence gathering&lt;/li&gt;
+&lt;li&gt;autonomous vehicles must have 360-degree visibility&lt;/li&gt;
+&lt;li&gt;cell-towers must provide maximum coverage&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In this post, we will pay mind to the ancient world, where according to Christopherson and Guertin*, &amp;ldquo;fortified sites were often located in order to visually control their territory, sacred sites might be located to provide views of other sacred sites, and the settlement patterns of hinterland sites might be located to facilitate, or to impede, visual communication.&amp;rdquo; In particular, we will be observing and analyzing the Jordanian Umayri Wall&amp;rsquo;s Viewshed. If somebody (that is, say, 6&amp;rsquo; tall), were standing on top of this wall, what would she see?&lt;/p&gt;
+
+&lt;h2 id=&#34;umayri-wall-viewshed&#34;&gt;Umayri Wall Viewshed&lt;/h2&gt;
+
+&lt;p&gt;This is the Viewshed of the Tall Umayri archaeological site. The red star indicates the site, while the white space indicates area that is not visible from the site, and the blue space indicates area that is visible from the site.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/umayri.jpg&#34; alt=&#34;alt text&#34; title=&#34;A Woman&#39;s Visibility when Standing on Wall&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If we want to specifically see the wall, we can zoom in a little bit; the wall is indicated by the red ring. Visualizing what is visible from a given point is a powerful ability. If you noticed, this image is quite pixelated; Viewshed analyses operate on digital elevation models, which are rasters. These analyses will only work on raster data, and not vector data.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/umayri2.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Umayri Wall, Indicated by the Red Ring&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;raster-calculation&#34;&gt;Raster Calculation&lt;/h2&gt;
+
+&lt;p&gt;Viewsheds are rasters. GIS allows us to perform raster calculations. In ArcGIS, we can open the raster calculator and use a conditional statement (as shown below) to create a new binary raster; 0 if the cell is not &amp;lsquo;visible&amp;rsquo; and falls within the boundary, and 1 if the cell is visible and within the boundary.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/umayri4.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Conditional Statement, if visible, 1, else 0&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Because we have the total number of cells (not shown), and we have the number of cells that belong to both 0 (non-visibility) and 1 (visibility), we can calculate the percentages of both by non-visibility/total and visibility/total. As shown, about 17% of the cells are visible, while the remaining 83% of cells are not visible.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/umayri3.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Umayri Wall, Indicated by the Red Ring&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;more-raster-calculation&#34;&gt;More Raster Calculation&lt;/h2&gt;
+
+&lt;p&gt;When considering viewsheds, a useful raster calculation is combining the viewshed of different points. Returned data is visualized in such a way that you can see what areas are visible from both locations, or either location. So that is what we will do, using site2 (the green star). In this example, the magenta areas can be seen from the green star, the blue from the red star, the purple from both stars, and the white from neither.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/umayri5.jpg&#34; alt=&#34;alt text&#34; title=&#34;Combined Visibility from the Green and Red Stars&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;the-impact-of-combined-viewsheds&#34;&gt;The Impact of Combined Viewsheds&lt;/h2&gt;
+
+&lt;p&gt;Tying back into the original application domains, to get full view of a prison yard, towers can be added (or raised). To provide full coverage to a city, cellular towers can be added. And to gain &amp;lsquo;full control&amp;rsquo; over ancient sites, they too could put up more towers. So we will pretend they did, and we will see how much more visibility these added towers gave them. Our added towers will be indicated with white stars. Their respective viewsheds are indicated by the varying colors.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/umayri6.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Viewshed From Umayri with 6 Added Towers&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;To get percentages of area covered, we can use the conditional statement from earlier. Remember that non-visible areas will be represented as 0&amp;rsquo;s and visible areas will be represented as 1&amp;rsquo;s. With some simple division, we can see that the new viewshed is far better, with 53% of the area being visible (as opposed to 17%), and 47% of the area not being visible (as opposed to 83%).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/umayri7.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Viewshed from Umayri with 6 Added Towers&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Though this is a significant improvement, it is far from ideal. The towers were added at arbitrarily chosen sites (green points). This step in the analysis could have been optimized for the best visibility, with more emphasis on western sites than eastern, or more emphasis on high-elevation points. This simple analysis can be of tremendous value to any problem concerning visibility.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.casa.arizona.edu/MPP/viewshed/vspaper.html&#34;&gt;* Visibility Analysis and Ancient Settlement Strategies&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>A Working Example of a Conceptual Model</title>
