@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Example blog">
+
+<base href="https://ckhoward.github.io/">
+<title>
+
+
+     Chris Howard - Path Distance Analysis [GIS] 
+
+</title>
+<link rel="canonical" href="https://ckhoward.github.io/blog/path-distance-analysis-gis/">
+
+
+<script type="text/javascript">
+    var baseURL = 'https:\/\/ckhoward.github.io\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+
+
+<link rel="stylesheet" href="https://ckhoward.github.io/css/reset.css">
+<link rel="stylesheet" href="https://ckhoward.github.io/css/pygments.css">
+<link rel="stylesheet" href="https://ckhoward.github.io/css/main.css">
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://ckhoward.github.io/img/datcactus.png"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+
+
+</section>
+<section class="header"> 
+
+    <div class="container">
+        <a href="https://ckhoward.github.io/"><img class="logo" src="https://ckhoward.github.io/img/datcactus.png" /></a>
+        <div class="content">
+            <a href="https://ckhoward.github.io/"><div class="name"><h1>Chris Howard</h1></div></a>
+            <nav>
+                <ul>
+                    <a href="https://ckhoward.github.io/"><li>Blog</li></a>
+                    <a href="https://ckhoward.github.io/about/"><li>About</li></a>
+                    <a href="https://ckhoward.github.io/projects/"><li>Projects</li></a>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="https://github.com/example" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+        
+        
+        
+            <a href="@example" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+        
+
+        
+            <a href="example" target="_blank">
+                <i class="icon ion-social-linkedin"></i>
+            </a>
+        
+
+        
+            <a href="mailto:you@example.com">
+                <i class="icon ion-ios-email larger"></i>
+            </a>
+        
+
+        
+            <a href="https://ckhoward.github.io/index.xml">
+                <i class="icon ion-social-rss larger"></i>
+            </a>
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Path Distance Analysis [GIS]
+
+</div>
+
+                    <div class="initials"><a href="https://ckhoward.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    <div class="date" title="Tue May 30 2017 19:25:23 MST">May 30, 2017</div>
+                    <div class="reading-time"><div class="middot"></div>2 minutes read</div>
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<h2 id="path-distance-analysis">Path Distance Analysis</h2>
+
+<p>Let&rsquo;s suppose we&rsquo;re a team of highly skilled NGA agents. We just received a briefing about some suspicious activity between two rival factions. These factions are typically hostile towards each other, but a trusted informant has brought forward some intel suggesting the two factions have been cooperating.</p>
+
+<p>Our team must assist in verifying these claism. Wielding the all-powerful eye in the sky — or, an array of US Government satellites — we will first identify which outposts are linked to each faction, and we will then infer their transportation network. This will provide us direction with what we choose to surveil in order to confirm or deny our informant&rsquo;s claims, that these two factions are indeed working together.</p>
+
+<p>The two factions are indicated by stars and all of the outposts are indicated with green points.</p>
+
+<p><img src="img/pd1.png" alt="alt text" title="Aerial shot of two factions within the city" /></p>
+
+<p>So we have this overview. By itself, it isn&rsquo;t all that helpful. We need more data if we want to find out which factions own which outposts. Naturally, being the National Geospatial-Intelligence Agency, our team has some useful elevation data associated with the area.</p>
+
+<p><img src="img/pd2.png" alt="alt text" title="digital elevation model for area of interest" /></p>
+
+<p><img src="img/pd3.png" alt="alt text" title="slopes for area of interest" /></p>
+
+<h2 id="the-significance-of-elevation">The Significance of Elevation</h2>
+
+<p>The objective is to find out which green points are associated with which stars. You can think of each star as a sort of command post. If we think about it, it&rsquo;s most likely a matter of proximity. You don&rsquo;t want your outposts in enemy territory. So we want to look at path-distance. But it isn&rsquo;t so black and white.</p>
+
+<h3 id="eucilid-s-distance">Eucilid&rsquo;s Distance</h3>
+
+<p>If we think about distance in Eucilidean terms, we&rsquo;re simplifying a lot. It would imply that terrain is flat; that weather isn&rsquo;t relevant; that there aren&rsquo;t barriers preventing our passage, so on and so forth.</p>
+
+<p><img src="img/pd4.png" alt="alt text" title="Eucilid's Linear Distance" /></p>
+
+                <br>
+                <p><a href="https://ckhoward.github.io/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+</body>
+</html>
+
