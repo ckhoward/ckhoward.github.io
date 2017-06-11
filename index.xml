@@ -19,7 +19,7 @@
 
 &lt;h1 id=&#34;my-introduction-to-gis-with-python&#34;&gt;My Introduction to GIS with Python&lt;/h1&gt;
 
-&lt;p&gt;Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the &lt;a href=&#34;!http://www.start.umd.edu/gtd/&#34;&gt;Global Terrorism Database&lt;/a&gt; so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations. Each location has a variety of data but I will focus on country, latitude, and longitude. Specifically, I will observe attacks in Iraq. The coordinates are based on WGS1984 standards, so they will have to be converted to UTM Zone 38N in order to be mapped on a flat-surface (more on this later, no worries if you don&amp;rsquo;t understand).&lt;/p&gt;
+&lt;p&gt;Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the &lt;a href=&#34;http://www.start.umd.edu/gtd/&#34;&gt;Global Terrorism Database&lt;/a&gt; so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations. Each location has a variety of data but I will focus on country, latitude, and longitude. Specifically, I will observe attacks in Iraq. The coordinates are based on WGS1984 standards, so they will have to be converted to UTM Zone 38N in order to be mapped on a flat-surface (more on this later, no worries if you don&amp;rsquo;t understand).&lt;/p&gt;
 
 &lt;h1 id=&#34;first-step-cleaning-the-data&#34;&gt;First Step: Cleaning the Data&lt;/h1&gt;
 
@@ -47,9 +47,9 @@
 
 &lt;h1 id=&#34;third-step-converting-the-coordinates&#34;&gt;Third Step: Converting the Coordinates&lt;/h1&gt;
 
-&lt;p&gt;Coordinate systems use values that assume 3D-space and are provided by satellites. The problem is, most maps are flat, and when you&amp;rsquo;re flattening the earth there are always distortions. These distortions affect distance, direction, and scale. Check out Kai Chang&amp;rsquo;s &lt;a href=&#34;!https://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e&#34;&gt;awesome visualizations&lt;/a&gt; for comparing different map projections.&lt;/p&gt;
+&lt;p&gt;Coordinate systems use values that assume 3D-space and are provided by satellites. The problem is, most maps are flat, and when you&amp;rsquo;re flattening the earth there are always distortions. These distortions affect distance, direction, and scale. Check out Kai Chang&amp;rsquo;s &lt;a href=&#34;https://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e&#34;&gt;awesome visualizations&lt;/a&gt; for comparing different map projections.&lt;/p&gt;
 
-&lt;p&gt;Mathematical formulae are used to convert geographic coordinates into their flat-plane equivalents. The Python module &lt;a href=&#34;!https://github.com/jswhit/pyproj&#34;&gt;Pyproj&lt;/a&gt; handles this for users, so I import this module and use it in my conversion function.&lt;/p&gt;
+&lt;p&gt;Mathematical formulae are used to convert geographic coordinates into their flat-plane equivalents. The Python module &lt;a href=&#34;https://github.com/jswhit/pyproj&#34;&gt;Pyproj&lt;/a&gt; handles this for users, so I import this module and use it in my conversion function.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;img/projection4.jpg&#34; alt=&#34;alt text&#34; title=&#34;Python Pyproj to Convert from Geographic Coordinates to Projected UTM&#34; /&gt;&lt;/p&gt;
 
@@ -61,7 +61,7 @@
 
 &lt;p&gt;&lt;img src=&#34;img/projection_output1.jpg&#34; alt=&#34;alt text&#34; title=&#34;Incorrect Pyproj Output&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;I wanted to verify whether or not these values were right, because I knew upon plotting them, I was getting Ethiopian areas, so I used the &lt;a href=&#34;!http://home.hiwaay.net/~taylorc/toolbox/geography/geoutm.html&#34;&gt;Geographic/UTM Coordinate Converter Website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I wanted to verify whether or not these values were right, because I knew upon plotting them, I was getting Ethiopian areas, so I used the &lt;a href=&#34;http://home.hiwaay.net/~taylorc/toolbox/geography/geoutm.html&#34;&gt;Geographic/UTM Coordinate Converter Website&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;img/conversion_site.jpg&#34; alt=&#34;alt text&#34; title=&#34;Coordinate to UTM Web Tool&#34; /&gt;&lt;/p&gt;
 
@@ -122,7 +122,7 @@
 
 &lt;h1 id=&#34;my-introduction-to-gis-with-python&#34;&gt;My Introduction to GIS with Python&lt;/h1&gt;
 
-&lt;p&gt;Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the &lt;a href=&#34;!http://www.start.umd.edu/gtd/&#34;&gt;Global Terrorism Database&lt;/a&gt; so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations. Each location has a variety of data but I will focus on country, latitude, and longitude. Specifically, I will observe attacks in Iraq. The coordinates are based on WGS1984 standards, so they will have to be converted to UTM Zone 38N in order to be mapped on a flat-surface (more on this later, no worries if you don&amp;rsquo;t understand).&lt;/p&gt;
+&lt;p&gt;Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the &lt;a href=&#34;http://www.start.umd.edu/gtd/&#34;&gt;Global Terrorism Database&lt;/a&gt; so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations. Each location has a variety of data but I will focus on country, latitude, and longitude. Specifically, I will observe attacks in Iraq. The coordinates are based on WGS1984 standards, so they will have to be converted to UTM Zone 38N in order to be mapped on a flat-surface (more on this later, no worries if you don&amp;rsquo;t understand).&lt;/p&gt;
 
 &lt;h1 id=&#34;first-step-cleaning-the-data&#34;&gt;First Step: Cleaning the Data&lt;/h1&gt;
 
@@ -150,9 +150,9 @@
 
 &lt;h1 id=&#34;third-step-converting-the-coordinates&#34;&gt;Third Step: Converting the Coordinates&lt;/h1&gt;
 
-&lt;p&gt;Coordinate systems use values that assume 3D-space and are provided by satellites. The problem is, most maps are flat, and when you&amp;rsquo;re flattening the earth there are always distortions. These distortions affect distance, direction, and scale. Check out Kai Chang&amp;rsquo;s &lt;a href=&#34;!https://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e&#34;&gt;awesome visualizations&lt;/a&gt; for comparing different map projections.&lt;/p&gt;
+&lt;p&gt;Coordinate systems use values that assume 3D-space and are provided by satellites. The problem is, most maps are flat, and when you&amp;rsquo;re flattening the earth there are always distortions. These distortions affect distance, direction, and scale. Check out Kai Chang&amp;rsquo;s &lt;a href=&#34;https://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e&#34;&gt;awesome visualizations&lt;/a&gt; for comparing different map projections.&lt;/p&gt;
 
-&lt;p&gt;Mathematical formulae are used to convert geographic coordinates into their flat-plane equivalents. The Python module &lt;a href=&#34;!https://github.com/jswhit/pyproj&#34;&gt;Pyproj&lt;/a&gt; handles this for users, so I import this module and use it in my conversion function.&lt;/p&gt;
+&lt;p&gt;Mathematical formulae are used to convert geographic coordinates into their flat-plane equivalents. The Python module &lt;a href=&#34;https://github.com/jswhit/pyproj&#34;&gt;Pyproj&lt;/a&gt; handles this for users, so I import this module and use it in my conversion function.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;img/projection4.jpg&#34; alt=&#34;alt text&#34; title=&#34;Python Pyproj to Convert from Geographic Coordinates to Projected UTM&#34; /&gt;&lt;/p&gt;
 
@@ -164,7 +164,7 @@
 
 &lt;p&gt;&lt;img src=&#34;img/projection_output1.jpg&#34; alt=&#34;alt text&#34; title=&#34;Incorrect Pyproj Output&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;I wanted to verify whether or not these values were right, because I knew upon plotting them, I was getting Ethiopian areas, so I used the &lt;a href=&#34;!http://home.hiwaay.net/~taylorc/toolbox/geography/geoutm.html&#34;&gt;Geographic/UTM Coordinate Converter Website&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I wanted to verify whether or not these values were right, because I knew upon plotting them, I was getting Ethiopian areas, so I used the &lt;a href=&#34;http://home.hiwaay.net/~taylorc/toolbox/geography/geoutm.html&#34;&gt;Geographic/UTM Coordinate Converter Website&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;img/conversion_site.jpg&#34; alt=&#34;alt text&#34; title=&#34;Coordinate to UTM Web Tool&#34; /&gt;&lt;/p&gt;
 
