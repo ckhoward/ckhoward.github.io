@@ -28,16 +28,7 @@
     }
 </script>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-100464457-1', 'auto');
-  ga('send', 'pageview');
-
-</script>
 
 
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
@@ -97,15 +88,11 @@
         
         
         
-            <a href="https://twitter.com/_ckhoward" target="_blank">
+            <a href="@_ckhoward" target="_blank">
                 <i class="icon ion-social-twitter"></i>
             </a>
         
 
-        
-            <a href="example" target="_blank">
-                <i class="icon ion-social-linkedin"></i>
-            </a>
         
 
         
@@ -147,11 +134,11 @@
 
 <h1 id="path-distance-analysis">Path-Distance Analysis</h1>
 
-<p><em>This is a fictitious scenario</em></p>
+<p><em>//This is a fictitious scenario//</em></p>
 
 <p>Let&rsquo;s suppose we&rsquo;re a team of highly skilled NGA agents. We just received a briefing about some suspicious activity between two rival factions. These factions are typically hostile towards each other, but a trusted informant has brought forward some intel suggesting the two factions have been cooperating.</p>
 
-<p>Our team must assist in verifying these claims. Wielding the all-powerful eye in the sky — or, an array of US Government satellites — we will first identify which outposts are linked to each faction, and we will then infer the inter- and intra-faction transportation networks. This will prove valuable to our client, giving them direction when choosing what to surveil so that they can confirm or deny the informant&rsquo;s claims — that these two factions are indeed working together.</p>
+<p>Our team must assist in verifying these claims. Wielding the all-powerful eye in the sky — or, an array of US Government satellites — we will first identify which outposts are linked to each faction, and we will then infer the inter- and instra-faction transportation networks. This will prove valuable to our client, giving them direction when choosing what to surveil so that they can confirm or deny the informant&rsquo;s claims — that these two factions are indeed working together.</p>
 
 <p>The two factions are indicated by stars and all of the outposts are indicated with green points.</p>
 
@@ -186,7 +173,7 @@
 
 <p>The Path Distance function requires a cost surface, so we will build one. This cost surface is a raster that shows the level of effort required to traverse some area. For simplicity, we will use road quality to account for cost, but GIS software can do a ton more, mathematically incorporating a huge variety of other factors. Intuitively, red areas indicate awful, destroyed roads.</p>
 
-<p><img src="img/pd7.png" alt="alt text" title="Road quality in Cost Surface" /></p>
+<p><img src="img/pd7.png" alt="alt text" title="Road Quality in Cost Surface" /></p>
 
 <p>We can then <a href="http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/creating-a-cost-surface-raster.htm">reclassify</a> these data. Values are reclassified to more accurately portray cost. In this case, values rise exponentially to reflect how much more effort is used to traverse the different roads. Using a road under full construction isn&rsquo;t possible. Reclassifying data accounts for the relativity of the situation at-hand, as driving a car down a bumpy road will have a different cost than walking down the bumpy road.</p>
 
@@ -200,7 +187,7 @@
 
 <h3 id="path-distance-raster">Path Distance Raster</h3>
 
-<p>Every cell in this raster holds the least cost accumulated. To put this more simply, it says that we&rsquo;re starting at a command post (either, it doesn&rsquo;t matter which). But we want to leave, without having defined any place we&rsquo;re going. So we start walking. Each step we take, we will have a number of directions we can go, some with higher cost than others (because of road-quality changes). If we think about this in terms of cells, we&rsquo;re on some given cell, and the cells around it have associated cost values. This new raster shows the least cost path whichever way you want to go.</p>
+<p>Every cell in this raster holds the least cost accumulated. To put this more simply, it says that we&rsquo;re starting at a command post (either, it doesn&rsquo;t matter which). But we want to leave, without having defined any place we&rsquo;re going. So we start walking. Each step we take, we will have a number of directions we can go, some with higher cost than others (because of elevation changes). If we think about this in terms of cells, we&rsquo;re on some given cell, and the cells around it have associated cost values. This new raster shows the least cost path whichever way you want to go.</p>
 
 <p><img src="img/pd9.png" alt="alt text" title="Area being Split by Euclidean Terms" /></p>
 
@@ -222,7 +209,7 @@
 
 <p><img src="img/pd11.png" alt="alt text" title="Cost Path without Backlink" /></p>
 
-<p>Awesome. So we can finally see the relationships. In this case, it just so happens that Euclid&rsquo;s method was pretty close, it just missed almost all of the points that were immediately on the other side of the division line. Though it took a little extra calculation, factoring in other variables like road-quality turned out to be worth it.</p>
+<p>Awesome. So we can finally see the relationships. In this case, it just so happens that Euclid&rsquo;s method was pretty close, it just missed almost all of the points that were immediately on the other side of the division line. Though it took a little extra calculation, factoring in other variables like elevation turned out to be worth it.</p>
 
 <h2 id="inferring-transportation-routes-with-corridor-analysis">Inferring Transportation Routes with Corridor Analysis</h2>
 
@@ -258,14 +245,15 @@
 
 <p>With our GIS, we have now inferred the relationship between the two factions and the marked outposts. We also created a great deal of actionable intelligence regarding factions&rsquo; transportation networks. From this, we can consider which areas might be at-risk to violence; which outposts are weaker due to having a low degree of centrality within its faction&rsquo;s network; which outposts are likely to be hotspots; and which areas a surveillence team might work most effectively in. This intelligence will serve our client well.</p>
 
-<h3>Data Source:</h3>
+<h3 id="data-source">Data Source:</h3>
 
-<p> The University of Arizona<br>
-Advanced GIS (GIST 420)<br>
-Professor Gary Christopherson<br>
-<br>
-The data used comes from class exercises not related to this scenario.
-</p>
+<p>The University of Arizona</p>
+
+<p>Advanced GIS (GIST 420)</p>
+
+<p>Professor Gary Christopherson</p>
+
+<p>The data used comes from class exercises not related to this scenario.</p>
 
                 <br>
                 <p><a href="https://ckhoward.github.io/">Back to posts</a></p>

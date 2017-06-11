@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Chris Howard Portfolio">
+
+<base href="https://ckhoward.github.io/">
+<title>
+
+
+     Chris Howard - Projecting with Python [GIS, Python] 
+
+</title>
+<link rel="canonical" href="https://ckhoward.github.io/blog/projecting-with-python-gis-python/">
+
+
+<script type="text/javascript">
+    var baseURL = 'https:\/\/ckhoward.github.io\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+
+
+<link rel="stylesheet" href="https://ckhoward.github.io/css/reset.css">
+<link rel="stylesheet" href="https://ckhoward.github.io/css/pygments.css">
+<link rel="stylesheet" href="https://ckhoward.github.io/css/main.css">
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://ckhoward.github.io/img/datcactus.png"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+
+
+</section>
+<section class="header"> 
+
+    <div class="container">
+        <a href="https://ckhoward.github.io/"><img class="logo" src="https://ckhoward.github.io/img/datcactus.png" /></a>
+        <div class="content">
+            <a href="https://ckhoward.github.io/"><div class="name"><h1>Chris Howard</h1></div></a>
+            <nav>
+                <ul>
+                    <a href="https://ckhoward.github.io/"><li>Blog</li></a>
+                    <a href="https://ckhoward.github.io/about/"><li>About</li></a>
+                    <a href="https://ckhoward.github.io/projects/"><li>Projects</li></a>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="https://github.com/ckhoward" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+        
+        
+        
+            <a href="@_ckhoward" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+        
+
+        
+
+        
+            <a href="mailto:ck_howard@yahoo.com">
+                <i class="icon ion-ios-email larger"></i>
+            </a>
+        
+
+        
+            <a href="https://ckhoward.github.io/index.xml">
+                <i class="icon ion-social-rss larger"></i>
+            </a>
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    Projecting with Python [GIS, Python]
+
+</div>
+
+                    <div class="initials"><a href="https://ckhoward.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    <div class="date" title="Fri Jun 9 2017 12:28:59 MST">Jun 9, 2017</div>
+                    <div class="reading-time"><div class="middot"></div>5 minutes read</div>
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<h1 id="my-introduction-to-gis-with-python">My Introduction to GIS with Python</h1>
+
+<p>Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the <a href="!http://www.start.umd.edu/gtd/">Global Terrorism Database</a> so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations. Each location has a variety of data but I will focus on country, latitude, and longitude. Specifically, I will observe attacks in Iraq. The coordinates are based on WGS1984 standards, so they will have to be converted to UTM Zone 38N in order to be mapped on a flat-surface (more on this later, no worries if you don&rsquo;t understand).</p>
+
+<h1 id="first-step-cleaning-the-data">First Step: Cleaning the Data</h1>
+
+<p>When we first get the data, it contains way more information than we need. There are over 120 variables and as noted, we primarily want to focus on locational data and a few other variables like target type, attack type, and terrorist group responsible. We need to get rid of excess so that our script runs faster and is more relevant to our objective.</p>
+
+<p><img src="img/dataset.jpg" alt="alt text" title="Global Terrorism Database" /></p>
+
+<p>You can see the list of imported modules. Pandas is used first to load the data into a DataFrame (basically a table) to be operated on. Functional programming is best suited for the overall task, as for most data analysis, so here is a simple function to clean the data:</p>
+
+<p><img src="img/projection1.jpg" alt="alt text" title="Cleaning the Data with Pandas Read" /></p>
+
+<p>In the event that the <code>clean_csv()</code> hasn&rsquo;t been called yet, call it. If it has already been called, don&rsquo;t worry about it.</p>
+
+<p><img src="img/projection2.jpg" alt="alt text" title="Cleaning the Data with Pandas Read" /></p>
+
+<p>Now we&rsquo;ve cleaned our data and created a DataFrame with most of what we want. Now we can use another function to specify which country we&rsquo;re interested in.</p>
+
+<h1 id="second-step-specifying-the-country-of-interest">Second Step: Specifying the Country of Interest</h1>
+
+<p>In our case, we&rsquo;re interested in looking at Iraq. We want to see all of the terrorist attacks that occurred in Iraq. We will clean the frame a little bit more now. This step could have been done in the first function but I believe it&rsquo;s more simple for a future user to read, understand, and plug the country of interest with a separate function.</p>
+
+<p><img src="img/projection3.jpg" alt="alt text" title="Specifying the Country of Interest - Iraq" /></p>
+
+<p>Simple enough. The DataFrame object from the last function is loaded in and we create a new frame that meets our criteria; where every record&rsquo;s country value is &ldquo;Iraq.&rdquo; Then, any records containing NaNs are dropped. Our coordinate data is still based on the WGS1984 standard — they work on 3D planes, like in Google Earth, but not on 2D planes, like almost every other map in existence. This calls for conversion.</p>
+
+<h1 id="third-step-converting-the-coordinates">Third Step: Converting the Coordinates</h1>
+
+<p>Coordinate systems use values that assume 3D-space and are provided by satellites. The problem is, most maps are flat, and when you&rsquo;re flattening the earth there are always distortions. These distortions affect distance, direction, and scale. Check out Kai Chang&rsquo;s <a href="!https://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e">awesome visualizations</a> for comparing different map projections.</p>
+
+<p>Mathematical formulae are used to convert geographic coordinates into their flat-plane equivalents. The Python module <a href="!https://github.com/jswhit/pyproj">Pyproj</a> handles this for users, so I import this module and use it in my conversion function.</p>
+
+<p><img src="img/projection4.jpg" alt="alt text" title="Python Pyproj to Convert from Geographic Coordinates to Projected UTM" /></p>
+
+<p>You may have noticed I used the UTM projection (Universal Transverse Mercator). This is because distortion occurs at the poles of the earth, whereas the areas around the equator tend to be accurately preserved. This is good for us since we&rsquo;re observing Iraq. Iraq falls in the Zone 38N band, and must be used as an argument.</p>
+
+<h3 id="incorrect-pyproj-value-output">Incorrect Pyproj Value Output</h3>
+
+<p>Here, I made a common mistake. I was getting pretty wildly wrong values, where points were showing up in Ethiopia and not Iraq. Note the values for utm_lat and utm_lon toward the bottom:</p>
+
+<p><img src="img/projection_output1.jpg" alt="alt text" title="Incorrect Pyproj Output" /></p>
+
+<p>I wanted to verify whether or not these values were right, because I knew upon plotting them, I was getting Ethiopian areas, so I used the <a href="!http://home.hiwaay.net/~taylorc/toolbox/geography/geoutm.html">Geographic/UTM Coordinate Converter Website</a>.</p>
+
+<p><img src="img/conversion_site.jpg" alt="alt text" title="Coordinate to UTM Web Tool" /></p>
+
+<p>Upon looking at the UTM outputs, this is obviously wrong:</p>
+
+<ul>
+<li>-139638 != 354377</li>
+<li>483126 != 410805</li>
+</ul>
+
+<p>My problem was that I had the parameters switched. In simple terms, I had p2(latitude, longitude), but I should have had p2(longitude, latitude). It turns out, in many Python GIS modules, longitude comes before latitude. When I changed the order of these parameters, the output was correct.</p>
+
+<p><img src="img/projection_output2.jpg" alt="alt text" title="Correct Pyproj Output" /></p>
+
+<p>Now that all of the outputs are correct, we can go to the final step.</p>
+
+<h1 id="fourth-and-final-step-producing-a-shapefile-with-our-new-data">Fourth and Final Step: Producing a Shapefile with our New Data</h1>
+
+<p>To create a shapefile I decided I would use Python&rsquo;s Fiona and Shapely modules.</p>
+
+<p><img src="img/projection5.jpg" alt="alt text" title="Using Fiona to Create a Shapefile" /></p>
+
+<p>The previous two functions are called:</p>
+
+<p><img src="img/projection6.jpg" alt="alt text" title="The Convert and Write Functions are Called" /></p>
+
+<p>Now the shapefile has been created:</p>
+
+<p><img src="img/projection7.jpg" alt="alt text" title="Shapefiles in Folder" /></p>
+
+<h1 id="using-arcgis-to-map-the-shapefile">Using ArcGIS to Map the Shapefile</h1>
+
+<p>Open ArcMap. Go to the Catalog tab and click it. Navigate to the folder. Find the shapefile.</p>
+
+<p><img src="img/projection8.jpg" alt="alt text" title="The Shapefile in ArcGIS" /></p>
+
+<p>Right click the shapefile. Go to properties. In the &lsquo;XY Coordinate System&rsquo; tab, expand the &lsquo;Projected Coordinate Systems&rsquo; folder, expand UTM, expand WGS 1984, expand Northern Hemisphere, and then find &lsquo;WGS 1984 UTM Zone 38N.&rsquo; Click it and press the &lsquo;Apply&rsquo; and &lsquo;OK&rsquo; buttons. Drag the shapefile onto your canvas. And don&rsquo;t forget to go to &lsquo;Add Data&rsquo; and &lsquo;Add Basemap&rsquo; to find a map to sit under the points — I chose the dark gray basemap.</p>
+
+<p><img src="img/projection10.jpg" alt="alt text" title="The Shapefile Mapped" /></p>
+
+<p>As the code indicated, I was also recording information on the target types of the attacks. When I use the identify tool on a point (or attack location), or when I open the attribute table, this information will be associated with the geometry (in our case, the point).</p>
+
+<p><img src="img/projection11.jpg" alt="alt text" title="The Shapefile's Associated Properties" /></p>
+
+<h1 id="conclusion">Conclusion</h1>
+
+<p>These functions are simple but they have vast implications. All I did was take a CSV with spatial data, filtered out data that I wasn&rsquo;t interested in, transformed the data into something that I could actually work with, and then wrote the data to a shapefile. These processes give me the ability to do further geospatial analysis and to build and deploy an interactive and informative website regarding terrorist attacks. In the future, I definitely intend to take advantage of other Python geospatial libraries for map-making, like Descartes and Basemap.</p>
+
+                <br>
+                <p><a href="https://ckhoward.github.io/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+</body>
+</html>
+

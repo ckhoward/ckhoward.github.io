@@ -18,6 +18,8 @@
 
 &lt;h1 id=&#34;path-distance-analysis&#34;&gt;Path-Distance Analysis&lt;/h1&gt;
 
+&lt;p&gt;&lt;em&gt;//This is a fictitious scenario//&lt;/em&gt;&lt;/p&gt;
+
 &lt;p&gt;Let&amp;rsquo;s suppose we&amp;rsquo;re a team of highly skilled NGA agents. We just received a briefing about some suspicious activity between two rival factions. These factions are typically hostile towards each other, but a trusted informant has brought forward some intel suggesting the two factions have been cooperating.&lt;/p&gt;
 
 &lt;p&gt;Our team must assist in verifying these claims. Wielding the all-powerful eye in the sky — or, an array of US Government satellites — we will first identify which outposts are linked to each faction, and we will then infer the inter- and instra-faction transportation networks. This will prove valuable to our client, giving them direction when choosing what to surveil so that they can confirm or deny the informant&amp;rsquo;s claims — that these two factions are indeed working together.&lt;/p&gt;
@@ -126,6 +128,16 @@
 &lt;p&gt;&lt;img src=&#34;img/pd30.png&#34; alt=&#34;alt text&#34; title=&#34;Corridor Overlaid on City&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;With our GIS, we have now inferred the relationship between the two factions and the marked outposts. We also created a great deal of actionable intelligence regarding factions&amp;rsquo; transportation networks. From this, we can consider which areas might be at-risk to violence; which outposts are weaker due to having a low degree of centrality within its faction&amp;rsquo;s network; which outposts are likely to be hotspots; and which areas a surveillence team might work most effectively in. This intelligence will serve our client well.&lt;/p&gt;
+
+&lt;h3 id=&#34;data-source&#34;&gt;Data Source:&lt;/h3&gt;
+
+&lt;p&gt;The University of Arizona&lt;/p&gt;
+
+&lt;p&gt;Advanced GIS (GIST 420)&lt;/p&gt;
+
+&lt;p&gt;Professor Gary Christopherson&lt;/p&gt;
+
+&lt;p&gt;The data used comes from class exercises not related to this scenario.&lt;/p&gt;
 </description>
     </item>
     

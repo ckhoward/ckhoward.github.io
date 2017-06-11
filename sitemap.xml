@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ckhoward.github.io/blog/projecting-with-python-gis-python/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/post/Projecting-with-Python-%5BGIS,-Python%5D/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://ckhoward.github.io/blog/path-distance-analysis-gis/</loc>
     <lastmod>2017-05-30T19:25:23-07:00</lastmod>
   </url>
@@ -48,13 +58,31 @@
   
   <url>
     <loc>https://ckhoward.github.io/blog/</loc>
-    <lastmod>2017-05-30T19:25:23-07:00</lastmod>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://ckhoward.github.io/</loc>
-    <lastmod>2017-05-30T19:25:23-07:00</lastmod>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/tags/csv/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/tags/dataframe/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/tags/fiona/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -65,8 +93,20 @@
   </url>
   
   <url>
+    <loc>https://ckhoward.github.io/tags/gis/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://ckhoward.github.io/tags/hci-ux-conceptual-model-user-experience-application-design-first-step/</loc>
     <lastmod>2017-02-21T23:12:45-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/tags/pandas/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -78,7 +118,31 @@
   
   <url>
     <loc>https://ckhoward.github.io/post/</loc>
-    <lastmod>2017-05-30T19:24:32-07:00</lastmod>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/tags/pyproj/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/tags/python/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/tags/shapefile/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/tags/shapely/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
     <priority>0</priority>
   </url>
   
