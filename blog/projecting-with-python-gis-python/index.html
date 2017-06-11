@@ -134,7 +134,7 @@
 
 <h1 id="my-introduction-to-gis-with-python">My Introduction to GIS with Python</h1>
 
-<p>Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the <a href="!http://www.start.umd.edu/gtd/">Global Terrorism Database</a> so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations. Each location has a variety of data but I will focus on country, latitude, and longitude. Specifically, I will observe attacks in Iraq. The coordinates are based on WGS1984 standards, so they will have to be converted to UTM Zone 38N in order to be mapped on a flat-surface (more on this later, no worries if you don&rsquo;t understand).</p>
+<p>Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the <a href="http://www.start.umd.edu/gtd/">Global Terrorism Database</a> so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations. Each location has a variety of data but I will focus on country, latitude, and longitude. Specifically, I will observe attacks in Iraq. The coordinates are based on WGS1984 standards, so they will have to be converted to UTM Zone 38N in order to be mapped on a flat-surface (more on this later, no worries if you don&rsquo;t understand).</p>
 
 <h1 id="first-step-cleaning-the-data">First Step: Cleaning the Data</h1>
 
@@ -162,9 +162,9 @@
 
 <h1 id="third-step-converting-the-coordinates">Third Step: Converting the Coordinates</h1>
 
-<p>Coordinate systems use values that assume 3D-space and are provided by satellites. The problem is, most maps are flat, and when you&rsquo;re flattening the earth there are always distortions. These distortions affect distance, direction, and scale. Check out Kai Chang&rsquo;s <a href="!https://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e">awesome visualizations</a> for comparing different map projections.</p>
+<p>Coordinate systems use values that assume 3D-space and are provided by satellites. The problem is, most maps are flat, and when you&rsquo;re flattening the earth there are always distortions. These distortions affect distance, direction, and scale. Check out Kai Chang&rsquo;s <a href="https://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e">awesome visualizations</a> for comparing different map projections.</p>
 
-<p>Mathematical formulae are used to convert geographic coordinates into their flat-plane equivalents. The Python module <a href="!https://github.com/jswhit/pyproj">Pyproj</a> handles this for users, so I import this module and use it in my conversion function.</p>
+<p>Mathematical formulae are used to convert geographic coordinates into their flat-plane equivalents. The Python module <a href="https://github.com/jswhit/pyproj">Pyproj</a> handles this for users, so I import this module and use it in my conversion function.</p>
 
 <p><img src="img/projection4.jpg" alt="alt text" title="Python Pyproj to Convert from Geographic Coordinates to Projected UTM" /></p>
 
@@ -176,7 +176,7 @@
 
 <p><img src="img/projection_output1.jpg" alt="alt text" title="Incorrect Pyproj Output" /></p>
 
-<p>I wanted to verify whether or not these values were right, because I knew upon plotting them, I was getting Ethiopian areas, so I used the <a href="!http://home.hiwaay.net/~taylorc/toolbox/geography/geoutm.html">Geographic/UTM Coordinate Converter Website</a>.</p>
+<p>I wanted to verify whether or not these values were right, because I knew upon plotting them, I was getting Ethiopian areas, so I used the <a href="http://home.hiwaay.net/~taylorc/toolbox/geography/geoutm.html">Geographic/UTM Coordinate Converter Website</a>.</p>
 
 <p><img src="img/conversion_site.jpg" alt="alt text" title="Coordinate to UTM Web Tool" /></p>
 
