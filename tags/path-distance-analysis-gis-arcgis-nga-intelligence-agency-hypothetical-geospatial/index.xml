@@ -22,7 +22,7 @@
 
 &lt;p&gt;Let&amp;rsquo;s suppose we&amp;rsquo;re a team of highly skilled NGA agents. We just received a briefing about some suspicious activity between two rival factions. These factions are typically hostile towards each other, but a trusted informant has brought forward some intel suggesting the two factions have been cooperating.&lt;/p&gt;
 
-&lt;p&gt;Our team must assist in verifying these claims. Wielding the all-powerful eye in the sky — or, an array of US Government satellites — we will first identify which outposts are linked to each faction, and we will then infer the inter- and instra-faction transportation networks. This will prove valuable to our client, giving them direction when choosing what to surveil so that they can confirm or deny the informant&amp;rsquo;s claims — that these two factions are indeed working together.&lt;/p&gt;
+&lt;p&gt;Our team must assist in verifying these claims. Wielding the all-powerful eye in the sky — or, an array of US Government satellites — we will first identify which outposts are linked to each faction, and we will then infer the inter- and intra-faction transportation networks. This will prove valuable to our client, giving them direction when choosing what to surveil so that they can confirm or deny the informant&amp;rsquo;s claims — that these two factions are indeed working together.&lt;/p&gt;
 
 &lt;p&gt;The two factions are indicated by stars and all of the outposts are indicated with green points.&lt;/p&gt;
 
@@ -71,7 +71,7 @@
 
 &lt;h3 id=&#34;path-distance-raster&#34;&gt;Path Distance Raster&lt;/h3&gt;
 
-&lt;p&gt;Every cell in this raster holds the least cost accumulated. To put this more simply, it says that we&amp;rsquo;re starting at a command post (either, it doesn&amp;rsquo;t matter which). But we want to leave, without having defined any place we&amp;rsquo;re going. So we start walking. Each step we take, we will have a number of directions we can go, some with higher cost than others (because of elevation changes). If we think about this in terms of cells, we&amp;rsquo;re on some given cell, and the cells around it have associated cost values. This new raster shows the least cost path whichever way you want to go.&lt;/p&gt;
+&lt;p&gt;Every cell in this raster holds the least cost accumulated. To put this more simply, it says that we&amp;rsquo;re starting at a command post (either, it doesn&amp;rsquo;t matter which). But we want to leave, without having defined any place we&amp;rsquo;re going. So we start walking. Each step we take, we will have a number of directions we can go, some with higher cost than others (because of road-quality changes). If we think about this in terms of cells, we&amp;rsquo;re on some given cell, and the cells around it have associated cost values. This new raster shows the least cost path whichever way you want to go.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&#34;img/pd9.png&#34; alt=&#34;alt text&#34; title=&#34;Area being Split by Euclidean Terms&#34; /&gt;&lt;/p&gt;
 
@@ -93,7 +93,7 @@
 
 &lt;p&gt;&lt;img src=&#34;img/pd11.png&#34; alt=&#34;alt text&#34; title=&#34;Cost Path without Backlink&#34; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Awesome. So we can finally see the relationships. In this case, it just so happens that Euclid&amp;rsquo;s method was pretty close, it just missed almost all of the points that were immediately on the other side of the division line. Though it took a little extra calculation, factoring in other variables like elevation turned out to be worth it.&lt;/p&gt;
+&lt;p&gt;Awesome. So we can finally see the relationships. In this case, it just so happens that Euclid&amp;rsquo;s method was pretty close, it just missed almost all of the points that were immediately on the other side of the division line. Though it took a little extra calculation, factoring in other variables like road-quality turned out to be worth it.&lt;/p&gt;
 
 &lt;h2 id=&#34;inferring-transportation-routes-with-corridor-analysis&#34;&gt;Inferring Transportation Routes with Corridor Analysis&lt;/h2&gt;
 
