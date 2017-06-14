@@ -15,7 +15,7 @@
       <pubDate>Tue, 03 Jan 2017 16:52:01 -0700</pubDate>
       
       <guid>https://ckhoward.github.io/projects/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;blog/terrorist-targets-exploratory/&#34;&gt;Terrorist Targets&lt;/a&gt; is a brief exploratory analysis on the targets of some elected terrorist organizations. The dataset was taken from The Global Terrorism Database. A histogram was created to look at which entities were the most popular targets that terrorists choose to attack. From there, mosaic plots are made to show the differences in terrorist organizations, not only in who they attack, but also in how they carry out that attack. This is the one project that code will not be posted for, in the name of academic integrity.&lt;/p&gt;
+      <description>&lt;p&gt;&lt;a href=&#34;blog/terrorist-targets-exploratory/&#34;&gt;Terrorist Targets&lt;/a&gt; is a brief exploratory analysis on the targets of some elected terrorist organizations. The dataset was taken from The Global Terrorism Database. A histogram was created to look at which entities were the most popular targets that terrorists choose to attack. From there, mosaic plots are made to show the differences in terrorist organizations, not only in who they attack, but also in how they carry out that attack. If you&amp;rsquo;re interested in the code, feel free to email me; it&amp;rsquo;s currently hosted in a private repo.&lt;/p&gt;
 </description>
     </item>
     
