@@ -6,8 +6,141 @@
     <description>Recent content on Chris Howard</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sat, 17 Jun 2017 14:50:42 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 15 Aug 2017 19:25:23 -0700</lastBuildDate>
     <atom:link href="https://ckhoward.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Path Distance Analysis [GIS]</title>
+      <link>https://ckhoward.github.io/blog/path-distance-analysis-gis/</link>
+      <pubDate>Tue, 15 Aug 2017 19:25:23 -0700</pubDate>
+      
+      <guid>https://ckhoward.github.io/blog/path-distance-analysis-gis/</guid>
+      <description>
+
+&lt;h1 id=&#34;path-distance-analysis&#34;&gt;Path-Distance Analysis&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;//This is a fictitious scenario//&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s suppose we&amp;rsquo;re a team of highly skilled NGA agents. We just received a briefing about some suspicious activity between two rival factions. These factions are typically hostile towards each other, but a trusted informant has brought forward some intel suggesting the two factions have been cooperating.&lt;/p&gt;
+
+&lt;p&gt;Our team must assist in verifying these claims. Wielding the all-powerful eye in the sky — or, an array of US Government satellites — we will first identify which outposts are linked to each faction, and we will then infer the inter- and intra-faction transportation networks. This will prove valuable to our client, giving them direction when choosing what to surveil so that they can confirm or deny the informant&amp;rsquo;s claims — that these two factions are indeed working together.&lt;/p&gt;
+
+&lt;p&gt;The two factions are indicated by stars and all of the outposts are indicated with green points.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd1.png&#34; alt=&#34;alt text&#34; title=&#34;Aerial shot of two factions within the city&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So we have this overview. By itself, it isn&amp;rsquo;t all that helpful. We need more data if we want to find out which factions own which outposts. Naturally, being the National Geospatial-Intelligence Agency, our team has some useful road-quality data associated with the area.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd2.png&#34; alt=&#34;alt text&#34; title=&#34;digital elevation model for area of interest&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd3.png&#34; alt=&#34;alt text&#34; title=&#34;slopes for area of interest&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;methods-in-path-distance-analysis&#34;&gt;Methods in Path-Distance Analysis&lt;/h2&gt;
+
+&lt;p&gt;The objective is to find out which green points are associated with which stars. You can think of each star as a sort of command post. If we think about it, it&amp;rsquo;s most likely a matter of proximity. You don&amp;rsquo;t want your outposts in enemy territory. So we want to look at path-distance. But it isn&amp;rsquo;t so black and white.&lt;/p&gt;
+
+&lt;h3 id=&#34;euclid-s-distance&#34;&gt;Euclid&amp;rsquo;s Distance&lt;/h3&gt;
+
+&lt;p&gt;Euclidean distance is basically straight-line distance. Below, you can suppose that each ring is approximately a mile long.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd4.png&#34; alt=&#34;alt text&#34; title=&#34;Euclid&#39;s Linear Distance&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;And if this method were right, we could just find where the rings intersect, divide the area into two, and observe where the outposts fall. If the outposts are in the half containing the red faction, the red faction owns them. If the outposts are in the half containing the blue faction, the blue faction owns them.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd5.png&#34; alt=&#34;alt text&#34; title=&#34;Euclid&#39;s Method in Determining Outpost-Faction Relationship&#34; /&gt;
+&lt;img src=&#34;img/pd6.png&#34; alt=&#34;alt text&#34; title=&#34;Area being Split by Euclidean Terms&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, paths are more complex. Terrain, wind, road condition, stop-lights, and other elements can influence time to get from point A to point B; you simply can&amp;rsquo;t walk through a mountain. Lucky for us, there are other means of calculating the true distance of paths.&lt;/p&gt;
+
+&lt;h3 id=&#34;arcgis-path-distance&#34;&gt;ArcGIS Path Distance&lt;/h3&gt;
+
+&lt;p&gt;ArcGIS doesn&amp;rsquo;t suffer the pitfalls of the Euclidean method when calculating distance; it comes equipped with a very versatile Path Distance function. As noted, certain environmental factors can slow you down or speed you up on a given path. The ArcGIS function can account for these factors.&lt;/p&gt;
+
+&lt;p&gt;The Path Distance function requires a cost surface, so we will build one. This cost surface is a raster that shows the level of effort required to traverse some area. For simplicity, we will use road quality to account for cost, but GIS software can do a ton more, mathematically incorporating a huge variety of other factors. Intuitively, red areas indicate awful, destroyed roads.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd7.png&#34; alt=&#34;alt text&#34; title=&#34;Road Quality in Cost Surface&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We can then &lt;a href=&#34;http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/creating-a-cost-surface-raster.htm&#34;&gt;reclassify&lt;/a&gt; these data. Values are reclassified to more accurately portray cost. In this case, values rise exponentially to reflect how much more effort is used to traverse the different roads. Using a road under full construction isn&amp;rsquo;t possible. Reclassifying data accounts for the relativity of the situation at-hand, as driving a car down a bumpy road will have a different cost than walking down the bumpy road.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd23.png&#34; alt=&#34;alt text&#34; title=&#34;Reclassifying Cost Surface&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd8.png&#34; alt=&#34;alt text&#34; title=&#34;Reclassified Cost Surface&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;path-distance-and-backlink-rasters&#34;&gt;Path Distance and Backlink Rasters&lt;/h2&gt;
+
+&lt;p&gt;Now we can use our Path Distance function. It uses our command posts (the stars) as input points and it uses our cost raster and surface raster to calculate the cost of navigating the area. It will create two new rasters. One is the path distance model and the other is the backlink raster.&lt;/p&gt;
+
+&lt;h3 id=&#34;path-distance-raster&#34;&gt;Path Distance Raster&lt;/h3&gt;
+
+&lt;p&gt;Every cell in this raster holds the least cost accumulated. To put this more simply, it says that we&amp;rsquo;re starting at a command post (either, it doesn&amp;rsquo;t matter which). But we want to leave, without having defined any place we&amp;rsquo;re going. So we start walking. Each step we take, we will have a number of directions we can go, some with higher cost than others (because of road-quality changes). If we think about this in terms of cells, we&amp;rsquo;re on some given cell, and the cells around it have associated cost values. This new raster shows the least cost path whichever way you want to go.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd9.png&#34; alt=&#34;alt text&#34; title=&#34;Area being Split by Euclidean Terms&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;backlink-raster&#34;&gt;Backlink Raster&lt;/h3&gt;
+
+&lt;p&gt;The backlink raster is basically a way-finder, from any (and every) cell, back to the origin (our command posts). The graphic may be a complete mess, seeming entirely incoherent. It&amp;rsquo;s actually really cool though. Each color is associated with a number, and each number is associated with a direction.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd26.png&#34; alt=&#34;alt text&#34; title=&#34;Back Link Raster Directions from ArcGIS&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The number 7 tells you to go north, which in our case is the color yellow. And you follow its directions because it is the least-cost path. In other words, your cell is yellow and telling you to go north because the other cells (NE, E, SE, S, SW, W, NW) all come at a higher cost. Think of it as a color-coded way of getting out of danger.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd21.png&#34; alt=&#34;alt text&#34; title=&#34;Back Link Raster&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The backlink raster will be used to calculate the true relationship between the two command posts and the dozens of outposts. The Cost Path tool takes the smaller outposts as starting points, then uses the instructions of the backlink to make their way back to the command posts.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd20.png&#34; alt=&#34;alt text&#34; title=&#34;Cost Path with Backlink&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&amp;hellip;Or to make it a little more clear:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd11.png&#34; alt=&#34;alt text&#34; title=&#34;Cost Path without Backlink&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Awesome. So we can finally see the relationships. In this case, it just so happens that Euclid&amp;rsquo;s method was pretty close, it just missed almost all of the points that were immediately on the other side of the division line. Though it took a little extra calculation, factoring in other variables like road-quality turned out to be worth it.&lt;/p&gt;
+
+&lt;h2 id=&#34;inferring-transportation-routes-with-corridor-analysis&#34;&gt;Inferring Transportation Routes with Corridor Analysis&lt;/h2&gt;
+
+&lt;p&gt;Corridor analysis finds the optimal corridor between two points. This is essentially finding the optimal areas of transportation, as opposed to one explicit path. The Corridor tool requires two path distance rasters. Each raster will have least cost paths surrounding some source, in our case, a command post.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd27.png&#34; alt=&#34;alt text&#34; title=&#34;Path Distance for Each Source&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The two rasters will then be summed:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd14.png&#34; alt=&#34;alt text&#34; title=&#34;Summed Path Distances&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This corridor is hardly insightful. There is too much area between the two factions where transportation is low-cost. We can create thresholds to check for smaller values, so that we can narrow down the number of potential routes. This is done with conditional statements. We&amp;rsquo;re trying to highlight lower-value areas and according to the key, the range of data is [7,690-168,354]. These data vary between projects so trial-and-error is really the best bet for finding a threshold we like. Using Raster Calculator, we will first try finding data that is less than 10,000 with our conditional statement.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Con(&amp;ldquo;corridor_surface&amp;rdquo;&amp;lt;10000,1)&lt;/strong&gt; — For each cell, if cell value is less than 10,000, write 1 to cell in output raster.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd15.png&#34; alt=&#34;alt text&#34; title=&#34;Corridor Threshold 10000&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Con(&amp;ldquo;corridor_surface&amp;rdquo;&amp;lt;9000,1)&lt;/strong&gt; — For each cell, if cell value is less than 9,000, write 1 to cell in output raster.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd16.png&#34; alt=&#34;alt text&#34; title=&#34;Corridor Threshold 9000&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Pretty good, but we can narrow it down just a little more.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Con(&amp;ldquo;corridor_surface&amp;rdquo;&amp;lt;8400,1)&lt;/strong&gt; — For each cell, if cell value is less than 8,400, write 1 to cell in output raster.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd17.png&#34; alt=&#34;alt text&#34; title=&#34;Corridor Threshold 8400&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This is good enough. If we narrow it down too far, we would be unreasonably assuming that these factions use the most optimal route possible to travel between command posts. This isn&amp;rsquo;t realistic. Fortunately, this threshold served its purpose in narrowing down possible routes enough to be insightful. There are three major bottlenecks that could be strategically used to switch out vehicles when tailing a target.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd29.png&#34; alt=&#34;alt text&#34; title=&#34;Corridor Overlaid on City&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/pd30.png&#34; alt=&#34;alt text&#34; title=&#34;Corridor Overlaid on City&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;With our GIS, we have now inferred the relationship between the two factions and the marked outposts. We also created a great deal of actionable intelligence regarding factions&amp;rsquo; transportation networks. From this, we can consider which areas might be at-risk to violence; which outposts are weaker due to having a low degree of centrality within its faction&amp;rsquo;s network; which outposts are likely to be hotspots; and which areas a surveillence team might work most effectively in.&lt;/p&gt;
+
+&lt;h3 id=&#34;data-source&#34;&gt;Data Source:&lt;/h3&gt;
+
+&lt;p&gt;The University of Arizona&lt;/p&gt;
+
+&lt;p&gt;Advanced GIS (GIST 420)&lt;/p&gt;
+
+&lt;p&gt;Professor Gary Christopherson&lt;/p&gt;
+
+&lt;p&gt;The data used comes from class exercises not related to this scenario.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Sentiment Analysis of First GOP Debate in 2015 [R]</title>
@@ -654,139 +787,6 @@ will grow enormously.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Path Distance Analysis [GIS]</title>
-      <link>https://ckhoward.github.io/blog/path-distance-analysis-gis/</link>
-      <pubDate>Tue, 30 May 2017 19:25:23 -0700</pubDate>
-      
-      <guid>https://ckhoward.github.io/blog/path-distance-analysis-gis/</guid>
-      <description>
-
-&lt;h1 id=&#34;path-distance-analysis&#34;&gt;Path-Distance Analysis&lt;/h1&gt;
-
-&lt;p&gt;&lt;em&gt;//This is a fictitious scenario//&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Let&amp;rsquo;s suppose we&amp;rsquo;re a team of highly skilled NGA agents. We just received a briefing about some suspicious activity between two rival factions. These factions are typically hostile towards each other, but a trusted informant has brought forward some intel suggesting the two factions have been cooperating.&lt;/p&gt;
-
-&lt;p&gt;Our team must assist in verifying these claims. Wielding the all-powerful eye in the sky — or, an array of US Government satellites — we will first identify which outposts are linked to each faction, and we will then infer the inter- and intra-faction transportation networks. This will prove valuable to our client, giving them direction when choosing what to surveil so that they can confirm or deny the informant&amp;rsquo;s claims — that these two factions are indeed working together.&lt;/p&gt;
-
-&lt;p&gt;The two factions are indicated by stars and all of the outposts are indicated with green points.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd1.png&#34; alt=&#34;alt text&#34; title=&#34;Aerial shot of two factions within the city&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So we have this overview. By itself, it isn&amp;rsquo;t all that helpful. We need more data if we want to find out which factions own which outposts. Naturally, being the National Geospatial-Intelligence Agency, our team has some useful road-quality data associated with the area.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd2.png&#34; alt=&#34;alt text&#34; title=&#34;digital elevation model for area of interest&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd3.png&#34; alt=&#34;alt text&#34; title=&#34;slopes for area of interest&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;methods-in-path-distance-analysis&#34;&gt;Methods in Path-Distance Analysis&lt;/h2&gt;
-
-&lt;p&gt;The objective is to find out which green points are associated with which stars. You can think of each star as a sort of command post. If we think about it, it&amp;rsquo;s most likely a matter of proximity. You don&amp;rsquo;t want your outposts in enemy territory. So we want to look at path-distance. But it isn&amp;rsquo;t so black and white.&lt;/p&gt;
-
-&lt;h3 id=&#34;euclid-s-distance&#34;&gt;Euclid&amp;rsquo;s Distance&lt;/h3&gt;
-
-&lt;p&gt;Euclidean distance is basically straight-line distance. Below, you can suppose that each ring is approximately a mile long.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd4.png&#34; alt=&#34;alt text&#34; title=&#34;Euclid&#39;s Linear Distance&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;And if this method were right, we could just find where the rings intersect, divide the area into two, and observe where the outposts fall. If the outposts are in the half containing the red faction, the red faction owns them. If the outposts are in the half containing the blue faction, the blue faction owns them.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd5.png&#34; alt=&#34;alt text&#34; title=&#34;Euclid&#39;s Method in Determining Outpost-Faction Relationship&#34; /&gt;
-&lt;img src=&#34;img/pd6.png&#34; alt=&#34;alt text&#34; title=&#34;Area being Split by Euclidean Terms&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, paths are more complex. Terrain, wind, road condition, stop-lights, and other elements can influence time to get from point A to point B; you simply can&amp;rsquo;t walk through a mountain. Lucky for us, there are other means of calculating the true distance of paths.&lt;/p&gt;
-
-&lt;h3 id=&#34;arcgis-path-distance&#34;&gt;ArcGIS Path Distance&lt;/h3&gt;
-
-&lt;p&gt;ArcGIS doesn&amp;rsquo;t suffer the pitfalls of the Euclidean method when calculating distance; it comes equipped with a very versatile Path Distance function. As noted, certain environmental factors can slow you down or speed you up on a given path. The ArcGIS function can account for these factors.&lt;/p&gt;
-
-&lt;p&gt;The Path Distance function requires a cost surface, so we will build one. This cost surface is a raster that shows the level of effort required to traverse some area. For simplicity, we will use road quality to account for cost, but GIS software can do a ton more, mathematically incorporating a huge variety of other factors. Intuitively, red areas indicate awful, destroyed roads.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd7.png&#34; alt=&#34;alt text&#34; title=&#34;Road Quality in Cost Surface&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We can then &lt;a href=&#34;http://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/creating-a-cost-surface-raster.htm&#34;&gt;reclassify&lt;/a&gt; these data. Values are reclassified to more accurately portray cost. In this case, values rise exponentially to reflect how much more effort is used to traverse the different roads. Using a road under full construction isn&amp;rsquo;t possible. Reclassifying data accounts for the relativity of the situation at-hand, as driving a car down a bumpy road will have a different cost than walking down the bumpy road.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd23.png&#34; alt=&#34;alt text&#34; title=&#34;Reclassifying Cost Surface&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd8.png&#34; alt=&#34;alt text&#34; title=&#34;Reclassified Cost Surface&#34; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&#34;path-distance-and-backlink-rasters&#34;&gt;Path Distance and Backlink Rasters&lt;/h2&gt;
-
-&lt;p&gt;Now we can use our Path Distance function. It uses our command posts (the stars) as input points and it uses our cost raster and surface raster to calculate the cost of navigating the area. It will create two new rasters. One is the path distance model and the other is the backlink raster.&lt;/p&gt;
-
-&lt;h3 id=&#34;path-distance-raster&#34;&gt;Path Distance Raster&lt;/h3&gt;
-
-&lt;p&gt;Every cell in this raster holds the least cost accumulated. To put this more simply, it says that we&amp;rsquo;re starting at a command post (either, it doesn&amp;rsquo;t matter which). But we want to leave, without having defined any place we&amp;rsquo;re going. So we start walking. Each step we take, we will have a number of directions we can go, some with higher cost than others (because of road-quality changes). If we think about this in terms of cells, we&amp;rsquo;re on some given cell, and the cells around it have associated cost values. This new raster shows the least cost path whichever way you want to go.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd9.png&#34; alt=&#34;alt text&#34; title=&#34;Area being Split by Euclidean Terms&#34; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;backlink-raster&#34;&gt;Backlink Raster&lt;/h3&gt;
-
-&lt;p&gt;The backlink raster is basically a way-finder, from any (and every) cell, back to the origin (our command posts). The graphic may be a complete mess, seeming entirely incoherent. It&amp;rsquo;s actually really cool though. Each color is associated with a number, and each number is associated with a direction.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd26.png&#34; alt=&#34;alt text&#34; title=&#34;Back Link Raster Directions from ArcGIS&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The number 7 tells you to go north, which in our case is the color yellow. And you follow its directions because it is the least-cost path. In other words, your cell is yellow and telling you to go north because the other cells (NE, E, SE, S, SW, W, NW) all come at a higher cost. Think of it as a color-coded way of getting out of danger.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd21.png&#34; alt=&#34;alt text&#34; title=&#34;Back Link Raster&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The backlink raster will be used to calculate the true relationship between the two command posts and the dozens of outposts. The Cost Path tool takes the smaller outposts as starting points, then uses the instructions of the backlink to make their way back to the command posts.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd20.png&#34; alt=&#34;alt text&#34; title=&#34;Cost Path with Backlink&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&amp;hellip;Or to make it a little more clear:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd11.png&#34; alt=&#34;alt text&#34; title=&#34;Cost Path without Backlink&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Awesome. So we can finally see the relationships. In this case, it just so happens that Euclid&amp;rsquo;s method was pretty close, it just missed almost all of the points that were immediately on the other side of the division line. Though it took a little extra calculation, factoring in other variables like road-quality turned out to be worth it.&lt;/p&gt;
-
-&lt;h2 id=&#34;inferring-transportation-routes-with-corridor-analysis&#34;&gt;Inferring Transportation Routes with Corridor Analysis&lt;/h2&gt;
-
-&lt;p&gt;Corridor analysis finds the optimal corridor between two points. This is essentially finding the optimal areas of transportation, as opposed to one explicit path. The Corridor tool requires two path distance rasters. Each raster will have least cost paths surrounding some source, in our case, a command post.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd27.png&#34; alt=&#34;alt text&#34; title=&#34;Path Distance for Each Source&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The two rasters will then be summed:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd14.png&#34; alt=&#34;alt text&#34; title=&#34;Summed Path Distances&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This corridor is hardly insightful. There is too much area between the two factions where transportation is low-cost. We can create thresholds to check for smaller values, so that we can narrow down the number of potential routes. This is done with conditional statements. We&amp;rsquo;re trying to highlight lower-value areas and according to the key, the range of data is [7,690-168,354]. These data vary between projects so trial-and-error is really the best bet for finding a threshold we like. Using Raster Calculator, we will first try finding data that is less than 10,000 with our conditional statement.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Con(&amp;ldquo;corridor_surface&amp;rdquo;&amp;lt;10000,1)&lt;/strong&gt; — For each cell, if cell value is less than 10,000, write 1 to cell in output raster.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd15.png&#34; alt=&#34;alt text&#34; title=&#34;Corridor Threshold 10000&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Con(&amp;ldquo;corridor_surface&amp;rdquo;&amp;lt;9000,1)&lt;/strong&gt; — For each cell, if cell value is less than 9,000, write 1 to cell in output raster.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd16.png&#34; alt=&#34;alt text&#34; title=&#34;Corridor Threshold 9000&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Pretty good, but we can narrow it down just a little more.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Con(&amp;ldquo;corridor_surface&amp;rdquo;&amp;lt;8400,1)&lt;/strong&gt; — For each cell, if cell value is less than 8,400, write 1 to cell in output raster.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd17.png&#34; alt=&#34;alt text&#34; title=&#34;Corridor Threshold 8400&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This is good enough. If we narrow it down too far, we would be unreasonably assuming that these factions use the most optimal route possible to travel between command posts. This isn&amp;rsquo;t realistic. Fortunately, this threshold served its purpose in narrowing down possible routes enough to be insightful. There are three major bottlenecks that could be strategically used to switch out vehicles when tailing a target.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd29.png&#34; alt=&#34;alt text&#34; title=&#34;Corridor Overlaid on City&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/pd30.png&#34; alt=&#34;alt text&#34; title=&#34;Corridor Overlaid on City&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;With our GIS, we have now inferred the relationship between the two factions and the marked outposts. We also created a great deal of actionable intelligence regarding factions&amp;rsquo; transportation networks. From this, we can consider which areas might be at-risk to violence; which outposts are weaker due to having a low degree of centrality within its faction&amp;rsquo;s network; which outposts are likely to be hotspots; and which areas a surveillence team might work most effectively in.&lt;/p&gt;
-
-&lt;h3 id=&#34;data-source&#34;&gt;Data Source:&lt;/h3&gt;
-
-&lt;p&gt;The University of Arizona&lt;/p&gt;
-
-&lt;p&gt;Advanced GIS (GIST 420)&lt;/p&gt;
-
-&lt;p&gt;Professor Gary Christopherson&lt;/p&gt;
-
-&lt;p&gt;The data used comes from class exercises not related to this scenario.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>path distance analysis</title>
       <link>https://ckhoward.github.io/post/path-distance-analysis/</link>
       <pubDate>Tue, 30 May 2017 19:24:32 -0700</pubDate>
@@ -1004,11 +1004,11 @@ will grow enormously.&lt;/p&gt;
 
 &lt;h2 id=&#34;python&#34;&gt;Python&lt;/h2&gt;
 
+&lt;p&gt;&lt;a href=&#34;https://github.com/ckhoward/Data-Mining-and-Predictive-Analytics&#34;&gt;Data Mining and Predictive Analytics&lt;/a&gt; solves R exercises in the book &lt;em&gt;Data Mining and Predictive Analytics&lt;/em&gt;, using Python. The exercises involve data preparation, statistical analysis, classification, clustering, association rules, and model optimization.&lt;/p&gt;
+
 &lt;p&gt;&lt;a href=&#34;blog/terrorist-targets-exploratory/&#34;&gt;Terrorist Targets&lt;/a&gt; is a brief exploratory analysis on the targets of some elected terrorist organizations. The dataset is taken from the Global Terrorism Database. A bar graph is created to look at which entities are the most popular targets that terrorists choose to attack. Then mosaic plots are created to show the differences in terrorist organizations, not only in who they attack, but also in how they carry out the attack. This raises important questions about terrorist organizations&amp;rsquo; network structures, resources, and objectives, and how these variables interplay in terrorism in its entirety. If you&amp;rsquo;re interested in the code, feel free to email me; it&amp;rsquo;s currently hosted in a private repo.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://ckhoward.github.io/blog/projecting-with-python-gis-python/&#34;&gt;Projecting with Python&lt;/a&gt; utilizes Python to clean a terrorism dataset and iterate through spatial data, transforming coordinates (which represent locations in 3D-space, like Google Earth) to projected values (basically coordinates for 2D-space, like most maps). The terrorist attacks are then mapped, retaining important attribute information, like the targets of the attack. The mapping is done in ArcGIS, and in the future I plan to map this data in Python.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/ckhoward/Data-Mining-and-Predictive-Analytics&#34;&gt;Data Mining and Predictive Analytics&lt;/a&gt; solves R exercises in the book &lt;em&gt;Data Mining and Predictive Analytics&lt;/em&gt;, using Python. The exercises involve data preparation, statistical analysis, classification, clustering, association rules, and model optimization.&lt;/p&gt;
 
 &lt;h2 id=&#34;arcgis&#34;&gt;ArcGIS&lt;/h2&gt;
 
@@ -1028,17 +1028,17 @@ will grow enormously.&lt;/p&gt;
       <pubDate>Tue, 03 Jan 2017 16:46:22 -0700</pubDate>
       
       <guid>https://ckhoward.github.io/about/</guid>
-      <description>&lt;p&gt;Hi. I&amp;rsquo;m an aspiring data scientist living in Tucson, Arizona.&lt;/p&gt;
+      <description>&lt;p&gt;Hi. I&amp;rsquo;m an aspiring data analyst living in Tucson, Arizona.&lt;/p&gt;
 
 &lt;p&gt;I created this site as a means to learn. I find it to be a useful way to articulate my thoughts, and I&amp;rsquo;ve learned that the social element helps with retention. If I talk to somebody about something I just read, it becomes more ingrained in memory. While blogging can be audienceless and is written rather than spoken, I&amp;rsquo;m hoping to acheive the same social effect.&lt;/p&gt;
 
 &lt;p&gt;Additionally, I will use the projects page to hold myself accountable for starting &lt;em&gt;and finishing&lt;/em&gt; more projects. Maybe somebody will see something they like. Maybe I will get constructive criticism. Regardless, I&amp;rsquo;m hoping to inspire readers at least a little bit, and improve my communication skills in the process.&lt;/p&gt;
 
-&lt;p&gt;I like to write about politics, mind, terrorism, cyber-security, disinformation, and culture.&lt;/p&gt;
+&lt;p&gt;Apart from data science, I am generally interested in how the mind works, cyber-security, and the science of networks. And just a friendly note, I respect your privacy, so you don&amp;rsquo;t have to worry about Google Analytics here.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Types of Analyses:&lt;/strong&gt; statistical, geospatial, natural language, and social network&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Types of Analyses:&lt;/strong&gt; statistical, geospatial, and natural language&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Tools:&lt;/strong&gt; Python, R, JavaScript (d3.js), ArcGIS&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tools:&lt;/strong&gt; Python, R, JavaScript, ArcGIS&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Wanna get in touch?&lt;/strong&gt; Send me a message at ck_howard@yahoo.com&lt;/p&gt;
 </description>

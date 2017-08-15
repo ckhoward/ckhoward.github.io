@@ -19,11 +19,11 @@
 
 &lt;h2 id=&#34;python&#34;&gt;Python&lt;/h2&gt;
 
+&lt;p&gt;&lt;a href=&#34;https://github.com/ckhoward/Data-Mining-and-Predictive-Analytics&#34;&gt;Data Mining and Predictive Analytics&lt;/a&gt; solves R exercises in the book &lt;em&gt;Data Mining and Predictive Analytics&lt;/em&gt;, using Python. The exercises involve data preparation, statistical analysis, classification, clustering, association rules, and model optimization.&lt;/p&gt;
+
 &lt;p&gt;&lt;a href=&#34;blog/terrorist-targets-exploratory/&#34;&gt;Terrorist Targets&lt;/a&gt; is a brief exploratory analysis on the targets of some elected terrorist organizations. The dataset is taken from the Global Terrorism Database. A bar graph is created to look at which entities are the most popular targets that terrorists choose to attack. Then mosaic plots are created to show the differences in terrorist organizations, not only in who they attack, but also in how they carry out the attack. This raises important questions about terrorist organizations&amp;rsquo; network structures, resources, and objectives, and how these variables interplay in terrorism in its entirety. If you&amp;rsquo;re interested in the code, feel free to email me; it&amp;rsquo;s currently hosted in a private repo.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://ckhoward.github.io/blog/projecting-with-python-gis-python/&#34;&gt;Projecting with Python&lt;/a&gt; utilizes Python to clean a terrorism dataset and iterate through spatial data, transforming coordinates (which represent locations in 3D-space, like Google Earth) to projected values (basically coordinates for 2D-space, like most maps). The terrorist attacks are then mapped, retaining important attribute information, like the targets of the attack. The mapping is done in ArcGIS, and in the future I plan to map this data in Python.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&#34;https://github.com/ckhoward/Data-Mining-and-Predictive-Analytics&#34;&gt;Data Mining and Predictive Analytics&lt;/a&gt; solves R exercises in the book &lt;em&gt;Data Mining and Predictive Analytics&lt;/em&gt;, using Python. The exercises involve data preparation, statistical analysis, classification, clustering, association rules, and model optimization.&lt;/p&gt;
 
 &lt;h2 id=&#34;arcgis&#34;&gt;ArcGIS&lt;/h2&gt;
 
@@ -43,17 +43,17 @@
       <pubDate>Tue, 03 Jan 2017 16:46:22 -0700</pubDate>
       
       <guid>https://ckhoward.github.io/about/</guid>
-      <description>&lt;p&gt;Hi. I&amp;rsquo;m an aspiring data scientist living in Tucson, Arizona.&lt;/p&gt;
+      <description>&lt;p&gt;Hi. I&amp;rsquo;m an aspiring data analyst living in Tucson, Arizona.&lt;/p&gt;
 
 &lt;p&gt;I created this site as a means to learn. I find it to be a useful way to articulate my thoughts, and I&amp;rsquo;ve learned that the social element helps with retention. If I talk to somebody about something I just read, it becomes more ingrained in memory. While blogging can be audienceless and is written rather than spoken, I&amp;rsquo;m hoping to acheive the same social effect.&lt;/p&gt;
 
 &lt;p&gt;Additionally, I will use the projects page to hold myself accountable for starting &lt;em&gt;and finishing&lt;/em&gt; more projects. Maybe somebody will see something they like. Maybe I will get constructive criticism. Regardless, I&amp;rsquo;m hoping to inspire readers at least a little bit, and improve my communication skills in the process.&lt;/p&gt;
 
-&lt;p&gt;I like to write about politics, mind, terrorism, cyber-security, disinformation, and culture.&lt;/p&gt;
+&lt;p&gt;Apart from data science, I am generally interested in how the mind works, cyber-security, and the science of networks. And just a friendly note, I respect your privacy, so you don&amp;rsquo;t have to worry about Google Analytics here.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Types of Analyses:&lt;/strong&gt; statistical, geospatial, natural language, and social network&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Types of Analyses:&lt;/strong&gt; statistical, geospatial, and natural language&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Tools:&lt;/strong&gt; Python, R, JavaScript (d3.js), ArcGIS&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tools:&lt;/strong&gt; Python, R, JavaScript, ArcGIS&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Wanna get in touch?&lt;/strong&gt; Send me a message at ck_howard@yahoo.com&lt;/p&gt;
 </description>
