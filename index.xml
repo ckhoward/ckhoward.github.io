@@ -1004,7 +1004,7 @@ will grow enormously.&lt;/p&gt;
 
 &lt;h2 id=&#34;python&#34;&gt;Python&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://github.com/ckhoward/Data-Mining-and-Predictive-Analytics&#34;&gt;Data Mining and Predictive Analytics&lt;/a&gt; solves R exercises in the book &lt;em&gt;Data Mining and Predictive Analytics&lt;/em&gt;, using Python. The exercises involve data preparation, statistical analysis, classification, clustering, association rules, and model optimization.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://github.com/ckhoward/Data-Mining-and-Predictive-Analytics&#34;&gt;Data Mining and Predictive Analytics&lt;/a&gt; uses Python to solve coding exercises in the book &lt;em&gt;Data Mining and Predictive Analytics&lt;/em&gt;. The exercises involve data preparation, statistical analysis, classification, clustering, association rules, and model optimization.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;blog/terrorist-targets-exploratory/&#34;&gt;Terrorist Targets&lt;/a&gt; is a brief exploratory analysis on the targets of some elected terrorist organizations. The dataset is taken from the Global Terrorism Database. A bar graph is created to look at which entities are the most popular targets that terrorists choose to attack. Then mosaic plots are created to show the differences in terrorist organizations, not only in who they attack, but also in how they carry out the attack. This raises important questions about terrorist organizations&amp;rsquo; network structures, resources, and objectives, and how these variables interplay in terrorism in its entirety. If you&amp;rsquo;re interested in the code, feel free to email me; it&amp;rsquo;s currently hosted in a private repo.&lt;/p&gt;
 
