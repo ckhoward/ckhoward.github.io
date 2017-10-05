@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ckhoward.github.io/blog/the-testimony-of-epistemology/</loc>
+    <lastmod>2017-10-04T17:01:31-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://ckhoward.github.io/blog/path-distance-analysis-gis/</loc>
     <lastmod>2017-08-15T19:25:23-07:00</lastmod>
   </url>
@@ -84,7 +89,7 @@
   
   <url>
     <loc>https://ckhoward.github.io/blog/</loc>
-    <lastmod>2017-08-15T19:25:23-07:00</lastmod>
+    <lastmod>2017-10-04T17:01:31-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -96,7 +101,7 @@
   
   <url>
     <loc>https://ckhoward.github.io/</loc>
-    <lastmod>2017-08-15T19:25:23-07:00</lastmod>
+    <lastmod>2017-10-04T17:01:31-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -121,6 +126,18 @@
   <url>
     <loc>https://ckhoward.github.io/tags/debate/</loc>
     <lastmod>2017-06-17T14:50:42-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/tags/disinformation/</loc>
+    <lastmod>2017-10-04T17:01:31-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/tags/epistemology/</loc>
+    <lastmod>2017-10-04T17:01:31-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -151,6 +168,12 @@
   <url>
     <loc>https://ckhoward.github.io/tags/hci-ux-conceptual-model-user-experience-application-design-first-step/</loc>
     <lastmod>2017-02-21T23:12:45-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/tags/las-vegas-shooting/</loc>
+    <lastmod>2017-10-04T17:01:31-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -228,6 +251,12 @@
   
   <url>
     <loc>https://ckhoward.github.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://ckhoward.github.io/tags/testimony/</loc>
+    <lastmod>2017-10-04T17:01:31-07:00</lastmod>
     <priority>0</priority>
   </url>
   
