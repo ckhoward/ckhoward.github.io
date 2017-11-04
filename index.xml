@@ -6,8 +6,34 @@
     <description>Recent content on Chris Howard</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 04 Oct 2017 17:01:31 -0700</lastBuildDate>
+    <lastBuildDate>Fri, 03 Nov 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ckhoward.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>VMs and Containers for Usability Testing</title>
+      <link>https://ckhoward.github.io/blog/vms-and-containers-for-usability-testing/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://ckhoward.github.io/blog/vms-and-containers-for-usability-testing/</guid>
+      <description>
+
+&lt;h1 id=&#34;vms-and-containers-for-usability-testing&#34;&gt;VMs and Containers for Usability Testing&lt;/h1&gt;
+
+&lt;h2 id=&#34;dependency-nightmares&#34;&gt;Dependency Nightmares&lt;/h2&gt;
+
+&lt;p&gt;Have you ever tried to learn a new software, or use a new tool, only to find that dependencies and versions aren&amp;rsquo;t listed, or consistent with your own. Face meet desk. This was a pain I experienced when I first started learning Ruby on Rails, and MongoDB, and the tutorials I found wouldn&amp;rsquo;t work. The experience was so painful, in fact, that as a young teen, I gave up on these tools. How can we avoid this problem when we create our own tutorials and products?&lt;/p&gt;
+
+&lt;p&gt;Surprisingly, I have found that using a Virtual Machine or Container is a great way of beta-testing your work. Many associate these tools with rigorous scientific work (not exclusively, of course). Whether you hold your own work to the same reproducibility standards is another matter. &lt;strong&gt;But using these tools causes you to start from scratch&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;virtualizing-for-perspective&#34;&gt;Virtualizing for Perspective&lt;/h2&gt;
+
+&lt;p&gt;When we start building, our mind becomes a bit warped and our perspective changes as the product changes, and often this perspective is very different from that of a new user. For example, when working on a &lt;a href=&#34;https://github.com/ckhoward/iNat-SDM&#34;&gt;data pipeline&lt;/a&gt; for iNaturalist butterfly data to be processed through a species distribution model, our team went into the project with IPython, Miniconda, Jupyter, Ubuntu, and R all pre-installed. When creating the tutorial, we knew Python 3.6, Bash, and R (and its dependencies) were all requirements, so they were listed under the install steps. Then, for the sake of reproducibility, we wanted to build a VM to make it easier for our clients to get their work done.&lt;/p&gt;
+
+&lt;p&gt;We built the VM. Following the tutorial, we installed the requirements, and ran the application. No output. Not only did we realize that R (and its packages) had to be installed through Ubuntu, but we also found some fatal—though easily fixed—directory code. The code worked fine in the builds on our side, but it&amp;rsquo;s only because somehow, I hadn&amp;rsquo;t noticed that I created a couple of directories for testing that I hadn&amp;rsquo;t remembered, but referenced in code. My mind just shifted with the product. Lesson learned, using the VM was a great way of conducting usability testing and testing the soundness of our documentation and code.&lt;/p&gt;
+
+&lt;p&gt;When building products for other people, we want them to have the best experience possible. It is trivially simple to throw together a Virtual Machine or Container to start where a new user may be starting. As nice as it is to be contacted by somebody using your product, it&amp;rsquo;s not so nice when they express frustration that it isn&amp;rsquo;t working, or that the tutorial is flawed because it was perfectly followed to no avail. Put yourself in their shoes and do some usability testing with a VM.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>The Epistemology of Testimony</title>
@@ -1091,46 +1117,6 @@ will grow enormously.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Tools:&lt;/strong&gt; Python, R, JavaScript, ArcGIS&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Wanna get in touch?&lt;/strong&gt; Send me a message at ck_howard@yahoo.com&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Terrorist Targets [Exploratory]</title>
-      <link>https://ckhoward.github.io/blog/terrorist-targets-exploratory/</link>
-      <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
-      
-      <guid>https://ckhoward.github.io/blog/terrorist-targets-exploratory/</guid>
-      <description>&lt;p&gt;If you were to start some Google searches for terrorist attacks, while specifying the terrorist organization (e.g. Boko Haram, or the Lord&amp;rsquo;s Resistance Army), you will likely see different themes within the listed results. Going to a page that aggregates LRA attacks, you get:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/LRA aggregation.png&#34; alt=&#34;alt text&#34; title=&#34;lracrisistracker.com&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;and for Boko Haram:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/bokoharamv2.png&#34; alt=&#34;alt text&#34; title=&#34;breakingnews.com - sadly shut down 12/31/16&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Assuming these sources weren&amp;rsquo;t cherry-picked, we might infer that the LRA tends to attack people and their property, with assault rifles, while Boko Haram might be more likely to attack crowded public places, with explosives.&lt;/p&gt;
-
-&lt;p&gt;It would be interesting to see how accurately media reporting reflects actual data. The &lt;a href=&#34;http://www.start.umd.edu/data-tools/global-terrorism-database-gtd&#34;&gt;Global Terrorism Database&lt;/a&gt; provides a large dataset that we can use to explore attacks, containing variables like terrorist organization involved, location, target, means of attack (like weapon detail), and many others. This database will give us the means of exploring terrorism, particular terrorist organizations, and their similarities and differences. Providing this context for particular groups, we can see the proportions of targeted groups. It mostly comes down to private citizens and &lt;em&gt;the establishment&lt;/em&gt; (business, military, police, and government).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/target_frequency.png&#34; alt=&#34;alt text&#34; title=&#34;Frequency of Attack on Indicated Target&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;So these are the primary targets in terrorist attacks; how do individual groups play into this? To compare relatively diverse groups, we can factor in different regions, or groups within different affiliations and alliances (e.g., some branches may be associated with the Islamic State, and some may not be).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/targets.png&#34; alt=&#34;alt text&#34; title=&#34;Terrorist Targets&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/attack_type.png&#34; alt=&#34;alt text&#34; title=&#34;Terrorist Attack Types&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Between these two charts, we can see striking differences in who they attack and how they carry out the attack, possibly pointing to different objectives, structures of leadership, and resources. The data reflects what the media observed earlier: the LRA kidnaps and assaults citizens, and Boko Haram uses explosives frequently, though they do still favor armed assaults. But why is there such a significant difference between the Kurdistan Workers&amp;rsquo; Party (the PKK), notably attacking the establishment, while the LRA attacks people? These are rhetorical questions—answers exist, but they are outside the scope of this post.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Considering Objectives:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;When looking at high levels of hostage taking (kidnapping) and armed assault by the LRA, this may be an indicator that they use these means as a primary &lt;a href=&#34;http://www.iiss.org/en/topics/terrorism/how-kidnapping-funds-terrorism-d704&#34;&gt;source of income&lt;/a&gt;. The logs above show citizens&amp;rsquo; homes being looted. We could look further to see if the noted abductions have ransoms attached, or if it is primarily means of recruitment. Since Boko Haram&amp;rsquo;s assaults are comparable to the LRA&amp;rsquo;s, it may be interesting to show whether or not Boko Haram&amp;rsquo;s tendencies shifted after splitting; part went into ISIL&amp;rsquo;s West Africa branch, while the other joined an al-Qaida branch. If these attacks are the LRA&amp;rsquo;s source of income, it is non-sustainable. If the primary objective isn&amp;rsquo;t gains in income and recruitment, and it is to establish power to rule over citizens, that is another story.&lt;/p&gt;
-
-&lt;p&gt;The PKK on the otherhand primarily attacks military, police, business, and government targets. It makes more sense that these attacks are politically motivated rather than financially motivated.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;An Alternative Possibility:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;The motivations may not correlate well with actions. Explosives are commonly used, so even if a target is a military convoy or building, there may be civilian casualties within range of the explosion. A terrorist organization&amp;rsquo;s leadership may intend to carry out a strategy for acheiving some goal, but if leadership has little control over its followers, attacks may be carried out that do not follow strategy. This could prompt further investigation into the structures of these terrorist organizations, whether they&amp;rsquo;re more network-like, or more heirarchical. Both have their own &lt;a href=&#34;https://www.hsaj.org/articles/122&#34;&gt;pros and cons&lt;/a&gt;, but these structures can have significant influences on recruitment, efficiency of attacks, safety of its members, and more.&lt;/p&gt;
 </description>
     </item>
     
