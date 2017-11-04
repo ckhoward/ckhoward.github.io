@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Chris Howard Portfolio">
+
+<base href="https://ckhoward.github.io/">
+<title>
+
+
+     Chris Howard - VMs and Containers for Usability Testing 
+
+</title>
+<link rel="canonical" href="https://ckhoward.github.io/blog/vms-and-containers-for-usability-testing/">
+
+
+<script type="text/javascript">
+    var baseURL = 'https:\/\/ckhoward.github.io\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+
+
+<link rel="stylesheet" href="https://ckhoward.github.io/css/reset.css">
+<link rel="stylesheet" href="https://ckhoward.github.io/css/pygments.css">
+<link rel="stylesheet" href="https://ckhoward.github.io/css/main.css">
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://ckhoward.github.io/img/datcactus.png"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+
+
+</section>
+<section class="header"> 
+
+    <div class="container">
+        <a href="https://ckhoward.github.io/"><img class="logo" src="https://ckhoward.github.io/img/datcactus.png" /></a>
+        <div class="content">
+            <a href="https://ckhoward.github.io/"><div class="name"><h1>Chris Howard</h1></div></a>
+            <nav>
+                <ul>
+                    <a href="https://ckhoward.github.io/"><li>Blog</li></a>
+                    <a href="https://ckhoward.github.io/about/"><li>About</li></a>
+                    <a href="https://ckhoward.github.io/projects/"><li>Projects</li></a>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="https://github.com/ckhoward" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+        
+        
+        
+            <a href="https://twitter.com/_ckhoward" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+        
+
+        
+            <a href="https://www.linkedin.com/in/-ckhoward/" target="_blank">
+                <i class="icon ion-social-linkedin"></i>
+            </a>
+        
+
+        
+            <a href="mailto:ck_howard@yahoo.com">
+                <i class="icon ion-ios-email larger"></i>
+            </a>
+        
+
+        
+            <a href="https://ckhoward.github.io/index.xml">
+                <i class="icon ion-social-rss larger"></i>
+            </a>
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    VMs and Containers for Usability Testing
+
+</div>
+
+                    <div class="initials"><a href="https://ckhoward.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    <div class="date" title="Fri Nov 3 2017 00:00:00 UTC">Nov 3, 2017</div>
+                    <div class="reading-time"><div class="middot"></div>3 minutes read</div>
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<h1 id="vms-and-containers-for-usability-testing">VMs and Containers for Usability Testing</h1>
+
+<h2 id="dependency-nightmares">Dependency Nightmares</h2>
+
+<p>Have you ever tried to learn a new software, or use a new tool, only to find that dependencies and versions aren&rsquo;t listed, or consistent with your own. Face meet desk. This was a pain I experienced when I first started learning Ruby on Rails, and MongoDB, and the tutorials I found wouldn&rsquo;t work. The experience was so painful, in fact, that as a young teen, I gave up on these tools. How can we avoid this problem when we create our own tutorials and products?</p>
+
+<p>Surprisingly, I have found that using a Virtual Machine or Container is a great way of beta-testing your work. Many associate these tools with rigorous scientific work (not exclusively, of course). Whether you hold your own work to the same reproducibility standards is another matter. <strong>But using these tools causes you to start from scratch</strong>.</p>
+
+<h2 id="virtualizing-for-perspective">Virtualizing for Perspective</h2>
+
+<p>When we start building, our mind becomes a bit warped and our perspective changes as the product changes, and often this perspective is very different from that of a new user. For example, when working on a <a href="https://github.com/ckhoward/iNat-SDM">data pipeline</a> for iNaturalist butterfly data to be processed through a species distribution model, our team went into the project with IPython, Miniconda, Jupyter, Ubuntu, and R all pre-installed. When creating the tutorial, we knew Python 3.6, Bash, and R (and its dependencies) were all requirements, so they were listed under the install steps. Then, for the sake of reproducibility, we wanted to build a VM to make it easier for our clients to get their work done.</p>
+
+<p>We built the VM. Following the tutorial, we installed the requirements, and ran the application. No output. Not only did we realize that R (and its packages) had to be installed through Ubuntu, but we also found some fatal—though easily fixed—directory code. The code worked fine in the builds on our side, but it&rsquo;s only because somehow, I hadn&rsquo;t noticed that I created a couple of directories for testing that I hadn&rsquo;t remembered, but referenced in code. My mind just shifted with the product. Lesson learned, using the VM was a great way of conducting usability testing and testing the soundness of our documentation and code.</p>
+
+<p>When building products for other people, we want them to have the best experience possible. It is trivially simple to throw together a Virtual Machine or Container to start where a new user may be starting. As nice as it is to be contacted by somebody using your product, it&rsquo;s not so nice when they express frustration that it isn&rsquo;t working, or that the tutorial is flawed because it was perfectly followed to no avail. Put yourself in their shoes and do some usability testing with a VM.</p>
+
+                <br>
+                <p><a href="https://ckhoward.github.io/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+</body>
+</html>
+
