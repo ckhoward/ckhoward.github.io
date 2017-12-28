@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Chris Howard Portfolio">
+
+<base href="https://ckhoward.github.io/">
+<title>
+
+
+     Chris Howard - An Introduction to the Stylo Library [R] 
+
+</title>
+<link rel="canonical" href="https://ckhoward.github.io/blog/an-introduction-to-the-stylo-library-r/">
+
+
+<script type="text/javascript">
+    var baseURL = 'https:\/\/ckhoward.github.io\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+
+
+<link rel="stylesheet" href="https://ckhoward.github.io/css/reset.css">
+<link rel="stylesheet" href="https://ckhoward.github.io/css/pygments.css">
+<link rel="stylesheet" href="https://ckhoward.github.io/css/main.css">
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://ckhoward.github.io/img/datcactus.png"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+
+
+</section>
+<section class="header"> 
+
+    <div class="container">
+        <a href="https://ckhoward.github.io/"><img class="logo" src="https://ckhoward.github.io/img/datcactus.png" /></a>
+        <div class="content">
+            <a href="https://ckhoward.github.io/"><div class="name"><h1>Chris Howard</h1></div></a>
+            <nav>
+                <ul>
+                    <a href="https://ckhoward.github.io/"><li>Blog</li></a>
+                    <a href="https://ckhoward.github.io/about/"><li>About</li></a>
+                    <a href="https://ckhoward.github.io/projects/"><li>Projects</li></a>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="https://github.com/ckhoward" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+        
+        
+        
+            <a href="https://twitter.com/_ckhoward" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+        
+
+        
+            <a href="https://www.linkedin.com/in/-ckhoward/" target="_blank">
+                <i class="icon ion-social-linkedin"></i>
+            </a>
+        
+
+        
+            <a href="mailto:ck_howard@yahoo.com">
+                <i class="icon ion-ios-email larger"></i>
+            </a>
+        
+
+        
+            <a href="https://ckhoward.github.io/index.xml">
+                <i class="icon ion-social-rss larger"></i>
+            </a>
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    An Introduction to the Stylo Library [R]
+
+</div>
+
+                    <div class="initials"><a href="https://ckhoward.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    <div class="date" title="Wed Dec 27 2017 00:00:00 UTC">Dec 27, 2017</div>
+                    <div class="reading-time"><div class="middot"></div>8 minutes read</div>
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<h1 id="an-introduction-to-the-stylo-library">An Introduction to the Stylo Library</h1>
+
+<h3 id="what-is-stylometry">What is Stylometry?</h3>
+
+<p>Stylometry uses linguistic style to determine who authored some anonymous piece of writing, and it has diverse applications. The authorship of some suicide notes may be questionable. Most forum users have aliases in an attempt to anonymize themselves. And some authors publish their writings under pseudonyms. In these varying cases, stylometry can be used to deanonymize an author.</p>
+
+<h3 id="what-is-stylo">What is Stylo?</h3>
+
+<p>Stylo is a library for the R programming language that is used for conducting stylometric analyses. Stylometry sounds intimidating, but this library makes these linguistic analyses so simple that its users do not have to be computational linguists. Stylo isn&rsquo;t programmatically intensive and mostly just requires a particular naming convention for files and directories. If users are uncomfortable with writing out functions with varying arguments, they can opt to use a simple GUI.</p>
+
+<h3 id="a-stylometric-analysis-of-run-the-jewels">A Stylometric Analysis of Run the Jewels</h3>
+
+<p>Run the Jewels is a group of two rappers, El-P and Killer Mike. In collaborative songs, most assume that each rapper raps the verses that they write. This is an interesting example that can be used to show how the Stylo library works for authorship attribution. Models will be trained on lyrics of each rapper when they worked independently, and will then be fed Run the Jewels lyrics to get an idea of each artist&rsquo;s creative footprint in a song, and how collaboration might work. This analysis will serve as a concrete example for some of the uses and quirks of Stylo.</p>
+
+<h2 id="getting-the-data">Getting the data</h2>
+
+<p>To determine if the project was viable—or that each artist had a distinctive style—I had to get the data. In this case, the data is lyrics that are added to a corpus. Using Enrico Bacis&rsquo; <a href="https://github.com/enricobacis/lyricwikia">LyricWikia API</a> to get lyrics, I use a Bash loop that iterates over an array of hardcoded song names to save the lyrics into the corpus.</p>
+
+<p><img src="img/bash elp.png" alt="Bash Array" title="The Bash Array" />
+<img src="img/lyrics elp.png" alt="Corpus" title="The Corpus" /></p>
+
+<p>The Stylo R library is heavily reliant on naming conventions, both for directories and files. Everything before an underscore is treated as a class to be analyzed, so if you are looking at texts of George R.R. Martin, you would do something like GeorgeRRMartin_ASongofIceandFire and the software will understand that George R.R. Martin is an author of interest, responsible for that work. I did the same with El-P and Killer Mike, otherwise each author would not have been treated as unique.</p>
+
+<p><img src="img/fixed_formatting.jpg" alt="New Structure" title="Changing the naming conventions" /></p>
+
+<h2 id="project-viability-exploratory-analysis">Project Viability / Exploratory Analysis</h2>
+
+<p>Now that we have the data, we can do a bit of exploration to check whether the project is viable, in this case, whether each rapper has a distinctive style. This can be achieved with a principal components analysis. Since the file naming convention has been altered for Stylo use, the directory naming still has to be altered, and then the function will work when called.</p>
+
+<h3 id="the-stylo-function">The stylo() function</h3>
+
+<p>Intuitively enough, one of the most powerful functions in the Stylo library is <code>stylo()</code>. Running this function will load the GUI and the users can then customize the analysis. The GUI that loads appears as follows:</p>
+
+<p><img src="img/gui1.jpg" alt="Stylo Input" title="Stylo GUI Input" />
+<img src="img/gui2.jpg" alt="Stylo Features" title="Stylo GUI Features" />
+<img src="img/gui3.jpg" alt="Stylo Statistics" title="Stylo GUI Statistics" />
+<img src="img/gui4.jpg" alt="Stylo Sampling" title="Stylo GUI Sampling" />
+<img src="img/gui5.jpg" alt="Stylo Output" title="Stylo GUI Output" /></p>
+
+<p>We will go into detail about how the parameters work in an intermediate Stylo post, but for now, only directory information is important. The working directory must be set in R. For this example, it is <code>setwd(&quot;E\\Stylometry\\Run the Jewels&quot;)</code>. The <code>stylo()</code> function requires a directory called <code>corpus_files</code> if it is being run without explicit arguments (i.e. as stylo()). This <code>corpus_files</code> directory will contain all of the files that you want in your analysis, in this case, all songs by El-P and Killer Mike that I want within the PCA.</p>
+
+<p><img src="img/corpus_files.jpg" alt="Stylo corpus_files" title="Stylo Corpus Files" /></p>
+
+<p>After running the function above, with the parameters shown, a PCA is generated. As shown, the library uses the naming convention to color-code each author. El-P is red and Killer Mike is green. It is evident that the rappers differ from each other stylistically when writing music, so the project seems viable. We can proceed to using some of the more interesting tools that Stylo offers.</p>
+
+<p><img src="img/rtj pca.png" alt="PCA Visualization" title="PCA Visualization" /></p>
+
+<h3 id="quick-recap">Quick Recap</h3>
+
+<p>All that is needed to generate this PCA is:</p>
+
+<ol>
+<li>Proper naming of the directory/corpus</li>
+<li>Proper naming of files in the directory/corpus</li>
+<li>A simple one-line function call</li>
+</ol>
+
+<h2 id="using-the-svm-classification-algorithm">Using the SVM Classification Algorithm</h2>
+
+<p>Stylo&rsquo;s classification power is what lures most of its users. With other tools, building a classifier and cleaning the data takes several lines of code that aren&rsquo;t too straight-forward, increasing the barrier of entry for those that aren&rsquo;t computationally-inclined. As with the last function, the Stylo library makes this more simple for users, with properly named files and directories, it only takes a single line of code to build and use the classifier.</p>
+
+<p>There are multiple flavors of classification, but the two functions that we will look at are <code>classify()</code> and <code>rolling.classify()</code>. Again, we will get into the technical details in the intermediate post, as this is just a light primer.</p>
+
+<h3 id="the-classify-function">The classify() function</h3>
+
+<p>Two subdirectories must be present in the working directory for this function to work; <code>primary_set</code> contains the training data that the classification model will learn from, and <code>secondary_set</code> will work as the test set. For this Run the Jewels example, the primary_set directory contains 80% (44) of the songs in the total corpus (55), and the secondary_set will contain 20% (11) of the songs. Naturally, each rapper is equally sampled for both directories in order to avoid biasing the model.</p>
+
+<p>After running <code>classification &lt;- classify()</code>, a GUI will load allowing me to choose the function&rsquo;s arguments, just like before. Assigning the function to a variable lets us access different values. As shown, from <code>classification$success.rate</code>, the value of accurately-classified songs is returned, which is 81.8%.</p>
+
+<p><img src="img/svm_accuracy.png" alt="SVM Accuracy" title="SVM Classification Accuracy" /></p>
+
+<p>The SVM model learned El-P&rsquo;s and Killer Mike&rsquo;s linguistic styles from the songs in the primary_set and applied that learning to the songs in the secondary_set, correctly classifying each of those 11 songs. This accuracy is mostly due to the strength of the samples, each song&rsquo;s word count is enough to make the sample powerful. If the files in the directory were smaller, like individual verses, the accuracy is reduced.</p>
+
+<h3 id="the-rolling-classify-function">The rolling.classify() function</h3>
+
+<p>Two subdirectories must also be present in the working directory for this function to work; <code>reference_set</code>, which will contain all of the samples that you want the model to learn from, and <code>test_set</code>, which will contain the questionable or anonymous piece of writing that is of interest. Running the following code generates a visualization of classified samples, color-coded based on the naming convention used.</p>
+
+<pre><code>rolling.info &lt;- rolling.classify(write.png.file = TRUE, classification.method = &quot;svm&quot;, mfw = 300, training.set.sampling = &quot;normal.sampling&quot;,
+slice.size = 50, slice.overlap = 45,
+milestone.label=c(&quot;El-P&quot;, &quot;Killer Mike&quot;, &quot;El-P&quot;, &quot;Killer Mike&quot;, &quot;Zach de la Rocha&quot;, &quot;Killer Mike&quot;))
+
+title(main=&quot;Run the Jewels \n A Report to the Shareholders / Kill Your Masters&quot;)
+</code></pre>
+
+<p><img src="img/RTJ_KYM.png" alt="RTJ_KYM" title="Rolling SVM Run the Jewels" /></p>
+
+<p>This song, <em>A Report to the Shareholders / Kill Your Masters</em>, has about 1,000 words in it, as shown by the x-axis. The first 180 words or so are classified as El-P because of the red coloring. This function also has handy labeling functionality, where excerpts can be given vertical labels. For example, if I go into test_set and find the song file that I am interested in, <em>Kill Your Masters</em>, and add the text <code>xmilestone</code> before each of the verses, the argument <code>milestone.label</code> assigns each value to each xmilestone. In the above song, there are six <code>xmilestone</code> entries, and the function&rsquo;s argument has six corresponding labels. This is useful for comparing classification to some area of interest; in this case, I know which verse belongs to which rapper, so I can manually insert those vertical labels to see if the classifications are &ldquo;accurate.&rdquo; The depth of the colored blocks indicate certainty. Where there are full blocks, there is the most certainty, but where there are dips, there is uncertainty.</p>
+
+<h2 id="results">Results</h2>
+
+<p>We can see that some of Killer Mike&rsquo;s lyrics are classified as being authored by El-P, and that Zach de la Rocha&rsquo;s verses are also mostly classified as El-P (which makes sense, given the model did not learn de la Rocha&rsquo;s style). The depth of the colored blocks indicate certainty, so it appears that most uncertainty is around verse transition, which could indicate that the two rappers tend to collaborate in this area, perhaps creating a bridge from one rapper&rsquo;s verses, to the other&rsquo;s, so that the song remains fluid. In general, it seems that the model could be biased towards El-P based on the fact that Stylo largely uses MFW (most frequent words).</p>
+
+<p>With a little tweaking of the filenames and directory names, a single function can be used to clean and classify the data. One line of code takes the place of the several lines that would be used for breaking the text down into the desired number of n-grams, the removal of pronouns, the proper format of text, the building of the model, the training and testing of the data, and even the visualizations. If interested in some of the technical details of how the library works, stay posted for the intermediate-level Stylo post.</p>
+
+<h2 id="sources">Sources</h2>
+
+<p>Stylo (R Library)
+Eder, M., Rybicki, J. and Kestemont, M. (2016). Stylometry with R: a package for computational text analysis. &ldquo;R Journal&rdquo;, 8(1): 107-121.</p>
+
+<p>Rolling Stylometry
+Maciej Eder; Rolling stylometry, Digital Scholarship in the Humanities, Volume 31, Issue 3, 1 September 2016, Pages 457–469, <a href="https://doi.org/10.1093/llc/fqv010">https://doi.org/10.1093/llc/fqv010</a></p>
+
+<p>LyricWikia API (Python)
+<a href="https://github.com/enricobacis/lyricwikia">https://github.com/enricobacis/lyricwikia</a></p>
+
+                <br>
+                <p><a href="https://ckhoward.github.io/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+</body>
+</html>
+

@@ -6,32 +6,121 @@
     <description>Recent content on Chris Howard</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 03 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 27 Dec 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ckhoward.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>VMs and Containers for Usability Testing</title>
-      <link>https://ckhoward.github.io/blog/vms-and-containers-for-usability-testing/</link>
-      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      <title>An Introduction to the Stylo Library [R]</title>
+      <link>https://ckhoward.github.io/blog/an-introduction-to-the-stylo-library-r/</link>
+      <pubDate>Wed, 27 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://ckhoward.github.io/blog/vms-and-containers-for-usability-testing/</guid>
+      <guid>https://ckhoward.github.io/blog/an-introduction-to-the-stylo-library-r/</guid>
       <description>
 
-&lt;h1 id=&#34;vms-and-containers-for-usability-testing&#34;&gt;VMs and Containers for Usability Testing&lt;/h1&gt;
+&lt;h1 id=&#34;an-introduction-to-the-stylo-library&#34;&gt;An Introduction to the Stylo Library&lt;/h1&gt;
 
-&lt;h2 id=&#34;dependency-nightmares&#34;&gt;Dependency Nightmares&lt;/h2&gt;
+&lt;h3 id=&#34;what-is-stylometry&#34;&gt;What is Stylometry?&lt;/h3&gt;
 
-&lt;p&gt;Have you ever tried to learn a new software, or use a new tool, only to find that dependencies and versions aren&amp;rsquo;t listed, or consistent with your own. Face meet desk. This was a pain I experienced when I first started learning Ruby on Rails, and MongoDB, and the tutorials I found wouldn&amp;rsquo;t work. The experience was so painful, in fact, that as a young teen, I gave up on these tools. How can we avoid this problem when we create our own tutorials and products?&lt;/p&gt;
+&lt;p&gt;Stylometry uses linguistic style to determine who authored some anonymous piece of writing, and it has diverse applications. The authorship of some suicide notes may be questionable. Most forum users have aliases in an attempt to anonymize themselves. And some authors publish their writings under pseudonyms. In these varying cases, stylometry can be used to deanonymize an author.&lt;/p&gt;
 
-&lt;p&gt;Surprisingly, I have found that using a Virtual Machine or Container is a great way of beta-testing your work. Many associate these tools with rigorous scientific work (not exclusively, of course). Whether you hold your own work to the same reproducibility standards is another matter. &lt;strong&gt;But using these tools causes you to start from scratch&lt;/strong&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;what-is-stylo&#34;&gt;What is Stylo?&lt;/h3&gt;
 
-&lt;h2 id=&#34;virtualizing-for-perspective&#34;&gt;Virtualizing for Perspective&lt;/h2&gt;
+&lt;p&gt;Stylo is a library for the R programming language that is used for conducting stylometric analyses. Stylometry sounds intimidating, but this library makes these linguistic analyses so simple that its users do not have to be computational linguists. Stylo isn&amp;rsquo;t programmatically intensive and mostly just requires a particular naming convention for files and directories. If users are uncomfortable with writing out functions with varying arguments, they can opt to use a simple GUI.&lt;/p&gt;
 
-&lt;p&gt;When we start building, our mind becomes a bit warped and our perspective changes as the product changes, and often this perspective is very different from that of a new user. For example, when working on a &lt;a href=&#34;https://github.com/ckhoward/iNat-SDM&#34;&gt;data pipeline&lt;/a&gt; for iNaturalist butterfly data to be processed through a species distribution model, our team went into the project with IPython, Miniconda, Jupyter, Ubuntu, and R all pre-installed. When creating the tutorial, we knew Python 3.6, Bash, and R (and its dependencies) were all requirements, so they were listed under the install steps. Then, for the sake of reproducibility, we wanted to build a VM to make it easier for our clients to get their work done.&lt;/p&gt;
+&lt;h3 id=&#34;a-stylometric-analysis-of-run-the-jewels&#34;&gt;A Stylometric Analysis of Run the Jewels&lt;/h3&gt;
 
-&lt;p&gt;We built the VM. Following the tutorial, we installed the requirements, and ran the application. No output. Not only did we realize that R (and its packages) had to be installed through Ubuntu, but we also found some fatal—though easily fixed—directory code. The code worked fine in the builds on our side, but it&amp;rsquo;s only because somehow, I hadn&amp;rsquo;t noticed that I created a couple of directories for testing that I hadn&amp;rsquo;t remembered, but referenced in code. My mind just shifted with the product. Lesson learned, using the VM was a great way of conducting usability testing and testing the soundness of our documentation and code.&lt;/p&gt;
+&lt;p&gt;Run the Jewels is a group of two rappers, El-P and Killer Mike. In collaborative songs, most assume that each rapper raps the verses that they write. This is an interesting example that can be used to show how the Stylo library works for authorship attribution. Models will be trained on lyrics of each rapper when they worked independently, and will then be fed Run the Jewels lyrics to get an idea of each artist&amp;rsquo;s creative footprint in a song, and how collaboration might work. This analysis will serve as a concrete example for some of the uses and quirks of Stylo.&lt;/p&gt;
 
-&lt;p&gt;When building products for other people, we want them to have the best experience possible. It is trivially simple to throw together a Virtual Machine or Container to start where a new user may be starting. As nice as it is to be contacted by somebody using your product, it&amp;rsquo;s not so nice when they express frustration that it isn&amp;rsquo;t working, or that the tutorial is flawed because it was perfectly followed to no avail. Put yourself in their shoes and do some usability testing with a VM.&lt;/p&gt;
+&lt;h2 id=&#34;getting-the-data&#34;&gt;Getting the data&lt;/h2&gt;
+
+&lt;p&gt;To determine if the project was viable—or that each artist had a distinctive style—I had to get the data. In this case, the data is lyrics that are added to a corpus. Using Enrico Bacis&amp;rsquo; &lt;a href=&#34;https://github.com/enricobacis/lyricwikia&#34;&gt;LyricWikia API&lt;/a&gt; to get lyrics, I use a Bash loop that iterates over an array of hardcoded song names to save the lyrics into the corpus.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/bash elp.png&#34; alt=&#34;Bash Array&#34; title=&#34;The Bash Array&#34; /&gt;
+&lt;img src=&#34;img/lyrics elp.png&#34; alt=&#34;Corpus&#34; title=&#34;The Corpus&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The Stylo R library is heavily reliant on naming conventions, both for directories and files. Everything before an underscore is treated as a class to be analyzed, so if you are looking at texts of George R.R. Martin, you would do something like GeorgeRRMartin_ASongofIceandFire and the software will understand that George R.R. Martin is an author of interest, responsible for that work. I did the same with El-P and Killer Mike, otherwise each author would not have been treated as unique.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/fixed_formatting.jpg&#34; alt=&#34;New Structure&#34; title=&#34;Changing the naming conventions&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;project-viability-exploratory-analysis&#34;&gt;Project Viability / Exploratory Analysis&lt;/h2&gt;
+
+&lt;p&gt;Now that we have the data, we can do a bit of exploration to check whether the project is viable, in this case, whether each rapper has a distinctive style. This can be achieved with a principal components analysis. Since the file naming convention has been altered for Stylo use, the directory naming still has to be altered, and then the function will work when called.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-stylo-function&#34;&gt;The stylo() function&lt;/h3&gt;
+
+&lt;p&gt;Intuitively enough, one of the most powerful functions in the Stylo library is &lt;code&gt;stylo()&lt;/code&gt;. Running this function will load the GUI and the users can then customize the analysis. The GUI that loads appears as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/gui1.jpg&#34; alt=&#34;Stylo Input&#34; title=&#34;Stylo GUI Input&#34; /&gt;
+&lt;img src=&#34;img/gui2.jpg&#34; alt=&#34;Stylo Features&#34; title=&#34;Stylo GUI Features&#34; /&gt;
+&lt;img src=&#34;img/gui3.jpg&#34; alt=&#34;Stylo Statistics&#34; title=&#34;Stylo GUI Statistics&#34; /&gt;
+&lt;img src=&#34;img/gui4.jpg&#34; alt=&#34;Stylo Sampling&#34; title=&#34;Stylo GUI Sampling&#34; /&gt;
+&lt;img src=&#34;img/gui5.jpg&#34; alt=&#34;Stylo Output&#34; title=&#34;Stylo GUI Output&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We will go into detail about how the parameters work in an intermediate Stylo post, but for now, only directory information is important. The working directory must be set in R. For this example, it is &lt;code&gt;setwd(&amp;quot;E\\Stylometry\\Run the Jewels&amp;quot;)&lt;/code&gt;. The &lt;code&gt;stylo()&lt;/code&gt; function requires a directory called &lt;code&gt;corpus_files&lt;/code&gt; if it is being run without explicit arguments (i.e. as stylo()). This &lt;code&gt;corpus_files&lt;/code&gt; directory will contain all of the files that you want in your analysis, in this case, all songs by El-P and Killer Mike that I want within the PCA.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/corpus_files.jpg&#34; alt=&#34;Stylo corpus_files&#34; title=&#34;Stylo Corpus Files&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After running the function above, with the parameters shown, a PCA is generated. As shown, the library uses the naming convention to color-code each author. El-P is red and Killer Mike is green. It is evident that the rappers differ from each other stylistically when writing music, so the project seems viable. We can proceed to using some of the more interesting tools that Stylo offers.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/rtj pca.png&#34; alt=&#34;PCA Visualization&#34; title=&#34;PCA Visualization&#34; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;quick-recap&#34;&gt;Quick Recap&lt;/h3&gt;
+
+&lt;p&gt;All that is needed to generate this PCA is:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Proper naming of the directory/corpus&lt;/li&gt;
+&lt;li&gt;Proper naming of files in the directory/corpus&lt;/li&gt;
+&lt;li&gt;A simple one-line function call&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;using-the-svm-classification-algorithm&#34;&gt;Using the SVM Classification Algorithm&lt;/h2&gt;
+
+&lt;p&gt;Stylo&amp;rsquo;s classification power is what lures most of its users. With other tools, building a classifier and cleaning the data takes several lines of code that aren&amp;rsquo;t too straight-forward, increasing the barrier of entry for those that aren&amp;rsquo;t computationally-inclined. As with the last function, the Stylo library makes this more simple for users, with properly named files and directories, it only takes a single line of code to build and use the classifier.&lt;/p&gt;
+
+&lt;p&gt;There are multiple flavors of classification, but the two functions that we will look at are &lt;code&gt;classify()&lt;/code&gt; and &lt;code&gt;rolling.classify()&lt;/code&gt;. Again, we will get into the technical details in the intermediate post, as this is just a light primer.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-classify-function&#34;&gt;The classify() function&lt;/h3&gt;
+
+&lt;p&gt;Two subdirectories must be present in the working directory for this function to work; &lt;code&gt;primary_set&lt;/code&gt; contains the training data that the classification model will learn from, and &lt;code&gt;secondary_set&lt;/code&gt; will work as the test set. For this Run the Jewels example, the primary_set directory contains 80% (44) of the songs in the total corpus (55), and the secondary_set will contain 20% (11) of the songs. Naturally, each rapper is equally sampled for both directories in order to avoid biasing the model.&lt;/p&gt;
+
+&lt;p&gt;After running &lt;code&gt;classification &amp;lt;- classify()&lt;/code&gt;, a GUI will load allowing me to choose the function&amp;rsquo;s arguments, just like before. Assigning the function to a variable lets us access different values. As shown, from &lt;code&gt;classification$success.rate&lt;/code&gt;, the value of accurately-classified songs is returned, which is 81.8%.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/svm_accuracy.png&#34; alt=&#34;SVM Accuracy&#34; title=&#34;SVM Classification Accuracy&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The SVM model learned El-P&amp;rsquo;s and Killer Mike&amp;rsquo;s linguistic styles from the songs in the primary_set and applied that learning to the songs in the secondary_set, correctly classifying each of those 11 songs. This accuracy is mostly due to the strength of the samples, each song&amp;rsquo;s word count is enough to make the sample powerful. If the files in the directory were smaller, like individual verses, the accuracy is reduced.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-rolling-classify-function&#34;&gt;The rolling.classify() function&lt;/h3&gt;
+
+&lt;p&gt;Two subdirectories must also be present in the working directory for this function to work; &lt;code&gt;reference_set&lt;/code&gt;, which will contain all of the samples that you want the model to learn from, and &lt;code&gt;test_set&lt;/code&gt;, which will contain the questionable or anonymous piece of writing that is of interest. Running the following code generates a visualization of classified samples, color-coded based on the naming convention used.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rolling.info &amp;lt;- rolling.classify(write.png.file = TRUE, classification.method = &amp;quot;svm&amp;quot;, mfw = 300, training.set.sampling = &amp;quot;normal.sampling&amp;quot;,
+slice.size = 50, slice.overlap = 45,
+milestone.label=c(&amp;quot;El-P&amp;quot;, &amp;quot;Killer Mike&amp;quot;, &amp;quot;El-P&amp;quot;, &amp;quot;Killer Mike&amp;quot;, &amp;quot;Zach de la Rocha&amp;quot;, &amp;quot;Killer Mike&amp;quot;))
+
+title(main=&amp;quot;Run the Jewels \n A Report to the Shareholders / Kill Your Masters&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/RTJ_KYM.png&#34; alt=&#34;RTJ_KYM&#34; title=&#34;Rolling SVM Run the Jewels&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This song, &lt;em&gt;A Report to the Shareholders / Kill Your Masters&lt;/em&gt;, has about 1,000 words in it, as shown by the x-axis. The first 180 words or so are classified as El-P because of the red coloring. This function also has handy labeling functionality, where excerpts can be given vertical labels. For example, if I go into test_set and find the song file that I am interested in, &lt;em&gt;Kill Your Masters&lt;/em&gt;, and add the text &lt;code&gt;xmilestone&lt;/code&gt; before each of the verses, the argument &lt;code&gt;milestone.label&lt;/code&gt; assigns each value to each xmilestone. In the above song, there are six &lt;code&gt;xmilestone&lt;/code&gt; entries, and the function&amp;rsquo;s argument has six corresponding labels. This is useful for comparing classification to some area of interest; in this case, I know which verse belongs to which rapper, so I can manually insert those vertical labels to see if the classifications are &amp;ldquo;accurate.&amp;rdquo; The depth of the colored blocks indicate certainty. Where there are full blocks, there is the most certainty, but where there are dips, there is uncertainty.&lt;/p&gt;
+
+&lt;h2 id=&#34;results&#34;&gt;Results&lt;/h2&gt;
+
+&lt;p&gt;We can see that some of Killer Mike&amp;rsquo;s lyrics are classified as being authored by El-P, and that Zach de la Rocha&amp;rsquo;s verses are also mostly classified as El-P (which makes sense, given the model did not learn de la Rocha&amp;rsquo;s style). The depth of the colored blocks indicate certainty, so it appears that most uncertainty is around verse transition, which could indicate that the two rappers tend to collaborate in this area, perhaps creating a bridge from one rapper&amp;rsquo;s verses, to the other&amp;rsquo;s, so that the song remains fluid. In general, it seems that the model could be biased towards El-P based on the fact that Stylo largely uses MFW (most frequent words).&lt;/p&gt;
+
+&lt;p&gt;With a little tweaking of the filenames and directory names, a single function can be used to clean and classify the data. One line of code takes the place of the several lines that would be used for breaking the text down into the desired number of n-grams, the removal of pronouns, the proper format of text, the building of the model, the training and testing of the data, and even the visualizations. If interested in some of the technical details of how the library works, stay posted for the intermediate-level Stylo post.&lt;/p&gt;
+
+&lt;h2 id=&#34;sources&#34;&gt;Sources&lt;/h2&gt;
+
+&lt;p&gt;Stylo (R Library)
+Eder, M., Rybicki, J. and Kestemont, M. (2016). Stylometry with R: a package for computational text analysis. &amp;ldquo;R Journal&amp;rdquo;, 8(1): 107-121.&lt;/p&gt;
+
+&lt;p&gt;Rolling Stylometry
+Maciej Eder; Rolling stylometry, Digital Scholarship in the Humanities, Volume 31, Issue 3, 1 September 2016, Pages 457–469, &lt;a href=&#34;https://doi.org/10.1093/llc/fqv010&#34;&gt;https://doi.org/10.1093/llc/fqv010&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;LyricWikia API (Python)
+&lt;a href=&#34;https://github.com/enricobacis/lyricwikia&#34;&gt;https://github.com/enricobacis/lyricwikia&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     
