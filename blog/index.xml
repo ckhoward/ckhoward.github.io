@@ -125,6 +125,32 @@ Maciej Eder; Rolling stylometry, Digital Scholarship in the Humanities, Volume 3
     </item>
     
     <item>
+      <title>VMs and Usability Testing</title>
+      <link>https://ckhoward.github.io/blog/vms-and-usability-testing/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://ckhoward.github.io/blog/vms-and-usability-testing/</guid>
+      <description>
+
+&lt;h1 id=&#34;vms-for-usability-testing&#34;&gt;VMs for Usability Testing&lt;/h1&gt;
+
+&lt;h2 id=&#34;dependency-nightmares&#34;&gt;Dependency Nightmares&lt;/h2&gt;
+
+&lt;p&gt;This might be an unpopular opinion, but I imagine virtual machines could be a useful tool for usability testers. When it comes to learning a new software or using a new tool, it&amp;rsquo;s the absolute worst finding out that certain dependencies aren&amp;rsquo;t listed in the requirements, or that they are not consistent with your own. This was a pain I experienced when I first started learning Ruby on Rails and MongoDB, and the tutorials I found wouldn&amp;rsquo;t work. The experience was so painful, in fact, that as a young teen, I gave up on these tools. A way to avoid this problem when we create our own tutorials and products may be to use a VM or Container.&lt;/p&gt;
+
+&lt;p&gt;VMs and Containers are a great way to beta-test whatever the team&amp;rsquo;s technical writers produced in terms of &lt;strong&gt;Getting Started&lt;/strong&gt; text, particularly for install steps. Many associate these tools with rigorous scientific work, but fundamentally, they force you to start using some piece of software from scratch.&lt;/p&gt;
+
+&lt;h2 id=&#34;virtualizing-for-a-blank-canvas&#34;&gt;Virtualizing for a Blank Canvas&lt;/h2&gt;
+
+&lt;p&gt;When we start building, our mind becomes a bit warped and our perspective changes as the product changes, and often this perspective is very different from that of a new user. For example, when working on a data pipeline for iNaturalist butterfly data to be processed through a species distribution model, our team went into the project with IPython, Miniconda, Jupyter, Ubuntu, and R all pre-installed on our work machines. When creating the tutorial, we knew Python 3.6, Bash, and R (and its dependencies) were all requirements, so they were listed under the install steps. Then, for the sake of reproducibility, we wanted to build a VM to make it easier for our clients to get their work done.&lt;/p&gt;
+
+&lt;p&gt;We built the VM. Following the tutorial, we installed the requirements, and ran the application. No output. Not only did we realize that R (and its packages) had to be installed through Ubuntu, but we also found some fatal, though easily fixed, directory code. The code worked fine in the builds on our side, but it’s only because somehow, I hadn’t noticed that I created a couple of directories for testing that I hadn’t remembered, but referenced in code. My mind just shifted with the product. Lesson learned, using the VM was a great way of conducting usability testing and testing the soundness of our documentation and code.&lt;/p&gt;
+
+&lt;p&gt;When building products for other people, we want them to have the best experience possible. It is trivially simple to throw together a Virtual Machine or Container to start where a new user may be starting. As nice as it is to be contacted by somebody using your product, it’s not so nice when they express frustration that it isn’t working, or that the tutorial is flawed because it was perfectly followed to no avail. Put yourself in their shoes and do some usability testing with a VM.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>The Epistemology of Testimony</title>
       <link>https://ckhoward.github.io/blog/the-epistemology-of-testimony/</link>
       <pubDate>Wed, 04 Oct 2017 17:01:31 -0700</pubDate>
