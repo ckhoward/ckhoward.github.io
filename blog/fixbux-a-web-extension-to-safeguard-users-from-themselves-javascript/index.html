@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="chrome=1">
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="Chris Howard Portfolio">
+
+<base href="https://ckhoward.github.io/">
+<title>
+
+
+     Chris Howard - FIXBUX: A Web-extension to Safeguard Users from Themselves [Javascript] 
+
+</title>
+<link rel="canonical" href="https://ckhoward.github.io/blog/fixbux-a-web-extension-to-safeguard-users-from-themselves-javascript/">
+
+
+<script type="text/javascript">
+    var baseURL = 'https:\/\/ckhoward.github.io\/';
+    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
+    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
+        window.location.protocol = 'https:';
+    }
+</script>
+
+
+
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
+
+
+<link rel="stylesheet" href="https://ckhoward.github.io/css/reset.css">
+<link rel="stylesheet" href="https://ckhoward.github.io/css/pygments.css">
+<link rel="stylesheet" href="https://ckhoward.github.io/css/main.css">
+
+
+
+
+<link rel="shortcut icon"
+
+    href="https://ckhoward.github.io/img/datcactus.png"
+
+>
+
+
+
+
+
+
+</head>
+
+
+<body lang="en">
+
+
+
+</section>
+<section class="header"> 
+
+    <div class="container">
+        <a href="https://ckhoward.github.io/"><img class="logo" src="https://ckhoward.github.io/img/datcactus.png" /></a>
+        <div class="content">
+            <a href="https://ckhoward.github.io/"><div class="name"><h1>Chris Howard</h1></div></a>
+            <nav>
+                <ul>
+                    <a href="https://ckhoward.github.io/"><li>Blog</li></a>
+                    <a href="https://ckhoward.github.io/about/"><li>About</li></a>
+                    <a href="https://ckhoward.github.io/projects/"><li>Projects</li></a>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<section class="icons">
+    <div class="container">
+        <div class="content">
+
+        
+            <a href="https://github.com/ckhoward" target="_blank">
+                <i class="icon ion-social-github"></i>
+            </a>
+        
+        
+        
+            <a href="https://twitter.com/_ckhoward" target="_blank">
+                <i class="icon ion-social-twitter"></i>
+            </a>
+        
+
+        
+            <a href="https://www.linkedin.com/in/-ckhoward/" target="_blank">
+                <i class="icon ion-social-linkedin"></i>
+            </a>
+        
+
+        
+            <a href="mailto:ck_howard@yahoo.com">
+                <i class="icon ion-ios-email larger"></i>
+            </a>
+        
+
+        
+            <a href="https://ckhoward.github.io/index.xml">
+                <i class="icon ion-social-rss larger"></i>
+            </a>
+        
+        </div>
+    </div>
+</section>
+
+
+<section class="main post non-narrow zero-top-spacing">
+    <div class="container">
+        <div class="content">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
+
+    FIXBUX: A Web-extension to Safeguard Users from Themselves [Javascript]
+
+</div>
+
+                    <div class="initials"><a href="https://ckhoward.github.io/"></a></div>
+                </div>
+                <div class="meta">
+                    <div class="date" title="Tue Dec 12 2017 00:00:00 UTC">Dec 12, 2017</div>
+                    <div class="reading-time"><div class="middot"></div>5 minutes read</div>
+                </div>
+            </div>
+            <div class="markdown">
+                
+
+<h2 id="overview">Overview</h2>
+
+<p>It would seem that people are becoming more conscious of behavior&rsquo;s role in retaining, taking back, and even losing privacy. Privacy technology isn&rsquo;t currently a solution to privacy issues, so it is becoming more important to consider how we interact with these technologies, and how we make decisions. We have a greater propensity to share when our friends share, when we trust the technology maintainers, and defaults surprisingly dictate the way we behave, so what happens when you opt-in, by default, to share your social network data with a host of third parties?</p>
+
+<p>There are certain contexts that we don&rsquo;t think twice when sharing, like when looking for a job and we put our information up on job networking sites. It almost feels like a societal requirement sometimes, like you have to post your resume to these databases that then circulate it to a plethora of <em>recruiters</em>. This information often contains addresses, past employment, where you were, and through inference, possibly who you know and interact with.</p>
+
+<p>These sites are responsible for important user data, so how do they influence user behavior? Often with Bully UX. Elements of design can be used to pressure a user into doing something, and this is where Bully UX lies, right between <em>regular</em> UX and <em>dark</em> UX, where a user might feel inadequate in some way, for not having some quality (or at least not sharing it). A simple web-extension can execute a little bit of Javascript and help users turn a blind eye to these coercive elements.</p>
+
+<p>FIXBUX (Fix Bully UX) is a Chrome web-extension that removes coercive elements.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p><strong>Requirement:</strong> Google Chrome</p>
+
+<p><strong>Setup:</strong>
+1. <code>git clone https://www.github.com/ckhoward/fixbux.git</code>
+2. Open Google Chrome
+3. Type <code>chrome://extensions</code> into the URL bar
+4. Enable developer mode
+5. Load unpacked extension and select the FIXBUX/FIXBUX/ directory
+6. Enable the extension and hit <code>Control + R</code> to reload
+7. Click the extension icon and visit your page of choice</p>
+
+<h2 id="case-studies">Case studies</h2>
+
+<h3 id="linkedin">LinkedIn</h3>
+
+<p>LinkedIn initially inspired the idea for this extension, but since its conception, LinkedIn has actually improved their UI to be less coercive and better off for starters. For random example, it doesn&rsquo;t shame a user that may have dropped out of high school by leaving education a permanent requirement—a user can now just choose not applicable. Here is a recent (as of 12/12/2017) design of LinkedIn, for a user just getting started:</p>
+
+<p><img src="imgs/linkedin1.jpg" alt="LinkedIn" title="LinkedIn Pre-Removal" /></p>
+
+<p>While not coercive, it does gently nudge the user to add current location. Being so close to an award motivates my wife to drink as much water possible, and to get her exercise in. People will go a long way for that little reward, and if they are cognizant of this and don&rsquo;t want to, they can just use FIXBUX to remove that urge.</p>
+
+<p><img src="imgs/linkedin2.jpg" alt="LinkedIn" title="LinkedIn Post-Removal" /></p>
+
+<p>Done. The HTML is gone from your browser. The effects of this can be debated. It can be argued that location is an important parameter when job hunting and networking, but it can also be argued that any data we put online can be circulated and aggregated into something more meaningful about us and our lives. This design seems benign, but perhaps it isn&rsquo;t, and it is worth giving users the flexibility to reduce their cognitive burden in dealing with coercive patterns, or in this case, rewards.</p>
+
+<h3 id="handshake">Handshake</h3>
+
+<p>Handshake is less gentle than LinkedIn, and is a prime example of coercive design. Below shows an example of some job experience:</p>
+
+<p><img src="img/handshake.jpg" alt="Handshake" title="Pre-Removal" /></p>
+
+<p>There are a great number of details here, from position, to company, location, and experience. Further down, not shown, there are courses taken, projects worked on, social links that are entered, skills, and a short bio. Above, previous and current colleges are listed along with dates, major, degrees earned, class, GPA, and a picture. With all of this data submitted, that little orange progress bar makes me feel pretty unaccomplished, like I need to do and add more. If I removed any of the content in my page, the bar would turn red, and there would be a frowny face next to it.</p>
+
+<p><img src="img/bullyux.jpg" alt="Handshake" /></p>
+
+<p>I could add more, but I don&rsquo;t want to, and the information that is there already, isn&rsquo;t really worth giving to a company like this. Cue FIXBUX. Anyone can remove these HTML elements without giving a second thought.</p>
+
+<p><img src="img/handshake_removed.jpg" alt="Handshake" title="Handshake Post-Removal" /></p>
+
+<p>Better, right? Companies will always try to compel people into giving more data about themselves, and people will always behave like people. FIXBUX is a rational tool to use in such an environment.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<p>FIXBUX removes HTML elements with simple Javascript and jQuery. Removing the LinkedIn site&rsquo;s progress bar was fairly straightforward since they use a simple naming convention. It can be done with this very basic function:</p>
+
+<pre><code class="language-Javascript">//Remove LinkedIn Progress Bar
+$(document).ready(function(){
+    $('div').remove('.pv-pcm-progress');
+});
+</code></pre>
+
+<p>Handshake, on the other hand, was a different beast. Being fairly inexperienced with Javascript, I did not know how to deal with the following format of the HTML element:</p>
+
+<p><img src="img/weirdstyling.jpg" alt="Handshake HTML" title="Weird" /></p>
+
+<p>I tried variations of the last function, referencing things like style(underscore* underscore* progress-bar and progress-bar, but it was to no avail. With the help from others, I learned of new <a href="https://api.jquery.com/attribute-starts-with-selector/">selector syntax</a>. Using the code</p>
+
+<pre><code class="language-Javascript">console.log($(&quot;[class^='style__progress']&quot;))
+</code></pre>
+
+<p>I could test different things, like the wildcard, to see if I got any match. The above code worked. At this point it was just adapting it the same way as my previous function:</p>
+
+<pre><code class="language-Javascript">//Remove Handshake Progress Bar
+$(document).ready(function() {
+    $(&quot;[class^='style__progress']&quot;).remove()
+});
+</code></pre>
+
+<p>In essence, whenever the extension is enabled, once the page is loaded (all of its elements), the progress bar is removed from the page. In surprisingly little code, a user can be granted more freedom in what designs they are exposed to, which can then influence their behavior and how they share their data with other people and organizations.</p>
+
+                <br>
+                <p><a href="https://ckhoward.github.io/">Back to posts</a></p>
+            </div>
+            <br>
+            <div class="disqus">
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  
+
+  <script type="text/javascript">
+    hljs.initHighlightingOnLoad();
+  </script>
+
+
+
+</body>
+</html>
+
