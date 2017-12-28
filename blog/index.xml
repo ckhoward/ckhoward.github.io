@@ -146,14 +146,17 @@ Maciej Eder; Rolling stylometry, Digital Scholarship in the Humanities, Volume 3
 
 &lt;p&gt;&lt;strong&gt;Requirement:&lt;/strong&gt; Google Chrome&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Setup:&lt;/strong&gt;
-1. &lt;code&gt;git clone https://www.github.com/ckhoward/fixbux.git&lt;/code&gt;
-2. Open Google Chrome
-3. Type &lt;code&gt;chrome://extensions&lt;/code&gt; into the URL bar
-4. Enable developer mode
-5. Load unpacked extension and select the FIXBUX/FIXBUX/ directory
-6. Enable the extension and hit &lt;code&gt;Control + R&lt;/code&gt; to reload
-7. Click the extension icon and visit your page of choice&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Setup:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;git clone https://www.github.com/ckhoward/fixbux.git&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Open Google Chrome&lt;/li&gt;
+&lt;li&gt;Type &lt;code&gt;chrome://extensions&lt;/code&gt; into the URL bar&lt;/li&gt;
+&lt;li&gt;Enable developer mode&lt;/li&gt;
+&lt;li&gt;Load unpacked extension and select the FIXBUX/FIXBUX/ directory&lt;/li&gt;
+&lt;li&gt;Enable the extension and hit &lt;code&gt;Control + R&lt;/code&gt; to reload&lt;/li&gt;
+&lt;li&gt;Click the extension icon and visit your page of choice&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;h2 id=&#34;case-studies&#34;&gt;Case studies&lt;/h2&gt;
 
@@ -161,11 +164,11 @@ Maciej Eder; Rolling stylometry, Digital Scholarship in the Humanities, Volume 3
 
 &lt;p&gt;LinkedIn initially inspired the idea for this extension, but since its conception, LinkedIn has actually improved their UI to be less coercive and better off for starters. For random example, it doesn&amp;rsquo;t shame a user that may have dropped out of high school by leaving education a permanent requirement—a user can now just choose not applicable. Here is a recent (as of 12/12/2017) design of LinkedIn, for a user just getting started:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;imgs/linkedin1.jpg&#34; alt=&#34;LinkedIn&#34; title=&#34;LinkedIn Pre-Removal&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/linkedin1.jpg&#34; alt=&#34;LinkedIn&#34; title=&#34;LinkedIn Pre-Removal&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;While not coercive, it does gently nudge the user to add current location. Being so close to an award motivates my wife to drink as much water possible, and to get her exercise in. People will go a long way for that little reward, and if they are cognizant of this and don&amp;rsquo;t want to, they can just use FIXBUX to remove that urge.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;imgs/linkedin2.jpg&#34; alt=&#34;LinkedIn&#34; title=&#34;LinkedIn Post-Removal&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;img/linkedin2.jpg&#34; alt=&#34;LinkedIn&#34; title=&#34;LinkedIn Post-Removal&#34; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Done. The HTML is gone from your browser. The effects of this can be debated. It can be argued that location is an important parameter when job hunting and networking, but it can also be argued that any data we put online can be circulated and aggregated into something more meaningful about us and our lives. This design seems benign, but perhaps it isn&amp;rsquo;t, and it is worth giving users the flexibility to reduce their cognitive burden in dealing with coercive patterns, or in this case, rewards.&lt;/p&gt;
 
