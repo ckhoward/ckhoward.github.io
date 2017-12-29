@@ -6,8 +6,139 @@
     <description>Recent content on Chris Howard</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 27 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 29 Dec 2017 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ckhoward.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Deploying a Tor Hidden Service with DigitalOcean</title>
+      <link>https://ckhoward.github.io/blog/deploying-a-tor-hidden-service-with-digitalocean/</link>
+      <pubDate>Fri, 29 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://ckhoward.github.io/blog/deploying-a-tor-hidden-service-with-digitalocean/</guid>
+      <description>
+
+&lt;h1 id=&#34;deploying-a-tor-hidden-service-with-digitalocean&#34;&gt;Deploying a Tor Hidden Service with DigitalOcean&lt;/h1&gt;
+
+&lt;h4 id=&#34;a-quick-primer-on-tor-hidden-services&#34;&gt;A quick primer on Tor hidden services&lt;/h4&gt;
+
+&lt;p&gt;The Tor protocol picks 3 onion routers at random, builds &lt;em&gt;circuits&lt;/em&gt; to them, treating them as introduction (or contact) points; since this is a circuit, there is no direct connection, so no IP addresses are shared, just public keys. These public keys work toward &amp;ldquo;shaking hands&amp;rdquo; at a rendezvous point. If the handshake happens, the rendezvous point connects Alice&amp;rsquo;s and Bob&amp;rsquo;s circuits, and then they can communicate anonymously. While the protocol isn&amp;rsquo;t without flaw, it is still powerful, especially when used in conjunction with other practices and tools. If you have sensitive information, it is your responsibility to ensure that your system is protected, and that your visitors are protected. Deploying a hidden service is a good step toward offering that protection.&lt;/p&gt;
+
+&lt;h2 id=&#34;deploy-the-vps-with-digital-ocean&#34;&gt;Deploy the VPS with Digital Ocean&lt;/h2&gt;
+
+&lt;p&gt;We are going to create a Debian Droplet on DigitalOcean. After creating my account, I fork up the $5 to create my Droplet—it would be cool if DigitalOcean gave a student discount for students to practice, but I digress.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/vps_install_1.jpg&#34; alt=&#34;VPS Install&#34; title=&#34;VPS Install&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;I chose not to add an SSH key, and I left the hostname at its default. If you are comfortable with SSH, feel free to add yours, but this tutorial assumes a lack of familiarity. Click that giant green &lt;strong&gt;Create&lt;/strong&gt; button and the droplet should be created within the minute.&lt;/p&gt;
+
+&lt;h3 id=&#34;set-up-ssh-for-securely-logging-in&#34;&gt;Set Up SSH for Securely Logging In&lt;/h3&gt;
+
+&lt;p&gt;DigitalOcean has a solid tutorial on first steps for &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server&#34;&gt;setting up SSH&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;As shown here, I generate a key and since I already have a (useless) key named id_rsa, I choose to overwrite it. I hit enter twice to get through the passphrase prompts. The key is generated (and some parts blanked out by me)—this generated randomart is supposed to make it easier for the user to verify that the key hasn&amp;rsquo;t been tampered with, otherwise they would have to compare long strings of text.&lt;/p&gt;
+
+&lt;p&gt;Because we created the droplet without an SSH key, DigitalOcean sent us an email with our username (likely root), droplet IP, and temporary password. I personally logged into the console through the DigitalOcean web-portal and changed my password to something else, but that isn&amp;rsquo;t necessary.&lt;/p&gt;
+
+&lt;p&gt;To copy your public key to your server Use &lt;code&gt;ssh-copy-id username@ip&lt;/code&gt;. Note, your username will be root by default, counterintuitively. Use either the temporary password that was emailed to you, or your updated password if you went that route. Now you should be able to SSH into your server with &lt;code&gt;ssh username@ip&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;After successfully SSHing into your server, consider disabling password authentication on your server to prevent brute-force attacks. In the linked tutorial, at the bottom, under &lt;strong&gt;Disabling Password Authentication on your Server:&lt;/strong&gt;
+* &lt;code&gt;sudo nano /etc/ssh/sshd_config&lt;/code&gt;
+* Change from &lt;code&gt;PasswordAuthentication yes&lt;/code&gt; to &lt;code&gt;PasswordAuthentication no&lt;/code&gt;
+* &lt;code&gt;sudo service ssh restart&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/ufw5.jpg&#34; alt=&#34;Password Authentication&#34; title=&#34;Password Authentication Off&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now the only way to get into your server is SSH.&lt;/p&gt;
+
+&lt;h3 id=&#34;install-the-uncomplicated-firewall&#34;&gt;Install the Uncomplicated Firewall&lt;/h3&gt;
+
+&lt;p&gt;ufw is a frontend for iptables, which is a firewall system for Linux, but simpler. ufw will be installed to at least reduce the number of attacks your server might get, as we are going to block most traffic. Chances of attack are pretty high, you can install &lt;a href=&#34;https://www.fail2ban.org/wiki/index.php/Main_Page&#34;&gt;Fail2Ban&lt;/a&gt; to scan and ban IP addresses associated with malicious activity (most of which will probably be Chinese). It&amp;rsquo;s better to get security stuff right early on. Also be mindful that Tor relays and exit nodes are also frequently attacked.&lt;/p&gt;
+
+&lt;p&gt;Run the following commands in your command line, while logged into your server:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get dist-upgrade -y
+sudo apt-get install ufw
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Updating first will help you prevent running into this error:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Package ufw is not available, but is referred to by another package. This may mean that the package is missing, has been obsoleted, or is only available from another source&lt;/p&gt;
+
+&lt;p&gt;E: Package &amp;lsquo;ufw&amp;rsquo; has no installation candidate&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;and you should be good to go. The firewall is installed. Now enable the firewall:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo ufw enable -y
+sudo ufw status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Status &lt;em&gt;should&lt;/em&gt; output &lt;strong&gt;Status: active&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;create-a-new-user-account&#34;&gt;Create a New User Account&lt;/h3&gt;
+
+&lt;p&gt;To be careful not to do something disastrous in the server, it is good practice to create a new, non-root user account, and to limit its privileges so that we reduce the likelihood of breaking something important. Additionally, using an alternative account and getting rid of the root account can also work toward preventing being brute-forced. Again, DigitalOcean has a nice tutorial on &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04&#34;&gt;creating a new user&lt;/a&gt;.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;adduser ckhoward #but enter your own username, of course
+usermod -aG sudo ckhoward
+ssh-copy-id ckhoward@ip #this works since we already generated the key
+su - ckhoward #to switch to other user
+chmod 700 ~/.ssh
+nano .ssh/authorized_keys #this is where you paste the contents of your id_rsa pub file, cntrl x, y, ENTER
+chmod 600 ~/.ssh/authorized_keys
+exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Of course, test that all of this is working by &lt;code&gt;ssh ckhoward@ip&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;install-apache-web-server&#34;&gt;Install Apache Web server&lt;/h3&gt;
+
+&lt;p&gt;DigitalOcean provides an alternative tutorial on &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-16-04&#34;&gt;installing the apache web server&lt;/a&gt;. A command is needed to let the firewall know that apache is okay. This is referred to as a rule. &lt;code&gt;sudo ufw allow from 127.0.0.1 to any port 80&lt;/code&gt; You can find your own IP address and only allow that, if you want, while you set up your server. This would have to be altered later on, if you expect others to hop on. If you would like to look at the rules you&amp;rsquo;ve set for allowing and denying connections, &lt;code&gt;sudo ufw status numbered&lt;/code&gt; is a handy command. At this point, it should output:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[1] 80 ALLOW IN 127.0.0.1
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In my case, I set a rule for allowing only SSH connections from my IP address.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/ufw7.jpg&#34; alt=&#34;UFW Firewall Rules&#34; title=&#34;Firewall Rule&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Installing apache2 and running it is trivial, enter the following commands:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get update
+sudo apt-get install apache2
+sudo systemctl start apache2.service
+sudo systemctl status apache2
+#if apache is running, enter:
+hostname -I # this will give you a couple of IPs, enter them into your browser to find your site
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After you&amp;rsquo;ve accessed your site from your browser, your activity should have been logged. You can check this with by finding and printing your logs with &lt;code&gt;tail -f /var/log/apache2/access.log&lt;/code&gt;. There will be information associated with the request, the browser used, and the timestamp.&lt;/p&gt;
+
+&lt;h3 id=&#34;install-tor&#34;&gt;Install Tor&lt;/h3&gt;
+
+&lt;p&gt;Run the command &lt;code&gt;sudo apt-get install tor&lt;/code&gt;. Surprisingly simple. The Tor documentation instructs anyone deploying a hidden service to navigate to the torrc config file and uncomment the two statements:
+&amp;gt;#HiddenServiceDir /var/lib/tor/hidden_service/&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;#HiddenServicePort 80 127.0.0.1:80&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Thus, we find the config file and edit it with the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;find / -iname &amp;quot;torrc&amp;quot;
+sudo nano /etc/tor/torrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If the apache2 service is still running, let&amp;rsquo;s just restart that with &lt;code&gt;sudo systemctl restart apache2.service&lt;/code&gt;. Start Tor with &lt;code&gt;sudo service tor start&lt;/code&gt;. Tor is now running and has an associated Onion address. To find this address, run &lt;code&gt;cat $HOME/hidden_service/hostname&lt;/code&gt; and the Onion address will print. This guide has set you up for the basics of getting a hidden service running with DigitalOcean. There are other guides on better practices for &lt;a href=&#34;https://riseup.net/en/security/network-security/tor/onionservices-best-practices&#34;&gt;securing hidden services&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/hidden_service.jpg&#34; alt=&#34;Hidden Service Result&#34; title=&#34;Resulting Onion Site&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Credit goes to &lt;a href=&#34;http://u.arizona.edu/~dsidi/&#34;&gt;David Sidi&lt;/a&gt; for coming up with this idea in the form of a class assignment.&lt;/em&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>An Introduction to the Stylo Library [R]</title>
@@ -136,7 +267,7 @@ Maciej Eder; Rolling stylometry, Digital Scholarship in the Humanities, Volume 3
 
 &lt;p&gt;It would seem that people are becoming more conscious of behavior&amp;rsquo;s role in retaining, taking back, and even losing privacy. Privacy technology isn&amp;rsquo;t currently a solution to privacy issues, so it is becoming more important to consider how we interact with these technologies, and how we make decisions. We have a greater propensity to share when our friends share, when we trust the technology maintainers, and defaults surprisingly dictate the way we behave, so what happens when you opt-in, by default, to share your social network data with a host of third parties?&lt;/p&gt;
 
-&lt;p&gt;There are certain contexts that we don&amp;rsquo;t think twice when sharing, like when looking for a job and we put our information up on job networking sites. It almost feels like a societal requirement sometimes, like you have to post your resume to these databases that then circulate it to a plethora of &lt;em&gt;recruiters&lt;/em&gt;. This information often contains addresses, past employment, where you were, and through inference, possibly who you know and interact with.&lt;/p&gt;
+&lt;p&gt;There are certain contexts that we don&amp;rsquo;t think twice when sharing, like when looking for a job and we put our information up on job networking sites. It almost feels like a societal requirement sometimes, like you have to post your resume to these databases that then circulate it to a plethora of recruiters. This information often contains addresses, past employment, where you were, and through inference, possibly who you know and interact with.&lt;/p&gt;
 
 &lt;p&gt;These sites are responsible for important user data, so how do they influence user behavior? Often with Bully UX. Elements of design can be used to pressure a user into doing something, and this is where Bully UX lies, right between &lt;em&gt;regular&lt;/em&gt; UX and &lt;em&gt;dark&lt;/em&gt; UX, where a user might feel inadequate in some way, for not having some quality (or at least not sharing it). A simple web-extension can execute a little bit of Javascript and help users turn a blind eye to these coercive elements.&lt;/p&gt;
 
@@ -1235,48 +1366,6 @@ will grow enormously.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;&lt;em&gt;User:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;For attributes, I’ve added Name and Address because they are user properties. For operations, I added Examine, Message, Add, and Delete because these simple terms can represent addition to lists (like report or block, reply list, forward list, etc.), and users are obviously attached to messages (and the mailbox is owned by the user, too).&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Your Education at Random</title>
-      <link>https://ckhoward.github.io/blog/your-education-at-random/</link>
-      <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://ckhoward.github.io/blog/your-education-at-random/</guid>
-      <description>
-
-&lt;h2 id=&#34;a-160-hour-1-500-4-000-mistake&#34;&gt;A 160-hour, $1,500-4,000 mistake.&lt;/h2&gt;
-
-&lt;p&gt;You&amp;rsquo;re picking classes for next semester. You have four selected, and you&amp;rsquo;re now looking for a fifth. There are three options. How do you know which to pick? They&amp;rsquo;re equally interesting, albeit different routes, and they have different professors. The fact of the matter is, you have little information to base your choice off of. Likely no syllabus. Likely no knowledge of the professor. And likely no real insights.&lt;/p&gt;
-
-&lt;h2 id=&#34;there-are-really-only-a-few-routes-to-try-to-get-more-information-in-these-regards&#34;&gt;There are really only a few routes to try to get more information in these regards.&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Visit &lt;em&gt;Rate my Professor&lt;/em&gt;: This is a weak option. The site has declined in popularity and has a word-count to keep posts concise, which basically leads to &amp;lsquo;it was good&amp;rsquo;-esque responses from students. There is no room for specificity. There is no room for discussion.&lt;/li&gt;
-&lt;li&gt;Ask around: This is not a viable option. It&amp;rsquo;s incredibly inefficient, and even if you manage to find somebody that had a particular class, the lack of a relationship and the spontaneity of the question will likely result in a poorly- and rashly-thought out response. I think people would articulate their experiences better in an online platform, devoid of awkward social encounters.&lt;/li&gt;
-&lt;li&gt;Request a syllabus: I don&amp;rsquo;t know why syllabi aren&amp;rsquo;t more accessible. I&amp;rsquo;ve often wanted to see what would be covered in a class, only to not be able to find a syllabus. And I&amp;rsquo;ve had experiences where I have emailed a professor multiple times for one, only for no response. Then I&amp;rsquo;ve even gone to the program adviser to get a copy of a course syllabus, which was also not helpful. Still, even if I did get one, there is a great deal of information that would be lacking. Learning experiences (and teaching styles) tend to be more nuanced than syllabi content.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;This is why we need a new site to facilitate &lt;em&gt;insightful&lt;/em&gt; discussions about courses.&lt;/p&gt;
-
-&lt;h2 id=&#34;what-do-i-mean-by-insightful&#34;&gt;What do I mean by insightful?&lt;/h2&gt;
-
-&lt;p&gt;Maybe a particular student took Course &amp;lsquo;A&amp;rsquo; alongside Course &amp;lsquo;H&amp;rsquo;. This student found that the courses complemented each other unexpectedly, and extraordinarily. She was able to build parallels between two disciplines, and find much more meaning in both subjects. This information would surely be beneficial to students selecting their classes for the next semester.&lt;/p&gt;
-
-&lt;p&gt;Or maybe one professor talks very quietly and has illegible handwriting. Some professors assign homework and classwork that don&amp;rsquo;t seem to have any real-world application, discouraging students from pursuing the field further. If a professor killed this student&amp;rsquo;s dreams with their choices in assignments, that might be significant information; it could cause a student to change major (and likely, career), but it could also be a tremendous waste of time and money (yay, tuition!)&lt;/p&gt;
-
-&lt;p&gt;You will always get insubstantial reviews. Students will irrationally pin blame on professors, failing to take responsibility for their own lack of effort or whatever. You might even get advertisements of some sort: Take this CLASS with PROFESSIRE MIRANDA, you&amp;rsquo;ll have your dream career in ONE MONTH!! But people can use their intuition to judge the quality of a review for themselves. Given the advent of spam filters and verification methods, this is trivial. Less trivial, schools could try to sabotage each other&amp;rsquo;s programs.&lt;/p&gt;
-
-&lt;h2 id=&#34;implementation&#34;&gt;Implementation.&lt;/h2&gt;
-
-&lt;p&gt;The site would be relatively simple. Create a database of schools. Allow somebody to post a review about a program or class for a particular school. If somebody is interested in a program or class that has yet to be posted, they can create a request. A school might be inclined to use alumni mailing-lists to try to fulfill a request (though admittedly, this might ignore important groups, like those that switched programs, or dropped out). The community can respond to different reviews; it would be useful to have the ability to ask more questions, or to agree/disagree with a post, or to give relevant feedback (like a professor switching school).&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; the core functionality is post, request, and discuss. +1 for allowing anonymity.&lt;/p&gt;
-
-&lt;h2 id=&#34;would-the-site-be-successful&#34;&gt;Would the site be successful?&lt;/h2&gt;
-
-&lt;p&gt;There is a natural incentive for universities to subtly promote a website like this—if you have a great neuroscience program, wouldn&amp;rsquo;t you want the world to know? That would be a great way to instill confidence in students to travel and pay ridiculous out-of-state tuition. It would then be beneficial for students and the school itself to not force the hand of students in completing these sorts of class/professor-reviews. End-of-grade bonus points would get the participation of students that may not have anything valuable or insightful to contribute. It&amp;rsquo;s best if the students post &lt;em&gt;if they want to&lt;/em&gt;, if they really feel compelled. Of course, that requires knowledge of the site&amp;rsquo;s existence, and a student that wants to participate. I&amp;rsquo;m sure many wouldn&amp;rsquo;t want to share their experiences, even if others would find them useful. I don&amp;rsquo;t believe a site like this would be difficult to market. It would just need a mission statement that students can identify and connect with. Like not leaving education up to chance, by making informed decisions.&lt;/p&gt;
 </description>
     </item>
     

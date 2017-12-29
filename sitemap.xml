@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://ckhoward.github.io/blog/deploying-a-tor-hidden-service-with-digitalocean/</loc>
+    <lastmod>2017-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://ckhoward.github.io/blog/an-introduction-to-the-stylo-library-r/</loc>
     <lastmod>2017-12-27T00:00:00+00:00</lastmod>
   </url>
@@ -104,7 +109,7 @@
   
   <url>
     <loc>https://ckhoward.github.io/blog/</loc>
-    <lastmod>2017-12-27T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -116,7 +121,7 @@
   
   <url>
     <loc>https://ckhoward.github.io/</loc>
-    <lastmod>2017-12-27T00:00:00+00:00</lastmod>
+    <lastmod>2017-12-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
