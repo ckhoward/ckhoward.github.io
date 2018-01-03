@@ -6,8 +6,109 @@
     <description>Recent content on Chris Howard</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 29 Dec 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jan 2018 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ckhoward.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>A Less Confusing Tutorial on Jupyter (IPython) Widgets</title>
+      <link>https://ckhoward.github.io/blog/a-less-confusing-tutorial-on-jupyter-ipython-widgets/</link>
+      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://ckhoward.github.io/blog/a-less-confusing-tutorial-on-jupyter-ipython-widgets/</guid>
+      <description>
+
+&lt;h1 id=&#34;a-less-confusing-tutorial-on-jupyter-ipython-widgets&#34;&gt;A Less Confusing Tutorial on Jupyter (IPython) Widgets&lt;/h1&gt;
+
+&lt;p&gt;Jupyter widgets are an awesome tool for creating interactive dashboards, but documentation can be a little excessive if you&amp;rsquo;re just looking for basic functionality. It really doesn&amp;rsquo;t have to be so complicated.&lt;/p&gt;
+
+&lt;h2 id=&#34;our-widget-use-case&#34;&gt;Our widget use-case&lt;/h2&gt;
+
+&lt;p&gt;My data visualization team wanted to provide researchers with a GUI for visualizing species distributions, and we wanted to give them the power and flexibility to specify different parameters. These parameters included species of interest, the predictive algorithm of interest, predictive power (or threshold), and the speed at which the movements of the species over the course of a year were animated.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-simplicity-of-widget-code&#34;&gt;The simplicity of widget code&lt;/h2&gt;
+
+&lt;p&gt;Creating the GUI elements for these varying parameters is as simple as importing the required libraries, creating a variable, assigning a widget to that variable, and then displaying that variable.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Import requirements
+import ipywidgets as wg
+from IPython.display import display
+
+# Set initial style of the interactive GUI.
+style = {&#39;description_width&#39;: &#39;initial&#39;}
+
+# Initialize the elements of the GUI.
+name = wg.Text(value=&#39;Name&#39;, description=&amp;quot;Species: &amp;quot;, style=style)
+algo = wg.Dropdown(options = [&amp;quot;CTA&amp;quot;, &amp;quot;GLM&amp;quot;, &amp;quot;RF&amp;quot;],
+ description=&amp;quot;Algorithm: &amp;quot;, style=style)
+threshold = wg.Dropdown(options = [&#39;1&#39;, &#39;10&#39;, &#39;50&#39;],
+ description=&amp;quot;Prediction Threshold: &amp;quot;, style=style)
+month = wg.SelectionSlider(description=&amp;quot;Month: &amp;quot;, options=[&#39;jan&#39;, &#39;feb&#39;, &#39;mar&#39;, &#39;apr&#39;, &#39;may&#39;, &#39;jun&#39;, &#39;jul&#39;, &#39;aug&#39;, &#39;sep&#39;, &#39;oct&#39;, &#39;nov&#39;, &#39;dec&#39;, &#39;all&#39;], style=style)
+speed = wg.FloatSlider(value=.5,min=0,max=1.0,step=0.1,description=&#39;Animation Speed:&#39;,style=style)
+
+# Display the GUI.
+display(name, algo, threshold, month, speed)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note, variables like &lt;code&gt;speed&lt;/code&gt; might not make a great deal of sense right now, but just focus on the functions&amp;rsquo; arguments. Speed&amp;rsquo;s default value is set to .5, and has a range of [0, 1] and steps at 0.1. The &lt;code&gt;description&lt;/code&gt; argument is the widget&amp;rsquo;s label that the user sees.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/widget.jpg&#34; alt=&#34;Widget&#34; title=&#34;IPython GUI Widget&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Just like that, the &lt;code&gt;display&lt;/code&gt; statement takes all of those widget variables and shows them off in the Jupyter Notebook. Now the researchers have more power in choosing what to visualize and how to visualize it.&lt;/p&gt;
+
+&lt;h2 id=&#34;widget-intuition&#34;&gt;Widget intuition&lt;/h2&gt;
+
+&lt;p&gt;So, how do you use it? In my experience, users are inclined to change the values around as appropriate, and then execute that cell containing the GUI. Widgets do not operate like this. The variables are active and responsive; the variable holds whatever value is set in the GUI (like CTA for Algorithm), and does not require cell execution. Cell execution resets the GUI and the variable values.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/widget2.jpg&#34; alt=&#34;Widget 2&#34; title=&#34;IPython GUI Widget Inputs&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In changing the GUI around in this way, the variable &lt;code&gt;name&lt;/code&gt; now has a value of &amp;lsquo;Papilio_glaucus;&amp;rsquo; &lt;code&gt;algo&lt;/code&gt; has &amp;lsquo;CTA;&amp;rsquo; &lt;code&gt;threshold&lt;/code&gt; has &amp;lsquo;10&amp;rsquo; and so forth. These variables can now be used in other code.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Import requirements
+import os
+import matplotlib.pyplot as plt
+from PIL import Image as im
+
+# Initialize the filename for each SDM.
+filename = &amp;quot;./SDMs/&amp;quot; + name.value + &amp;quot;/&amp;quot; + month.value + &amp;quot;/&amp;quot; + algo.value + &amp;quot;-&amp;quot; + threshold.value + &amp;quot;.png&amp;quot;
+
+# Check for file existence and then display the map (with a title).
+if os.path.isfile(filename):
+    print(&#39;----------------------------------------&#39;)
+    print(&#39;Species: &#39;, name.value)
+    print(&#39;Algorithm: &#39;, algo.value)
+    print(&#39;Prediction Threshold: &#39;, threshold.value)
+    print(&#39;Month: &#39;, str(month.value))
+    print(&#39;----------------------------------------&#39;)
+    img = im.open(filename)
+    fig = plt.figure()
+    fig.set_size_inches(14, 8, forward=True)
+    fig.suptitle(name.value + &#39; - &#39; + month.value + &#39; - &#39;+ algo.value + &#39; - &#39; + threshold.value)
+    plt.imshow(img)
+    plt.show(img)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/widget_output.jpg&#34; alt=&#34;Widget Output&#34; title=&#34;Widget Output&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If the user desires, they can use the speed variable to change the speed at which the species distributions are animated (or in other words, how quickly they move across the map). This is all controlled by basic GUI objects: one textbox, two dropdowns, and two sliders. Of course, the way these variables are used will differ between projects (not all code is provided here).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/50.gif&#34; alt=&#34;Widget Animation Speed&#34; title=&#34;Widget Animation&#34; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;widget-gotchas&#34;&gt;Widget gotchas&lt;/h2&gt;
+
+&lt;p&gt;In my experience, Jupyter widgets don&amp;rsquo;t play nicely with Github and nbviewer when it comes to simply viewing the GUI objects. It isn&amp;rsquo;t rendered properly. Here is an example of how the above widgets look in Github:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;img/broken.jpg&#34; alt=&#34;Broken&#34; title=&#34;Incorrect Widget Rendering&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Maybe this will be fixed in the future. In the meantime, Github or nbviewer presentations will need to be replaced with live demos—&lt;em&gt;the horror&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-other-great-contributors-responsible-for-the-example-code&#34;&gt;The other great contributors responsible for the example code&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/agarwalmegha6&#34;&gt;Megha Agarwal&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/trillsauceda&#34;&gt;Isaiah Sauceda&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>Deploying a Tor Hidden Service with DigitalOcean</title>
@@ -1274,98 +1375,6 @@ will grow enormously.&lt;/p&gt;
 &lt;p&gt;Though this is a significant improvement, it is far from ideal. The towers were added at arbitrarily chosen sites (green points). This step in the analysis could have been optimized for the best visibility, with more emphasis on western sites than eastern, or more emphasis on high-elevation points. This simple analysis can be of tremendous value to any problem concerning visibility.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&#34;http://www.casa.arizona.edu/MPP/viewshed/vspaper.html&#34;&gt;* Visibility Analysis and Ancient Settlement Strategies&lt;/a&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>A Working Example of a Conceptual Model</title>
-      <link>https://ckhoward.github.io/blog/a-working-example-of-a-conceptual-model/</link>
-      <pubDate>Tue, 21 Feb 2017 23:12:45 -0700</pubDate>
-      
-      <guid>https://ckhoward.github.io/blog/a-working-example-of-a-conceptual-model/</guid>
-      <description>
-
-&lt;p&gt;&lt;em&gt;A Working Example of a Conceptual Model&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;An Object/Action Analysis&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Conceptual models are all about representation. And the way something is represented is important, both when understanding something, and when creating something. When attempting to understand a thing, we try to make sure our conceptual models aren’t faulty, so we practice logic and critical thinking. Else, biases or fallacious thoughts may steer us in a wrong direction while we experience a discussion with somebody, and miscommunications may happen, and/or the discussion is derailed. Likewise, in an early phase of building a product, we flesh out our conceptual model of that product, so as to not be steered in a wrong direction. We avoid adding unneeded features early. We explicate the most essential features and stay focused on them, that way we can get a clear picture of the relationships between our objects and their functionalities, if multiple actions in an app can use the same functionality.&lt;/p&gt;
-
-&lt;p&gt;Defining a conceptual model early will inform UI design in a way that avoids redundancy and it can keep people on track, so they don’t design and implement unneeded features. And when the design phase starts, it will be more efficient. Prototyping can begin earlier.&lt;/p&gt;
-
-&lt;p&gt;Below is an example of a hypothetical Object/Action analysis before designing an email system. I am posting this because there are not a great number of examples online for this kind of thing. This example will consist of a first version and a final version; in our first versions of these models, it is very easy to add excessive features and to needlessly complicate things. For this reason, as with most works, it is often necessary to go back and revise. Cut. Cut. Cut. Until the conceptual model is as simple as can be and represents the absolute bare-bones of the application you have in mind, trim all excess.&lt;/p&gt;
-
-&lt;h3 id=&#34;first-draft-flawed&#34;&gt;First Draft (Flawed):&lt;/h3&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;strong&gt;Objects&lt;/strong&gt;&lt;/th&gt;
-&lt;th&gt;&lt;strong&gt;Attributes&lt;/strong&gt;&lt;/th&gt;
-&lt;th&gt;&lt;strong&gt;Operations&lt;/strong&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Mailbox&lt;/td&gt;
-&lt;td&gt;Owner, Current Focus, Inbox,   Starred, Sent, Draft, Spam, Trash&lt;/td&gt;
-&lt;td&gt;Examine, Compose, Delete, Mark as   Read, Search, Archive&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Mail Message&lt;/td&gt;
-&lt;td&gt;Sender, Recipient, Date, Subject,   Content, Attachment Description (if any)&lt;/td&gt;
-&lt;td&gt;Compose, Delete, Print, Reply, Forward, Report, Block&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;As noted, the first version is often flawed, and should be iterated on. The second table illustrates edits that were made to the first table.&lt;/p&gt;
-
-&lt;h3 id=&#34;final-draft&#34;&gt;Final Draft:&lt;/h3&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;&lt;strong&gt;Objects&lt;/strong&gt;&lt;/th&gt;
-&lt;th&gt;&lt;strong&gt;Attributes&lt;/strong&gt;&lt;/th&gt;
-&lt;th&gt;&lt;strong&gt;Operations&lt;/strong&gt;&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;Mailbox&lt;/td&gt;
-&lt;td&gt;User, Current Focus, &lt;s&gt;Inbox, Starred, Sent, Draft, Spam, Trash&lt;/s&gt;, +Mail Message&lt;/td&gt;
-&lt;td&gt;Examine, &lt;s&gt;Compose, Delete, Mark   as Read&lt;/s&gt;, Search, &lt;s&gt;Archive&lt;/s&gt; +Organize&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;Message&lt;/td&gt;
-&lt;td&gt;&lt;s&gt;Sender, Recipient&lt;/s&gt;, +User, Date, Subject,   Content, Attachment Description (if any)&lt;/td&gt;
-&lt;td&gt;&lt;s&gt;Compose&lt;/s&gt;, +Send, Delete, Print, &lt;s&gt;Reply,   Forward, Report, Block&lt;/s&gt;&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;User&lt;/td&gt;
-&lt;td&gt;Name, Address&lt;/td&gt;
-&lt;td&gt;Examine, Message, Add, Remove&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Mailbox:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;For Attributes, I’ve crossed out Inbox, Starred, Sent, Draft, Spam, and Trash because they are not fundamental to the object and operations. I also replaced ‘Owner’ with ‘User’ as it interacts better with the Mail Message object (describing creator and receiver of messages). I also added Mail Message because they are contained (fundamentally) within the mailbox. I’ve added Organize to the operations because it is a verb that summarizes multiple actions: Delete is organizing into a Trashcan, Archiving is organizing, and placing into Spam and Drafts are also both organizing actions. I removed Compose because it is not essential to the mailbox itself; I only considered it an operation because there is a compose button in the CatMail interface, in other words, because of an implementation.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;&lt;s&gt;Mail&lt;/s&gt; Message (to be concise):&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;For attributes, I’ve removed Sender and Recipient and replaced both with User. For Operations, I removed Compose, Reply, and Forward; Send is an operation that condenses all of these actions, that isn’t implementation-based. Forward and Block were removed because they do not have a fundamental link to messages.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;User:&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;For attributes, I’ve added Name and Address because they are user properties. For operations, I added Examine, Message, Add, and Delete because these simple terms can represent addition to lists (like report or block, reply list, forward list, etc.), and users are obviously attached to messages (and the mailbox is owned by the user, too).&lt;/p&gt;
 </description>
     </item>
     
