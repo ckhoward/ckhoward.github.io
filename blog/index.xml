@@ -136,16 +136,19 @@ if os.path.isfile(filename):
 
 &lt;p&gt;DigitalOcean has a solid tutorial on first steps for &lt;a href=&#34;https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server&#34;&gt;setting up SSH&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;As shown here, I generate a key and since I already have a (useless) key named id_rsa, I choose to overwrite it. I hit enter twice to get through the passphrase prompts. The key is generated (and some parts blanked out by me)—this generated randomart is supposed to make it easier for the user to verify that the key hasn&amp;rsquo;t been tampered with, otherwise they would have to compare long strings of text.&lt;/p&gt;
+&lt;p&gt;I generate a key and since I already have a (useless) key named id_rsa, I choose to overwrite it. I hit enter twice to get through the passphrase prompts. The key is generated (and some parts blanked out by me)—this generated randomart is supposed to make it easier for the user to verify that the key hasn&amp;rsquo;t been tampered with, otherwise they would have to compare long strings of text.&lt;/p&gt;
 
 &lt;p&gt;Because we created the droplet without an SSH key, DigitalOcean sent us an email with our username (likely root), droplet IP, and temporary password. I personally logged into the console through the DigitalOcean web-portal and changed my password to something else, but that isn&amp;rsquo;t necessary.&lt;/p&gt;
 
 &lt;p&gt;To copy your public key to your server Use &lt;code&gt;ssh-copy-id username@ip&lt;/code&gt;. Note, your username will be root by default, counterintuitively. Use either the temporary password that was emailed to you, or your updated password if you went that route. Now you should be able to SSH into your server with &lt;code&gt;ssh username@ip&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;After successfully SSHing into your server, consider disabling password authentication on your server to prevent brute-force attacks. In the linked tutorial, at the bottom, under &lt;strong&gt;Disabling Password Authentication on your Server:&lt;/strong&gt;
-* &lt;code&gt;sudo nano /etc/ssh/sshd_config&lt;/code&gt;
-* Change from &lt;code&gt;PasswordAuthentication yes&lt;/code&gt; to &lt;code&gt;PasswordAuthentication no&lt;/code&gt;
-* &lt;code&gt;sudo service ssh restart&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;After successfully SSHing into your server, consider disabling password authentication on your server to prevent brute-force attacks. In the linked tutorial, at the bottom, under &lt;strong&gt;Disabling Password Authentication on your Server:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;sudo nano /etc/ssh/sshd_config&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Change from &lt;code&gt;PasswordAuthentication yes&lt;/code&gt; to &lt;code&gt;PasswordAuthentication no&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;sudo service ssh restart&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;img src=&#34;img/ufw5.jpg&#34; alt=&#34;Password Authentication&#34; title=&#34;Password Authentication Off&#34; /&gt;&lt;/p&gt;
 
