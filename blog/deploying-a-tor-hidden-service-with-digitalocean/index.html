@@ -244,8 +244,9 @@ hostname -I # this will give you a couple of IPs, enter them into your browser t
 <p>Run the command <code>sudo apt-get install tor</code>. Surprisingly simple. The Tor documentation instructs anyone deploying a hidden service to navigate to the torrc config file and uncomment the two statements:</p>
 
 <blockquote>
-<p>#HiddenServiceDir /var/lib/tor/hidden_service/
-#HiddenServicePort 80 127.0.0.1:80</p>
+<p>#HiddenServiceDir /var/lib/tor/hidden_service/</p>
+
+<p>#HiddenServicePort 80 127.0.0.1:80</p>
 </blockquote>
 
 <p>Thus, we find the config file and edit it with the following:</p>
