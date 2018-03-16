@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Shapely on AstonishingElixirs</title>
-    <link>https://astonishingelixirs.github.io/tags/shapely/</link>
+    <link>https://ckhoward.github.io/tags/shapely/</link>
     <description>Recent content in Shapely on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
     <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
     <lastBuildDate>Fri, 09 Jun 2017 12:28:59 -0700</lastBuildDate>
     
-	<atom:link href="https://astonishingelixirs.github.io/tags/shapely/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ckhoward.github.io/tags/shapely/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Projecting with Python [GIS, Python]</title>
-      <link>https://astonishingelixirs.github.io/post/projecting-with-python-gis-python/</link>
+      <link>https://ckhoward.github.io/post/projecting-with-python-gis-python/</link>
       <pubDate>Fri, 09 Jun 2017 12:28:59 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/projecting-with-python-gis-python/</guid>
+      <guid>https://ckhoward.github.io/post/projecting-with-python-gis-python/</guid>
       <description>My Introduction to GIS with Python Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the Global Terrorism Database so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations.</description>
     </item>
     

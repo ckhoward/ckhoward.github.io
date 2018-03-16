@@ -2,143 +2,143 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on AstonishingElixirs</title>
-    <link>https://astonishingelixirs.github.io/post/</link>
+    <link>https://ckhoward.github.io/post/</link>
     <description>Recent content in Posts on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
     <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
     <lastBuildDate>Sat, 10 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://astonishingelixirs.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ckhoward.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Tor Stem API</title>
-      <link>https://astonishingelixirs.github.io/post/tor-stem-api/</link>
+      <link>https://ckhoward.github.io/post/tor-stem-api/</link>
       <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/tor-stem-api/</guid>
+      <guid>https://ckhoward.github.io/post/tor-stem-api/</guid>
       <description>Tor Stem Controller Just in case somebody out there is looking for an example of how to use Tor&amp;rsquo;s Stem API, here is a tiny Python script that allows the user to monitor circuit connections. Here, I&amp;rsquo;m just getting basic information like description, nickname, and address, but the API docs show much more information that you can get. Just be mindful that you will need to change the string within the authenticate method.</description>
     </item>
     
     <item>
       <title>Sklearn Neural Network</title>
-      <link>https://astonishingelixirs.github.io/post/neural-network/</link>
+      <link>https://ckhoward.github.io/post/neural-network/</link>
       <pubDate>Sun, 04 Mar 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/neural-network/</guid>
+      <guid>https://ckhoward.github.io/post/neural-network/</guid>
       <description>Artificial Neural Networks with Sci-kit Learn The Gist of Neural Nets A neural network is a supervised classification algorithm. With your help, it kind of teaches itself how to make better classifications.
 For a basic neural net, you have three primary components: an input layer, a hidden layer, and an output layer, each consisting of nodes. The nodes of the input layer are basically your input variables; the nodes of the hidden layer are neurons that contain some function that operates on your input data; and there is one output node, which uses a function on the values given by the hidden layer, putting out one final calculation.</description>
     </item>
     
     <item>
       <title>k-Nearest Neighbors Classifier</title>
-      <link>https://astonishingelixirs.github.io/post/k-nearest-neighbors/</link>
+      <link>https://ckhoward.github.io/post/k-nearest-neighbors/</link>
       <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/k-nearest-neighbors/</guid>
+      <guid>https://ckhoward.github.io/post/k-nearest-neighbors/</guid>
       <description>Classification using K-Nearest Neighbor (KNN) import numpy as np import pandas as pd from sklearn.neighbors import KNeighborsClassifier from IPython.display import display pd.set_option(&amp;#39;display.notebook_repr_html&amp;#39;, True) Prescription Drug Classification KNN bases its classifications on the nearest k-neighbors. A neighbor&amp;rsquo;s &amp;ldquo;near-ness&amp;rdquo; is based on their attributes or predictors. For example, below, the attributes are simple. Every patient at a hospital has an age attribute, and a Na/K ratio attribute. Based on those attributes, a patient is assigned a classification (or type of drug).</description>
     </item>
     
     <item>
       <title>Multiple Regressions with Python</title>
-      <link>https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/</link>
+      <link>https://ckhoward.github.io/post/chapter9multiple-regression-and-model-building/</link>
       <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/</guid>
+      <guid>https://ckhoward.github.io/post/chapter9multiple-regression-and-model-building/</guid>
       <description>Multiple Regression and Model Building Introduction In the last chapter we were running a simple linear regression on cereal data. We wanted to see if there was a relationship between the cereal&amp;rsquo;s nutritional rating and its sugar content. There was. But with all this other data, like fiber(!), we want to see what other variables are related, in conjunction with (and without) each other. Multiple regression seems like a friendly tool we can use to do this, so that&amp;rsquo;s what we&amp;rsquo;ll be doing here.</description>
     </item>
     
     <item>
       <title>Cereal Regression with Python</title>
-      <link>https://astonishingelixirs.github.io/post/chapter8simple-linear-regression/</link>
+      <link>https://ckhoward.github.io/post/chapter8simple-linear-regression/</link>
       <pubDate>Wed, 21 Feb 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/chapter8simple-linear-regression/</guid>
+      <guid>https://ckhoward.github.io/post/chapter8simple-linear-regression/</guid>
       <description>Simple Linear Regression Cereal Nutritional Rating against Sugar Content Being the cereal enthusiasts we are, we might be interested in knowing what sort of relationship exists between a cereal&amp;rsquo;s nutrition rating and its sugar content. Therefore, we can turn to using a simple linear regression. Using a linear model, we would also be able to look at any given cereal&amp;rsquo;s sugar content, and attempt to make an estimation as to what its nutritional rating will be.</description>
     </item>
     
     <item>
       <title>Exploratory Analysis of Churn Data</title>
-      <link>https://astonishingelixirs.github.io/post/exploratory-data-analysis/</link>
+      <link>https://ckhoward.github.io/post/exploratory-data-analysis/</link>
       <pubDate>Tue, 20 Feb 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/exploratory-data-analysis/</guid>
+      <guid>https://ckhoward.github.io/post/exploratory-data-analysis/</guid>
       <description>Exploratory Data Analysis Conquering Earth by Phone It&amp;rsquo;s the year 3000 and we&amp;rsquo;re in the Futurama universe. Per usual, Lrrr has been up to no good. Scheming, he had a breakthrough. He will use Earth&amp;rsquo;s telephone services to recruit an army to conquer the planet. Unfortunately, he has many people leaving his service and joining competitors. To carry out his plan, he needs to get a better understanding of what is causing people to leave, and he will do this by employing an analyst.</description>
     </item>
     
     <item>
       <title>Quick Notes on Decision Trees</title>
-      <link>https://astonishingelixirs.github.io/post/decision-trees/</link>
+      <link>https://ckhoward.github.io/post/decision-trees/</link>
       <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/decision-trees/</guid>
+      <guid>https://ckhoward.github.io/post/decision-trees/</guid>
       <description>Decision Trees in Classification The Gist of Decision Trees Decision trees aren&amp;rsquo;t the most accurate method of classification, as they often lead to overfitting, but it&amp;rsquo;s still a very intuitive way of understanding how classification works.
 A decision tree is basically a collection of decision nodes, where if-thens rule. Each tier of nodes is basically a step down from significance of information, or in other words, the first node will likely contain the most useful information for the model, while the second tier of nodes will contain the second most useful information, and so forth.</description>
     </item>
     
     <item>
       <title>A Simpler Tutorial on Jupyter (IPython) Widgets</title>
-      <link>https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/</link>
+      <link>https://ckhoward.github.io/post/a-simpler-tutorial-on-ipython-widgets/</link>
       <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/</guid>
+      <guid>https://ckhoward.github.io/post/a-simpler-tutorial-on-ipython-widgets/</guid>
       <description>A Simpler Tutorial on Jupyter (IPython) Widgets Jupyter widgets are an awesome tool for creating interactive dashboards, but documentation can be a little excessive if you&amp;rsquo;re just looking for basic functionality. It really doesn&amp;rsquo;t have to be so complicated.
 Our widget use-case My data visualization team wanted to provide researchers with a GUI for visualizing species distributions, and we wanted to give them the power and flexibility to specify different parameters.</description>
     </item>
     
     <item>
       <title>Deploying a Tor Hidden Service with DigitalOcean</title>
-      <link>https://astonishingelixirs.github.io/post/tor-hidden-service/</link>
+      <link>https://ckhoward.github.io/post/tor-hidden-service/</link>
       <pubDate>Fri, 29 Dec 2017 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/tor-hidden-service/</guid>
+      <guid>https://ckhoward.github.io/post/tor-hidden-service/</guid>
       <description>Deploying a Tor Hidden Service with DigitalOcean A quick primer on Tor hidden services The Tor protocol picks 3 onion routers at random, builds circuits to them, treating them as introduction (or contact) points; since this is a circuit, there is no direct connection, so no IP addresses are shared, just public keys. These public keys work toward &amp;ldquo;shaking hands&amp;rdquo; at a rendezvous point. If the handshake happens, the rendezvous point connects Alice&amp;rsquo;s and Bob&amp;rsquo;s circuits, and then they can communicate anonymously.</description>
     </item>
     
     <item>
       <title>An Introduction to the Stylo Library [R]</title>
-      <link>https://astonishingelixirs.github.io/post/a-guide-to-stylo/</link>
+      <link>https://ckhoward.github.io/post/a-guide-to-stylo/</link>
       <pubDate>Wed, 27 Dec 2017 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/a-guide-to-stylo/</guid>
+      <guid>https://ckhoward.github.io/post/a-guide-to-stylo/</guid>
       <description>An Introduction to the Stylo Library What is Stylometry? Stylometry uses linguistic style to determine who authored some anonymous piece of writing, and it has diverse applications. The authorship of some suicide notes may be questionable. Most forum users have aliases in an attempt to anonymize themselves. And some authors publish their writings under pseudonyms. In these varying cases, stylometry can be used to deanonymize an author.
 What is Stylo?</description>
     </item>
     
     <item>
       <title>FIXBUX: A Web-extension to Safeguard Users from Themselves [Javascript]</title>
-      <link>https://astonishingelixirs.github.io/post/fixbux/</link>
+      <link>https://ckhoward.github.io/post/fixbux/</link>
       <pubDate>Tue, 12 Dec 2017 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/fixbux/</guid>
+      <guid>https://ckhoward.github.io/post/fixbux/</guid>
       <description>Overview It would seem that people are becoming more conscious of behavior&amp;rsquo;s role in retaining, taking back, and even losing privacy. Privacy technology isn&amp;rsquo;t currently a solution to privacy issues, so it is becoming more important to consider how we interact with these technologies, and how we make decisions. We have a greater propensity to share when our friends share, when we trust the technology maintainers, and defaults surprisingly dictate the way we behave, so what happens when you opt-in, by default, to share your social network data with a host of third parties?</description>
     </item>
     
     <item>
       <title>VMs and Usability Testing</title>
-      <link>https://astonishingelixirs.github.io/post/vms-for-usability-testing/</link>
+      <link>https://ckhoward.github.io/post/vms-for-usability-testing/</link>
       <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/vms-for-usability-testing/</guid>
+      <guid>https://ckhoward.github.io/post/vms-for-usability-testing/</guid>
       <description>VMs for Usability Testing Dependency Nightmares This might be an unpopular opinion, but I imagine virtual machines could be a useful tool for usability testers. When it comes to learning a new software or using a new tool, it&amp;rsquo;s the absolute worst finding out that certain dependencies aren&amp;rsquo;t listed in the requirements, or that they are not consistent with your own. This was a pain I experienced when I first started learning Ruby on Rails and MongoDB, and the tutorials I found wouldn&amp;rsquo;t work.</description>
     </item>
     
     <item>
       <title>The Epistemology of Testimony</title>
-      <link>https://astonishingelixirs.github.io/post/testimony-and-epistemology/</link>
+      <link>https://ckhoward.github.io/post/testimony-and-epistemology/</link>
       <pubDate>Wed, 04 Oct 2017 17:01:31 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/testimony-and-epistemology/</guid>
+      <guid>https://ckhoward.github.io/post/testimony-and-epistemology/</guid>
       <description>The Epistemology of Testimony As humans, our primary way of learning about the world is through experience. But given that we aren&amp;rsquo;t omnipresent and can&amp;rsquo;t experience everything for ourselves, we have to fall back on another method—teamwork. We create information and share it with others, and they do the same. Pretty much everything we learn about the world, apart from what we learn through observation and experience, is based on testimony, or what we hear and read.</description>
     </item>
     
     <item>
       <title>Path Distance Analysis [GIS]</title>
-      <link>https://astonishingelixirs.github.io/post/path-distance-analysis/</link>
+      <link>https://ckhoward.github.io/post/path-distance-analysis/</link>
       <pubDate>Tue, 15 Aug 2017 19:25:23 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/path-distance-analysis/</guid>
+      <guid>https://ckhoward.github.io/post/path-distance-analysis/</guid>
       <description>Path-Distance Analysis //This is a fictitious scenario//
 Let&amp;rsquo;s suppose we&amp;rsquo;re a team of highly skilled NGA agents. We just received a briefing about some suspicious activity between two rival factions. These factions are typically hostile towards each other, but a trusted informant has brought forward some intel suggesting the two factions have been cooperating.
 Our team must assist in verifying these claims. Wielding the all-powerful eye in the sky — or, an array of US Government satellites — we will first identify which outposts are linked to each faction, and we will then infer the inter- and intra-faction transportation networks.</description>
@@ -146,37 +146,37 @@ Our team must assist in verifying these claims. Wielding the all-powerful eye in
     
     <item>
       <title>Sentiment Analysis of First GOP Debate in 2015 [R]</title>
-      <link>https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/</link>
+      <link>https://ckhoward.github.io/post/gop-debate-sentiment-analysis/</link>
       <pubDate>Sat, 17 Jun 2017 14:50:42 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/</guid>
+      <guid>https://ckhoward.github.io/post/gop-debate-sentiment-analysis/</guid>
       <description>A Statistical Analysis of Sentiments Every four years, the United States goes through the process of electing (or re-electing) its president. Politics becomes a popular topic of conversation, and inadvertently, a popular emotional outlet. Our digital landscape has — mostly textually, but sometimes by video or podcast — granted the ability for people to express their thoughts and feelings on political ideas and events, en masse. Suffice to say, an examination of people&amp;rsquo;s language in these expressions can yield many useful insights into human (or American) character and the influence of rhetoric on political philosophy and national pride.</description>
     </item>
     
     <item>
       <title>A Little Bit of Monica in My Life</title>
-      <link>https://astonishingelixirs.github.io/post/a-little-bit-of-monica-in-my-life/</link>
+      <link>https://ckhoward.github.io/post/a-little-bit-of-monica-in-my-life/</link>
       <pubDate>Tue, 13 Jun 2017 17:01:31 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/a-little-bit-of-monica-in-my-life/</guid>
+      <guid>https://ckhoward.github.io/post/a-little-bit-of-monica-in-my-life/</guid>
       <description>Monica, The Personal Relationship Manager For those new to Monica, it&amp;rsquo;s a website that allows you to manage your personal relationships. You create contacts and provide information to make sure your encounters are meaningful and frequent (if that&amp;rsquo;s something you care about). You can add information about the contact&amp;rsquo;s significant other, their kids, where they might work, gifts, debts, social media accounts, birthdays, reminders, and even diets. In our busy minds, it can be hard to keep track of so many relevant details, and being human, we sometimes fall short of having great personal interactions with others.</description>
     </item>
     
     <item>
       <title>Projecting with Python [GIS, Python]</title>
-      <link>https://astonishingelixirs.github.io/post/projecting-with-python-gis-python/</link>
+      <link>https://ckhoward.github.io/post/projecting-with-python-gis-python/</link>
       <pubDate>Fri, 09 Jun 2017 12:28:59 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/projecting-with-python-gis-python/</guid>
+      <guid>https://ckhoward.github.io/post/projecting-with-python-gis-python/</guid>
       <description>My Introduction to GIS with Python Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the Global Terrorism Database so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations.</description>
     </item>
     
     <item>
       <title>Visibility Analysis [GIS]</title>
-      <link>https://astonishingelixirs.github.io/post/visibility/</link>
+      <link>https://ckhoward.github.io/post/visibility/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/visibility/</guid>
+      <guid>https://ckhoward.github.io/post/visibility/</guid>
       <description>This post is intended to be informative, and not so much reproducible.
 Viewshed Analysis A viewshed is an area that is visible from an observer at a given location. The problem of visibility lends itself to many domains:
  a guard on a prison tower must see the entire prison yard to ensure everyone&amp;rsquo;s safety a scout must maximize visibility of a battlefield for intelligence gathering autonomous vehicles must have 360-degree visibility cell-towers must provide maximum coverage  In this post, we will pay mind to the ancient world, where according to Christopherson and Guertin*, &amp;ldquo;fortified sites were often located in order to visually control their territory, sacred sites might be located to provide views of other sacred sites, and the settlement patterns of hinterland sites might be located to facilitate, or to impede, visual communication.</description>
@@ -184,10 +184,10 @@ Viewshed Analysis A viewshed is an area that is visible from an observer at a gi
     
     <item>
       <title>A Working Example of a Conceptual Model</title>
-      <link>https://astonishingelixirs.github.io/post/conceptual-model/</link>
+      <link>https://ckhoward.github.io/post/conceptual-model/</link>
       <pubDate>Tue, 21 Feb 2017 23:12:45 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/conceptual-model/</guid>
+      <guid>https://ckhoward.github.io/post/conceptual-model/</guid>
       <description>A Working Example of a Conceptual Model
 An Object/Action Analysis
 Conceptual models are all about representation. And the way something is represented is important, both when understanding something, and when creating something. When attempting to understand a thing, we try to make sure our conceptual models aren’t faulty, so we practice logic and critical thinking. Else, biases or fallacious thoughts may steer us in a wrong direction while we experience a discussion with somebody, and miscommunications may happen, and/or the discussion is derailed.</description>
@@ -195,28 +195,28 @@ Conceptual models are all about representation. And the way something is represe
     
     <item>
       <title>Your Education at Random</title>
-      <link>https://astonishingelixirs.github.io/post/your-education-at-random/</link>
+      <link>https://ckhoward.github.io/post/your-education-at-random/</link>
       <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/your-education-at-random/</guid>
+      <guid>https://ckhoward.github.io/post/your-education-at-random/</guid>
       <description>A 160-hour, $1,500-4,000 mistake. You&amp;rsquo;re picking classes for next semester. You have four selected, and you&amp;rsquo;re now looking for a fifth. There are three options. How do you know which to pick? They&amp;rsquo;re equally interesting, albeit different routes, and they have different professors. The fact of the matter is, you have little information to base your choice off of. Likely no syllabus. Likely no knowledge of the professor. And likely no real insights.</description>
     </item>
     
     <item>
       <title>Reading List</title>
-      <link>https://astonishingelixirs.github.io/post/reading-list/</link>
+      <link>https://ckhoward.github.io/post/reading-list/</link>
       <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/reading-list/</guid>
+      <guid>https://ckhoward.github.io/post/reading-list/</guid>
       <description>Reading List I&amp;rsquo;ve wanted to get into reading for a long time now. I always had trouble finishing books when I was younger and I wanted to change that. What better time than new years? I decided in 2018, I would read and read and read. I have a huge to read list, but really I am just going to follow my interest. As I write this, I&amp;rsquo;m reading The Count of Monte Cristo which is amazing, and though I have books like Cuckoo&amp;rsquo;s Egg on my immediate list, I may follow The Count into historical novels, or some of Alexander Dumas&amp;rsquo; other works.</description>
     </item>
     
     <item>
       <title>Terrorist Targets [Exploratory]</title>
-      <link>https://astonishingelixirs.github.io/post/terrorist-org-exploration/</link>
+      <link>https://ckhoward.github.io/post/terrorist-org-exploration/</link>
       <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/terrorist-org-exploration/</guid>
+      <guid>https://ckhoward.github.io/post/terrorist-org-exploration/</guid>
       <description>If you were to start some Google searches for terrorist attacks, while specifying the terrorist organization (e.g. Boko Haram, or the Lord&amp;rsquo;s Resistance Army), you will likely see different themes within the listed results. Going to a page that aggregates LRA attacks, you get:
 and for Boko Haram:
 Assuming these sources weren&amp;rsquo;t cherry-picked, we might infer that the LRA tends to attack people and their property, with assault rifles, while Boko Haram might be more likely to attack crowded public places, with explosives.</description>
@@ -224,10 +224,10 @@ Assuming these sources weren&amp;rsquo;t cherry-picked, we might infer that the 
     
     <item>
       <title>this is a no-handed post</title>
-      <link>https://astonishingelixirs.github.io/post/your-new-post/</link>
+      <link>https://ckhoward.github.io/post/your-new-post/</link>
       <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/your-new-post/</guid>
+      <guid>https://ckhoward.github.io/post/your-new-post/</guid>
       <description></description>
     </item>
     

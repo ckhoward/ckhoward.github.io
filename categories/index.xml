@@ -2,13 +2,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on AstonishingElixirs</title>
-    <link>https://astonishingelixirs.github.io/categories/</link>
+    <link>https://ckhoward.github.io/categories/</link>
     <description>Recent content in Categories on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
     <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
     
-	<atom:link href="https://astonishingelixirs.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ckhoward.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

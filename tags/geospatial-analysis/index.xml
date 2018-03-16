@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Geospatial Analysis on AstonishingElixirs</title>
-    <link>https://astonishingelixirs.github.io/tags/geospatial-analysis/</link>
+    <link>https://ckhoward.github.io/tags/geospatial-analysis/</link>
     <description>Recent content in Geospatial Analysis on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
     <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
     <lastBuildDate>Tue, 15 Aug 2017 19:25:23 -0700</lastBuildDate>
     
-	<atom:link href="https://astonishingelixirs.github.io/tags/geospatial-analysis/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ckhoward.github.io/tags/geospatial-analysis/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Path Distance Analysis [GIS]</title>
-      <link>https://astonishingelixirs.github.io/post/path-distance-analysis/</link>
+      <link>https://ckhoward.github.io/post/path-distance-analysis/</link>
       <pubDate>Tue, 15 Aug 2017 19:25:23 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/path-distance-analysis/</guid>
+      <guid>https://ckhoward.github.io/post/path-distance-analysis/</guid>
       <description>Path-Distance Analysis //This is a fictitious scenario//
 Let&amp;rsquo;s suppose we&amp;rsquo;re a team of highly skilled NGA agents. We just received a briefing about some suspicious activity between two rival factions. These factions are typically hostile towards each other, but a trusted informant has brought forward some intel suggesting the two factions have been cooperating.
 Our team must assist in verifying these claims. Wielding the all-powerful eye in the sky — or, an array of US Government satellites — we will first identify which outposts are linked to each faction, and we will then infer the inter- and intra-faction transportation networks.</description>
@@ -25,10 +25,10 @@ Our team must assist in verifying these claims. Wielding the all-powerful eye in
     
     <item>
       <title>Visibility Analysis [GIS]</title>
-      <link>https://astonishingelixirs.github.io/post/visibility/</link>
+      <link>https://ckhoward.github.io/post/visibility/</link>
       <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/visibility/</guid>
+      <guid>https://ckhoward.github.io/post/visibility/</guid>
       <description>This post is intended to be informative, and not so much reproducible.
 Viewshed Analysis A viewshed is an area that is visible from an observer at a given location. The problem of visibility lends itself to many domains:
  a guard on a prison tower must see the entire prison yard to ensure everyone&amp;rsquo;s safety a scout must maximize visibility of a battlefield for intelligence gathering autonomous vehicles must have 360-degree visibility cell-towers must provide maximum coverage  In this post, we will pay mind to the ancient world, where according to Christopherson and Guertin*, &amp;ldquo;fortified sites were often located in order to visually control their territory, sacred sites might be located to provide views of other sacred sites, and the settlement patterns of hinterland sites might be located to facilitate, or to impede, visual communication.</description>

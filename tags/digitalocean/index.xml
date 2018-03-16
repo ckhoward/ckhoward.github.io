@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Digitalocean on AstonishingElixirs</title>
-    <link>https://astonishingelixirs.github.io/tags/digitalocean/</link>
+    <link>https://ckhoward.github.io/tags/digitalocean/</link>
     <description>Recent content in Digitalocean on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
     <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
     <lastBuildDate>Fri, 29 Dec 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://astonishingelixirs.github.io/tags/digitalocean/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ckhoward.github.io/tags/digitalocean/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Deploying a Tor Hidden Service with DigitalOcean</title>
-      <link>https://astonishingelixirs.github.io/post/tor-hidden-service/</link>
+      <link>https://ckhoward.github.io/post/tor-hidden-service/</link>
       <pubDate>Fri, 29 Dec 2017 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/tor-hidden-service/</guid>
+      <guid>https://ckhoward.github.io/post/tor-hidden-service/</guid>
       <description>Deploying a Tor Hidden Service with DigitalOcean A quick primer on Tor hidden services The Tor protocol picks 3 onion routers at random, builds circuits to them, treating them as introduction (or contact) points; since this is a circuit, there is no direct connection, so no IP addresses are shared, just public keys. These public keys work toward &amp;ldquo;shaking hands&amp;rdquo; at a rendezvous point. If the handshake happens, the rendezvous point connects Alice&amp;rsquo;s and Bob&amp;rsquo;s circuits, and then they can communicate anonymously.</description>
     </item>
     

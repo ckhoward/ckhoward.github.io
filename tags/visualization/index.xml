@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Visualization on AstonishingElixirs</title>
-    <link>https://astonishingelixirs.github.io/tags/visualization/</link>
+    <link>https://ckhoward.github.io/tags/visualization/</link>
     <description>Recent content in Visualization on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
     <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
     <lastBuildDate>Tue, 20 Feb 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://astonishingelixirs.github.io/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ckhoward.github.io/tags/visualization/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Exploratory Analysis of Churn Data</title>
-      <link>https://astonishingelixirs.github.io/post/exploratory-data-analysis/</link>
+      <link>https://ckhoward.github.io/post/exploratory-data-analysis/</link>
       <pubDate>Tue, 20 Feb 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/exploratory-data-analysis/</guid>
+      <guid>https://ckhoward.github.io/post/exploratory-data-analysis/</guid>
       <description>Exploratory Data Analysis Conquering Earth by Phone It&amp;rsquo;s the year 3000 and we&amp;rsquo;re in the Futurama universe. Per usual, Lrrr has been up to no good. Scheming, he had a breakthrough. He will use Earth&amp;rsquo;s telephone services to recruit an army to conquer the planet. Unfortunately, he has many people leaving his service and joining competitors. To carry out his plan, he needs to get a better understanding of what is causing people to leave, and he will do this by employing an analyst.</description>
     </item>
     

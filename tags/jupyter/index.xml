@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jupyter on AstonishingElixirs</title>
-    <link>https://astonishingelixirs.github.io/tags/jupyter/</link>
+    <link>https://ckhoward.github.io/tags/jupyter/</link>
     <description>Recent content in Jupyter on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
     <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
     <lastBuildDate>Wed, 03 Jan 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://astonishingelixirs.github.io/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ckhoward.github.io/tags/jupyter/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>A Simpler Tutorial on Jupyter (IPython) Widgets</title>
-      <link>https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/</link>
+      <link>https://ckhoward.github.io/post/a-simpler-tutorial-on-ipython-widgets/</link>
       <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/</guid>
+      <guid>https://ckhoward.github.io/post/a-simpler-tutorial-on-ipython-widgets/</guid>
       <description>A Simpler Tutorial on Jupyter (IPython) Widgets Jupyter widgets are an awesome tool for creating interactive dashboards, but documentation can be a little excessive if you&amp;rsquo;re just looking for basic functionality. It really doesn&amp;rsquo;t have to be so complicated.
 Our widget use-case My data visualization team wanted to provide researchers with a GUI for visualizing species distributions, and we wanted to give them the power and flexibility to specify different parameters.</description>
     </item>

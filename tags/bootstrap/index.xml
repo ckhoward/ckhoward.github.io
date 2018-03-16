@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bootstrap on AstonishingElixirs</title>
-    <link>https://astonishingelixirs.github.io/tags/bootstrap/</link>
+    <link>https://ckhoward.github.io/tags/bootstrap/</link>
     <description>Recent content in Bootstrap on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
     <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
     <lastBuildDate>Sat, 17 Jun 2017 14:50:42 -0700</lastBuildDate>
     
-	<atom:link href="https://astonishingelixirs.github.io/tags/bootstrap/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ckhoward.github.io/tags/bootstrap/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Sentiment Analysis of First GOP Debate in 2015 [R]</title>
-      <link>https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/</link>
+      <link>https://ckhoward.github.io/post/gop-debate-sentiment-analysis/</link>
       <pubDate>Sat, 17 Jun 2017 14:50:42 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/</guid>
+      <guid>https://ckhoward.github.io/post/gop-debate-sentiment-analysis/</guid>
       <description>A Statistical Analysis of Sentiments Every four years, the United States goes through the process of electing (or re-electing) its president. Politics becomes a popular topic of conversation, and inadvertently, a popular emotional outlet. Our digital landscape has — mostly textually, but sometimes by video or podcast — granted the ability for people to express their thoughts and feelings on political ideas and events, en masse. Suffice to say, an examination of people&amp;rsquo;s language in these expressions can yield many useful insights into human (or American) character and the influence of rhetoric on political philosophy and national pride.</description>
     </item>
     

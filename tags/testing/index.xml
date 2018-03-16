@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Testing on AstonishingElixirs</title>
-    <link>https://astonishingelixirs.github.io/tags/testing/</link>
+    <link>https://ckhoward.github.io/tags/testing/</link>
     <description>Recent content in Testing on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
     <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
     <lastBuildDate>Fri, 03 Nov 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://astonishingelixirs.github.io/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ckhoward.github.io/tags/testing/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>VMs and Usability Testing</title>
-      <link>https://astonishingelixirs.github.io/post/vms-for-usability-testing/</link>
+      <link>https://ckhoward.github.io/post/vms-for-usability-testing/</link>
       <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/vms-for-usability-testing/</guid>
+      <guid>https://ckhoward.github.io/post/vms-for-usability-testing/</guid>
       <description>VMs for Usability Testing Dependency Nightmares This might be an unpopular opinion, but I imagine virtual machines could be a useful tool for usability testers. When it comes to learning a new software or using a new tool, it&amp;rsquo;s the absolute worst finding out that certain dependencies aren&amp;rsquo;t listed in the requirements, or that they are not consistent with your own. This was a pain I experienced when I first started learning Ruby on Rails and MongoDB, and the tutorials I found wouldn&amp;rsquo;t work.</description>
     </item>
     

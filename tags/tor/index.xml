@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tor on AstonishingElixirs</title>
-    <link>https://astonishingelixirs.github.io/tags/tor/</link>
+    <link>https://ckhoward.github.io/tags/tor/</link>
     <description>Recent content in Tor on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
     <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
     <lastBuildDate>Sat, 10 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://astonishingelixirs.github.io/tags/tor/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ckhoward.github.io/tags/tor/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Tor Stem API</title>
-      <link>https://astonishingelixirs.github.io/post/tor-stem-api/</link>
+      <link>https://ckhoward.github.io/post/tor-stem-api/</link>
       <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/tor-stem-api/</guid>
+      <guid>https://ckhoward.github.io/post/tor-stem-api/</guid>
       <description>Tor Stem Controller Just in case somebody out there is looking for an example of how to use Tor&amp;rsquo;s Stem API, here is a tiny Python script that allows the user to monitor circuit connections. Here, I&amp;rsquo;m just getting basic information like description, nickname, and address, but the API docs show much more information that you can get. Just be mindful that you will need to change the string within the authenticate method.</description>
     </item>
     

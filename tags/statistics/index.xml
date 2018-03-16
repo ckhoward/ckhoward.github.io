@@ -2,78 +2,78 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Statistics on AstonishingElixirs</title>
-    <link>https://astonishingelixirs.github.io/tags/statistics/</link>
+    <link>https://ckhoward.github.io/tags/statistics/</link>
     <description>Recent content in Statistics on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
     <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
     <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
     <lastBuildDate>Sun, 04 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://astonishingelixirs.github.io/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://ckhoward.github.io/tags/statistics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Sklearn Neural Network</title>
-      <link>https://astonishingelixirs.github.io/post/neural-network/</link>
+      <link>https://ckhoward.github.io/post/neural-network/</link>
       <pubDate>Sun, 04 Mar 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/neural-network/</guid>
+      <guid>https://ckhoward.github.io/post/neural-network/</guid>
       <description>Artificial Neural Networks with Sci-kit Learn The Gist of Neural Nets A neural network is a supervised classification algorithm. With your help, it kind of teaches itself how to make better classifications.
 For a basic neural net, you have three primary components: an input layer, a hidden layer, and an output layer, each consisting of nodes. The nodes of the input layer are basically your input variables; the nodes of the hidden layer are neurons that contain some function that operates on your input data; and there is one output node, which uses a function on the values given by the hidden layer, putting out one final calculation.</description>
     </item>
     
     <item>
       <title>k-Nearest Neighbors Classifier</title>
-      <link>https://astonishingelixirs.github.io/post/k-nearest-neighbors/</link>
+      <link>https://ckhoward.github.io/post/k-nearest-neighbors/</link>
       <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/k-nearest-neighbors/</guid>
+      <guid>https://ckhoward.github.io/post/k-nearest-neighbors/</guid>
       <description>Classification using K-Nearest Neighbor (KNN) import numpy as np import pandas as pd from sklearn.neighbors import KNeighborsClassifier from IPython.display import display pd.set_option(&amp;#39;display.notebook_repr_html&amp;#39;, True) Prescription Drug Classification KNN bases its classifications on the nearest k-neighbors. A neighbor&amp;rsquo;s &amp;ldquo;near-ness&amp;rdquo; is based on their attributes or predictors. For example, below, the attributes are simple. Every patient at a hospital has an age attribute, and a Na/K ratio attribute. Based on those attributes, a patient is assigned a classification (or type of drug).</description>
     </item>
     
     <item>
       <title>Multiple Regressions with Python</title>
-      <link>https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/</link>
+      <link>https://ckhoward.github.io/post/chapter9multiple-regression-and-model-building/</link>
       <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/</guid>
+      <guid>https://ckhoward.github.io/post/chapter9multiple-regression-and-model-building/</guid>
       <description>Multiple Regression and Model Building Introduction In the last chapter we were running a simple linear regression on cereal data. We wanted to see if there was a relationship between the cereal&amp;rsquo;s nutritional rating and its sugar content. There was. But with all this other data, like fiber(!), we want to see what other variables are related, in conjunction with (and without) each other. Multiple regression seems like a friendly tool we can use to do this, so that&amp;rsquo;s what we&amp;rsquo;ll be doing here.</description>
     </item>
     
     <item>
       <title>Cereal Regression with Python</title>
-      <link>https://astonishingelixirs.github.io/post/chapter8simple-linear-regression/</link>
+      <link>https://ckhoward.github.io/post/chapter8simple-linear-regression/</link>
       <pubDate>Wed, 21 Feb 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/chapter8simple-linear-regression/</guid>
+      <guid>https://ckhoward.github.io/post/chapter8simple-linear-regression/</guid>
       <description>Simple Linear Regression Cereal Nutritional Rating against Sugar Content Being the cereal enthusiasts we are, we might be interested in knowing what sort of relationship exists between a cereal&amp;rsquo;s nutrition rating and its sugar content. Therefore, we can turn to using a simple linear regression. Using a linear model, we would also be able to look at any given cereal&amp;rsquo;s sugar content, and attempt to make an estimation as to what its nutritional rating will be.</description>
     </item>
     
     <item>
       <title>Exploratory Analysis of Churn Data</title>
-      <link>https://astonishingelixirs.github.io/post/exploratory-data-analysis/</link>
+      <link>https://ckhoward.github.io/post/exploratory-data-analysis/</link>
       <pubDate>Tue, 20 Feb 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/exploratory-data-analysis/</guid>
+      <guid>https://ckhoward.github.io/post/exploratory-data-analysis/</guid>
       <description>Exploratory Data Analysis Conquering Earth by Phone It&amp;rsquo;s the year 3000 and we&amp;rsquo;re in the Futurama universe. Per usual, Lrrr has been up to no good. Scheming, he had a breakthrough. He will use Earth&amp;rsquo;s telephone services to recruit an army to conquer the planet. Unfortunately, he has many people leaving his service and joining competitors. To carry out his plan, he needs to get a better understanding of what is causing people to leave, and he will do this by employing an analyst.</description>
     </item>
     
     <item>
       <title>Quick Notes on Decision Trees</title>
-      <link>https://astonishingelixirs.github.io/post/decision-trees/</link>
+      <link>https://ckhoward.github.io/post/decision-trees/</link>
       <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/decision-trees/</guid>
+      <guid>https://ckhoward.github.io/post/decision-trees/</guid>
       <description>Decision Trees in Classification The Gist of Decision Trees Decision trees aren&amp;rsquo;t the most accurate method of classification, as they often lead to overfitting, but it&amp;rsquo;s still a very intuitive way of understanding how classification works.
 A decision tree is basically a collection of decision nodes, where if-thens rule. Each tier of nodes is basically a step down from significance of information, or in other words, the first node will likely contain the most useful information for the model, while the second tier of nodes will contain the second most useful information, and so forth.</description>
     </item>
     
     <item>
       <title>Sentiment Analysis of First GOP Debate in 2015 [R]</title>
-      <link>https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/</link>
+      <link>https://ckhoward.github.io/post/gop-debate-sentiment-analysis/</link>
       <pubDate>Sat, 17 Jun 2017 14:50:42 -0700</pubDate>
       <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/</guid>
+      <guid>https://ckhoward.github.io/post/gop-debate-sentiment-analysis/</guid>
       <description>A Statistical Analysis of Sentiments Every four years, the United States goes through the process of electing (or re-electing) its president. Politics becomes a popular topic of conversation, and inadvertently, a popular emotional outlet. Our digital landscape has — mostly textually, but sometimes by video or podcast — granted the ability for people to express their thoughts and feelings on political ideas and events, en masse. Suffice to say, an examination of people&amp;rsquo;s language in these expressions can yield many useful insights into human (or American) character and the influence of rhetoric on political philosophy and national pride.</description>
     </item>
     
