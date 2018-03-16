@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Deploying a Tor Hidden Service with DigitalOcean</title>
+  <meta property="og:title" content="Deploying a Tor Hidden Service with DigitalOcean" />
+  <meta name="twitter:title" content="Deploying a Tor Hidden Service with DigitalOcean" />
+  <meta name="description" content="Deploying a Tor Hidden Service with DigitalOcean A quick primer on Tor hidden services The Tor protocol picks 3 onion routers at random, builds circuits to them, treating them as introduction (or contact) points; since this is a circuit, there is no direct connection, so no IP addresses are shared, just public keys. These public keys work toward &ldquo;shaking hands&rdquo; at a rendezvous point. If the handshake happens, the rendezvous point connects Alice&rsquo;s and Bob&rsquo;s circuits, and then they can communicate anonymously.">
+  <meta property="og:description" content="Deploying a Tor Hidden Service with DigitalOcean A quick primer on Tor hidden services The Tor protocol picks 3 onion routers at random, builds circuits to them, treating them as introduction (or contact) points; since this is a circuit, there is no direct connection, so no IP addresses are shared, just public keys. These public keys work toward &ldquo;shaking hands&rdquo; at a rendezvous point. If the handshake happens, the rendezvous point connects Alice&rsquo;s and Bob&rsquo;s circuits, and then they can communicate anonymously.">
+  <meta name="twitter:description" content="Deploying a Tor Hidden Service with DigitalOcean A quick primer on Tor hidden services The Tor protocol picks 3 onion routers at random, builds circuits to them, treating them as introduction (or …">
+  <meta name="author" content="Chris Howard"/>
+  <link href='https://astonishingelixirs.github.io/img/avatar-icon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@_ckhoward" />
+  <meta name="twitter:creator" content="@_ckhoward" />
+  <meta property="og:url" content="https://astonishingelixirs.github.io/post/tor-hidden-service/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AstonishingElixirs" />
+
+  <meta name="generator" content="Hugo 0.36.1" />
+  <link rel="canonical" href="https://astonishingelixirs.github.io/post/tor-hidden-service/" />
+  <link rel="alternate" href="https://astonishingelixirs.github.io/index.xml" type="application/rss+xml" title="AstonishingElixirs">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://astonishingelixirs.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-114707471-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Reading" href="/post/reading-list">Reading</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="AstonishingElixirs" href="https://astonishingelixirs.github.io">
+            <img class="avatar-img" src="https://astonishingelixirs.github.io/img/avatar-icon.png" alt="AstonishingElixirs" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Deploying a Tor Hidden Service with DigitalOcean</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 29, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 6 minutes (1179 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<h1 id="deploying-a-tor-hidden-service-with-digitalocean">Deploying a Tor Hidden Service with DigitalOcean</h1>
+
+<h4 id="a-quick-primer-on-tor-hidden-services">A quick primer on Tor hidden services</h4>
+
+<p>The Tor protocol picks 3 onion routers at random, builds <em>circuits</em> to them, treating them as introduction (or contact) points; since this is a circuit, there is no direct connection, so no IP addresses are shared, just public keys. These public keys work toward &ldquo;shaking hands&rdquo; at a rendezvous point. If the handshake happens, the rendezvous point connects Alice&rsquo;s and Bob&rsquo;s circuits, and then they can communicate anonymously. While the protocol isn&rsquo;t without flaw, it is still powerful, especially when used in conjunction with other practices and tools. If you have sensitive information, it is your responsibility to ensure that your system is protected, and that your visitors are protected. Deploying a hidden service is a good step toward offering that protection.</p>
+
+<h2 id="deploy-the-vps-with-digital-ocean">Deploy the VPS with Digital Ocean</h2>
+
+<p>We are going to create a Debian Droplet on DigitalOcean. After creating my account, I fork up the $5 to create my Droplet—it would be cool if DigitalOcean gave a student discount for students to practice, but I digress.</p>
+
+<p><img src="/img/vps_install_1.jpg" alt="VPS Install" title="VPS Install" /></p>
+
+<p>I chose not to add an SSH key, and I left the hostname at its default. If you are comfortable with SSH, feel free to add yours, but this tutorial assumes a lack of familiarity. Click that giant green <strong>Create</strong> button and the droplet should be created within the minute.</p>
+
+<h3 id="set-up-ssh-for-securely-logging-in">Set Up SSH for Securely Logging In</h3>
+
+<p>DigitalOcean has a solid tutorial on first steps for <a href="https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server">setting up SSH</a>.</p>
+
+<p>I generate a key and since I already have a (useless) key named id_rsa, I choose to overwrite it. I hit enter twice to get through the passphrase prompts. The key is generated (and some parts blanked out by me)—this generated randomart is supposed to make it easier for the user to verify that the key hasn&rsquo;t been tampered with, otherwise they would have to compare long strings of text.</p>
+
+<p>Because we created the droplet without an SSH key, DigitalOcean sent us an email with our username (likely root), droplet IP, and temporary password. I personally logged into the console through the DigitalOcean web-portal and changed my password to something else, but that isn&rsquo;t necessary.</p>
+
+<p>To copy your public key to your server Use <code>ssh-copy-id username@ip</code>. Note, your username will be root by default, counterintuitively. Use either the temporary password that was emailed to you, or your updated password if you went that route. Now you should be able to SSH into your server with <code>ssh username@ip</code>.</p>
+
+<p>After successfully SSHing into your server, consider disabling password authentication on your server to prevent brute-force attacks. In the linked tutorial, at the bottom, under <strong>Disabling Password Authentication on your Server:</strong></p>
+
+<ul>
+<li><code>sudo nano /etc/ssh/sshd_config</code></li>
+<li>Change from <code>PasswordAuthentication yes</code> to <code>PasswordAuthentication no</code></li>
+<li><code>sudo service ssh restart</code></li>
+</ul>
+
+<p><img src="/img/ufw5.jpg" alt="Password Authentication" title="Password Authentication Off" /></p>
+
+<p>Now the only way to get into your server is SSH.</p>
+
+<h3 id="install-the-uncomplicated-firewall">Install the Uncomplicated Firewall</h3>
+
+<p>ufw is a frontend for iptables, which is a firewall system for Linux, but simpler. ufw will be installed to at least reduce the number of attacks your server might get, as we are going to block most traffic. Chances of attack are pretty high, you can install <a href="https://www.fail2ban.org/wiki/index.php/Main_Page">Fail2Ban</a> to scan and ban IP addresses associated with malicious activity (most of which will probably be Chinese). It&rsquo;s better to get security stuff right early on. Also be mindful that Tor relays and exit nodes are also frequently attacked.</p>
+
+<p>Run the following commands in your command line, while logged into your server:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-get dist-upgrade -y
+sudo apt-get install ufw</code></pre></div>
+<p>Updating first will help you prevent running into this error:</p>
+
+<blockquote>
+<p>Package ufw is not available, but is referred to by another package. This may mean that the package is missing, has been obsoleted, or is only available from another source</p>
+
+<p>E: Package &lsquo;ufw&rsquo; has no installation candidate</p>
+</blockquote>
+
+<p>and you should be good to go. The firewall is installed. Now enable the firewall:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo ufw <span class="nb">enable</span> -y
+sudo ufw status</code></pre></div>
+<p>Status <em>should</em> output <strong>Status: active</strong>.</p>
+
+<h3 id="create-a-new-user-account">Create a New User Account</h3>
+
+<p>To be careful not to do something disastrous in the server, it is good practice to create a new, non-root user account, and to limit its privileges so that we reduce the likelihood of breaking something important. Additionally, using an alternative account and getting rid of the root account can also work toward preventing being brute-forced. Again, DigitalOcean has a nice tutorial on <a href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04">creating a new user</a>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">adduser ckhoward <span class="c1">#but enter your own username, of course
+</span><span class="c1"></span>usermod -aG sudo ckhoward
+ssh-copy-id ckhoward@ip <span class="c1">#this works since we already generated the key
+</span><span class="c1"></span>su - ckhoward <span class="c1">#to switch to other user
+</span><span class="c1"></span>chmod <span class="m">700</span> ~/.ssh
+nano .ssh/authorized_keys <span class="c1">#this is where you paste the contents of your id_rsa pub file, cntrl x, y, ENTER
+</span><span class="c1"></span>chmod <span class="m">600</span> ~/.ssh/authorized_keys
+exit</code></pre></div>
+<p>Of course, test that all of this is working by <code>ssh ckhoward@ip</code>.</p>
+
+<h3 id="install-apache-web-server">Install Apache Web server</h3>
+
+<p>DigitalOcean provides an alternative tutorial on <a href="https://www.digitalocean.com/community/tutorials/how-to-install-the-apache-web-server-on-ubuntu-16-04">installing the apache web server</a>. A command is needed to let the firewall know that apache is okay. This is referred to as a rule. <code>sudo ufw allow from 127.0.0.1 to any port 80</code> You can find your own IP address and only allow that, if you want, while you set up your server. This would have to be altered later on, if you expect others to hop on. If you would like to look at the rules you&rsquo;ve set for allowing and denying connections, <code>sudo ufw status numbered</code> is a handy command. At this point, it should output:</p>
+<div class="highlight"><pre class="chroma">[1] 80 ALLOW IN 127.0.0.1</pre></div>
+<p>In my case, I set a rule for allowing only SSH connections from my IP address.</p>
+
+<p><img src="/img/ufw7.jpg" alt="UFW Firewall Rules" title="Firewall Rule" /></p>
+
+<p>Installing apache2 and running it is trivial, enter the following commands:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get update
+sudo apt-get install apache2
+sudo systemctl start apache2.service
+sudo systemctl status apache2
+<span class="c1">#if apache is running, enter:
+</span><span class="c1"></span>hostname -I # this will give you a couple of IPs, enter them into your browser to find your site</code></pre></div>
+<p>After you&rsquo;ve accessed your site from your browser, your activity should have been logged. You can check this with by finding and printing your logs with <code>tail -f /var/log/apache2/access.log</code>. There will be information associated with the request, the browser used, and the timestamp.</p>
+
+<h3 id="install-tor">Install Tor</h3>
+
+<p>Run the command <code>sudo apt-get install tor</code>. Surprisingly simple. The Tor documentation instructs anyone deploying a hidden service to navigate to the torrc config file and uncomment the two statements:</p>
+
+<blockquote>
+<p>#HiddenServiceDir /var/lib/tor/hidden_service/</p>
+
+<p>#HiddenServicePort 80 127.0.0.1:80</p>
+</blockquote>
+
+<p>Thus, we find the config file and edit it with the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">find / -iname <span class="s2">&#34;torrc&#34;</span>
+sudo nano /etc/tor/torrc</code></pre></div>
+<p>If the apache2 service is still running, let&rsquo;s just restart that with <code>sudo systemctl restart apache2.service</code>. Start Tor with <code>sudo service tor start</code>. Tor is now running and has an associated Onion address. To find this address, run <code>cat $HOME/hidden_service/hostname</code> and the Onion address will print. This guide has set you up for the basics of getting a hidden service running with DigitalOcean. There are other guides on better practices for <a href="https://riseup.net/en/security/network-security/tor/onionservices-best-practices">securing hidden services</a>.</p>
+
+<p><img src="/img/hidden_service.jpg" alt="Hidden Service Result" title="Resulting Onion Site" /></p>
+
+<p><em>Credit goes to <a href="http://u.arizona.edu/~dsidi/">David Sidi</a> for coming up with this idea in the form of a class assignment.</em></p>
+
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://astonishingelixirs.github.io/post/a-guide-to-stylo/" data-toggle="tooltip" data-placement="top" title="An Introduction to the Stylo Library [R]">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/" data-toggle="tooltip" data-placement="top" title="A Simpler Tutorial on Jupyter (IPython) Widgets">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "astonishingelixirs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ck_howard@yahoo.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/ckhoward" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/_ckhoward" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/-ckhoward" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://astonishingelixirs.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://ckhoward.github.io">Chris Howard</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.36.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/main.js"></script>
+<script src="https://astonishingelixirs.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

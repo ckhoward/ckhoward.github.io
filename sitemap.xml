@@ -1,293 +1,377 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://ckhoward.github.io/blog/a-less-confusing-tutorial-on-jupyter-ipython-widgets/</loc>
+    <loc>https://astonishingelixirs.github.io/post/tor-stem-api/</loc>
+    <lastmod>2018-03-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/post/neural-network/</loc>
+    <lastmod>2018-03-04T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/post/k-nearest-neighbors/</loc>
+    <lastmod>2018-02-28T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/</loc>
+    <lastmod>2018-02-22T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/post/chapter8simple-linear-regression/</loc>
+    <lastmod>2018-02-21T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/post/exploratory-data-analysis/</loc>
+    <lastmod>2018-02-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/post/decision-trees/</loc>
+    <lastmod>2018-02-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/</loc>
     <lastmod>2018-01-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/blog/deploying-a-tor-hidden-service-with-digitalocean/</loc>
+    <loc>https://astonishingelixirs.github.io/post/tor-hidden-service/</loc>
     <lastmod>2017-12-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/blog/an-introduction-to-the-stylo-library-r/</loc>
+    <loc>https://astonishingelixirs.github.io/post/a-guide-to-stylo/</loc>
     <lastmod>2017-12-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/blog/fixbux-a-web-extension-to-safeguard-users-from-themselves-javascript/</loc>
+    <loc>https://astonishingelixirs.github.io/post/fixbux/</loc>
     <lastmod>2017-12-12T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/blog/vms-and-usability-testing/</loc>
+    <loc>https://astonishingelixirs.github.io/post/vms-for-usability-testing/</loc>
     <lastmod>2017-11-03T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/blog/the-epistemology-of-testimony/</loc>
+    <loc>https://astonishingelixirs.github.io/post/testimony-and-epistemology/</loc>
     <lastmod>2017-10-04T17:01:31-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/blog/path-distance-analysis-gis/</loc>
+    <loc>https://astonishingelixirs.github.io/post/path-distance-analysis/</loc>
     <lastmod>2017-08-15T19:25:23-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/blog/sentiment-analysis-of-first-gop-debate-in-2015-r/</loc>
+    <loc>https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/</loc>
     <lastmod>2017-06-17T14:50:42-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/post/gop-debate-sentiment-analysis/</loc>
-    <lastmod>2017-06-17T14:50:42-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/blog/a-little-bit-of-monica-in-my-life/</loc>
+    <loc>https://astonishingelixirs.github.io/post/a-little-bit-of-monica-in-my-life/</loc>
     <lastmod>2017-06-13T17:01:31-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/post/a-little-bit-of-monica-in-my-life/</loc>
-    <lastmod>2017-06-13T17:01:31-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/blog/projecting-with-python-gis-python/</loc>
+    <loc>https://astonishingelixirs.github.io/post/projecting-with-python-gis-python/</loc>
     <lastmod>2017-06-09T12:28:59-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/post/Projecting-with-Python-%5BGIS,-Python%5D/</loc>
-    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/post/path-distance-analysis/</loc>
-    <lastmod>2017-05-30T19:24:32-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/blog/visibility-analysis-gis/</loc>
+    <loc>https://astonishingelixirs.github.io/post/visibility/</loc>
     <lastmod>2017-05-26T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/blog/a-working-example-of-a-conceptual-model/</loc>
+    <loc>https://astonishingelixirs.github.io/post/conceptual-model/</loc>
     <lastmod>2017-02-21T23:12:45-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/blog/your-education-at-random/</loc>
+    <loc>https://astonishingelixirs.github.io/post/your-education-at-random/</loc>
     <lastmod>2017-01-05T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/projects/</loc>
-    <lastmod>2017-01-03T16:52:01-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/about/</loc>
-    <lastmod>2017-01-03T16:46:22-07:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/blog/terrorist-targets-exploratory/</loc>
+    <loc>https://astonishingelixirs.github.io/post/reading-list/</loc>
     <lastmod>2017-01-03T16:46:12-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/blog/this-is-a-no-handed-post/</loc>
+    <loc>https://astonishingelixirs.github.io/post/terrorist-org-exploration/</loc>
     <lastmod>2017-01-03T16:46:12-07:00</lastmod>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/tags/analysis/</loc>
+    <loc>https://astonishingelixirs.github.io/post/your-new-post/</loc>
+    <lastmod>2017-01-03T16:46:12-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/page/about/</loc>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/analysis/</loc>
     <lastmod>2017-06-17T14:50:42-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/blog/</loc>
-    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
+    <loc>https://astonishingelixirs.github.io/tags/apache/</loc>
+    <lastmod>2017-12-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/tags/bootstrap/</loc>
-    <lastmod>2017-06-17T14:50:42-07:00</lastmod>
+    <loc>https://astonishingelixirs.github.io/tags/api/</loc>
+    <lastmod>2018-03-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/</loc>
-    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/confidence/</loc>
-    <lastmod>2017-06-17T14:50:42-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/csv/</loc>
-    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/dataframe/</loc>
-    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/debate/</loc>
-    <lastmod>2017-06-17T14:50:42-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/disinformation/</loc>
-    <lastmod>2017-10-04T17:01:31-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/epistemology/</loc>
-    <lastmod>2017-10-04T17:01:31-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/fiona/</loc>
-    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/fixed/</loc>
-    <lastmod>2017-01-03T16:52:01-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/gis/</loc>
-    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/gop/</loc>
-    <lastmod>2017-06-17T14:50:42-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/hci-ux-conceptual-model-user-experience-application-design-first-step/</loc>
-    <lastmod>2017-02-21T23:12:45-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/las-vegas-shooting/</loc>
-    <lastmod>2017-10-04T17:01:31-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/monica/</loc>
-    <lastmod>2017-06-13T17:01:31-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/open/</loc>
-    <lastmod>2017-06-13T17:01:31-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/pandas/</loc>
-    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/path-distance-analysis-gis-arcgis-nga-intelligence-agency-hypothetical-geospatial/</loc>
+    <loc>https://astonishingelixirs.github.io/tags/arcgis/</loc>
     <lastmod>2017-08-15T19:25:23-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/post/</loc>
+    <loc>https://astonishingelixirs.github.io/</loc>
+    <lastmod>2018-03-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/bootstrap/</loc>
     <lastmod>2017-06-17T14:50:42-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/tags/pyproj/</loc>
-    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <loc>https://astonishingelixirs.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/tags/python/</loc>
-    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <loc>https://astonishingelixirs.github.io/tags/cloud/</loc>
+    <lastmod>2017-12-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/tags/sentiment/</loc>
+    <loc>https://astonishingelixirs.github.io/tags/confidence/</loc>
     <lastmod>2017-06-17T14:50:42-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/tags/shapefile/</loc>
-    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <loc>https://astonishingelixirs.github.io/tags/data-visualization/</loc>
+    <lastmod>2018-02-22T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/tags/shapely/</loc>
-    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <loc>https://astonishingelixirs.github.io/tags/debate/</loc>
+    <lastmod>2017-06-17T14:50:42-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/tags/social-network/</loc>
-    <lastmod>2017-06-13T17:01:31-07:00</lastmod>
+    <loc>https://astonishingelixirs.github.io/tags/digitalocean/</loc>
+    <lastmod>2017-12-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/tags/source/</loc>
-    <lastmod>2017-06-13T17:01:31-07:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://ckhoward.github.io/tags/testimony/</loc>
+    <loc>https://astonishingelixirs.github.io/tags/disinformation/</loc>
     <lastmod>2017-10-04T17:01:31-07:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://ckhoward.github.io/tags/twitter/</loc>
+    <loc>https://astonishingelixirs.github.io/tags/epistemology/</loc>
+    <lastmod>2017-10-04T17:01:31-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/fiona/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/geospatial-analysis/</loc>
+    <lastmod>2017-08-15T19:25:23-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/gis/</loc>
+    <lastmod>2017-08-15T19:25:23-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/javascript/</loc>
+    <lastmod>2017-12-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/jupyter/</loc>
+    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/linux/</loc>
+    <lastmod>2017-12-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/machine-learning/</loc>
+    <lastmod>2018-03-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/network/</loc>
+    <lastmod>2018-03-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/page/neverwhere/</loc>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/page/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/pandas/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/philosophy/</loc>
+    <lastmod>2017-10-04T17:01:31-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/post/</loc>
+    <lastmod>2018-03-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/privacy/</loc>
+    <lastmod>2017-12-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/pyproj/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/python/</loc>
+    <lastmod>2018-03-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/r/</loc>
+    <lastmod>2017-12-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/security/</loc>
+    <lastmod>2017-12-29T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/sentiment/</loc>
     <lastmod>2017-06-17T14:50:42-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/shapely/</loc>
+    <lastmod>2017-06-09T12:28:59-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/statistics/</loc>
+    <lastmod>2018-03-04T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/stem/</loc>
+    <lastmod>2018-03-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/</loc>
+    <lastmod>2017-06-17T14:50:42-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/testing/</loc>
+    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/textual-analysis/</loc>
+    <lastmod>2017-12-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/tor/</loc>
+    <lastmod>2018-03-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/twitter/</loc>
+    <lastmod>2017-06-17T14:50:42-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/usability/</loc>
+    <lastmod>2018-01-03T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://astonishingelixirs.github.io/tags/visualization/</loc>
+    <lastmod>2018-02-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,217 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pandas on Chris Howard</title>
-    <link>https://ckhoward.github.io/tags/pandas/index.xml</link>
-    <description>Recent content in Pandas on Chris Howard</description>
+    <title>Pandas on AstonishingElixirs</title>
+    <link>https://astonishingelixirs.github.io/tags/pandas/</link>
+    <description>Recent content in Pandas on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
-    <atom:link href="https://ckhoward.github.io/tags/pandas/index.xml" rel="self" type="application/rss+xml" />
+    <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
+    <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
+    <lastBuildDate>Fri, 09 Jun 2017 12:28:59 -0700</lastBuildDate>
+    
+	<atom:link href="https://astonishingelixirs.github.io/tags/pandas/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>Projecting with Python [GIS, Python]</title>
-      <link>https://ckhoward.github.io/blog/projecting-with-python-gis-python/</link>
+      <link>https://astonishingelixirs.github.io/post/projecting-with-python-gis-python/</link>
       <pubDate>Fri, 09 Jun 2017 12:28:59 -0700</pubDate>
-      
-      <guid>https://ckhoward.github.io/blog/projecting-with-python-gis-python/</guid>
-      <description>
-
-&lt;h1 id=&#34;my-introduction-to-gis-with-python&#34;&gt;My Introduction to GIS with Python&lt;/h1&gt;
-
-&lt;p&gt;Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the &lt;a href=&#34;http://www.start.umd.edu/gtd/&#34;&gt;Global Terrorism Database&lt;/a&gt; so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations. Each location has a variety of data but I will focus on country, latitude, and longitude. Specifically, I will observe attacks in Iraq. The coordinates are based on WGS1984 standards, so they will have to be converted to UTM Zone 38N in order to be mapped on a flat-surface (more on this later, no worries if you don&amp;rsquo;t understand).&lt;/p&gt;
-
-&lt;h1 id=&#34;first-step-cleaning-the-data&#34;&gt;First Step: Cleaning the Data&lt;/h1&gt;
-
-&lt;p&gt;When we first get the data, it contains way more information than we need. There are over 120 variables and as noted, we primarily want to focus on locational data and a few other variables like target type, attack type, and terrorist group responsible. We need to get rid of excess so that our script runs faster and is more relevant to our objective.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/dataset.jpg&#34; alt=&#34;alt text&#34; title=&#34;Global Terrorism Database&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You can see the list of imported modules. Pandas is used first to load the data into a DataFrame (basically a table) to be operated on. Functional programming is best suited for the overall task, as for most data analysis, so here is a simple function to clean the data:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection1.jpg&#34; alt=&#34;alt text&#34; title=&#34;Cleaning the Data with Pandas Read&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In the event that the &lt;code&gt;clean_csv()&lt;/code&gt; hasn&amp;rsquo;t been called yet, call it. If it has already been called, don&amp;rsquo;t worry about it.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection2.jpg&#34; alt=&#34;alt text&#34; title=&#34;Cleaning the Data with Pandas Read&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now we&amp;rsquo;ve cleaned our data and created a DataFrame with most of what we want. Now we can use another function to specify which country we&amp;rsquo;re interested in.&lt;/p&gt;
-
-&lt;h1 id=&#34;second-step-specifying-the-country-of-interest&#34;&gt;Second Step: Specifying the Country of Interest&lt;/h1&gt;
-
-&lt;p&gt;In our case, we&amp;rsquo;re interested in looking at Iraq. We want to see all of the terrorist attacks that occurred in Iraq. We will clean the frame a little bit more now. This step could have been done in the first function but I believe it&amp;rsquo;s more simple for a future user to read, understand, and plug the country of interest with a separate function.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection3.jpg&#34; alt=&#34;alt text&#34; title=&#34;Specifying the Country of Interest - Iraq&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Simple enough. The DataFrame object from the last function is loaded in and we create a new frame that meets our criteria; where every record&amp;rsquo;s country value is &amp;ldquo;Iraq.&amp;rdquo; Then, any records containing NaNs are dropped. Our coordinate data is still based on the WGS1984 standard — they work on 3D planes, like in Google Earth, but not on 2D planes, like almost every other map in existence. This calls for conversion.&lt;/p&gt;
-
-&lt;h1 id=&#34;third-step-converting-the-coordinates&#34;&gt;Third Step: Converting the Coordinates&lt;/h1&gt;
-
-&lt;p&gt;Coordinate systems use values that assume 3D-space and are provided by satellites. The problem is, most maps are flat, and when you&amp;rsquo;re flattening the earth there are always distortions. These distortions affect distance, direction, and scale. Check out Kai Chang&amp;rsquo;s &lt;a href=&#34;https://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e&#34;&gt;awesome visualizations&lt;/a&gt; for comparing different map projections.&lt;/p&gt;
-
-&lt;p&gt;Mathematical formulae are used to convert geographic coordinates into their flat-plane equivalents. The Python module &lt;a href=&#34;https://github.com/jswhit/pyproj&#34;&gt;Pyproj&lt;/a&gt; handles this for users, so I import this module and use it in my conversion function.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection4.jpg&#34; alt=&#34;alt text&#34; title=&#34;Python Pyproj to Convert from Geographic Coordinates to Projected UTM&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You may have noticed I used the UTM projection (Universal Transverse Mercator). This is because distortion occurs at the poles of the earth, whereas the areas around the equator tend to be accurately preserved. This is good for us since we&amp;rsquo;re observing Iraq. Iraq falls in the Zone 38N band, and must be used as an argument.&lt;/p&gt;
-
-&lt;h3 id=&#34;incorrect-pyproj-value-output&#34;&gt;Incorrect Pyproj Value Output&lt;/h3&gt;
-
-&lt;p&gt;Here, I made a common mistake. I was getting pretty wildly wrong values, where points were showing up in Ethiopia and not Iraq. Note the values for utm_lat and utm_lon toward the bottom:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection_output1.jpg&#34; alt=&#34;alt text&#34; title=&#34;Incorrect Pyproj Output&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I wanted to verify whether or not these values were right, because I knew upon plotting them, I was getting Ethiopian areas, so I used the &lt;a href=&#34;http://home.hiwaay.net/~taylorc/toolbox/geography/geoutm.html&#34;&gt;Geographic/UTM Coordinate Converter Website&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/conversion_site.jpg&#34; alt=&#34;alt text&#34; title=&#34;Coordinate to UTM Web Tool&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Upon looking at the UTM outputs, this is obviously wrong:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;-139638 != 354377&lt;/li&gt;
-&lt;li&gt;483126 != 410805&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;My problem was that I had the parameters switched. In simple terms, I had p2(latitude, longitude), but I should have had p2(longitude, latitude). It turns out, in many Python GIS modules, longitude comes before latitude. When I changed the order of these parameters, the output was correct.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection_output2.jpg&#34; alt=&#34;alt text&#34; title=&#34;Correct Pyproj Output&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now that all of the outputs are correct, we can go to the final step.&lt;/p&gt;
-
-&lt;h1 id=&#34;fourth-and-final-step-producing-a-shapefile-with-our-new-data&#34;&gt;Fourth and Final Step: Producing a Shapefile with our New Data&lt;/h1&gt;
-
-&lt;p&gt;To create a shapefile I decided I would use Python&amp;rsquo;s Fiona and Shapely modules.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection5.jpg&#34; alt=&#34;alt text&#34; title=&#34;Using Fiona to Create a Shapefile&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The previous two functions are called:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection6.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Convert and Write Functions are Called&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now the shapefile has been created:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection7.jpg&#34; alt=&#34;alt text&#34; title=&#34;Shapefiles in Folder&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;using-arcgis-to-map-the-shapefile&#34;&gt;Using ArcGIS to Map the Shapefile&lt;/h1&gt;
-
-&lt;p&gt;Open ArcMap. Go to the Catalog tab and click it. Navigate to the folder. Find the shapefile.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection8.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Shapefile in ArcGIS&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Right click the shapefile. Go to properties. In the &amp;lsquo;XY Coordinate System&amp;rsquo; tab, expand the &amp;lsquo;Projected Coordinate Systems&amp;rsquo; folder, expand UTM, expand WGS 1984, expand Northern Hemisphere, and then find &amp;lsquo;WGS 1984 UTM Zone 38N.&amp;rsquo; Click it and press the &amp;lsquo;Apply&amp;rsquo; and &amp;lsquo;OK&amp;rsquo; buttons. Drag the shapefile onto your canvas. And don&amp;rsquo;t forget to go to &amp;lsquo;Add Data&amp;rsquo; and &amp;lsquo;Add Basemap&amp;rsquo; to find a map to sit under the points — I chose the dark gray basemap.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection10.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Shapefile Mapped&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As the code indicated, I was also recording information on the target types of the attacks. When I use the identify tool on a point (or attack location), or when I open the attribute table, this information will be associated with the geometry (in our case, the point).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection11.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Shapefile&#39;s Associated Properties&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;These functions are simple but they have vast implications. All I did was take a CSV with spatial data, filtered out data that I wasn&amp;rsquo;t interested in, transformed the data into something that I could actually work with, and then wrote the data to a shapefile. These processes give me the ability to do further geospatial analysis and to build and deploy an interactive and informative website regarding terrorist attacks. In the future, I definitely intend to take advantage of other Python geospatial libraries for map-making, like Descartes and Basemap.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Projecting with Python [GIS, Python]</title>
-      <link>https://ckhoward.github.io/post/Projecting-with-Python-%5BGIS,-Python%5D/</link>
-      <pubDate>Fri, 09 Jun 2017 12:28:59 -0700</pubDate>
-      
-      <guid>https://ckhoward.github.io/post/Projecting-with-Python-%5BGIS,-Python%5D/</guid>
-      <description>
-
-&lt;h1 id=&#34;my-introduction-to-gis-with-python&#34;&gt;My Introduction to GIS with Python&lt;/h1&gt;
-
-&lt;p&gt;Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the &lt;a href=&#34;http://www.start.umd.edu/gtd/&#34;&gt;Global Terrorism Database&lt;/a&gt; so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations. Each location has a variety of data but I will focus on country, latitude, and longitude. Specifically, I will observe attacks in Iraq. The coordinates are based on WGS1984 standards, so they will have to be converted to UTM Zone 38N in order to be mapped on a flat-surface (more on this later, no worries if you don&amp;rsquo;t understand).&lt;/p&gt;
-
-&lt;h1 id=&#34;first-step-cleaning-the-data&#34;&gt;First Step: Cleaning the Data&lt;/h1&gt;
-
-&lt;p&gt;When we first get the data, it contains way more information than we need. There are over 120 variables and as noted, we primarily want to focus on locational data and a few other variables like target type, attack type, and terrorist group responsible. We need to get rid of excess so that our script runs faster and is more relevant to our objective.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/dataset.jpg&#34; alt=&#34;alt text&#34; title=&#34;Global Terrorism Database&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You can see the list of imported modules. Pandas is used first to load the data into a DataFrame (basically a table) to be operated on. Functional programming is best suited for the overall task, as for most data analysis, so here is a simple function to clean the data:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection1.jpg&#34; alt=&#34;alt text&#34; title=&#34;Cleaning the Data with Pandas Read&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In the event that the &lt;code&gt;clean_csv()&lt;/code&gt; hasn&amp;rsquo;t been called yet, call it. If it has already been called, don&amp;rsquo;t worry about it.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection2.jpg&#34; alt=&#34;alt text&#34; title=&#34;Cleaning the Data with Pandas Read&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now we&amp;rsquo;ve cleaned our data and created a DataFrame with most of what we want. Now we can use another function to specify which country we&amp;rsquo;re interested in.&lt;/p&gt;
-
-&lt;h1 id=&#34;second-step-specifying-the-country-of-interest&#34;&gt;Second Step: Specifying the Country of Interest&lt;/h1&gt;
-
-&lt;p&gt;In our case, we&amp;rsquo;re interested in looking at Iraq. We want to see all of the terrorist attacks that occurred in Iraq. We will clean the frame a little bit more now. This step could have been done in the first function but I believe it&amp;rsquo;s more simple for a future user to read, understand, and plug the country of interest with a separate function.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection3.jpg&#34; alt=&#34;alt text&#34; title=&#34;Specifying the Country of Interest - Iraq&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Simple enough. The DataFrame object from the last function is loaded in and we create a new frame that meets our criteria; where every record&amp;rsquo;s country value is &amp;ldquo;Iraq.&amp;rdquo; Then, any records containing NaNs are dropped. Our coordinate data is still based on the WGS1984 standard — they work on 3D planes, like in Google Earth, but not on 2D planes, like almost every other map in existence. This calls for conversion.&lt;/p&gt;
-
-&lt;h1 id=&#34;third-step-converting-the-coordinates&#34;&gt;Third Step: Converting the Coordinates&lt;/h1&gt;
-
-&lt;p&gt;Coordinate systems use values that assume 3D-space and are provided by satellites. The problem is, most maps are flat, and when you&amp;rsquo;re flattening the earth there are always distortions. These distortions affect distance, direction, and scale. Check out Kai Chang&amp;rsquo;s &lt;a href=&#34;https://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e&#34;&gt;awesome visualizations&lt;/a&gt; for comparing different map projections.&lt;/p&gt;
-
-&lt;p&gt;Mathematical formulae are used to convert geographic coordinates into their flat-plane equivalents. The Python module &lt;a href=&#34;https://github.com/jswhit/pyproj&#34;&gt;Pyproj&lt;/a&gt; handles this for users, so I import this module and use it in my conversion function.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection4.jpg&#34; alt=&#34;alt text&#34; title=&#34;Python Pyproj to Convert from Geographic Coordinates to Projected UTM&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You may have noticed I used the UTM projection (Universal Transverse Mercator). This is because distortion occurs at the poles of the earth, whereas the areas around the equator tend to be accurately preserved (due to the sizes of the zones). This is good for us since we&amp;rsquo;re observing Iraq. Iraq falls in the Zone 38N band, and must be used as an argument.&lt;/p&gt;
-
-&lt;h3 id=&#34;incorrect-pyproj-value-output&#34;&gt;Incorrect Pyproj Value Output&lt;/h3&gt;
-
-&lt;p&gt;Here, I made a common mistake. I was getting pretty wildly wrong values, where points were showing up in Ethiopia and not Iraq. Note the values for utm_lat and utm_lon toward the bottom:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection_output1.jpg&#34; alt=&#34;alt text&#34; title=&#34;Incorrect Pyproj Output&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I wanted to verify whether or not these values were right, because I knew upon plotting them, I was getting Ethiopian areas, so I used the &lt;a href=&#34;http://home.hiwaay.net/~taylorc/toolbox/geography/geoutm.html&#34;&gt;Geographic/UTM Coordinate Converter Website&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/conversion_site.jpg&#34; alt=&#34;alt text&#34; title=&#34;Coordinate to UTM Web Tool&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Upon looking at the UTM outputs, this is obviously wrong:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;-139638 != 354377&lt;/li&gt;
-&lt;li&gt;483126 != 410805&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;My problem was that I had the parameters switched. In simple terms, I had p2(latitude, longitude), but I should have had p2(longitude, latitude). It turns out, in many Python GIS modules, longitude comes before latitude. When I changed the order of these parameters, the output was correct.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection_output2.jpg&#34; alt=&#34;alt text&#34; title=&#34;Correct Pyproj Output&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now that all of the outputs are correct, we can go to the final step.&lt;/p&gt;
-
-&lt;h1 id=&#34;fourth-and-final-step-producing-a-shapefile-with-our-new-data&#34;&gt;Fourth and Final Step: Producing a Shapefile with our New Data&lt;/h1&gt;
-
-&lt;p&gt;To create a shapefile I decided I would use Python&amp;rsquo;s Fiona and Shapely modules.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection5.jpg&#34; alt=&#34;alt text&#34; title=&#34;Using Fiona to Create a Shapefile&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The previous two functions are called:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection6.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Convert and Write Functions are Called&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now the shapefile has been created:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection7.jpg&#34; alt=&#34;alt text&#34; title=&#34;Shapefiles in Folder&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;using-arcgis-to-map-the-shapefile&#34;&gt;Using ArcGIS to Map the Shapefile&lt;/h1&gt;
-
-&lt;p&gt;Open ArcMap. Go to the Catalog tab and click it. Navigate to the folder. Find the shapefile.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection8.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Shapefile in ArcGIS&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Right click the shapefile. Go to properties. In the &amp;lsquo;XY Coordinate System&amp;rsquo; tab, expand the &amp;lsquo;Projected Coordinate Systems&amp;rsquo; folder, expand UTM, expand WGS 1984, expand Northern Hemisphere, and then find &amp;lsquo;WGS 1984 UTM Zone 38N.&amp;rsquo; Click it and press the &amp;lsquo;Apply&amp;rsquo; and &amp;lsquo;OK&amp;rsquo; buttons. Drag the shapefile onto your canvas. And don&amp;rsquo;t forget to go to &amp;lsquo;Add Data&amp;rsquo; and &amp;lsquo;Add Basemap&amp;rsquo; to find a map to sit under the points — I chose the dark gray basemap.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection10.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Shapefile Mapped&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As the code indicated, I was also recording information on the target types of the attacks. When I use the identify tool on a point (or attack location), or when I open the attribute table, this information will be associated with the geometry (in our case, the point).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection11.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Shapefile&#39;s Associated Properties&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;These functions are simple but they have vast implications. All I did was take a CSV with spatial data, filtered out data that I wasn&amp;rsquo;t interested in, transformed the data into something that I could actually work with, and then wrote the data to a shapefile. These processes give me the ability to do further geospatial analysis and to build and deploy an interactive and informative website regarding terrorist attacks. In the future, I definitely intend to take advantage of other Python geospatial libraries for map-making, like Descartes and Basemap.&lt;/p&gt;
-</description>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/projecting-with-python-gis-python/</guid>
+      <description>My Introduction to GIS with Python Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the Global Terrorism Database so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations.</description>
     </item>
     
   </channel>

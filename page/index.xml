@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on AstonishingElixirs</title>
+    <link>https://astonishingelixirs.github.io/page/</link>
+    <description>Recent content in Pages on AstonishingElixirs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
+    <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
+    
+	<atom:link href="https://astonishingelixirs.github.io/page/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About me</title>
+      <link>https://astonishingelixirs.github.io/page/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/page/about/</guid>
+      <description>A visitor! Hi, you might be wondering who I am.
+My name is Chris Howard. I am on the cusp of graduating with a B.S. in Information Science from the University of Arizona, and just moved back to the Raleigh area.
+Have a stumble through my blog posts, you&amp;rsquo;ll get a feel for my personality. I like to solve problems, usually through software, and here are a few things I&amp;rsquo;ve enjoyed doing:</description>
+    </item>
+    
+    <item>
+      <title>Neverwhere</title>
+      <link>https://astonishingelixirs.github.io/page/neverwhere/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/page/neverwhere/</guid>
+      <description>Neverwhere This is the first novel that I&amp;rsquo;ve read in a very long time, and I chose it because it seemed both intriguing and manageable. Neverwhere was in fact a decent book to start with. The two main characters felt flat, but I have to wonder if this was intentional, and common. For random example, the LOTR trilogy&amp;rsquo;s Frodo Baggins isn&amp;rsquo;t all that interesting, yet he frequently comes into contact with people like Smeagle, Gandalf, etc.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Usability on AstonishingElixirs</title>
+    <link>https://astonishingelixirs.github.io/tags/usability/</link>
+    <description>Recent content in Usability on AstonishingElixirs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
+    <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
+    <lastBuildDate>Wed, 03 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://astonishingelixirs.github.io/tags/usability/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A Simpler Tutorial on Jupyter (IPython) Widgets</title>
+      <link>https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/</link>
+      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/</guid>
+      <description>A Simpler Tutorial on Jupyter (IPython) Widgets Jupyter widgets are an awesome tool for creating interactive dashboards, but documentation can be a little excessive if you&amp;rsquo;re just looking for basic functionality. It really doesn&amp;rsquo;t have to be so complicated.
+Our widget use-case My data visualization team wanted to provide researchers with a GUI for visualizing species distributions, and we wanted to give them the power and flexibility to specify different parameters.</description>
+    </item>
+    
+    <item>
+      <title>VMs and Usability Testing</title>
+      <link>https://astonishingelixirs.github.io/post/vms-for-usability-testing/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/vms-for-usability-testing/</guid>
+      <description>VMs for Usability Testing Dependency Nightmares This might be an unpopular opinion, but I imagine virtual machines could be a useful tool for usability testers. When it comes to learning a new software or using a new tool, it&amp;rsquo;s the absolute worst finding out that certain dependencies aren&amp;rsquo;t listed in the requirements, or that they are not consistent with your own. This was a pain I experienced when I first started learning Ruby on Rails and MongoDB, and the tutorials I found wouldn&amp;rsquo;t work.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Sklearn Neural Network</title>
+  <meta property="og:title" content="Sklearn Neural Network" />
+  <meta name="twitter:title" content="Sklearn Neural Network" />
+  <meta name="description" content="Artificial Neural Networks with Sci-kit Learn The Gist of Neural Nets A neural network is a supervised classification algorithm. With your help, it kind of teaches itself how to make better classifications.
+For a basic neural net, you have three primary components: an input layer, a hidden layer, and an output layer, each consisting of nodes. The nodes of the input layer are basically your input variables; the nodes of the hidden layer are neurons that contain some function that operates on your input data; and there is one output node, which uses a function on the values given by the hidden layer, putting out one final calculation.">
+  <meta property="og:description" content="Artificial Neural Networks with Sci-kit Learn The Gist of Neural Nets A neural network is a supervised classification algorithm. With your help, it kind of teaches itself how to make better classifications.
+For a basic neural net, you have three primary components: an input layer, a hidden layer, and an output layer, each consisting of nodes. The nodes of the input layer are basically your input variables; the nodes of the hidden layer are neurons that contain some function that operates on your input data; and there is one output node, which uses a function on the values given by the hidden layer, putting out one final calculation.">
+  <meta name="twitter:description" content="Artificial Neural Networks with Sci-kit Learn The Gist of Neural Nets A neural network is a supervised classification algorithm. With your help, it kind of teaches itself how to make better …">
+  <meta name="author" content="Chris Howard"/>
+  <link href='https://astonishingelixirs.github.io/img/avatar-icon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@_ckhoward" />
+  <meta name="twitter:creator" content="@_ckhoward" />
+  <meta property="og:url" content="https://astonishingelixirs.github.io/post/neural-network/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AstonishingElixirs" />
+
+  <meta name="generator" content="Hugo 0.36.1" />
+  <link rel="canonical" href="https://astonishingelixirs.github.io/post/neural-network/" />
+  <link rel="alternate" href="https://astonishingelixirs.github.io/index.xml" type="application/rss+xml" title="AstonishingElixirs">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://astonishingelixirs.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-114707471-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Reading" href="/post/reading-list">Reading</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="AstonishingElixirs" href="https://astonishingelixirs.github.io">
+            <img class="avatar-img" src="https://astonishingelixirs.github.io/img/avatar-icon.png" alt="AstonishingElixirs" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Sklearn Neural Network</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on March 4, 2018
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 18 minutes (3626 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<h1 id="artificial-neural-networks-with-sci-kit-learn">Artificial Neural Networks with Sci-kit Learn</h1>
+
+<h2 id="the-gist-of-neural-nets">The Gist of Neural Nets</h2>
+
+<p>A neural network is a supervised classification algorithm. With your help, it kind of teaches itself how to make better classifications.</p>
+
+<p>For a basic neural net, you have three primary components: an input layer, a hidden layer, and an output layer, each consisting of nodes. The nodes of the input layer are basically your input variables; the nodes of the hidden layer are neurons that contain some function that operates on your input data; and there is one output node, which uses a function on the values given by the hidden layer, putting out one final calculation. If this isn&rsquo;t making much sense yet, don&rsquo;t worry. It will start coming together.</p>
+
+<p>Each node is connected to every other node in the layers in front of it, so in other words, your input nodes aren&rsquo;t connected to each other, but they will be connected to every node in the hidden layer, and every node in the hidden layer will be connected to the output node.</p>
+
+<p><img src="http://www.texample.net/media/tikz/examples/PNG/neural-network.png" alt="basic neural net" /></p>
+
+<p>The gray lines connecting input nodes to neurons (nodes in the hidden layer) are all weighted. These weights are some value between 0 and 1, and will be multiplied with whatever the input value is. Any node in the hidden layer — let&rsquo;s say Node_A — will essentially have two functions; a combination function and an activation function. The combination function will likely take the summation of all of the input nodes times their respective weights. Where W is weight and X is input:</p>
+
+<p>**Summation function: **</p>
+
+<p><img src="/img/eq1.jpg" alt="img" /></p>
+
+<p>This is basically saying that for the first node in the hidden layer (which we&rsquo;ve called Node<em>A), every connection to it will be summed up. So the first input and its weight is denoted W</em>{1A}X_{1A}. The second input that connects to Node<em>A and its weight is denoted W</em>{2A}X<em>{2A}, and so forth. The first term W</em>{0A} will always be constant <code>1</code>, where this term is a constant factor, much like the intercept in regression models.</p>
+
+<p>If we make up some inputs and weights, the equation will look something like this:</p>
+
+<p>$$\text{Net}_A\text{ = (1)(0.5) + (0.4)(0.6) + (0.2)(0.8) + (0.7)(0.6) = 1.32}$$</p>
+
+<p>The resulting <code>1.32</code> would then be input into the activation function (likely sigmoid).</p>
+
+<p>**Sigmoid function: **</p>
+
+<p>$$y = \frac{1}{1 + e^{-x}}$$</p>
+
+<p>$$y = \frac{1}{1 + e^{-1.32}} = 0.7892$$</p>
+
+<p>This value is then given to the output node, Node_Z. Node_Z then combines these outputs from Nodes A, B, etc. into a weighted sum (using the weights associated with the connections of these nodes). Now, X_i is treated as the outputs from each node in the hidden layer, and the formula from above is used again.</p>
+
+<p><img src="/img/eq2.jpg" alt="Equation 2" /></p>
+
+<p>The sigmoid is used again on the output of $Net_Z$, producing the true output value of the neural network&rsquo;s first run. Then it&rsquo;s run again and again for however many data points have been defined.</p>
+
+<p>The weights are what make and break the accuracy of the entire neural network. When the NN is initialized, these weights will be randomized. The neural net then operates and creates its output value, and this value is matched against what it <em>should</em> be. The error is taken, and then the neural net uses some user-defined method to go back through the net to adjust the weights so that the accuracy is maximized, and the error is minimized. If the intuition is still a little cloudy, feel free to take thirty to check the resources at the bottom of the notebook.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">tabulate</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span> <span class="c1">#you will probably need to update sklearn/conda</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">HTML</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;display.notebook_repr_html&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;Clem3Training.txt&#34;</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span></code></pre></div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>workclass</th>
+      <th>demogweight</th>
+      <th>education</th>
+      <th>education-num</th>
+      <th>marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>sex</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>native-country</th>
+      <th>income</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>39</td>
+      <td>State-gov</td>
+      <td>77516</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Never-married</td>
+      <td>Adm-clerical</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>2174</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>50</td>
+      <td>Self-emp-not-inc</td>
+      <td>83311</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Exec-managerial</td>
+      <td>Husband</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>13</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>38</td>
+      <td>Private</td>
+      <td>215646</td>
+      <td>HS-grad</td>
+      <td>9</td>
+      <td>Divorced</td>
+      <td>Handlers-cleaners</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>Private</td>
+      <td>234721</td>
+      <td>11th</td>
+      <td>7</td>
+      <td>Married-civ-spouse</td>
+      <td>Handlers-cleaners</td>
+      <td>Husband</td>
+      <td>Black</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>28</td>
+      <td>Private</td>
+      <td>338409</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Prof-specialty</td>
+      <td>Wife</td>
+      <td>Black</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>Cuba</td>
+      <td>&lt;=50K.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="data-preparation">Data Preparation</h2>
+
+<h3 id="overview">Overview</h3>
+
+<p>Neural networks require numeric inputs. It would be difficult for the algorithm to multiply something like &ldquo;married&rdquo; with some weight, and then enter that result into summation and sigmoid functions and get meaningful results. Consequently, every attribute value has to be standardized, taking values between 0 and 1, even for categorical variables. With that said, there is quite a bit to the data preparation stage.</p>
+
+<h3 id="tidying-encoding-balancing">Tidying; Encoding; Balancing</h3>
+
+<p>Here, I&rsquo;m getting a quick feel for the data. How many attributes can we work with? How many unique values are there per attribute? Is there balance between the different potential values? I can also collapse a lot of these specific values into more general ones: &ldquo;Married-civ-spouse,&rdquo; &ldquo;Married-AF-spouse,&rdquo; and &ldquo;Married-spouse-absent&rdquo; can all be collapsed into a &lsquo;y&rsquo; representing a married category. The same is done for workclass. Then I print attribute information to answer some of the above questions.</p>
+
+<p>With two unique categories for marital-status, I know I can use the standard LabelEncoder. With 3+ unique categories for workclass and race, I could use OneHotEncoding or create dummy variables. Later I will explain why. Additionally, we can see that there are lower proportions of some races and workclasses. If I wanted a more efficient neural net, I would attempt to balance this so that it can accurately handle these sorts of rare cases. We won&rsquo;t concern ourselves with that here, though.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Creates two columns that will be used as their categorical counterparts</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1">#This dictionary is interpreted as; in column of df, the key will be replaced by the value</span>
+<span class="n">category_replacement</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;Married-civ-spouse&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Married-AF-spouse&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Married-spouse-absent&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;y&#39;</span><span class="p">,</span>
+                                                <span class="sa"></span><span class="s1">&#39;Divorced&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Widowed&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Separated&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Never-married&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;n&#39;</span><span class="p">},</span>
+                        <span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">:</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;Federal-gov&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;Gov&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Local-gov&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;Gov&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;State-gov&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;Gov&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Self-emp-inc&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;Self&#39;</span><span class="p">,</span>
+                                           <span class="sa"></span><span class="s1">&#39;Self-emp-not-inc&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;Self&#39;</span><span class="p">}}</span>
+<span class="c1">#Reduces the number of categories</span>
+<span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">category_replacement</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;race&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">race</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;sex&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span></code></pre></div><div class="highlight"><pre class="chroma">[&#39;Gov&#39; &#39;Self&#39; &#39;Private&#39; &#39;?&#39; &#39;Without-pay&#39; &#39;Never-worked&#39;]
+[&#39;n&#39; &#39;y&#39;]
+[&#39;White&#39; &#39;Black&#39; &#39;Asian-Pac-Islander&#39; &#39;Amer-Indian-Eskimo&#39; &#39;Other&#39;]
+White                 21391
+Black                  2379
+Asian-Pac-Islander      775
+Amer-Indian-Eskimo      241
+Other                   214
+Name: race, dtype: int64
+n    13215
+y    11785
+Name: marital-status-cats, dtype: int64
+Private         17385
+Gov              3367
+Self             2835
+?                1399
+Without-pay         9
+Never-worked        5
+Name: workclass-cats, dtype: int64
+Male      16709
+Female     8291
+Name: sex, dtype: int64</pre></div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>workclass</th>
+      <th>demogweight</th>
+      <th>education</th>
+      <th>education-num</th>
+      <th>marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>sex</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>native-country</th>
+      <th>income</th>
+      <th>marital-status-cats</th>
+      <th>workclass-cats</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>39</td>
+      <td>State-gov</td>
+      <td>77516</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Never-married</td>
+      <td>Adm-clerical</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>2174</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+      <td>n</td>
+      <td>Gov</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>50</td>
+      <td>Self-emp-not-inc</td>
+      <td>83311</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Exec-managerial</td>
+      <td>Husband</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>13</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+      <td>y</td>
+      <td>Self</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>38</td>
+      <td>Private</td>
+      <td>215646</td>
+      <td>HS-grad</td>
+      <td>9</td>
+      <td>Divorced</td>
+      <td>Handlers-cleaners</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+      <td>n</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>Private</td>
+      <td>234721</td>
+      <td>11th</td>
+      <td>7</td>
+      <td>Married-civ-spouse</td>
+      <td>Handlers-cleaners</td>
+      <td>Husband</td>
+      <td>Black</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+      <td>y</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>28</td>
+      <td>Private</td>
+      <td>338409</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Prof-specialty</td>
+      <td>Wife</td>
+      <td>Black</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>Cuba</td>
+      <td>&lt;=50K.</td>
+      <td>y</td>
+      <td>Private</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="encoding-for-categorical-variables">Encoding for Categorical Variables</h3>
+
+<p>Above, two different types of encoding were noted: LabelEncoder and OneHotEncoder. Though they both convert categories to numeric values, they behave in different ways. Let&rsquo;s say I categorize workclass and then use LabelEncoder to create an integer representation of each category. The result will be a 0 for White, 1 for Black, 2 for Asian-Pac-Islander, 3 for Amer-Indian-Eskimo, and 4 for Other. Unless this was ordinal data (like 1st place winner, 2nd, 3rd, 4th), this is unacceptable for the neural network. The neural net would calculate the distance between the first value &lsquo;White&rsquo; and the fourth value &lsquo;Other&rsquo; and treat this distance as if it&rsquo;s significant. In our case, each category is equally distant from the other in <em>meaning</em>, and shouldn&rsquo;t have any superficial scoring like that. So there is an alternative. OneHotEncoder breaks the variable down into a matrix of 0&rsquo;s and 1&rsquo;s. If we look at our dataframe, we can match up OneHotEncoder results with the first 16 values of the race column.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">t</span> <span class="o">=</span> <span class="p">[[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;White&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;White&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;White&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;Black&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;Black&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;White&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;Black&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;White&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;White&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;White&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;Black&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;Asian-Pac-Islander&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;White&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;Black&#34;</span><span class="p">],</span> <span class="p">[</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;Asian-Pac-Islander&#34;</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;Amer-Indian-Eskimo&#34;</span><span class="p">]]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;html&#39;</span><span class="p">)))</span></code></pre></div>
+<table>
+<tbody>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td>White             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td>White             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td>White             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td>Black             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td>Black             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td>White             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td>Black             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td>White             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td>White             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td>White             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td>Black             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td>Asian-Pac-Islander</td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td>White             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td>Black             </td></tr>
+<tr><td style="text-align: right;">0</td><td style="text-align: right;">1</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td>Asian-Pac-Islander</td></tr>
+<tr><td style="text-align: right;">1</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td style="text-align: right;">0</td><td>Amer-Indian-Eskimo</td></tr>
+</tbody>
+</table>
+
+<p>In essence, each column of numbers represents a possible value of the category (or a possible race). Look at the bottom of the table; there is a record of &ldquo;Amer-Indian-Eskimo&rdquo;; note how this is the only occurrence of this race, and there is only one sequence of 10000 in this entire table. The left-most column is reserved for that race, and receives a 1 for any record that has that value for race. Likewise, if you look at the top 3 records, you see the code 00001 next to each record of &ldquo;White.&rdquo;</p>
+
+<p>Each race basically has a code to itself. Though &lsquo;Other&rsquo; is not listed in the first 16 results, we can deduce that its code is 00010. These values follow neural net input requirements and will be accepted. In relation to each other, the variables are treated fairly and equidistantly. Pandas has a nice way of creating this for us with the get_dummies method.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#####################################</span>
+
+<span class="c1">##CODE BLOCK FOR VARIABLE ENCODINGS##</span>
+
+<span class="c1">#####################################</span>
+
+<span class="c1">#Encoding Income</span>
+<span class="n">enc</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+
+<span class="c1">#Encoding sex</span>
+<span class="n">label_encoder</span> <span class="o">=</span> <span class="n">enc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;sex&#39;</span><span class="p">])</span>
+<span class="n">integer_classes</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;sex-encoded&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;sex&#39;</span><span class="p">])</span>
+
+<span class="c1">#Categorizing marital-status, workplacee, and race</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;race&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;race&#39;</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;race&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span><span class="p">)</span>
+
+
+<span class="n">dummy_races</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;race&#39;</span><span class="p">],</span> <span class="n">prefix</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;race&#39;</span><span class="p">)</span>
+<span class="c1">#display(dummy_races)</span>
+<span class="n">dummy_workclasses</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">],</span> <span class="n">prefix</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;workclass&#39;</span><span class="p">)</span>
+<span class="c1">#display(dummy_workclass)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dummy_workclasses</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dummy_races</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span></code></pre></div><div class="highlight"><pre class="chroma">Index([&#39;?&#39;, &#39;Gov&#39;, &#39;Never-worked&#39;, &#39;Private&#39;, &#39;Self&#39;, &#39;Without-pay&#39;], dtype=&#39;object&#39;)
+Index([&#39;n&#39;, &#39;y&#39;], dtype=&#39;object&#39;)
+Index([&#39;Amer-Indian-Eskimo&#39;, &#39;Asian-Pac-Islander&#39;, &#39;Black&#39;, &#39;Other&#39;, &#39;White&#39;], dtype=&#39;object&#39;)</pre></div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>workclass</th>
+      <th>demogweight</th>
+      <th>education</th>
+      <th>education-num</th>
+      <th>marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>sex</th>
+      <th>...</th>
+      <th>workclass_Gov</th>
+      <th>workclass_Never-worked</th>
+      <th>workclass_Private</th>
+      <th>workclass_Self</th>
+      <th>workclass_Without-pay</th>
+      <th>race_Amer-Indian-Eskimo</th>
+      <th>race_Asian-Pac-Islander</th>
+      <th>race_Black</th>
+      <th>race_Other</th>
+      <th>race_White</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>39</td>
+      <td>State-gov</td>
+      <td>77516</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Never-married</td>
+      <td>Adm-clerical</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>50</td>
+      <td>Self-emp-not-inc</td>
+      <td>83311</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Exec-managerial</td>
+      <td>Husband</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>38</td>
+      <td>Private</td>
+      <td>215646</td>
+      <td>HS-grad</td>
+      <td>9</td>
+      <td>Divorced</td>
+      <td>Handlers-cleaners</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>Private</td>
+      <td>234721</td>
+      <td>11th</td>
+      <td>7</td>
+      <td>Married-civ-spouse</td>
+      <td>Handlers-cleaners</td>
+      <td>Husband</td>
+      <td>Black</td>
+      <td>Male</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>28</td>
+      <td>Private</td>
+      <td>338409</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Prof-specialty</td>
+      <td>Wife</td>
+      <td>Black</td>
+      <td>Female</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 29 columns</p>
+</div>
+
+<p>Looking at the dataframe above, we can see more clearly how both OneHotEncoder and get_dummies work.</p>
+
+<h3 id="min-max-standardization-for-continuous-variables">Min-Max Standardization for Continuous Variables</h3>
+
+<p>Naturally, the numeric data must be standardized as well.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">##########################################</span>
+
+<span class="c1">##CODE BLOCK FOR MIN-MAX TRANSFORMATIONS##</span>
+
+<span class="c1">##########################################</span>
+
+<span class="c1">#Standardizing age so numeric values aren&#39;t misrepresented in calculations</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;age_mm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">()))</span>
+
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;education-num_mm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;education-num&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;education-num&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;education-num&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;education-num&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">()))</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-gain_mm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-gain&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-gain&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-gain&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-gain&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">()))</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-loss_mm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-loss&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-loss&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-loss&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-loss&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">()))</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;hours-per-week_mm&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;hours-per-week&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;hours-per-week&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">())</span> <span class="o">/</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;hours-per-week&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">max</span><span class="p">()</span> <span class="o">-</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;hours-per-week&#39;</span><span class="p">]</span><span class="o">.</span><span class="nb">min</span><span class="p">()))</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span></code></pre></div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>workclass</th>
+      <th>demogweight</th>
+      <th>education</th>
+      <th>education-num</th>
+      <th>marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>sex</th>
+      <th>...</th>
+      <th>race_Amer-Indian-Eskimo</th>
+      <th>race_Asian-Pac-Islander</th>
+      <th>race_Black</th>
+      <th>race_Other</th>
+      <th>race_White</th>
+      <th>age_mm</th>
+      <th>education-num_mm</th>
+      <th>capital-gain_mm</th>
+      <th>capital-loss_mm</th>
+      <th>hours-per-week_mm</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>39</td>
+      <td>State-gov</td>
+      <td>77516</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Never-married</td>
+      <td>Adm-clerical</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>38.767123</td>
+      <td>12.933333</td>
+      <td>2174.0</td>
+      <td>0.0</td>
+      <td>39.989796</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>50</td>
+      <td>Self-emp-not-inc</td>
+      <td>83311</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Exec-managerial</td>
+      <td>Husband</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>49.767123</td>
+      <td>12.933333</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>12.989796</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>38</td>
+      <td>Private</td>
+      <td>215646</td>
+      <td>HS-grad</td>
+      <td>9</td>
+      <td>Divorced</td>
+      <td>Handlers-cleaners</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>37.767123</td>
+      <td>8.933333</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>39.989796</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>Private</td>
+      <td>234721</td>
+      <td>11th</td>
+      <td>7</td>
+      <td>Married-civ-spouse</td>
+      <td>Handlers-cleaners</td>
+      <td>Husband</td>
+      <td>Black</td>
+      <td>Male</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>52.767123</td>
+      <td>6.933333</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>39.989796</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>28</td>
+      <td>Private</td>
+      <td>338409</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Prof-specialty</td>
+      <td>Wife</td>
+      <td>Black</td>
+      <td>Female</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>27.767123</td>
+      <td>12.933333</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>39.989796</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 34 columns</p>
+</div>
+
+<h3 id="cleaning-the-dataframe">Cleaning the DataFrame</h3>
+
+<p>This isn&rsquo;t really essential, but it would be nice to remove some of the frame&rsquo;s excess so that it runs faster. Additionally, re-ordering the columns will make it a little bit easier to partition the dataset as well. Putting the target variable at one of the ends, preferably the front, reduces a lot of hassle.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#A little bit of dataframe tidying</span>
+
+<span class="c1">#Dropping unnecessary columns</span>
+<span class="n">to_drop</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;race&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;age&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;hours-per-week&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;capital-loss&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;capital-gain&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;education-num&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;demogweight&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;education&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;relationship&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;native-country&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;marital-status&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;workclass&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;occupation&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;race&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">to_drop</span><span class="p">,</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1">#Reordering the columns to make it easier to use model_selection function</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;income&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;sex-encoded&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;capital-gain_mm&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;capital-loss_mm&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;education-num_mm&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;age_mm&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;hours-per-week_mm&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;workclass_Gov&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;workclass_?&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;workclass_Never-worked&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;workclass_Private&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;workclass_Self&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;workclass_Without-pay&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;race_Amer-Indian-Eskimo&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;race_Asian-Pac-Islander&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;race_Black&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;race_Other&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;race_White&#39;</span><span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">cols</span><span class="p">]</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span></code></pre></div>
+<div>
+<style>
+    .dataframe thead tr:only-child th {
+        text-align: right;
+    }
+
+    .dataframe thead th {
+        text-align: left;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>income</th>
+      <th>sex-encoded</th>
+      <th>capital-gain_mm</th>
+      <th>capital-loss_mm</th>
+      <th>education-num_mm</th>
+      <th>age_mm</th>
+      <th>hours-per-week_mm</th>
+      <th>workclass_Gov</th>
+      <th>workclass_?</th>
+      <th>workclass_Never-worked</th>
+      <th>workclass_Private</th>
+      <th>workclass_Self</th>
+      <th>workclass_Without-pay</th>
+      <th>race_Amer-Indian-Eskimo</th>
+      <th>race_Asian-Pac-Islander</th>
+      <th>race_Black</th>
+      <th>race_Other</th>
+      <th>race_White</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>&lt;=50K.</td>
+      <td>1</td>
+      <td>2174.0</td>
+      <td>0.0</td>
+      <td>12.933333</td>
+      <td>38.767123</td>
+      <td>39.989796</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>&lt;=50K.</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>12.933333</td>
+      <td>49.767123</td>
+      <td>12.989796</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>&lt;=50K.</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>8.933333</td>
+      <td>37.767123</td>
+      <td>39.989796</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>&lt;=50K.</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>6.933333</td>
+      <td>52.767123</td>
+      <td>39.989796</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>&lt;=50K.</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>12.933333</td>
+      <td>27.767123</td>
+      <td>39.989796</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="partitioning-the-data-into-training-and-test-sets">Partitioning the Data into Training and Test Sets</h3>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df_x</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">:]</span> <span class="c1">#All of the input variables, from sex-encoded onward</span>
+<span class="n">df_y</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="c1">#The target variable, income</span>
+
+<span class="n">x_train</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">df_x</span><span class="p">,</span> <span class="n">df_y</span><span class="p">,</span> <span class="n">test_size</span> <span class="o">=</span> <span class="o">.</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span></code></pre></div>
+<p>The data must be partitioned into training and test sets because neural networks are a supervised learning method. You have to feed the model pre-classified data (the training set), and then its classifications are judged on how well they predict the test data. The <code>train_test_split</code> function makes this super convenient.</p>
+
+<h2 id="building-our-neural-net">Building our Neural Net</h2>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">nn</span> <span class="o">=</span> <span class="n">MLPClassifier</span><span class="p">(</span><span class="n">activation</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;logistic&#39;</span><span class="p">,</span> <span class="n">solver</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;sgd&#39;</span><span class="p">,</span> <span class="n">hidden_layer_sizes</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,),</span> <span class="n">max_iter</span> <span class="o">=</span> <span class="mi">2000</span><span class="p">,</span> <span class="n">random_state</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="o">%</span><span class="n">time</span> <span class="n">nn</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;Neural net accuracy: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="bp">None</span><span class="p">)))</span></code></pre></div><div class="highlight"><pre class="chroma">Wall time: 1.56 s
+Neural net accuracy: 0.7812</pre></div>
+<h3 id="neural-net-parameters">Neural Net Parameters</h3>
+
+<ol>
+<li><p><code>random_state</code> ensures that there is some consistency in sampling every time you run the neural net (which is useful because I&rsquo;m giving multiple examples here).</p></li>
+
+<li><p><code>max_iter</code> being set to 2000 ensures that I can run neural nets with many hidden layers, each with many neurons, otherwise my examples below might raise an iteration error.</p></li>
+
+<li><p>Logistic <code>activation</code> is saying that the NN uses a sigmoid activation function.</p></li>
+
+<li><p><code>solver</code> determines how the algorithm is going to go through the neural net to adjust the weights (for the sake of minimizing error and increasing accuracy), and for this exercise I&rsquo;ve used &lsquo;sgd&rsquo; or &lsquo;stochastic gradient descent&rsquo; because it&rsquo;s a quicker method than the standard gradient descent. The standard descent goes through every data item, while its stochastic counterpart uses a random sample. Stochastic back-propagation also attempts to guard against getting stuck in any local minima (the algorithm is searching for the global minimum, the smallest amount of error possible). In other words, looking at an error curve, as weights are adjusted the error curve will peak, dip, and bend, and there will likely be multiple dips, but the algorithm is searching for the deepest dip, and not any of the other shallow dips.</p></li>
+
+<li><p><code>hidden_layer_sizes</code> is a beast deserving of its own section.</p>
+
+<ul>
+<li><p><strong>Number of hidden layers:</strong> Looking at hidden_layer_size in the table below, you may see one number, e.g. the first column is (5, ). Some of the values hold two numbers (5, 5), or more. If you see one number, that means there is one hidden layer. So (5, ) represents a single hidden layer, while (5, 5) represents two hidden layers, and so forth.</p></li>
+
+<li><p><strong>Number of neurons in the hidden layer:</strong> The actual number that you&rsquo;re seeing (like 5) is how many neurons sit within that hidden layer. In the table below, in the first column, there are 5 neurons in the hidden layer. In the second column, there are 5 neurons in the first hidden layer, and 5 neurons in the second hidden layer. Go to the last column, there are 100 neurons in the first hidden layer, 100 in the second hidden layer, and 100 in the third hidden layer. Though I&rsquo;ve used consistent numbers throughout each hidden layer, you could just as well have variations, like (15, 10).</p></li>
+</ul></li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">table</span> <span class="o">=</span> <span class="p">[[</span><span class="sa"></span><span class="s2">&#34;hidden_layer_size&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;(5, )&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;(5, 5)&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;(15, 15)&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;(20, 20)&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;(100, 100)&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;(20, 20, 20, 20)&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;(60, 60, 60, 60)&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;(100, 100, 100)&#34;</span><span class="p">],</span>
+         <span class="p">[</span><span class="sa"></span><span class="s2">&#34;Processing time&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;337 ms&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;4.61 s&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;3.27 s&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;1.88 s&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;25.9 s&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;523 ms&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;705 ms&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;2.13 s&#34;</span><span class="p">],</span>
+         <span class="p">[</span><span class="sa"></span><span class="s2">&#34;Accuracy of neural net&#34;</span><span class="p">,</span> <span class="mf">0.7714</span><span class="p">,</span> <span class="mf">0.7714</span><span class="p">,</span> <span class="mf">0.7820</span><span class="p">,</span> <span class="mf">0.7714</span><span class="p">,</span> <span class="mf">0.7900</span><span class="p">,</span> <span class="mf">0.7714</span><span class="p">,</span> <span class="mf">0.7714</span><span class="p">,</span> <span class="mf">0.7714</span><span class="p">]]</span>
+         
+<span class="n">display</span><span class="p">(</span><span class="n">HTML</span><span class="p">(</span><span class="n">tabulate</span><span class="o">.</span><span class="n">tabulate</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="n">tablefmt</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;html&#39;</span><span class="p">)))</span></code></pre></div>
+<table>
+<tbody>
+<tr><td>hidden_layer_size     </td><td>(5, ) </td><td>(5, 5)</td><td>(15, 15)</td><td>(20, 20)</td><td>(100, 100)</td><td>(20, 20, 20, 20)</td><td>(60, 60, 60, 60)</td><td>(100, 100, 100)</td></tr>
+<tr><td>Processing time       </td><td>337 ms</td><td>4.61 s</td><td>3.27 s  </td><td>1.88 s  </td><td>25.9 s    </td><td>523 ms          </td><td>705 ms          </td><td>2.13 s         </td></tr>
+<tr><td>Accuracy of neural net</td><td>0.7714</td><td>0.7714</td><td>0.782   </td><td>0.7714  </td><td>0.79      </td><td>0.7714          </td><td>0.7714          </td><td>0.7714         </td></tr>
+</tbody>
+</table>
+
+<h3 id="an-optimal-number-of-layers-and-nodes">An Optimal Number of Layers and Nodes</h3>
+
+<p>Looking to the table above, you see some peculiarities:</p>
+
+<ol>
+<li>(15, 15) takes longer to compute than (20, 20, 20, 20) and even (100, 100, 100)</li>
+<li>Accuracy dramatically drops when going from (100, 100) to (100, 100, 100)</li>
+</ol>
+
+<p>There are more, but the second interestingly points us to some important rules when determining the number of layers and nodes to use in the model. Increasing the number of hidden layers beyond 2 is arbitrary and decreases the power of back propagation (the algorithm that helps neural networks shine, by going backwards and altering input weights for increased accuracy). As for speed, I&rsquo;m not quite sure why that happens, but a guess would be that when you have more hidden layers, the libraries do better in utilizing more CPU cores than less. If you use other libraries like Tensorflow, you can opt to use the GPU to run the network instead.</p>
+
+<p><a href="https://stats.stackexchange.com/a/180052/163011">jj_</a> from StackExchange shares Jeff Heaton&rsquo;s criteria for choosing how many neurons to use:</p>
+
+<p><strong>How many hidden nodes/neurons should I use?</strong></p>
+
+<blockquote>
+<p>The number of hidden neurons should be between the size of the input layer and the size of the output layer.</p>
+
+<p>The number of hidden neurons should be <sup>2</sup>&frasl;<sub>3</sub> the size of the input layer, plus the size of the output layer.</p>
+
+<p>The number of hidden neurons should be less than twice the size of the input layer.</p>
+</blockquote>
+
+<p>We can calculate this optimal number of neurons easily—visually, even, by looking at our dataframe header and counting the input variables. From &lsquo;sex-encoded&rsquo; to &lsquo;race_White&rsquo;, we have 17 input nodes. Neural nets always have one output node. Using the second criterion, (17) * (2 / 3) + 1 = 12. All of the listed criteria are fulfilled; 12 is less than twice the size of the input layer (34) and is between the size of the input layer and the size of the output layer (between 1 and 17).</p>
+
+<p>Shown above, using one hidden layer and 7 neurons in that layer, we get an accuracy of 0.7812. It might be tempting to hack at the neural net to try to get a higher accuracy, but you would be lying to yourself. It isn&rsquo;t healthy to have the neural net learn the training dataset <em>too</em> completely, because then you have a neural net that is really close to the heart of your dataset, but can&rsquo;t be generalized to new data. This is known as <strong>overfitting.</strong> That isn&rsquo;t to say that it is not worth putting in a great effort for squeezing out any little bit of <em>legitimate</em> accuracy that you can. For products that scale, even a tiny amount of accuracy can do a lot of good or harm.</p>
+
+<h4 id="resources">Resources:</h4>
+
+<p><a href="http://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html#sklearn.neural_network.MLPClassifier">Sklearn Documentation</a> MLPClassifier is one of Sklearn&rsquo;s neural network models, in which MLP stands for multi-layer perceptron.</p>
+
+<p><a href="https://cloud.google.com/blog/big-data/2016/07/understanding-neural-networks-with-tensorflow-playground">Understanding Neural Networks with Tensorflow Playground</a> This is an awesome resource for gaining an intuition about how neural nets work. You can play with their model, adding and subtracting hidden layers and neurons, to see how the data&rsquo;s dimensions are reduced, and how its values are transformed in space. Visualizing what the sigmoid function is actually doing is super helpful.</p>
+
+<p><a href="https://colah.github.io/posts/2015-01-Visualizing-Representations/">Visualizing Representations</a> This set of visualizations is linked in the previous resource but in case anyone glosses over it, it&rsquo;s also helpful in that there are real-world examples regarding language and textual data.</p>
+
+<p>This page is a compilation of my notes from the book <a href="https://www.amazon.com/Mining-Predictive-Analytics-Methods-Applications/dp/1118116194">Data Mining and Predictive Analytics</a>.</p>
+
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://astonishingelixirs.github.io/post/k-nearest-neighbors/" data-toggle="tooltip" data-placement="top" title="k-Nearest Neighbors Classifier">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://astonishingelixirs.github.io/post/tor-stem-api/" data-toggle="tooltip" data-placement="top" title="Tor Stem API">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "astonishingelixirs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ck_howard@yahoo.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/ckhoward" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/_ckhoward" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/-ckhoward" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://astonishingelixirs.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://ckhoward.github.io">Chris Howard</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.36.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/main.js"></script>
+<script src="https://astonishingelixirs.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

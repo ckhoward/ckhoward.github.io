@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>An Introduction to the Stylo Library [R]</title>
+  <meta property="og:title" content="An Introduction to the Stylo Library [R]" />
+  <meta name="twitter:title" content="An Introduction to the Stylo Library [R]" />
+  <meta name="description" content="An Introduction to the Stylo Library What is Stylometry? Stylometry uses linguistic style to determine who authored some anonymous piece of writing, and it has diverse applications. The authorship of some suicide notes may be questionable. Most forum users have aliases in an attempt to anonymize themselves. And some authors publish their writings under pseudonyms. In these varying cases, stylometry can be used to deanonymize an author.
+What is Stylo?">
+  <meta property="og:description" content="An Introduction to the Stylo Library What is Stylometry? Stylometry uses linguistic style to determine who authored some anonymous piece of writing, and it has diverse applications. The authorship of some suicide notes may be questionable. Most forum users have aliases in an attempt to anonymize themselves. And some authors publish their writings under pseudonyms. In these varying cases, stylometry can be used to deanonymize an author.
+What is Stylo?">
+  <meta name="twitter:description" content="An Introduction to the Stylo Library What is Stylometry? Stylometry uses linguistic style to determine who authored some anonymous piece of writing, and it has diverse applications. The authorship of …">
+  <meta name="author" content="Chris Howard"/>
+  <link href='https://astonishingelixirs.github.io/img/avatar-icon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@_ckhoward" />
+  <meta name="twitter:creator" content="@_ckhoward" />
+  <meta property="og:url" content="https://astonishingelixirs.github.io/post/a-guide-to-stylo/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AstonishingElixirs" />
+
+  <meta name="generator" content="Hugo 0.36.1" />
+  <link rel="canonical" href="https://astonishingelixirs.github.io/post/a-guide-to-stylo/" />
+  <link rel="alternate" href="https://astonishingelixirs.github.io/index.xml" type="application/rss+xml" title="AstonishingElixirs">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://astonishingelixirs.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-114707471-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Reading" href="/post/reading-list">Reading</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="AstonishingElixirs" href="https://astonishingelixirs.github.io">
+            <img class="avatar-img" src="https://astonishingelixirs.github.io/img/avatar-icon.png" alt="AstonishingElixirs" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>An Introduction to the Stylo Library [R]</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 27, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 8 minutes (1543 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<h1 id="an-introduction-to-the-stylo-library">An Introduction to the Stylo Library</h1>
+
+<h3 id="what-is-stylometry">What is Stylometry?</h3>
+
+<p>Stylometry uses linguistic style to determine who authored some anonymous piece of writing, and it has diverse applications. The authorship of some suicide notes may be questionable. Most forum users have aliases in an attempt to anonymize themselves. And some authors publish their writings under pseudonyms. In these varying cases, stylometry can be used to deanonymize an author.</p>
+
+<h3 id="what-is-stylo">What is Stylo?</h3>
+
+<p>Stylo is a library for the R programming language that is used for conducting stylometric analyses. Stylometry sounds intimidating, but this library makes these linguistic analyses so simple that its users do not have to be computational linguists. Stylo isn&rsquo;t programmatically intensive and mostly just requires a particular naming convention for files and directories. If users are uncomfortable with writing out functions with varying arguments, they can opt to use a simple GUI.</p>
+
+<h3 id="a-stylometric-analysis-of-run-the-jewels">A Stylometric Analysis of Run the Jewels</h3>
+
+<p>Run the Jewels is a group of two rappers, El-P and Killer Mike. In collaborative songs, most assume that each rapper raps the verses that they write. This is an interesting example that can be used to show how the Stylo library works for authorship attribution. Models will be trained on lyrics of each rapper when they worked independently, and will then be fed Run the Jewels lyrics to get an idea of each artist&rsquo;s creative footprint in a song, and how collaboration might work. This analysis will serve as a concrete example for some of the uses and quirks of Stylo.</p>
+
+<h2 id="getting-the-data">Getting the data</h2>
+
+<p>To determine if the project was viable—or that each artist had a distinctive style—I had to get the data. In this case, the data is lyrics that are added to a corpus. Using Enrico Bacis&rsquo; <a href="https://github.com/enricobacis/lyricwikia">LyricWikia API</a> to get lyrics, I use a Bash loop that iterates over an array of hardcoded song names to save the lyrics into the corpus.</p>
+
+<p><img src="/img/bash elp.png" alt="Bash Array" title="The Bash Array" />
+<img src="/img/lyrics elp.png" alt="Corpus" title="The Corpus" /></p>
+
+<p>The Stylo R library is heavily reliant on naming conventions, both for directories and files. Everything before an underscore is treated as a class to be analyzed, so if you are looking at texts of George R.R. Martin, you would do something like GeorgeRRMartin_ASongofIceandFire and the software will understand that George R.R. Martin is an author of interest, responsible for that work. I did the same with El-P and Killer Mike, otherwise each author would not have been treated as unique.</p>
+
+<p><img src="/img/fixed_formatting.jpg" alt="New Structure" title="Changing the naming conventions" /></p>
+
+<h2 id="project-viability-exploratory-analysis">Project Viability / Exploratory Analysis</h2>
+
+<p>Now that we have the data, we can do a bit of exploration to check whether the project is viable, in this case, whether each rapper has a distinctive style. This can be achieved with a principal components analysis. Since the file naming convention has been altered for Stylo use, the directory naming still has to be altered, and then the function will work when called.</p>
+
+<h3 id="the-stylo-function">The stylo() function</h3>
+
+<p>Intuitively enough, one of the most powerful functions in the Stylo library is <code>stylo()</code>. Running this function will load the GUI and the users can then customize the analysis. The GUI that loads appears as follows:</p>
+
+<p><img src="/img/gui1.jpg" alt="Stylo Input" title="Stylo GUI Input" />
+<img src="/img/gui2.jpg" alt="Stylo Features" title="Stylo GUI Features" />
+<img src="/img/gui3.jpg" alt="Stylo Statistics" title="Stylo GUI Statistics" />
+<img src="/img/gui4.jpg" alt="Stylo Sampling" title="Stylo GUI Sampling" />
+<img src="/img/gui5.jpg" alt="Stylo Output" title="Stylo GUI Output" /></p>
+
+<p>We will go into detail about how the parameters work in an intermediate Stylo post, but for now, only directory information is important. The working directory must be set in R. For this example, it is <code>setwd(&quot;E\\Stylometry\\Run the Jewels&quot;)</code>. The <code>stylo()</code> function requires a directory called <code>corpus_files</code> if it is being run without explicit arguments (i.e. as stylo()). This <code>corpus_files</code> directory will contain all of the files that you want in your analysis, in this case, all songs by El-P and Killer Mike that I want within the PCA.</p>
+
+<p><img src="/img/corpus_files.jpg" alt="Stylo corpus_files" title="Stylo Corpus Files" /></p>
+
+<p>After running the function above, with the parameters shown, a PCA is generated. As shown, the library uses the naming convention to color-code each author. El-P is red and Killer Mike is green. It is evident that the rappers differ from each other stylistically when writing music, so the project seems viable. We can proceed to using some of the more interesting tools that Stylo offers.</p>
+
+<p><img src="/img/rtj pca.png" alt="PCA Visualization" title="PCA Visualization" /></p>
+
+<h3 id="quick-recap">Quick Recap</h3>
+
+<p>All that is needed to generate this PCA is:</p>
+
+<ol>
+<li>Proper naming of the directory/corpus</li>
+<li>Proper naming of files in the directory/corpus</li>
+<li>A simple one-line function call</li>
+</ol>
+
+<h2 id="using-the-svm-classification-algorithm">Using the SVM Classification Algorithm</h2>
+
+<p>Stylo&rsquo;s classification power is what lures most of its users. With other tools, building a classifier and cleaning the data takes several lines of code that aren&rsquo;t too straight-forward, increasing the barrier of entry for those that aren&rsquo;t computationally-inclined. As with the last function, the Stylo library makes this more simple for users, with properly named files and directories, it only takes a single line of code to build and use the classifier.</p>
+
+<p>There are multiple flavors of classification, but the two functions that we will look at are <code>classify()</code> and <code>rolling.classify()</code>. Again, we will get into the technical details in the intermediate post, as this is just a light primer.</p>
+
+<h3 id="the-classify-function">The classify() function</h3>
+
+<p>Two subdirectories must be present in the working directory for this function to work; <code>primary_set</code> contains the training data that the classification model will learn from, and <code>secondary_set</code> will work as the test set. For this Run the Jewels example, the primary_set directory contains 80% (44) of the songs in the total corpus (55), and the secondary_set will contain 20% (11) of the songs. Naturally, each rapper is equally sampled for both directories in order to avoid biasing the model.</p>
+
+<p>After running <code>classification &lt;- classify()</code>, a GUI will load allowing me to choose the function&rsquo;s arguments, just like before. Assigning the function to a variable lets us access different values. As shown, from <code>classification$success.rate</code>, the value of accurately-classified songs is returned, which is 81.8%.</p>
+
+<p><img src="/img/svm_accuracy.png" alt="SVM Accuracy" title="SVM Classification Accuracy" /></p>
+
+<p>The SVM model learned El-P&rsquo;s and Killer Mike&rsquo;s linguistic styles from the songs in the primary_set and applied that learning to the songs in the secondary_set, correctly classifying each of those 11 songs. This accuracy is mostly due to the strength of the samples, each song&rsquo;s word count is enough to make the sample powerful. If the files in the directory were smaller, like individual verses, the accuracy is reduced.</p>
+
+<h3 id="the-rolling-classify-function">The rolling.classify() function</h3>
+
+<p>Two subdirectories must also be present in the working directory for this function to work; <code>reference_set</code>, which will contain all of the samples that you want the model to learn from, and <code>test_set</code>, which will contain the questionable or anonymous piece of writing that is of interest. Running the following code generates a visualization of classified samples, color-coded based on the naming convention used.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">rolling.info <span class="o">&lt;-</span> rolling.classify<span class="p">(</span>write.png.file <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> classification.method <span class="o">=</span> <span class="s">&#34;svm&#34;</span><span class="p">,</span> mfw <span class="o">=</span> <span class="m">300</span><span class="p">,</span> training.set.sampling <span class="o">=</span> <span class="s">&#34;normal.sampling&#34;</span><span class="p">,</span>
+slice.size <span class="o">=</span> <span class="m">50</span><span class="p">,</span> slice.overlap <span class="o">=</span> <span class="m">45</span><span class="p">,</span>
+milestone.label<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="s">&#34;El-P&#34;</span><span class="p">,</span> <span class="s">&#34;Killer Mike&#34;</span><span class="p">,</span> <span class="s">&#34;El-P&#34;</span><span class="p">,</span> <span class="s">&#34;Killer Mike&#34;</span><span class="p">,</span> <span class="s">&#34;Zach de la Rocha&#34;</span><span class="p">,</span> <span class="s">&#34;Killer Mike&#34;</span><span class="p">))</span>
+
+title<span class="p">(</span>main<span class="o">=</span><span class="s">&#34;Run the Jewels \n A Report to the Shareholders / Kill Your Masters&#34;</span><span class="p">)</span></code></pre></div>
+<p><img src="/img/RTJ_KYM.png" alt="RTJ_KYM" title="Rolling SVM Run the Jewels" /></p>
+
+<p>This song, <em>A Report to the Shareholders / Kill Your Masters</em>, has about 1,000 words in it, as shown by the x-axis. The first 180 words or so are classified as El-P because of the red coloring. This function also has handy labeling functionality, where excerpts can be given vertical labels. For example, if I go into test_set and find the song file that I am interested in, <em>Kill Your Masters</em>, and add the text <code>xmilestone</code> before each of the verses, the argument <code>milestone.label</code> assigns each value to each xmilestone. In the above song, there are six <code>xmilestone</code> entries, and the function&rsquo;s argument has six corresponding labels. This is useful for comparing classification to some area of interest; in this case, I know which verse belongs to which rapper, so I can manually insert those vertical labels to see if the classifications are &ldquo;accurate.&rdquo; The depth of the colored blocks indicate certainty. Where there are full blocks, there is the most certainty, but where there are dips, there is uncertainty.</p>
+
+<h2 id="results">Results</h2>
+
+<p>We can see that some of Killer Mike&rsquo;s lyrics are classified as being authored by El-P, and that Zach de la Rocha&rsquo;s verses are also mostly classified as El-P (which makes sense, given the model did not learn de la Rocha&rsquo;s style). The depth of the colored blocks indicate certainty, so it appears that most uncertainty is around verse transition, which could indicate that the two rappers tend to collaborate in this area, perhaps creating a bridge from one rapper&rsquo;s verses, to the other&rsquo;s, so that the song remains fluid. In general, it seems that the model could be biased towards El-P based on the fact that Stylo largely uses MFW (most frequent words).</p>
+
+<p>With a little tweaking of the filenames and directory names, a single function can be used to clean and classify the data. One line of code takes the place of the several lines that would be used for breaking the text down into the desired number of n-grams, the removal of pronouns, the proper format of text, the building of the model, the training and testing of the data, and even the visualizations. If interested in some of the technical details of how the library works, stay posted for the intermediate-level Stylo post.</p>
+
+<h2 id="sources">Sources</h2>
+
+<p>Stylo (R Library)
+Eder, M., Rybicki, J. and Kestemont, M. (2016). Stylometry with R: a package for computational text analysis. &ldquo;R Journal&rdquo;, 8(1): 107-121.</p>
+
+<p>Rolling Stylometry
+Maciej Eder; Rolling stylometry, Digital Scholarship in the Humanities, Volume 31, Issue 3, 1 September 2016, Pages 457–469, <a href="https://doi.org/10.1093/llc/fqv010">https://doi.org/10.1093/llc/fqv010</a></p>
+
+<p>LyricWikia API (Python)
+<a href="https://github.com/enricobacis/lyricwikia">https://github.com/enricobacis/lyricwikia</a></p>
+
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://astonishingelixirs.github.io/post/fixbux/" data-toggle="tooltip" data-placement="top" title="FIXBUX: A Web-extension to Safeguard Users from Themselves [Javascript]">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://astonishingelixirs.github.io/post/tor-hidden-service/" data-toggle="tooltip" data-placement="top" title="Deploying a Tor Hidden Service with DigitalOcean">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "astonishingelixirs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ck_howard@yahoo.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/ckhoward" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/_ckhoward" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/-ckhoward" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://astonishingelixirs.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://ckhoward.github.io">Chris Howard</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.36.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/main.js"></script>
+<script src="https://astonishingelixirs.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

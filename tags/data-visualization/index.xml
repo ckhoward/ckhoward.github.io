@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data Visualization on AstonishingElixirs</title>
+    <link>https://astonishingelixirs.github.io/tags/data-visualization/</link>
+    <description>Recent content in Data Visualization on AstonishingElixirs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
+    <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
+    <lastBuildDate>Thu, 22 Feb 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://astonishingelixirs.github.io/tags/data-visualization/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Multiple Regressions with Python</title>
+      <link>https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/</link>
+      <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/</guid>
+      <description>Multiple Regression and Model Building Introduction In the last chapter we were running a simple linear regression on cereal data. We wanted to see if there was a relationship between the cereal&amp;rsquo;s nutritional rating and its sugar content. There was. But with all this other data, like fiber(!), we want to see what other variables are related, in conjunction with (and without) each other. Multiple regression seems like a friendly tool we can use to do this, so that&amp;rsquo;s what we&amp;rsquo;ll be doing here.</description>
+    </item>
+    
+    <item>
+      <title>Cereal Regression with Python</title>
+      <link>https://astonishingelixirs.github.io/post/chapter8simple-linear-regression/</link>
+      <pubDate>Wed, 21 Feb 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/chapter8simple-linear-regression/</guid>
+      <description>Simple Linear Regression Cereal Nutritional Rating against Sugar Content Being the cereal enthusiasts we are, we might be interested in knowing what sort of relationship exists between a cereal&amp;rsquo;s nutrition rating and its sugar content. Therefore, we can turn to using a simple linear regression. Using a linear model, we would also be able to look at any given cereal&amp;rsquo;s sugar content, and attempt to make an estimation as to what its nutritional rating will be.</description>
+    </item>
+    
+    <item>
+      <title>A Simpler Tutorial on Jupyter (IPython) Widgets</title>
+      <link>https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/</link>
+      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/</guid>
+      <description>A Simpler Tutorial on Jupyter (IPython) Widgets Jupyter widgets are an awesome tool for creating interactive dashboards, but documentation can be a little excessive if you&amp;rsquo;re just looking for basic functionality. It really doesn&amp;rsquo;t have to be so complicated.
+Our widget use-case My data visualization team wanted to provide researchers with a GUI for visualizing species distributions, and we wanted to give them the power and flexibility to specify different parameters.</description>
+    </item>
+    
+    <item>
+      <title>An Introduction to the Stylo Library [R]</title>
+      <link>https://astonishingelixirs.github.io/post/a-guide-to-stylo/</link>
+      <pubDate>Wed, 27 Dec 2017 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/a-guide-to-stylo/</guid>
+      <description>An Introduction to the Stylo Library What is Stylometry? Stylometry uses linguistic style to determine who authored some anonymous piece of writing, and it has diverse applications. The authorship of some suicide notes may be questionable. Most forum users have aliases in an attempt to anonymize themselves. And some authors publish their writings under pseudonyms. In these varying cases, stylometry can be used to deanonymize an author.
+What is Stylo?</description>
+    </item>
+    
+    <item>
+      <title>Path Distance Analysis [GIS]</title>
+      <link>https://astonishingelixirs.github.io/post/path-distance-analysis/</link>
+      <pubDate>Tue, 15 Aug 2017 19:25:23 -0700</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/path-distance-analysis/</guid>
+      <description>Path-Distance Analysis //This is a fictitious scenario//
+Let&amp;rsquo;s suppose we&amp;rsquo;re a team of highly skilled NGA agents. We just received a briefing about some suspicious activity between two rival factions. These factions are typically hostile towards each other, but a trusted informant has brought forward some intel suggesting the two factions have been cooperating.
+Our team must assist in verifying these claims. Wielding the all-powerful eye in the sky — or, an array of US Government satellites — we will first identify which outposts are linked to each faction, and we will then infer the inter- and intra-faction transportation networks.</description>
+    </item>
+    
+    <item>
+      <title>Sentiment Analysis of First GOP Debate in 2015 [R]</title>
+      <link>https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/</link>
+      <pubDate>Sat, 17 Jun 2017 14:50:42 -0700</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/</guid>
+      <description>A Statistical Analysis of Sentiments Every four years, the United States goes through the process of electing (or re-electing) its president. Politics becomes a popular topic of conversation, and inadvertently, a popular emotional outlet. Our digital landscape has — mostly textually, but sometimes by video or podcast — granted the ability for people to express their thoughts and feelings on political ideas and events, en masse. Suffice to say, an examination of people&amp;rsquo;s language in these expressions can yield many useful insights into human (or American) character and the influence of rhetoric on political philosophy and national pride.</description>
+    </item>
+    
+    <item>
+      <title>Projecting with Python [GIS, Python]</title>
+      <link>https://astonishingelixirs.github.io/post/projecting-with-python-gis-python/</link>
+      <pubDate>Fri, 09 Jun 2017 12:28:59 -0700</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/projecting-with-python-gis-python/</guid>
+      <description>My Introduction to GIS with Python Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the Global Terrorism Database so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations.</description>
+    </item>
+    
+    <item>
+      <title>Visibility Analysis [GIS]</title>
+      <link>https://astonishingelixirs.github.io/post/visibility/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/visibility/</guid>
+      <description>This post is intended to be informative, and not so much reproducible.
+Viewshed Analysis A viewshed is an area that is visible from an observer at a given location. The problem of visibility lends itself to many domains:
+ a guard on a prison tower must see the entire prison yard to ensure everyone&amp;rsquo;s safety a scout must maximize visibility of a battlefield for intelligence gathering autonomous vehicles must have 360-degree visibility cell-towers must provide maximum coverage  In this post, we will pay mind to the ancient world, where according to Christopherson and Guertin*, &amp;ldquo;fortified sites were often located in order to visually control their territory, sacred sites might be located to provide views of other sacred sites, and the settlement patterns of hinterland sites might be located to facilitate, or to impede, visual communication.</description>
+    </item>
+    
+    <item>
+      <title>Terrorist Targets [Exploratory]</title>
+      <link>https://astonishingelixirs.github.io/post/terrorist-org-exploration/</link>
+      <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/terrorist-org-exploration/</guid>
+      <description>If you were to start some Google searches for terrorist attacks, while specifying the terrorist organization (e.g. Boko Haram, or the Lord&amp;rsquo;s Resistance Army), you will likely see different themes within the listed results. Going to a page that aggregates LRA attacks, you get:
+and for Boko Haram:
+Assuming these sources weren&amp;rsquo;t cherry-picked, we might infer that the LRA tends to attack people and their property, with assault rifles, while Boko Haram might be more likely to attack crowded public places, with explosives.</description>
+    </item>
+    
+  </channel>
+</rss>

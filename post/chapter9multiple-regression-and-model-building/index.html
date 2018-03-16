@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Multiple Regressions with Python</title>
+  <meta property="og:title" content="Multiple Regressions with Python" />
+  <meta name="twitter:title" content="Multiple Regressions with Python" />
+  <meta name="description" content="Multiple Regression and Model Building Introduction In the last chapter we were running a simple linear regression on cereal data. We wanted to see if there was a relationship between the cereal&rsquo;s nutritional rating and its sugar content. There was. But with all this other data, like fiber(!), we want to see what other variables are related, in conjunction with (and without) each other. Multiple regression seems like a friendly tool we can use to do this, so that&rsquo;s what we&rsquo;ll be doing here.">
+  <meta property="og:description" content="Multiple Regression and Model Building Introduction In the last chapter we were running a simple linear regression on cereal data. We wanted to see if there was a relationship between the cereal&rsquo;s nutritional rating and its sugar content. There was. But with all this other data, like fiber(!), we want to see what other variables are related, in conjunction with (and without) each other. Multiple regression seems like a friendly tool we can use to do this, so that&rsquo;s what we&rsquo;ll be doing here.">
+  <meta name="twitter:description" content="Multiple Regression and Model Building Introduction In the last chapter we were running a simple linear regression on cereal data. We wanted to see if there was a relationship between the …">
+  <meta name="author" content="Chris Howard"/>
+  <link href='https://astonishingelixirs.github.io/img/avatar-icon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@_ckhoward" />
+  <meta name="twitter:creator" content="@_ckhoward" />
+  <meta property="og:url" content="https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AstonishingElixirs" />
+
+  <meta name="generator" content="Hugo 0.36.1" />
+  <link rel="canonical" href="https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/" />
+  <link rel="alternate" href="https://astonishingelixirs.github.io/index.xml" type="application/rss+xml" title="AstonishingElixirs">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://astonishingelixirs.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-114707471-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Reading" href="/post/reading-list">Reading</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="AstonishingElixirs" href="https://astonishingelixirs.github.io">
+            <img class="avatar-img" src="https://astonishingelixirs.github.io/img/avatar-icon.png" alt="AstonishingElixirs" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Multiple Regressions with Python</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 22, 2018
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 19 minutes (4023 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<h1 id="multiple-regression-and-model-building">Multiple Regression and Model Building</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In the last chapter we were running a simple linear regression on cereal data. We wanted to see if there was a relationship between the cereal&rsquo;s nutritional rating and its sugar content. There was. But with all this other data, like fiber(!), we want to see what other variables are related, in conjunction with (and without) each other. Multiple regression seems like a friendly tool we can use to do this, so that&rsquo;s what we&rsquo;ll be doing here.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="kn">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">statsmodels.formula.api</span> <span class="kn">as</span> <span class="nn">smf</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="kn">as</span> <span class="nn">stats</span>
+<span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="kn">as</span> <span class="nn">cm</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">f_regression</span>
+<span class="kn">from</span> <span class="nn">statsmodels.stats.anova</span> <span class="kn">import</span> <span class="n">anova_lm</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="nb">set</span><span class="p">()</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;display.notebook_repr_html&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">notebook</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">10</span></code></pre></div>
+<h2 id="getting-the-data">Getting the Data</h2>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Load dataset into dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;cereals.csv&#34;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span></code></pre></div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Manuf</th>
+      <th>Type</th>
+      <th>Calories</th>
+      <th>Protein</th>
+      <th>Fat</th>
+      <th>Sodium</th>
+      <th>Fiber</th>
+      <th>Carbo</th>
+      <th>Sugars</th>
+      <th>...</th>
+      <th>Weight</th>
+      <th>Cups</th>
+      <th>Rating</th>
+      <th>Cold</th>
+      <th>Nabisco</th>
+      <th>Quaker</th>
+      <th>Kelloggs</th>
+      <th>GeneralMills</th>
+      <th>Ralston</th>
+      <th>AHFP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100%_Bran</td>
+      <td>N</td>
+      <td>C</td>
+      <td>70</td>
+      <td>4</td>
+      <td>1</td>
+      <td>130</td>
+      <td>10.0</td>
+      <td>5.0</td>
+      <td>6.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.33</td>
+      <td>68.40</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100%_Natural_Bran</td>
+      <td>Q</td>
+      <td>C</td>
+      <td>120</td>
+      <td>3</td>
+      <td>5</td>
+      <td>15</td>
+      <td>2.0</td>
+      <td>8.0</td>
+      <td>8.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>33.98</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>All-Bran</td>
+      <td>K</td>
+      <td>C</td>
+      <td>70</td>
+      <td>4</td>
+      <td>1</td>
+      <td>260</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>5.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.33</td>
+      <td>59.43</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>All-Bran_with_Extra_Fiber</td>
+      <td>K</td>
+      <td>C</td>
+      <td>50</td>
+      <td>4</td>
+      <td>0</td>
+      <td>140</td>
+      <td>14.0</td>
+      <td>8.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.50</td>
+      <td>93.70</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Almond_Delight</td>
+      <td>R</td>
+      <td>C</td>
+      <td>110</td>
+      <td>2</td>
+      <td>2</td>
+      <td>200</td>
+      <td>1.0</td>
+      <td>14.0</td>
+      <td>8.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.75</td>
+      <td>34.38</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div>
+
+<p>If you weren&rsquo;t around for the chapter on simple linear regressions, we noted that the <em>sugars</em> value was missing at index 57, so we wiped that record from the dataframe. I do so here, and again just before I create the model for the multiple linear regression.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sugars</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;Sugars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">rating</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;Rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">fiber</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;Fiber&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">shelves</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;Shelf&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="n">sugars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">sugars</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span>
+<span class="n">rating</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">rating</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span>
+<span class="n">fiber</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">fiber</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span>
+<span class="n">shelves</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">shelves</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">shelves</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">[3 3 3 3 3 1 2 3 1 3 2 1 2 3 2 1 1 2 2 3 2 3 3 3 2 1 2 3 3 2 1 2 3 3 3 2 1
+ 1 3 3 2 2 2 2 3 3 3 1 2 3 3 3 3 3 3 3 3 2 3 3 1 1 1 1 1 2 1 2 3 3 3 3 2 1
+ 1 1]</pre></div>
+<p>Typically I don&rsquo;t use the interactive notebook because 2D graphics usually suffice, and 3D sometimes behaves in a funny way, but this scatterplot functionality is really cool. Working with a 3D scatterplot, you absolutely need interactivity. Here, the shade of the color indicates closeness. Darker colors are closer, and lighter colors are further. So you can gain some familiarity with the variables and their overall range of values by looking one variable at a time. For example, if you rotate to where Sugar is the focus, you know color will be associated with Fiber; so many of the points are the same shade, so you know there isn&rsquo;t much diversity in fiber, or that they&rsquo;re all close to each other in value. When you rotate to Fiber being in the forefront, you notice that there are in fact a lot of different shades of red, thus Sugar holds a wider range of values, since they aren&rsquo;t all close in proximity. And with Ratings being held in constant on the Y-axis, its range of values is clear spatially, not requiring the use of color.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">fiber</span><span class="p">,</span> <span class="n">sugars</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="sa"></span><span class="s2">&#34;g&#34;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Fiber&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Sugars&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Nutritional Rating&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;3D Main&#34;</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;IPython.core.display.Javascript object&gt;</pre></div>
+<p><img src="/img/mr_1.jpg" alt="3D Main" /></p>
+<div class="highlight"><pre class="chroma">&lt;matplotlib.text.Text at 0x1fa31b9f7b8&gt;</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">f</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sugars</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Sugar&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Rating&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Cereal Rating by Sugar Content&#39;</span><span class="p">)</span>
+
+<span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">fiber</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.6</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Fiber&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Cereal Rating by Fiber Content&#39;</span><span class="p">)</span>
+
+<span class="n">sugars2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">sugars</span><span class="p">)</span>
+<span class="n">lm1</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">rating</span><span class="p">,</span> <span class="n">sugars2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">fiber2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">fiber</span><span class="p">)</span>
+<span class="n">lm2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">rating</span><span class="p">,</span> <span class="n">fiber2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+
+<span class="n">sugar_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">sugars</span><span class="o">.</span><span class="nb">min</span><span class="p">(),</span> <span class="n">sugars</span><span class="o">.</span><span class="nb">max</span><span class="p">())</span>
+<span class="n">sugar_line</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">sugar_line</span><span class="p">)</span>
+<span class="n">y_hat1</span> <span class="o">=</span> <span class="n">lm1</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">sugar_line</span><span class="p">)</span>
+
+<span class="n">fiber_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">fiber</span><span class="o">.</span><span class="nb">min</span><span class="p">(),</span> <span class="n">fiber</span><span class="o">.</span><span class="nb">max</span><span class="p">())</span>
+<span class="n">fiber_line</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">fiber_line</span><span class="p">)</span>
+<span class="n">y_hat2</span> <span class="o">=</span> <span class="n">lm2</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">fiber_line</span><span class="p">)</span>
+
+<span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sugar_line</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_hat1</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">fiber_line</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_hat2</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;IPython.core.display.Javascript object&gt;</pre></div>
+<p><img src="/img/mr_2.jpg" alt="Subplots" /></p>
+<div class="highlight"><pre class="chroma">[&lt;matplotlib.lines.Line2D at 0x1fa320fc4a8&gt;]</pre></div>
+<p>A random note, in these subplots we can see a straight line indicating the linear regression. You can assume these lines exist within the 3D scatterplot that lies above these two subplots, but instead of two lines representing the regression, it&rsquo;s actually a hyperplane. This flat plane (not visualized above) encompasses depth and direction, rather than just the direction of these lines.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">57</span><span class="p">])</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="sa"></span><span class="s1">&#39;Sugars&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Fiber&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;Rating&#39;</span><span class="p">]</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">mreg</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">display</span><span class="p">(</span><span class="n">mreg</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span></code></pre></div>
+<table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>         <td>Rating</td>      <th>  R-squared:         </th> <td>   0.816</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.811</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   162.3</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Tue, 25 Jul 2017</td> <th>  Prob (F-statistic):</th> <td>1.35e-27</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>14:44:55</td>     <th>  Log-Likelihood:    </th> <td> -244.08</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>    76</td>      <th>  AIC:               </th> <td>   494.2</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>    73</td>      <th>  BIC:               </th> <td>   501.1</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     2</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+     <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th> <th>[95.0% Conf. Int.]</th>
+</tr>
+<tr>
+  <th>const</th>  <td>   52.1742</td> <td>    1.556</td> <td>   33.541</td> <td> 0.000</td> <td>   49.074    55.274</td>
+</tr>
+<tr>
+  <th>Sugars</th> <td>   -2.2436</td> <td>    0.163</td> <td>  -13.750</td> <td> 0.000</td> <td>   -2.569    -1.918</td>
+</tr>
+<tr>
+  <th>Fiber</th>  <td>    2.8665</td> <td>    0.298</td> <td>    9.623</td> <td> 0.000</td> <td>    2.273     3.460</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td> 5.731</td> <th>  Durbin-Watson:     </th> <td>   1.726</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.057</td> <th>  Jarque-Bera (JB):  </th> <td>   5.767</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.669</td> <th>  Prob(JB):          </th> <td>  0.0559</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 2.822</td> <th>  Cond. No.          </th> <td>    18.9</td>
+</tr>
+</table>
+
+<h2 id="multiple-regression-results-and-inference">Multiple Regression Results and Inference</h2>
+
+<p>$$
+R^2\text{: Usually }R^2\text{ helps us find best fit. Multiple regressions are a little bit nuaunced.}
+$$</p>
+
+<p>$$
+\text{When you add variables to a model, you&rsquo;ll inevitably increase the }R^2\text{ even if the variables are useless.}
+$$</p>
+
+<p>$$
+{R^2}_{adj}\text{ values account for this by penalizing }R^2 \text{ values that include non-useful predictors.}
+$$</p>
+
+<p>$$
+\text{If }{R^2}_{adj.}\text{ is much less than }R^2\text{, it&rsquo;s a sign that a variable might be extraneous. Find and omit it.}
+$$</p>
+
+<p>In our case, there isn&rsquo;t a significant difference, so we can leave it for now.</p>
+
+<p><strong>F-statistic:</strong> The F-test is for assessing the significance of the overall regression model; in a multiple regression, it compares a model with no predictors (in this case, no sugar and no fiber), referred to as the intercept-only model, to the specified model (inclusive of those two predictors listed above). The null hypothesis is that these two models are equal, and the alternative hypothesis is that the intercept-only model is worse than our model. We will get back a p-value that helps us choose whether to reject or accept the null hypothesis. Given these p-values are approximately zero, we can reject the null. In plain English, there is evidence that there is a linear relationship between nutritional rating, and the set of predictors (sugar and fiber), since the F-test only accounts for the target variable and the set of all predictor variables, not considering the individual effects of each predictor. *Note, in case unaware, within the upper table the p-value of the F-statistic is listed as Prob (F-statistic).</p>
+
+<p><strong>T-test:</strong></p>
+
+<p>The t-test behaves differently from the F-test. It looks at the relationship between the target variable, and every predictor variable, independently.
+$$
+B_i\text{ is the population parameter of the }i^{th}\text{ variable.}
+$$
+$$
+\text{The }H_O\text{ is that }B_i\text{ is going to be equal to zero.}
+$$
+$$
+\text{The }H_A\text{ is that }B_i\text{ will not be equal to zero. }
+$$
+In essence, we&rsquo;re considering the absence of the ith term, so interpretations of this must include some reference to other predictors being held constant. Here, our value of sugar is -2.24, the t-statistic is -13.750, and the p-value is approximately 0. Using the p-value method, the null is rejected when the p-value of the test statistic is small. Ours is ~0, so our null hypothesis is rejected. <em>There is evidence for a linear relationship between nutritional rating and sugar, in the presence of fiber content.</em></p>
+
+<p>$$
+\text{Likewise, our }b_2\text{ (fiber&rsquo;s coefficient) is -2.8665, t-statistic is 9.62, and p-value is approximately 0.}
+$$</p>
+
+<p>$$
+\text{So again, our conclusion is to reject the null hypothesis.}
+$$</p>
+
+<p>There is evidence for a linear relationship between nutritional rating and fiber content, in the presence of sugar content.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">colours</span> <span class="o">=</span> <span class="p">[</span> <span class="sa"></span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;r&#39;</span><span class="p">]</span> <span class="c1">#I use colours because I don&#39;t want to overwrite any important matplotlib code; I&#39;m American</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">rating</span><span class="p">,</span> <span class="n">shelves</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">colours</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shelves</span> <span class="o">-</span> <span class="mi">1</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="o">.</span><span class="mi">7</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Shelf&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Rating&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Rating by Shelf&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">13</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;IPython.core.display.Javascript object&gt;</pre></div>
+<p><img src="/img/mr_3.jpg" alt="Rating by Shelf" /></p>
+<div class="highlight"><pre class="chroma">&lt;matplotlib.text.Text at 0x1fa321607b8&gt;</pre></div>
+<p>A random note on design decisions; it&rsquo;s good to be mindful of the colorblind. Certain groupings of colors are indistinguishable from each other. That said, the color of these categories isn&rsquo;t really a big deal since their proximity makes them distinct. In other cases, it&rsquo;s good to be mindful of color simply because they can distort perception, but again, this isn&rsquo;t a concern here.</p>
+
+<h2 id="using-categorical-variables-in-multiple-regressions">Using Categorical Variables in Multiple Regressions</h2>
+
+<p>In the above plot, we see that shelf 2 has a cluster of cereals that have low nutritional ratings. That&rsquo;s interesting. It could be due to sugary cereals being the most popular, so it&rsquo;s always at arms reach. And with other cereals at children&rsquo;s eye level (shelf 1), perhaps they can get some additional sales in. Regardless, we still want to include the shelves in our regression to see if there is any sort of relationship between nutritional rating and shelf level. To use this variable in a regression, we have to transform the categorical variable into a flag / dummy / indicator variable. This is a binary variable (it has a value of 0 or 1), which takes the value 1 if the observation belongs to the given category, and 0 otherwise. Below, the first five cereals are all on shelf 3. The 0.0&rsquo;s in the shelf_1 and shelf_2 column indicate that each observation (cereal) is neither on shelf 1, nor shelf 2.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">dummy_shelves</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;Shelf&#39;</span><span class="p">],</span> <span class="n">prefix</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;shelf&#39;</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">display</span><span class="p">(</span><span class="n">dummy_shelves</span><span class="o">.</span><span class="n">head</span><span class="p">())</span></code></pre></div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>shelf_1</th>
+      <th>shelf_2</th>
+      <th>shelf_3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">type</span><span class="p">(</span><span class="n">dummy_shelves</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">pandas.core.frame.DataFrame</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dummy_shelves</span><span class="p">))</span></code></pre></div><div class="highlight"><pre class="chroma">76
+76</pre></div>
+<p>So now we can see that our dummy_shelves variable points to a dataframe. Its length is the same as the original cereal dataframe that we&rsquo;re working with, which means we&rsquo;re ready to concatenate the two frames into one.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">df</span><span class="p">,</span> <span class="n">dummy_shelves</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">df</span><span class="p">))</span></code></pre></div><div class="highlight"><pre class="chroma">[&#39;Name&#39;, &#39;Manuf&#39;, &#39;Type&#39;, &#39;Calories&#39;, &#39;Protein&#39;, &#39;Fat&#39;, &#39;Sodium&#39;, &#39;Fiber&#39;, &#39;Carbo&#39;, &#39;Sugars&#39;, &#39;Potass&#39;, &#39;Vitamins&#39;, &#39;Shelf&#39;, &#39;Weight&#39;, &#39;Cups&#39;, &#39;Rating&#39;, &#39;Cold&#39;, &#39;Nabisco&#39;, &#39;Quaker&#39;, &#39;Kelloggs&#39;, &#39;GeneralMills&#39;, &#39;Ralston&#39;, &#39;AHFP&#39;, &#39;shelf_1&#39;, &#39;shelf_2&#39;, &#39;shelf_3&#39;]</pre></div>
+<p>The concatenation was a success. This is how the multiple linear regression model will look using the two indicator variables:</p>
+
+<p>$$\hat{y} = b_0 + b_1sugar + b_2fiber + b_3shelf1 + b_4shelf2$$</p>
+
+<p>Multiple regressions for the relationships between rating, sugar, fiber, and shelf location (notice the 0 or 1 being substituted in for the indicators):</p>
+
+<p><strong>Cereals on Shelf 1:</strong> $$\hat{y} = b_0 + b_1sugar + b_2fiber + b_3(1) + b_4(0) = (b_0 + b_3) + b_1sugar + b_2fiber$$</p>
+
+<p><strong>Cereals on Shelf 2:</strong> $$\hat{y} = b_0 + b_1sugar + b_2fiber + b_3(0) + b_4(1) = (b_0 + b_4) + b_1sugar + b_2fiber$$</p>
+
+<p><strong>Cereals on Shelf 3:</strong> $$\hat{y} = b_0 + b_1sugar + b_2fiber + b_3(0) + b_4(0) = b_0 + b_1sugar + b_2fiber$$</p>
+
+<p>Earlier we noted that linear regressions use a simple line to fit the data, but multiple regressions use planes. These three models above represent three parallel planes.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">X2</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="sa"></span><span class="s1">&#39;shelf_1&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;shelf_2&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;Rating&#39;</span><span class="p">]</span>
+<span class="n">X2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X2</span><span class="p">)</span>
+<span class="n">mreg2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">X2</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mreg2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span></code></pre></div><div class="highlight"><pre class="chroma">                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 Rating   R-squared:                       0.112
+Model:                            OLS   Adj. R-squared:                  0.088
+Method:                 Least Squares   F-statistic:                     4.614
+Date:                Tue, 25 Jul 2017   Prob (F-statistic):             0.0130
+Time:                        14:44:55   Log-Likelihood:                -303.97
+No. Observations:                  76   AIC:                             613.9
+Df Residuals:                      73   BIC:                             620.9
+Df Model:                           2                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+const         45.2200      2.246     20.136      0.000        40.744    49.696
+shelf_1        0.6789      3.821      0.178      0.859        -6.936     8.294
+shelf_2      -10.2472      3.700     -2.770      0.007       -17.621    -2.873
+==============================================================================
+Omnibus:                       18.544   Durbin-Watson:                   1.710
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               22.607
+Skew:                           1.175   Prob(JB):                     1.23e-05
+Kurtosis:                       4.272   Cond. No.                         3.28
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">mreg3</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;Rating ~ Sugars + Fiber + shelf_1 + shelf_2&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mreg3</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span></code></pre></div><div class="highlight"><pre class="chroma">                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 Rating   R-squared:                       0.828
+Model:                            OLS   Adj. R-squared:                  0.818
+Method:                 Least Squares   F-statistic:                     85.21
+Date:                Tue, 25 Jul 2017   Prob (F-statistic):           2.40e-26
+Time:                        14:44:55   Log-Likelihood:                -241.69
+No. Observations:                  76   AIC:                             493.4
+Df Residuals:                      71   BIC:                             505.0
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept     50.5245      1.851     27.293      0.000        46.833    54.216
+Sugars        -2.3183      0.173    -13.409      0.000        -2.663    -1.974
+Fiber          3.1314      0.319      9.827      0.000         2.496     3.767
+shelf_1        2.1011      1.795      1.171      0.246        -1.478     5.680
+shelf_2        3.9154      1.865      2.100      0.039         0.198     7.633
+==============================================================================
+Omnibus:                        3.477   Durbin-Watson:                   1.711
+Prob(Omnibus):                  0.176   Jarque-Bera (JB):                2.921
+Skew:                           0.475   Prob(JB):                        0.232
+Kurtosis:                       3.143   Cond. No.                         30.6
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">colours</span> <span class="o">=</span> <span class="p">[</span> <span class="sa"></span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;purple&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;r&#39;</span><span class="p">]</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">fiber</span><span class="p">,</span> <span class="n">sugars</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">colours</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">shelves</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Fiber&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Sugars&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">13</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Nutritional Rating&#39;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">13</span><span class="p">)</span>
+
+
+<span class="n">scatter1_proxy</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;none&#34;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colours</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">scatter2_proxy</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;none&#34;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colours</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">scatter3_proxy</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">],</span> <span class="n">linestyle</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;none&#34;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">colours</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">marker</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="n">scatter1_proxy</span><span class="p">,</span> <span class="n">scatter2_proxy</span><span class="p">,</span> <span class="n">scatter3_proxy</span><span class="p">],</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;Shelf 1&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Shelf 2&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Shelf 3&#39;</span><span class="p">],</span> <span class="n">numpoints</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">fontsize</span> <span class="o">=</span> <span class="mi">12</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;3D Main&#34;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">13</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;IPython.core.display.Javascript object&gt;</pre></div>
+<p><img src="/img/mr_4.jpg" alt="3D Main" /></p>
+<div class="highlight"><pre class="chroma">&lt;matplotlib.text.Text at 0x1fa325e7358&gt;</pre></div>
+<p>Shoutout to <a href="https://stackoverflow.com/a/20505720/4864602">M4rtini from StackOverflow</a> for giving this answer on how to provide a legend in 3D scatterplots. I definitely would not have known that you have to create proxies, but I suppose it makes sense; given that I had one plot created, I only had one item in the legend appearing.</p>
+
+<p>As with the last 3D scatterplot, the brightness of the colors represent proximity. The brighter, the closer, the dimmer, the further.</p>
+
+<h1 id="selecting-variables-to-include-or-exclude-in-the-regression">Selecting Variables to Include or Exclude in the Regression</h1>
+
+<p>Regressions are finicky when it comes to which variables are used. The regression&rsquo;s R-squared tends to rise as more and more variables are added, even if they have no significant contribution. If some of the predictors are correlated, F-tests can come out significant (remember, F-tests suggest the strength of the entire model), even if none of the t-tests for the individual predictors are significant.
+$$
+\text{And when there is correlation between the supposed independent variables, the coefficient}
+$$</p>
+
+<p>$$
+\text{estimates }b_1\text{ and }b_2\text{ because of the inflated values for }s_b1\text{ and }s_b2\text{ (the variability of these slopes).}
+$$</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">mreg4_1</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;Rating ~ Sugars + Fiber + shelf_2&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">mreg4_2</span> <span class="o">=</span> <span class="n">smf</span><span class="o">.</span><span class="n">ols</span><span class="p">(</span><span class="n">formula</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;Rating ~ shelf_1 + shelf_2 + Sugars + Fiber&#39;</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mreg4_1</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mreg4_2</span><span class="o">.</span><span class="n">summary</span><span class="p">())</span></code></pre></div><div class="highlight"><pre class="chroma">                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 Rating   R-squared:                       0.824
+Model:                            OLS   Adj. R-squared:                  0.817
+Method:                 Least Squares   F-statistic:                     112.6
+Date:                Tue, 25 Jul 2017   Prob (F-statistic):           4.06e-27
+Time:                        14:44:55   Log-Likelihood:                -242.42
+No. Observations:                  76   AIC:                             492.8
+Df Residuals:                      72   BIC:                             502.2
+Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept     51.7089      1.554     33.269      0.000        48.610    54.807
+Sugars        -2.3496      0.171    -13.719      0.000        -2.691    -2.008
+Fiber          3.0283      0.307      9.864      0.000         2.416     3.640
+shelf_2        3.1248      1.742      1.793      0.077        -0.349     6.598
+==============================================================================
+Omnibus:                        5.192   Durbin-Watson:                   1.699
+Prob(Omnibus):                  0.075   Jarque-Bera (JB):                4.390
+Skew:                           0.546   Prob(JB):                        0.111
+Kurtosis:                       3.440   Cond. No.                         22.3
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:                 Rating   R-squared:                       0.828
+Model:                            OLS   Adj. R-squared:                  0.818
+Method:                 Least Squares   F-statistic:                     85.21
+Date:                Tue, 25 Jul 2017   Prob (F-statistic):           2.40e-26
+Time:                        14:44:55   Log-Likelihood:                -241.69
+No. Observations:                  76   AIC:                             493.4
+Df Residuals:                      71   BIC:                             505.0
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P&gt;|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------
+Intercept     50.5245      1.851     27.293      0.000        46.833    54.216
+shelf_1        2.1011      1.795      1.171      0.246        -1.478     5.680
+shelf_2        3.9154      1.865      2.100      0.039         0.198     7.633
+Sugars        -2.3183      0.173    -13.409      0.000        -2.663    -1.974
+Fiber          3.1314      0.319      9.827      0.000         2.496     3.767
+==============================================================================
+Omnibus:                        3.477   Durbin-Watson:                   1.711
+Prob(Omnibus):                  0.176   Jarque-Bera (JB):                2.921
+Skew:                           0.475   Prob(JB):                        0.232
+Kurtosis:                       3.143   Cond. No.                         30.6
+==============================================================================
+
+Warnings:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.</pre></div>
+<p>$$
+\text{Without Shelf 1, Rating }\sim\text{ Sugars + Fiber + }{shelf}_{2}\text{ = 0.828. }
+$$</p>
+
+<p>$$
+\text{ The }{R^2}_{adj}\text{value = 0.818, and the penalty is .010.}
+$$</p>
+
+<p>$$
+\text{With Shelf 1 included, Rating}\sim shelf_1 + shelf_2 \text{+ Sugars + Fiber, }R^2\text{ = 0.824. }
+$$</p>
+
+<p>$$
+{R^2}_{adj.}\text{ is 0.818, and the penalty is .007.}
+$$</p>
+
+<p>The penalty for having Shelf 1 included is greater than the penalty of having it excluded.</p>
+
+<p>$$
+\text{We noted that }{R^2}_{adj.}\text{ compensates for having extraneous variables}
+$$</p>
+
+<p>Since the penalty of having Shelf 1 as a variable is so small, we can be a little more sure that it isn&rsquo;t excess.</p>
+
+<h2 id="sequential-sum-of-squares-with-anova">Sequential Sum of Squares with ANOVA</h2>
+
+<p>Sequential sum of squares is a useful procedure for choosing which variables to use in a model, and an analysis of variance (ANOVA) will give us the sums of squares per each predictor that we need to do it. It partitions the SSR — the proportion of the variability in the target variable that is explained by the linear relationship of the target variable with the <em>set</em> of predictor variables — into the unique portions of the SSR that are explained by the particular predictors, given any earlier predictors. For example, the sequential sum of squares for Sugars is 8711, and that represents the variability in the nutritional rating that is explained by the linear relationship between rating and sugar content. The second sequential sum of squares, for fiber content, equals 3476; this represents the unique additional variability in nutritional rating that is explained by the linear relationship of rating with fiber content, given that the variability explained by sugars has already been extracted. The third sequential sum of squares, for shelf_2, is 117. Given that fiber and sugar were extracted, this small value indicates that the variable is probably not useful for estimating rating. Because this sequentially assesses variability, given the preceeding predictor&rsquo;s variability, the ordering of the variables matters. In other words, you would want to list your more definitive variables first (like fiber), and the less-sure variables towards the end (like the various shelves).</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">anova_results</span> <span class="o">=</span> <span class="n">anova_lm</span><span class="p">(</span><span class="n">mreg4_1</span><span class="p">)</span>
+<span class="n">anova_results2</span> <span class="o">=</span> <span class="n">anova_lm</span><span class="p">(</span><span class="n">mreg4_2</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">anova_results</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">anova_results2</span><span class="p">)</span></code></pre></div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>df</th>
+      <th>sum_sq</th>
+      <th>mean_sq</th>
+      <th>F</th>
+      <th>PR(&gt;F)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Sugars</th>
+      <td>1.0</td>
+      <td>8711.93</td>
+      <td>8711.93</td>
+      <td>239.09</td>
+      <td>1.40e-24</td>
+    </tr>
+    <tr>
+      <th>Fiber</th>
+      <td>1.0</td>
+      <td>3476.64</td>
+      <td>3476.64</td>
+      <td>95.41</td>
+      <td>7.89e-15</td>
+    </tr>
+    <tr>
+      <th>shelf_2</th>
+      <td>1.0</td>
+      <td>117.19</td>
+      <td>117.19</td>
+      <td>3.22</td>
+      <td>7.71e-02</td>
+    </tr>
+    <tr>
+      <th>Residual</th>
+      <td>72.0</td>
+      <td>2623.53</td>
+      <td>36.44</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>df</th>
+      <th>sum_sq</th>
+      <th>mean_sq</th>
+      <th>F</th>
+      <th>PR(&gt;F)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>shelf_1</th>
+      <td>1.0</td>
+      <td>282.72</td>
+      <td>282.72</td>
+      <td>7.80</td>
+      <td>6.71e-03</td>
+    </tr>
+    <tr>
+      <th>shelf_2</th>
+      <td>1.0</td>
+      <td>1392.70</td>
+      <td>1392.70</td>
+      <td>38.42</td>
+      <td>3.34e-08</td>
+    </tr>
+    <tr>
+      <th>Sugars</th>
+      <td>1.0</td>
+      <td>7178.98</td>
+      <td>7178.98</td>
+      <td>198.03</td>
+      <td>3.17e-22</td>
+    </tr>
+    <tr>
+      <th>Fiber</th>
+      <td>1.0</td>
+      <td>3501.04</td>
+      <td>3501.04</td>
+      <td>96.58</td>
+      <td>7.08e-15</td>
+    </tr>
+    <tr>
+      <th>Residual</th>
+      <td>71.0</td>
+      <td>2573.86</td>
+      <td>36.25</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="multicollinearity">Multicollinearity</h2>
+
+<p>Per usual, we should be on guard against multicollinearity, so we have to check out the correlation structure between the predictor variables.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="sa"></span><span class="s1">&#39;Fiber&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;Sugars&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;shelf_2&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">())</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="sa"></span><span class="s1">&#39;Fiber&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Sugars&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Potass&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">corr</span><span class="p">())</span></code></pre></div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fiber</th>
+      <th>Sugars</th>
+      <th>shelf_2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Fiber</th>
+      <td>1.00</td>
+      <td>-0.14</td>
+      <td>-0.32</td>
+    </tr>
+    <tr>
+      <th>Sugars</th>
+      <td>-0.14</td>
+      <td>1.00</td>
+      <td>0.37</td>
+    </tr>
+    <tr>
+      <th>shelf_2</th>
+      <td>-0.32</td>
+      <td>0.37</td>
+      <td>1.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fiber</th>
+      <th>Sugars</th>
+      <th>Potass</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Fiber</th>
+      <td>1.00</td>
+      <td>-1.39e-01</td>
+      <td>9.12e-01</td>
+    </tr>
+    <tr>
+      <th>Sugars</th>
+      <td>-0.14</td>
+      <td>1.00e+00</td>
+      <td>1.41e-03</td>
+    </tr>
+    <tr>
+      <th>Potass</th>
+      <td>0.91</td>
+      <td>1.41e-03</td>
+      <td>1.00e+00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Naturally this table has some useful information. But being human, we don&rsquo;t do as well in processing the meaning of numbers, so we can look to visualizations to really beat out the relationships between the pairs of variables. The 0.91 correlation coefficient makes much more sense when we look at the visual relationship between Fiber and Potassium.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sns</span><span class="o">.</span><span class="n">pairplot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">(),</span> <span class="nb">vars</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;Potass&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Sugars&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Fiber&#39;</span><span class="p">])</span></code></pre></div><div class="highlight"><pre class="chroma">&lt;IPython.core.display.Javascript object&gt;</pre></div>
+<p><img src="/img/mr_5.jpg" alt="Pairplot" /></p>
+<div class="highlight"><pre class="chroma">&lt;seaborn.axisgrid.PairGrid at 0x1fa3213c1d0&gt;</pre></div>
+<h2 id="model-selection">Model Selection</h2>
+
+<p>Variable selection methods have been developed to help choose which variables to include in multiple regressions.</p>
+
+<ul>
+<li>Backward Elimination</li>
+<li>Forward Selection</li>
+<li>Stepwise Selection</li>
+<li>Best Subsets</li>
+</ul>
+
+<p>These variable selection methods are essentially algorithms that help to construct the model that has an optimal set of predictors (no excess, but enough to get the most accurate predictive power). This is done by evaluating F-statistics.</p>
+
+<p>In order to evaluate the F-statistics, there are a lot of comparisons being made.</p>
+
+<p>First and foremost, there is a complete model containing all of the terms:</p>
+
+<p>$$
+\text{E}\lbrack\text{Y}\rbrack\text{ = }\beta_{0}\text{+}\beta_1\space{X}_1\text{ + }\beta_2\space{X}_2\text{ + }\beta_3\space{X}_3\text{ + }\beta_4\space{X}_4\text{, and a reduced model: }
+$$</p>
+
+<p>$$
+\text{E}\lbrack\text{Y}\rbrack\text{ = }\beta_0\text{ + }\beta_1\space{X}_1\text{ + }\beta_2\space{X}_2\text{.}
+$$</p>
+
+<p>$$
+\text{Additional terms of the complete model will make the }R^2\text{ value higher.}
+$$</p>
+
+<p>We want to know if the influence of these variables is statistically significant, or if it&rsquo;s random. A partial F-test helps us with this.</p>
+
+<p>We calculate the extra (sequential) sum of squares from adding x* (the variable of interest) to the model, given that</p>
+
+<p>$$
+x_1\text{, }x_2\text{, }\mathellipsis\space{x}_p\text{ are already in the model.}
+$$</p>
+
+<p><img src="/img/math.jpg" alt="Math" /></p>
+
+<p>The null hypothesis for the partial F-test: No, the extra SSE associated with x* does not contribute significantly to the regression sum of squares model, so do not include it.</p>
+
+<p><strong>Backward Elimination:</strong></p>
+
+<ol>
+<li><p>Start with the model with all predictors</p></li>
+
+<li><p>Delete variable with smallest F-statistic</p></li>
+
+<li><p>Refit with this variable deleted. Recompute all F-statistics for deleting one of the remaining variables, and delete the variable with the smallest F-statistic</p></li>
+
+<li><p>Continue until every remaining variable is significant at cutoff</p></li>
+</ol>
+
+<p>$$
+\text{Note, you may choose a new critical value }\alpha\text{ to determine significance}
+$$</p>
+
+<p>$$
+\text{Lower values make it more difficult to retain variabels in the model}
+$$</p>
+
+<p><strong>Forward Selection:</strong></p>
+
+<ol>
+<li><p>Start with a model with no predictors</p></li>
+
+<li><p>Add variable with largest F-statistic; choose your alpha (usually 0.05)</p></li>
+
+<li><p>Refit with this variable; recompute all F-statistics for adding one of the remaining variables, and add the next variable with the largest test statistic</p></li>
+
+<li><p>Continue until no variable is significant at cutoff</p></li>
+</ol>
+
+<p>You can do this in Python with sklearn&rsquo;s <a href="http://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_regression.html">F-regression</a>. If this is confusing, <a href="https://stats.stackexchange.com/a/207396/163011">Winks</a> does a good job in explaining how it works on StackOverflow.</p>
+
+<p>See the example below all of this text.</p>
+
+<p><strong>Stepwise Selection:</strong></p>
+
+<ol>
+<li><p>Start with a model with no predictors</p></li>
+
+<li><p>Add variable with largest F-statistic (provided <em>p</em> is less than some cutoff)</p></li>
+
+<li><p>Refit with this variable added. Recompute all F-statistics for adding one of hte remaining variables, and then add the variable with the largest F-statistic</p></li>
+
+<li><p>At each step after adding a variable, try to eliminate any variable not significant at any level (do backwards elimination until that stops)</p></li>
+
+<li><p>After doing the backwards step, take another forward step</p></li>
+
+<li><p>Continue until every remaining variable is significant at cutoff level and every excluded variable is insignificant</p></li>
+</ol>
+
+<p><strong>Best Subsets:</strong></p>
+
+<ol>
+<li><p>Specify how many (k) models of each size you want reported, as well as the maximum number of predictors (p) that you want in the model</p></li>
+
+<li><p>$$ \text{All models of one predictor are built. Their }R^2\text{, }{R^2}_{adj.}\text{, Mallow&rsquo;s }C_p\text{, and s values are all calculated}
+$$
+$$
+\text{The best k models are reported, based on these measures}
+$$</p></li>
+
+<li><p>$$ \text{Then all models of two predictors are built. Their }R^2\text{, }{R^2}_{adj.}\text{, Mallow&rsquo;s }C_p\text{, and s values are all calculated} $$
+$$
+\text{The best k models are reported again, based on these measures}
+$$</p></li>
+
+<li><p>The procedure continues in this way until the maximum number of predictors (p) is reached</p></li>
+</ol>
+
+<p>$$ \text{Then you will have a list of the best models of each size: 1, 2, }\mathellipsis\text{, p, to assist in the selection fo the best overall model} $$</p>
+
+<p>Where there is a small number of predictors, it is easiest to find the best model by performing all possible regressions. Usually there are too many predictors, so one of the previous procedures should be used.</p>
+
+<p>Credit for these concise descriptions goes to this <a href="http://www.biostat.jhsph.edu/~iruczins/teaching/jf/ch10.pdf">John Hopkins University PDF</a>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="sa"></span><span class="s1">&#39;Sugars&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Fiber&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;shelf_1&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;shelf_2&#39;</span><span class="p">]]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;Rating&#39;</span><span class="p">]</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">pval</span><span class="p">)</span> <span class="o">=</span> <span class="n">f_regression</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">F</span><span class="p">,</span> <span class="n">pval</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">array([          nan,  103.69077437,   38.28102324,    1.42841445,
+          9.31830383])
+
+
+
+array([             nan,   1.00647573e-15,   3.08547244e-08,
+         2.35839636e-01,   3.15062712e-03])</pre></div>
+<p><strong>Useful Resources:</strong></p>
+
+<ul>
+<li><p><a href="http://www.science.smith.edu/~jcrouser/SDS293/labs/lab8/Lab%208%20-%20Subset%20Selection%20in%20Python.pdf">Model Selection in Python</a> Looking through  how this code implements the procedures may give a better understanding of how they work. Note, it is a PDF.</p></li>
+
+<li><p><a href="https://www.youtube.com/watch?v=OwXHkoLOse8">Partial F-tests</a> This Youtube video has Pat Obi walking through some of the details of partial F-tests.</p></li>
+
+<li><p><a href="https://onlinecourses.science.psu.edu/stat501/node/296">Sequential Sum of Squares</a> Given that the concept is pretty abstract, it wouldn&rsquo;t hurt to have somebody else&rsquo;s explanation linked.</p></li>
+
+<li><p>This page is a compilation of my notes from the book <a href="https://www.amazon.com/Mining-Predictive-Analytics-Methods-Applications/dp/1118116194">Data Mining and Predictive Analytics</a>.</p></li>
+</ul>
+
+<p>Happy modeling!</p>
+
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://astonishingelixirs.github.io/post/chapter8simple-linear-regression/" data-toggle="tooltip" data-placement="top" title="Cereal Regression with Python">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://astonishingelixirs.github.io/post/k-nearest-neighbors/" data-toggle="tooltip" data-placement="top" title="k-Nearest Neighbors Classifier">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "astonishingelixirs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ck_howard@yahoo.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/ckhoward" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/_ckhoward" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/-ckhoward" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://astonishingelixirs.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://ckhoward.github.io">Chris Howard</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.36.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/main.js"></script>
+<script src="https://astonishingelixirs.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

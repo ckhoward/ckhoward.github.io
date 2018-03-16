@@ -1,61 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Disinformation on Chris Howard</title>
-    <link>https://ckhoward.github.io/tags/disinformation/index.xml</link>
-    <description>Recent content in Disinformation on Chris Howard</description>
+    <title>Disinformation on AstonishingElixirs</title>
+    <link>https://astonishingelixirs.github.io/tags/disinformation/</link>
+    <description>Recent content in Disinformation on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
-    <atom:link href="https://ckhoward.github.io/tags/disinformation/index.xml" rel="self" type="application/rss+xml" />
+    <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
+    <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
+    <lastBuildDate>Wed, 04 Oct 2017 17:01:31 -0700</lastBuildDate>
+    
+	<atom:link href="https://astonishingelixirs.github.io/tags/disinformation/index.xml" rel="self" type="application/rss+xml" />
+    
     
     <item>
       <title>The Epistemology of Testimony</title>
-      <link>https://ckhoward.github.io/blog/the-epistemology-of-testimony/</link>
+      <link>https://astonishingelixirs.github.io/post/testimony-and-epistemology/</link>
       <pubDate>Wed, 04 Oct 2017 17:01:31 -0700</pubDate>
-      
-      <guid>https://ckhoward.github.io/blog/the-epistemology-of-testimony/</guid>
-      <description>
-
-&lt;h1 id=&#34;the-epistemology-of-testimony&#34;&gt;The Epistemology of Testimony&lt;/h1&gt;
-
-&lt;p&gt;As humans, our primary way of learning about the world is through experience. But given that we aren&amp;rsquo;t omnipresent and can&amp;rsquo;t experience everything for ourselves, we have to fall back on another method—teamwork. We create information and share it with others, and they do the same. Pretty much everything we learn about the world, apart from what we learn through observation and experience, is based on testimony, or what we hear and read. Naturally, the testimony of others is incredibly important to who we are and what we know.&lt;/p&gt;
-
-&lt;p&gt;Assessing information to be true or false calls for a degree of consciousness. Hume makes an interesting point when he says:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;We entertain a suspicion concerning any matter of fact, when the witnesses contradict each other; when they are but few, or of a doubtful character; when they have an interest in what they affirm; when they
-deliver their testimony with hesitation, or on the contrary, with too violent asseverations. There are many other particulars of the same kind, which may diminish or destroy the force of any argument, derived from
-human testimony.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Our judgments and perceptions shape how we think and feel about who somebody is and if we believe them; what that person is saying; how that person is saying it; and why. Maybe most academics treat this as a subjective probability, on a scale from 0 to 1. I think [-1,1] is a more useful interval, depicted as a spectrum, when thinking about how we interact with the testimony of others. Naturally, for some new event, somebody starts at 0. Depending on our judgments, we may be pushed towards disbelief (-1), or belief (1).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/gradient.jpg&#34; alt=&#34;img&#34; title=&#34;A scale of [-1, 1]&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;To get at Hume&amp;rsquo;s points, we should talk about consciousness. Self-awareness is a central issue when it comes to the epistemology of testimony, because the way we deal with other people and information is complex, and often out of focus. More time should be given to understanding how we judge people and the information they convey to us, and how they convey it.&lt;/p&gt;
-
-&lt;h2 id=&#34;judging-communication&#34;&gt;Judging Communication&lt;/h2&gt;
-
-&lt;p&gt;As noted, communicating violently can destroy a person&amp;rsquo;s argument. It doesn&amp;rsquo;t matter if they are right or wrong, an expert or not, once the arguer (or conveyor) of information becomes aggressive, or condescending, or anything with a nasty connotation, the point is lost. Communication really is a key part of knowledge acquisition. It is unfortunate that people are notoriously bad communicators. We become overly defensive at times, have trouble letting others know how we actually feel, and we have a hard time understanding what others actually mean, even if they aren&amp;rsquo;t quite delivering their message as they should be.&lt;/p&gt;
-
-&lt;h2 id=&#34;judging-character&#34;&gt;Judging Character&lt;/h2&gt;
-
-&lt;p&gt;We have to determine a person&amp;rsquo;s authority or credibility so that we can attach some proportion of belief or disbelief to what they tell us. Sometimes language patterns can help us with this; something I have noticed is that conspiracy theorists often have distinctive styles of writing. When I see somebody intermittently throwing in a &amp;lsquo;TRUTH!!!,&amp;rsquo; or calling people &amp;lsquo;sheeple,&amp;rsquo; I automatically attach some (likely great) proportion of disbelief to whatever comes next. When looking at an email that links you to some sign-in form, but you see broken and fragmented Englesh, you may suspect that the sender is not credible, and that it isn&amp;rsquo;t safe to sign in. When it comes to judging other people&amp;rsquo;s anecdotes, I have found one of my personal biases. When I am taking in information, when a source admits it was wrong, but provides &amp;lsquo;evidence&amp;rsquo; immediately afterwards (for what brought his or her revelation), I&amp;rsquo;m much more likely to believe it, or at least my guard is let down. The revelatory aspect is appealing to me, it seems. I probably think an introspective quality in somebody, or that sort of intellectual flexibility to change viewpoint, is something that warrants belief or faith. Reflecting back on Judging Communication, emotion and demeanor can also be ways to judge character.&lt;/p&gt;
-
-&lt;h2 id=&#34;judging-information&#34;&gt;Judging Information&lt;/h2&gt;
-
-&lt;p&gt;Some years back, I stumbled upon a blog post called &lt;a href=&#34;https://youarenotsosmart.com/2011/06/10/the-backfire-effect/&#34;&gt;The Backfire Effect&lt;/a&gt;. It may not be the most scientific source, but I highly recommend reading it because A) it is supported by some sociological studies (for what that is worth) and B) the idea is relevant to communication, and extends to every Facebook argument you have ever seen. The gist of it is that, when presented with information contrary to our beliefs, we have an almost primal inclination to keep our beliefs safe from it. We naturally spend time confirming ideas, finding pieces here and there that are supportive of the idea, and ignoring pieces that are not. And when it comes down to it, this new, contradictory information can actually push us further into believing whatever it is the antagonist tries to counter. When we talk about knowledge acquisition and how it relates to what we are hearing or reading from somebody else, this is the sort of bias that can do a lot of damage in acquiring knowledge. I have seen a phrase pop up that goes &amp;ldquo;strong opinions, loosely held,&amp;rdquo; but I have a difficult time wrapping my head around it. If anyone has any thoughts about this phrase, feel free to share.&lt;/p&gt;
-
-&lt;p&gt;When judging information, timeliness is also a relevant factor. We may see a high-reputation journalist hastily publish details incorrectly. After the break of a big story, where people are still scrambling to gather the facts, it can be useful take pause before consuming and propagating information, as it can have dangerous effects. When considering this Las Vegas shooting, the Gateway Pundit (a political site that some consider credible) &lt;a href=&#34;https://www.nytimes.com/2017/10/02/us/politics/viral-claims-and-rumors-in-the-las-vegas-shooting.html&#34;&gt;wrongly published somebody else being the gunman&lt;/a&gt;, resulting in many death threats being made to the victim and his family. And if view-count makes a YouTube video more credible, just look at this Tweet: &lt;a href=&#34;https://twitter.com/tqbf/status/915630300381745152&#34;&gt;https://twitter.com/tqbf/status/915630300381745152&lt;/a&gt; Given a little bit of time, people will delete their Tweets, edit their published article, or flag and delete videos like the one above.&lt;/p&gt;
-
-&lt;h3 id=&#34;comments&#34;&gt;Comments&lt;/h3&gt;
-
-&lt;p&gt;I&amp;rsquo;d love to know what all of you think about the epistemology of testimony. How do you approach particular comments; which ones seem wise, or ill-informed? What kinds of factors influence the believability of a piece of information for you? Do you have any policies that you use to protect yourself and others from mis- and dis-information? What kinds of responsibilities might be relevant to using testimony as grounds of gaining and sharing knowledge? Do you have any biases in particular that you&amp;rsquo;re interested in? Thanks for reading.&lt;/p&gt;
-
-&lt;h3 id=&#34;sources&#34;&gt;Sources&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&#34;http://ccl.northwestern.edu/papers/ABMVisualizationGuidelines/palette/scheme-color-scale-gradient.png&#34;&gt;http://ccl.northwestern.edu/papers/ABMVisualizationGuidelines/palette/scheme-color-scale-gradient.png&lt;/a&gt;&lt;/p&gt;
-</description>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/testimony-and-epistemology/</guid>
+      <description>The Epistemology of Testimony As humans, our primary way of learning about the world is through experience. But given that we aren&amp;rsquo;t omnipresent and can&amp;rsquo;t experience everything for ourselves, we have to fall back on another method—teamwork. We create information and share it with others, and they do the same. Pretty much everything we learn about the world, apart from what we learn through observation and experience, is based on testimony, or what we hear and read.</description>
     </item>
     
   </channel>

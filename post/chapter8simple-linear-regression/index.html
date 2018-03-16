@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Cereal Regression with Python</title>
+  <meta property="og:title" content="Cereal Regression with Python" />
+  <meta name="twitter:title" content="Cereal Regression with Python" />
+  <meta name="description" content="Simple Linear Regression Cereal Nutritional Rating against Sugar Content Being the cereal enthusiasts we are, we might be interested in knowing what sort of relationship exists between a cereal&rsquo;s nutrition rating and its sugar content. Therefore, we can turn to using a simple linear regression. Using a linear model, we would also be able to look at any given cereal&rsquo;s sugar content, and attempt to make an estimation as to what its nutritional rating will be.">
+  <meta property="og:description" content="Simple Linear Regression Cereal Nutritional Rating against Sugar Content Being the cereal enthusiasts we are, we might be interested in knowing what sort of relationship exists between a cereal&rsquo;s nutrition rating and its sugar content. Therefore, we can turn to using a simple linear regression. Using a linear model, we would also be able to look at any given cereal&rsquo;s sugar content, and attempt to make an estimation as to what its nutritional rating will be.">
+  <meta name="twitter:description" content="Simple Linear Regression Cereal Nutritional Rating against Sugar Content Being the cereal enthusiasts we are, we might be interested in knowing what sort of relationship exists between a …">
+  <meta name="author" content="Chris Howard"/>
+  <link href='https://astonishingelixirs.github.io/img/avatar-icon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@_ckhoward" />
+  <meta name="twitter:creator" content="@_ckhoward" />
+  <meta property="og:url" content="https://astonishingelixirs.github.io/post/chapter8simple-linear-regression/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AstonishingElixirs" />
+
+  <meta name="generator" content="Hugo 0.36.1" />
+  <link rel="canonical" href="https://astonishingelixirs.github.io/post/chapter8simple-linear-regression/" />
+  <link rel="alternate" href="https://astonishingelixirs.github.io/index.xml" type="application/rss+xml" title="AstonishingElixirs">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://astonishingelixirs.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-114707471-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Reading" href="/post/reading-list">Reading</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="AstonishingElixirs" href="https://astonishingelixirs.github.io">
+            <img class="avatar-img" src="https://astonishingelixirs.github.io/img/avatar-icon.png" alt="AstonishingElixirs" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Cereal Regression with Python</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 21, 2018
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 9 minutes (1824 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<h1 id="simple-linear-regression">Simple Linear Regression</h1>
+
+<h2 id="cereal-nutritional-rating-against-sugar-content">Cereal Nutritional Rating against Sugar Content</h2>
+
+<p>Being the cereal enthusiasts we are, we might be interested in knowing what sort of relationship exists between a cereal&rsquo;s nutrition rating and its sugar content. Therefore, we can turn to using a simple linear regression. Using a linear model, we would also be able to look at any given cereal&rsquo;s sugar content, and attempt to make an estimation as to what its nutritional rating will be. Usually you&rsquo;ll want to throw together a scatterplot to see if a linear regression is worth your time, but given the context of the chapter, we know what we&rsquo;re jumping into, so we&rsquo;ll make the assumption that a linear regression works.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="kn">as</span> <span class="nn">sm</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+
+<span class="n">seaborn</span><span class="o">.</span><span class="nb">set</span><span class="p">()</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;display.notebook_repr_html&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;display.precision&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;figure.figsize&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">7</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Load dataset into dataframe</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;cereals.csv&#34;</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span></code></pre></div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Manuf</th>
+      <th>Type</th>
+      <th>Calories</th>
+      <th>Protein</th>
+      <th>Fat</th>
+      <th>Sodium</th>
+      <th>Fiber</th>
+      <th>Carbo</th>
+      <th>Sugars</th>
+      <th>...</th>
+      <th>Weight</th>
+      <th>Cups</th>
+      <th>Rating</th>
+      <th>Cold</th>
+      <th>Nabisco</th>
+      <th>Quaker</th>
+      <th>Kelloggs</th>
+      <th>GeneralMills</th>
+      <th>Ralston</th>
+      <th>AHFP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100%_Bran</td>
+      <td>N</td>
+      <td>C</td>
+      <td>70</td>
+      <td>4</td>
+      <td>1</td>
+      <td>130</td>
+      <td>10.0</td>
+      <td>5.0</td>
+      <td>6.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.33</td>
+      <td>68.40</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>100%_Natural_Bran</td>
+      <td>Q</td>
+      <td>C</td>
+      <td>120</td>
+      <td>3</td>
+      <td>5</td>
+      <td>15</td>
+      <td>2.0</td>
+      <td>8.0</td>
+      <td>8.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>1.00</td>
+      <td>33.98</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>All-Bran</td>
+      <td>K</td>
+      <td>C</td>
+      <td>70</td>
+      <td>4</td>
+      <td>1</td>
+      <td>260</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>5.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.33</td>
+      <td>59.43</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>All-Bran_with_Extra_Fiber</td>
+      <td>K</td>
+      <td>C</td>
+      <td>50</td>
+      <td>4</td>
+      <td>0</td>
+      <td>140</td>
+      <td>14.0</td>
+      <td>8.0</td>
+      <td>0.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.50</td>
+      <td>93.70</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Almond_Delight</td>
+      <td>R</td>
+      <td>C</td>
+      <td>110</td>
+      <td>2</td>
+      <td>2</td>
+      <td>200</td>
+      <td>1.0</td>
+      <td>14.0</td>
+      <td>8.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>0.75</td>
+      <td>34.38</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sugars</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;Sugars&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sugars</span></code></pre></div><div class="highlight"><pre class="chroma">array([  6.,   8.,   5.,   0.,   8.,  10.,  14.,   8.,   6.,   5.,  12.,
+         1.,   9.,   7.,  13.,   3.,   2.,  12.,  13.,   7.,   0.,   3.,
+        10.,   5.,  13.,  11.,   7.,  10.,  12.,  12.,  15.,   9.,   5.,
+         3.,   4.,  11.,  10.,  11.,   6.,   9.,   3.,   6.,  12.,   3.,
+        11.,  11.,  13.,   6.,   9.,   7.,   2.,  10.,  14.,   3.,   0.,
+         0.,   6.,  nan,  12.,   8.,   6.,   2.,   3.,   0.,   0.,   0.,
+        15.,   3.,   5.,   3.,  14.,   3.,   3.,  12.,   3.,   3.,   8.])</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">rating</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;Rating&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">rating</span></code></pre></div><div class="highlight"><pre class="chroma">array([ 68.402973,  33.983679,  59.425505,  93.704912,  34.384843,
+        29.509541,  33.174094,  37.038562,  49.120253,  53.313813,
+        18.042851,  50.764999,  19.823573,  40.400208,  22.736446,
+        41.445019,  45.863324,  35.782791,  22.396513,  40.448772,
+        64.533816,  46.895644,  36.176196,  44.330856,  32.207582,
+        31.435973,  58.345141,  40.917047,  41.015492,  28.025765,
+        35.252444,  23.804043,  52.076897,  53.371007,  45.811716,
+        21.871292,  31.072217,  28.742414,  36.523683,  36.471512,
+        39.241114,  45.328074,  26.734515,  54.850917,  37.136863,
+        34.139765,  30.313351,  40.105965,  29.924285,  40.69232 ,
+        59.642837,  30.450843,  37.840594,  41.50354 ,  60.756112,
+        63.005645,  49.511874,  50.828392,  39.259197,  39.7034  ,
+        55.333142,  41.998933,  40.560159,  68.235885,  74.472949,
+        72.801787,  31.230054,  53.131324,  59.363993,  38.839746,
+        28.592785,  46.658844,  39.106174,  27.753301,  49.787445,
+        51.592193,  36.187559])</pre></div>
+<p>Notice that nan in the sugars array? One of the cereals is missing content for the sugar column, so we will have to get rid of this record. We&rsquo;re really only working with sugars and rating, so that&rsquo;s where we will delete the record from, but we could just as well delete it from the dataframe if that is what we were using to access the data. The first step is to find its index, which we will then use in our delete methods.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Book code shows record 58; R&#39;s indexing starts at 1, unlike Python&#39;s, which starts at 0</span>
+<span class="n">indx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argwhere</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">sugars</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">indx</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">[[57]]</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Deleting the single null record from the sugars and rating arrays</span>
+<span class="n">sugars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">sugars</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span>
+<span class="n">rating</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">rating</span><span class="p">,</span> <span class="mi">57</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">len</span><span class="p">(</span><span class="n">rating</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">76</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nb">len</span><span class="p">(</span><span class="n">sugars</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">76</pre></div>
+<p>Now that these two arrays are confirmed to be the same length, they can be used in calculating the linear model.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">sugars2</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">sugars</span><span class="p">)</span>
+<span class="n">lm</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">OLS</span><span class="p">(</span><span class="n">rating</span><span class="p">,</span> <span class="n">sugars2</span><span class="p">)</span>
+<span class="n">lm</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">fit</span><span class="p">()</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span></code></pre></div>
+<table class="simpletable">
+<caption>OLS Regression Results</caption>
+<tr>
+  <th>Dep. Variable:</th>            <td>y</td>        <th>  R-squared:         </th> <td>   0.584</td>
+</tr>
+<tr>
+  <th>Model:</th>                   <td>OLS</td>       <th>  Adj. R-squared:    </th> <td>   0.578</td>
+</tr>
+<tr>
+  <th>Method:</th>             <td>Least Squares</td>  <th>  F-statistic:       </th> <td>   103.7</td>
+</tr>
+<tr>
+  <th>Date:</th>             <td>Mon, 17 Jul 2017</td> <th>  Prob (F-statistic):</th> <td>1.01e-15</td>
+</tr>
+<tr>
+  <th>Time:</th>                 <td>11:42:23</td>     <th>  Log-Likelihood:    </th> <td> -275.21</td>
+</tr>
+<tr>
+  <th>No. Observations:</th>      <td>    76</td>      <th>  AIC:               </th> <td>   554.4</td>
+</tr>
+<tr>
+  <th>Df Residuals:</th>          <td>    74</td>      <th>  BIC:               </th> <td>   559.1</td>
+</tr>
+<tr>
+  <th>Df Model:</th>              <td>     1</td>      <th>                     </th>     <td> </td>   
+</tr>
+<tr>
+  <th>Covariance Type:</th>      <td>nonrobust</td>    <th>                     </th>     <td> </td>   
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+    <td></td>       <th>coef</th>     <th>std err</th>      <th>t</th>      <th>P>|t|</th> <th>[95.0% Conf. Int.]</th>
+</tr>
+<tr>
+  <th>const</th> <td>   59.8530</td> <td>    1.998</td> <td>   29.964</td> <td> 0.000</td> <td>   55.873    63.833</td>
+</tr>
+<tr>
+  <th>x1</th>    <td>   -2.4614</td> <td>    0.242</td> <td>  -10.183</td> <td> 0.000</td> <td>   -2.943    -1.980</td>
+</tr>
+</table>
+<table class="simpletable">
+<tr>
+  <th>Omnibus:</th>       <td>12.448</td> <th>  Durbin-Watson:     </th> <td>   1.815</td>
+</tr>
+<tr>
+  <th>Prob(Omnibus):</th> <td> 0.002</td> <th>  Jarque-Bera (JB):  </th> <td>  14.427</td>
+</tr>
+<tr>
+  <th>Skew:</th>          <td> 0.787</td> <th>  Prob(JB):          </th> <td>0.000737</td>
+</tr>
+<tr>
+  <th>Kurtosis:</th>      <td> 4.441</td> <th>  Cond. No.          </th> <td>    15.9</td>
+</tr>
+</table>
+
+<h2 id="linear-model-summary">Linear Model Summary</h2>
+
+<p>This summary contains a lot of useful information. R-squared gives us a proportion of variance that is explained by the regression. Ranging from 0 to 1 (think 0% to 100%), 1 is more desirable, as it suggests the model does explain all variability of the data around the mean—it suggests the model fits your data well. The adjusted R-squared does the same, but factors in the number of of observations and the degrees of freedom. This linear model doesn&rsquo;t appear to be great, as only 59% of the cereals&rsquo; nutritional ratings are explained by sugar content, but it isn&rsquo;t too bad either.</p>
+
+<p>The p-value however is significant for sugar (x1) which permits us to reject our null hypothesis (that there is no relationship between sugar and nutritional rating). And looking at the constant and coefficient, we can say that the estimated cereal rating equals 59.8530 minus 2.4614 times the sugar content in grams, or in other words, nutritional value declines as sugar content increases.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Returns the constant and coefficient</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">params</span></code></pre></div><div class="highlight"><pre class="chroma">array([ 59.85301691,  -2.46142021])</pre></div>
+<p>Since the model is a good enough fit, we can use it for some degree of predictive power. So let&rsquo;s say we&rsquo;re going to market with a new cereal that will have 1 gram of sugar. That can be simply calculated with the formula</p>
+
+<p>$$
+\hat{y}\text{ = 59.8530 + -2.4614*(1)}
+$$</p>
+
+<p>As shown directly below, we can predict that the cereal will have a nutritional rating of 57.3916.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">y</span> <span class="o">=</span> <span class="mf">59.8530</span> <span class="o">+</span> <span class="o">-</span><span class="mf">2.4614</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y</span></code></pre></div><div class="highlight"><pre class="chroma">57.391600000000004</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">new_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">sugars</span><span class="o">.</span><span class="nb">min</span><span class="p">(),</span> <span class="n">sugars</span><span class="o">.</span><span class="nb">max</span><span class="p">())</span>
+<span class="n">new_line</span> <span class="o">=</span> <span class="n">sm</span><span class="o">.</span><span class="n">add_constant</span><span class="p">(</span><span class="n">new_line</span><span class="p">)</span>
+<span class="n">y_hat</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">new_line</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">sugars</span><span class="p">,</span> <span class="n">rating</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;Sugars&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;Nutritional Rating&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;Cereal Rating by Sugar Content&#34;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">new_line</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">y_hat</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">[&lt;matplotlib.lines.Line2D at 0x27e72424b38&gt;]</pre></div>
+<p><img src="/img/cereal_regression.jpg" alt="Simple Linear Regression" title="Simple Linear Regression" /></p>
+
+<h1 id="residuals-and-leverage">Residuals and Leverage</h1>
+
+<p>If we saw that some bizarre observation held a lot of weight over the model and may have been throwing it off, we can take a look at the residuals and the leverage that the observations hold. This dataset doesn&rsquo;t seem too problematic, but in some case, there might be a cereal that has like 60 grams of sugar, far out from all of the others. If that were the case, the model would be completely different, likely to the detriment of its predictive power. While there are some hefty residuals here (like the first cereal being 23.318 rating points away from the predicted rating), the cereals are fine and don&rsquo;t hold any atypical or unwanted influences on the model. This is confirmed below using the <em>get_influence</em> method.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">lm</span><span class="o">.</span><span class="n">resid</span></code></pre></div><div class="highlight"><pre class="chroma">array([ 23.31847736,  -6.17797621,  11.87958915,  33.85189509,
+        -5.77681221,  -5.72927379,   7.78096006,  -3.12309321,
+         4.03575736,   5.76789715, -12.27312337,  -6.6265977 ,
+       -17.876662  ,  -2.22286743,  -5.11810815, -11.02373727,
+        -9.06685249,   5.46681663,  -5.45804115,  -2.17430343,
+         4.68079909,  -5.57311227,   0.93738121,  -3.21505985,
+         4.35302785,  -1.34142158,  15.72206557,   5.67823221,
+        10.69951763,  -2.29020937,  12.32073027, -13.896192  ,
+         4.53098115,   0.90225073,  -4.19562006, -10.90610258,
+        -4.16659779,  -4.03498058,  -8.56081264,  -1.228723  ,
+       -13.22764227,   0.24357836,  -3.58145937,   2.38216073,
+         4.35946842,   1.36237042,   2.45879685,  -4.97853064,
+        -7.77595   ,  -1.93075543,   4.71266051,  -4.78797179,
+        12.44746006, -10.96521627,   0.90309509,   3.15262809,
+         4.42737836,   8.94322263,  -0.45825521,  10.24864636,
+       -12.93124349, -11.90859727,   8.38286809,  14.61993209,
+        12.94877009,   8.29834027,   0.66256773,  11.81807715,
+       -13.62901027,   3.19965106,  -5.80991227, -13.36258227,
+        -2.56267337,  -2.68131127,  -0.87656327,  -3.97409621])</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Remember, R&#39;s indexing starts at 1, so to get the 12th record, Python uses 11 instead of 12</span>
+<span class="n">lm</span><span class="o">.</span><span class="n">resid</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span></code></pre></div><div class="highlight"><pre class="chroma">-6.6265976986200883</pre></div>
+<p>The <em>get_influence</em> method calculates the actual influence of every observation (in our case, every cereal). It does so by taking into account the standardized residuals ((y - y_hat) / standard_error_ith_residual) and the leverage (observations with extreme x-values, like the previous example of 60 grams of sugar), calculated as (1 / n) + ((x - x_bar)^2 / Sum(x - x_bar)^2).</p>
+
+<p>Observations tend to be influential if in some capacity, they have a higher residual <em>and</em> some leverage. Not all outliers are influential, and not all points with leverage are influential. But if some observation is suspicious, <em>Cook&rsquo;s Distance</em> can determine the influence of your observations. Typically, if an observation&rsquo;s <em>Cook Distance</em> comes out greater than 1, it is influential.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">infl</span> <span class="o">=</span> <span class="n">lm</span><span class="o">.</span><span class="n">get_influence</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">print</span><span class="p">(</span><span class="n">infl</span><span class="o">.</span><span class="n">summary_table</span><span class="p">())</span></code></pre></div><div class="highlight"><pre class="chroma">==================================================================================================
+       obs      endog     fitted     Cook&#39;s   student.   hat diag    dffits   ext.stud.     dffits
+                           value          d   residual              internal   residual           
+--------------------------------------------------------------------------------------------------
+         0     10.000      5.718      0.003      0.681      0.007      0.057      0.671      0.057
+         1     11.000      8.577      0.002      0.387      0.016      0.049      0.377      0.048
+         2     12.000     11.437      0.000      0.091      0.028      0.015      0.088      0.015
+         3     13.000     14.296      0.002     -0.210      0.044     -0.045     -0.204     -0.044
+         4     14.000     17.155      0.018     -0.517      0.063     -0.134     -0.509     -0.132
+         5     15.000     20.014      0.065     -0.832      0.086     -0.256     -0.829     -0.255
+         6     16.000     22.873      0.170     -1.157      0.113     -0.412     -1.184     -0.422
+         7     17.000     25.732      0.372     -1.495      0.143     -0.610     -1.572     -0.641
+         8     18.000      5.718      0.027      1.954      0.007      0.165      2.214      0.186
+         9     19.000      8.577      0.045      1.666      0.016      0.211      1.802      0.229
+        10     20.000     11.437      0.055      1.377      0.028      0.234      1.428      0.243
+        11     21.000     14.296      0.054      1.087      0.044      0.233      1.098      0.236
+        12     22.000     17.155      0.043      0.794      0.063      0.206      0.792      0.206
+        13     23.000     20.014      0.023      0.495      0.086      0.152      0.488      0.150
+        14     24.000     22.873      0.005      0.190      0.113      0.068      0.185      0.066
+        15     25.000     25.732      0.003     -0.125      0.143     -0.051     -0.122     -0.050
+==================================================================================================</pre></div>
+<p>As none of the <em>Cook&rsquo;s Distance</em> values are greater than 1, we&rsquo;re likely safe from any needlessly influential observations in this sample.</p>
+
+<h2 id="inference-and-model-building">Inference and Model Building</h2>
+
+<p>Typically when one wants to make more confident inferences, or build and deploy a functioning model, more must be done than just these steps. Validation of the model and its assumptions is an absolute necessity, otherwise expensive errors can be made along the line. These steps are solid for a sample, but across samples, the error differs. A true population regression will minimize the error across all of these samples, for the true best fit.</p>
+
+<h2 id="inference-and-extrapolation">Inference and Extrapolation</h2>
+
+<p>Extrapolation should be avoided if possible when doing regression analysis. And if a prediction outside of the range of given x-values must be completed, a disclaimer should be provided that no x-data is available to support the prediction. This is because a relationship between x and y might exist within the sample&rsquo;s range, but once outside of that range, the behavior completely changes. For example, say there is a linear relationship between height and weight, and the data provided is from people that are 5&rsquo;0&rdquo; to 6&rsquo;6&rdquo;. An extrapolation to somebody that is 7&rsquo;0&rdquo; tall might work, but if we try to use this linear equation on somebody that is 1&rsquo;0&rdquo;, it&rsquo;s destined to fail. And with that, I leave you xkcd:</p>
+
+<p><img src="https://i.stack.imgur.com/u5HhK.png" alt="Extrapolation" /></p>
+
+<p><strong>Useful Resources:</strong></p>
+
+<ul>
+<li><p><a href="http://www-bcf.usc.edu/~gareth/ISL/index.html">An Introduction to Statistical Learning</a> Chapter 3 of this book goes into the theory and mathematics of linear regressions, going in-depth with important concepts like minimizing errors and assumptions of linear models.</p></li>
+
+<li><p><a href="https://github.com/justmarkham/DAT4/blob/master/notebooks/08_linear_regression.ipynb">Kevin Markham&rsquo;s Notebook on Linear Regressions</a> This notebook utilizes Python to work through regressions for the ISL linear regression example. R code <em>should</em> be found with a little Googling.</p></li>
+
+<li><p><a href="https://www.datarobot.com/blog/ordinary-least-squares-in-python/">Peter Prettenhofer&rsquo;s Walkthrough</a> This is another Python resource in going through an ordinary least-squares regression. It&rsquo;s useful for seeing as many examples as possible, and this too does well in explaining the steps and returns.</p></li>
+
+<li><p>This page is a compilation of my notes from the book <a href="https://www.amazon.com/Mining-Predictive-Analytics-Methods-Applications/dp/1118116194">Data Mining and Predictive Analytics</a>.</p></li>
+</ul>
+
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://astonishingelixirs.github.io/post/exploratory-data-analysis/" data-toggle="tooltip" data-placement="top" title="Exploratory Analysis of Churn Data">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/" data-toggle="tooltip" data-placement="top" title="Multiple Regressions with Python">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "astonishingelixirs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ck_howard@yahoo.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/ckhoward" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/_ckhoward" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/-ckhoward" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://astonishingelixirs.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://ckhoward.github.io">Chris Howard</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.36.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/main.js"></script>
+<script src="https://astonishingelixirs.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

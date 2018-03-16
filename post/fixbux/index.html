@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>FIXBUX: A Web-extension to Safeguard Users from Themselves [Javascript]</title>
+  <meta property="og:title" content="FIXBUX: A Web-extension to Safeguard Users from Themselves [Javascript]" />
+  <meta name="twitter:title" content="FIXBUX: A Web-extension to Safeguard Users from Themselves …" />
+  <meta name="description" content="Overview It would seem that people are becoming more conscious of behavior&rsquo;s role in retaining, taking back, and even losing privacy. Privacy technology isn&rsquo;t currently a solution to privacy issues, so it is becoming more important to consider how we interact with these technologies, and how we make decisions. We have a greater propensity to share when our friends share, when we trust the technology maintainers, and defaults surprisingly dictate the way we behave, so what happens when you opt-in, by default, to share your social network data with a host of third parties?">
+  <meta property="og:description" content="Overview It would seem that people are becoming more conscious of behavior&rsquo;s role in retaining, taking back, and even losing privacy. Privacy technology isn&rsquo;t currently a solution to privacy issues, so it is becoming more important to consider how we interact with these technologies, and how we make decisions. We have a greater propensity to share when our friends share, when we trust the technology maintainers, and defaults surprisingly dictate the way we behave, so what happens when you opt-in, by default, to share your social network data with a host of third parties?">
+  <meta name="twitter:description" content="Overview It would seem that people are becoming more conscious of behavior&rsquo;s role in retaining, taking back, and even losing privacy. Privacy technology isn&rsquo;t currently a solution to …">
+  <meta name="author" content="Chris Howard"/>
+  <link href='https://astonishingelixirs.github.io/img/avatar-icon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@_ckhoward" />
+  <meta name="twitter:creator" content="@_ckhoward" />
+  <meta property="og:url" content="https://astonishingelixirs.github.io/post/fixbux/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AstonishingElixirs" />
+
+  <meta name="generator" content="Hugo 0.36.1" />
+  <link rel="canonical" href="https://astonishingelixirs.github.io/post/fixbux/" />
+  <link rel="alternate" href="https://astonishingelixirs.github.io/index.xml" type="application/rss+xml" title="AstonishingElixirs">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://astonishingelixirs.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-114707471-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Reading" href="/post/reading-list">Reading</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="AstonishingElixirs" href="https://astonishingelixirs.github.io">
+            <img class="avatar-img" src="https://astonishingelixirs.github.io/img/avatar-icon.png" alt="AstonishingElixirs" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>FIXBUX: A Web-extension to Safeguard Users from Themselves [Javascript]</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on December 12, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 5 minutes (946 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<h2 id="overview">Overview</h2>
+
+<p>It would seem that people are becoming more conscious of behavior&rsquo;s role in retaining, taking back, and even losing privacy. Privacy technology isn&rsquo;t currently a solution to privacy issues, so it is becoming more important to consider how we interact with these technologies, and how we make decisions. We have a greater propensity to share when our friends share, when we trust the technology maintainers, and defaults surprisingly dictate the way we behave, so what happens when you opt-in, by default, to share your social network data with a host of third parties?</p>
+
+<p>There are certain contexts that we don&rsquo;t think twice when sharing, like when looking for a job and we put our information up on job networking sites. It almost feels like a societal requirement sometimes, like you have to post your resume to these databases that then circulate it to a plethora of recruiters. This information often contains addresses, past employment, where you were, and through inference, possibly who you know and interact with.</p>
+
+<p>These sites are responsible for important user data, so how do they influence user behavior? Often with Bully UX. Elements of design can be used to pressure a user into doing something, and this is where Bully UX lies, right between <em>regular</em> UX and <em>dark</em> UX, where a user might feel inadequate in some way, for not having some quality (or at least not sharing it). A simple web-extension can execute a little bit of Javascript and help users turn a blind eye to these coercive elements.</p>
+
+<p>FIXBUX (Fix Bully UX) is a Chrome web-extension that removes coercive elements.</p>
+
+<h2 id="installation">Installation</h2>
+
+<p><strong>Requirement:</strong> Google Chrome</p>
+
+<p><strong>Setup:</strong></p>
+
+<ol>
+<li><code>git clone https://www.github.com/ckhoward/fixbux.git</code></li>
+<li>Open Google Chrome</li>
+<li>Type <code>chrome://extensions</code> into the URL bar</li>
+<li>Enable developer mode</li>
+<li>Load unpacked extension and select the FIXBUX/FIXBUX/ directory</li>
+<li>Enable the extension and hit <code>Control + R</code> to reload</li>
+<li>Click the extension icon and visit your page of choice</li>
+</ol>
+
+<h2 id="case-studies">Case studies</h2>
+
+<h3 id="linkedin">LinkedIn</h3>
+
+<p>LinkedIn initially inspired the idea for this extension, but since its conception, LinkedIn has actually improved their UI to be less coercive and better off for starters. For random example, it doesn&rsquo;t shame a user that may have dropped out of high school by leaving education a permanent requirement—a user can now just choose not applicable. Here is a recent (as of 12/12/2017) design of LinkedIn, for a user just getting started:</p>
+
+<p><img src="/img/linkedin1.jpg" alt="LinkedIn" title="LinkedIn Pre-Removal" /></p>
+
+<p>While not coercive, it does gently nudge the user to add current location. Being so close to an award motivates my wife to drink as much water possible, and to get her exercise in. People will go a long way for that little reward, and if they are cognizant of this and don&rsquo;t want to, they can just use FIXBUX to remove that urge.</p>
+
+<p><img src="/img/linkedin2.jpg" alt="LinkedIn" title="LinkedIn Post-Removal" /></p>
+
+<p>Done. The HTML is gone from your browser. The effects of this can be debated. It can be argued that location is an important parameter when job hunting and networking, but it can also be argued that any data we put online can be circulated and aggregated into something more meaningful about us and our lives. This design seems benign, but perhaps it isn&rsquo;t, and it is worth giving users the flexibility to reduce their cognitive burden in dealing with coercive patterns, or in this case, rewards.</p>
+
+<h3 id="handshake">Handshake</h3>
+
+<p>Handshake is less gentle than LinkedIn, and is a prime example of coercive design. Below shows an example of some job experience:</p>
+
+<p><img src="/img/handshake.jpg" alt="Handshake" title="Pre-Removal" /></p>
+
+<p>There are a great number of details here, from position, to company, location, and experience. Further down, not shown, there are courses taken, projects worked on, social links that are entered, skills, and a short bio. Above, previous and current colleges are listed along with dates, major, degrees earned, class, GPA, and a picture. With all of this data submitted, that little orange progress bar makes me feel pretty unaccomplished, like I need to do and add more. If I removed any of the content in my page, the bar would turn red, and there would be a frowny face next to it.</p>
+
+<p><img src="/img/bullyux.jpg" alt="Handshake" /></p>
+
+<p>I could add more, but I don&rsquo;t want to, and the information that is there already, isn&rsquo;t really worth giving to a company like this. Cue FIXBUX. Anyone can remove these HTML elements without giving a second thought.</p>
+
+<p><img src="/img/handshake_removed.jpg" alt="Handshake" title="Handshake Post-Removal" /></p>
+
+<p>Better, right? Companies will always try to compel people into giving more data about themselves, and people will always behave like people. FIXBUX is a rational tool to use in such an environment.</p>
+
+<h2 id="implementation">Implementation</h2>
+
+<p>FIXBUX removes HTML elements with simple Javascript and jQuery. Removing the LinkedIn site&rsquo;s progress bar was fairly straightforward since they use a simple naming convention. It can be done with this very basic function:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="c1">//Remove LinkedIn Progress Bar
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">(){</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;.pv-pcm-progress&#39;</span><span class="p">);</span>
+<span class="p">});</span></code></pre></div>
+<p>Handshake, on the other hand, was a different beast. Being fairly inexperienced with Javascript, I did not know how to deal with the following format of the HTML element:</p>
+
+<p><img src="/img/weirdstyling.jpg" alt="Handshake HTML" title="Weird" /></p>
+
+<p>I tried variations of the last function, referencing things like style(underscore* underscore* progress-bar and progress-bar, but it was to no avail. With the help from others, I learned of new <a href="https://api.jquery.com/attribute-starts-with-selector/">selector syntax</a>. Using the code</p>
+<div class="highlight"><pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="s2">&#34;[class^=&#39;style__progress&#39;]&#34;</span><span class="p">))</span></code></pre></div>
+<p>I could test different things, like the wildcard, to see if I got any match. The above code worked. At this point it was just adapting it the same way as my previous function:</p>
+<div class="highlight"><pre class="chroma"><code class="language-Javascript" data-lang="Javascript"><span class="c1">//Remove Handshake Progress Bar
+</span><span class="c1"></span><span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="nx">ready</span><span class="p">(</span><span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s2">&#34;[class^=&#39;style__progress&#39;]&#34;</span><span class="p">).</span><span class="nx">remove</span><span class="p">()</span>
+<span class="p">});</span></code></pre></div>
+<p>In essence, whenever the extension is enabled, once the page is loaded (all of its elements), the progress bar is removed from the page. In surprisingly little code, a user can be granted more freedom in what designs they are exposed to, which can then influence their behavior and how they share their data with other people and organizations.</p>
+
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://astonishingelixirs.github.io/post/vms-for-usability-testing/" data-toggle="tooltip" data-placement="top" title="VMs and Usability Testing">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://astonishingelixirs.github.io/post/a-guide-to-stylo/" data-toggle="tooltip" data-placement="top" title="An Introduction to the Stylo Library [R]">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "astonishingelixirs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ck_howard@yahoo.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/ckhoward" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/_ckhoward" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/-ckhoward" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://astonishingelixirs.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://ckhoward.github.io">Chris Howard</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.36.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/main.js"></script>
+<script src="https://astonishingelixirs.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>k-Nearest Neighbors Classifier</title>
+  <meta property="og:title" content="k-Nearest Neighbors Classifier" />
+  <meta name="twitter:title" content="k-Nearest Neighbors Classifier" />
+  <meta name="description" content="Classification using K-Nearest Neighbor (KNN) import numpy as np import pandas as pd from sklearn.neighbors import KNeighborsClassifier from IPython.display import display pd.set_option(&#39;display.notebook_repr_html&#39;, True) Prescription Drug Classification KNN bases its classifications on the nearest k-neighbors. A neighbor&rsquo;s &ldquo;near-ness&rdquo; is based on their attributes or predictors. For example, below, the attributes are simple. Every patient at a hospital has an age attribute, and a Na/K ratio attribute. Based on those attributes, a patient is assigned a classification (or type of drug).">
+  <meta property="og:description" content="Classification using K-Nearest Neighbor (KNN) import numpy as np import pandas as pd from sklearn.neighbors import KNeighborsClassifier from IPython.display import display pd.set_option(&#39;display.notebook_repr_html&#39;, True) Prescription Drug Classification KNN bases its classifications on the nearest k-neighbors. A neighbor&rsquo;s &ldquo;near-ness&rdquo; is based on their attributes or predictors. For example, below, the attributes are simple. Every patient at a hospital has an age attribute, and a Na/K ratio attribute. Based on those attributes, a patient is assigned a classification (or type of drug).">
+  <meta name="twitter:description" content="Classification using K-Nearest Neighbor (KNN) import numpy as np import pandas as pd from sklearn.neighbors import KNeighborsClassifier from IPython.display import display …">
+  <meta name="author" content="Chris Howard"/>
+  <link href='https://astonishingelixirs.github.io/img/avatar-icon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@_ckhoward" />
+  <meta name="twitter:creator" content="@_ckhoward" />
+  <meta property="og:url" content="https://astonishingelixirs.github.io/post/k-nearest-neighbors/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AstonishingElixirs" />
+
+  <meta name="generator" content="Hugo 0.36.1" />
+  <link rel="canonical" href="https://astonishingelixirs.github.io/post/k-nearest-neighbors/" />
+  <link rel="alternate" href="https://astonishingelixirs.github.io/index.xml" type="application/rss+xml" title="AstonishingElixirs">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://astonishingelixirs.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-114707471-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Reading" href="/post/reading-list">Reading</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="AstonishingElixirs" href="https://astonishingelixirs.github.io">
+            <img class="avatar-img" src="https://astonishingelixirs.github.io/img/avatar-icon.png" alt="AstonishingElixirs" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>k-Nearest Neighbors Classifier</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 28, 2018
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 7 minutes (1290 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<h1 id="classification-using-k-nearest-neighbor-knn">Classification using K-Nearest Neighbor (KNN)</h1>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;display.notebook_repr_html&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span></code></pre></div>
+<h2 id="prescription-drug-classification">Prescription Drug Classification</h2>
+
+<p>KNN bases its classifications on the nearest k-neighbors. A neighbor&rsquo;s &ldquo;near-ness&rdquo; is based on their attributes or predictors. For example, below, the attributes are simple. Every patient at a hospital has an age attribute, and a Na/K ratio attribute. Based on those attributes, a patient is assigned a classification (or type of drug). If you share the same age and the same Na/K ratio as another patient, that patient is considered &ldquo;near&rdquo;, and you&rsquo;re probably going to be given the same classification.</p>
+
+<p>Of course, you can have multiple neighbors, and you likely will, so it&rsquo;s important to specify a reasonable number of nearest neighbors to base the classification on. Too small, and you might be inaccurate. An even number might get you a tie between two classifications. And if k is too large, you might be looking at a long compute time.</p>
+
+<p>The target categorical variable in this example is drug to be prescribed, which is partitioned into different classes—drug A, drug B, and and drug C. The predictor variables are sodium/potassium ratio and age. This example isn&rsquo;t really ideal because there are only three records; there <em>should</em> be way more. And the more records there are, the better we can find some rare cases to include in our model. It&rsquo;s important to find some balance between common and rare cases.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#A new patient that we want to classify which drug to prescribe</span>
+<span class="n">new</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">])</span>
+
+<span class="c1">#Three existing patient records</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0467</span><span class="p">,</span> <span class="mf">0.2471</span><span class="p">])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0533</span><span class="p">,</span> <span class="mf">0.1912</span><span class="p">])</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0917</span><span class="p">,</span> <span class="mf">0.2794</span><span class="p">])</span>
+
+<span class="c1">#X, the training set</span>
+<span class="n">X</span> <span class="o">=</span> <span class="p">[</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">]</span>
+<span class="c1">#y, the target (or class)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s2">&#34;Drug A&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;Drug B&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;Drug C&#34;</span><span class="p">]</span>
+
+<span class="c1">#A dataframe to get a glance at the relationship of the variables</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s2">&#34;Age (MMN)&#34;</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;Na/K (MMN)&#34;</span><span class="p">])</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span></code></pre></div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Age (MMN)</th>
+      <th>Na/K (MMN)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Drug A</th>
+      <td>0.0467</td>
+      <td>0.2471</td>
+    </tr>
+    <tr>
+      <th>Drug B</th>
+      <td>0.0533</td>
+      <td>0.1912</td>
+    </tr>
+    <tr>
+      <th>Drug C</th>
+      <td>0.0917</td>
+      <td>0.2794</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Fits the model using the training data and targets</span>
+<span class="n">neigh</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">neigh</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">KNeighborsClassifier(algorithm=&#39;auto&#39;, leaf_size=30, metric=&#39;minkowski&#39;,
+           metric_params=None, n_jobs=1, n_neighbors=3, p=2,
+           weights=&#39;uniform&#39;)</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Printing the euclidean distance between the new patient, and the other three recorded patients</span>
+<span class="k">print</span><span class="p">(</span><span class="n">neigh</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">([</span><span class="n">new</span><span class="p">]))</span></code></pre></div><div class="highlight"><pre class="chroma">(array([[ 0.00439318,  0.05102205,  0.05889253]]), array([[0, 2, 1]], dtype=int64))</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#predicts the class of the &#39;new&#39; array, given its values&#39; proximity to the other values/classes</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">neigh</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">new</span><span class="p">])</span>
+<span class="n">prob</span> <span class="o">=</span> <span class="n">neigh</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">([</span><span class="n">new</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;Class of provided data: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span> <span class="o">+</span> <span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">Probability of classification: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">prob</span><span class="p">))</span></code></pre></div><div class="highlight"><pre class="chroma">Class of provided data: [&#39;Drug A&#39;]
+Probability of classification: [[ 0.33333333  0.33333333  0.33333333]]</pre></div>
+<p>Surprise, the code and solution in the book are wrong. For whatever reason, it gives a probability of 0.66667, but intuitively, this doesn&rsquo;t make sense, given the three classes have an equal vote, given that they are unweighted and k = 3 (so it just chooses the three patients that are most similar to classify the prescription). The same solution appears when I run the code in R as well. Since this is a useless model, I&rsquo;ll make it more useful.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">neigh2</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">neigh2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">neigh</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">([</span><span class="n">new</span><span class="p">]))</span>
+
+<span class="n">predictions2</span> <span class="o">=</span> <span class="n">neigh2</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">new</span><span class="p">])</span>
+<span class="n">prob2</span> <span class="o">=</span> <span class="n">neigh2</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">([</span><span class="n">new</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;Class of provided data: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">predictions2</span><span class="p">)</span> <span class="o">+</span> <span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">Probability of classification: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">prob2</span><span class="p">))</span></code></pre></div><div class="highlight"><pre class="chroma">(array([[ 0.00439318,  0.05102205,  0.05889253]]), array([[0, 2, 1]], dtype=int64))
+Class of provided data: [&#39;Drug A&#39;]
+Probability of classification: [[ 1.  0.  0.]]</pre></div>
+<p>Now that k=1, there is no tie between the three neighbors. The model chooses the point that is in closest proximity, which is a patient that has been prescribed Drug A. We know this because when we look at the distances, that patient is only .00439 units away, while the others are .05102 and .05889 units away.</p>
+
+<p>But instead of playing with the number of neighbors, we should go back to k=3 and treat particular predictors as more important. If a domain expert were to come in and say that the sodium/potassium ratio were <strong>3x</strong> more important (note the 3 coefficient in the equations below) than the age predictor, so we can scale that axis accordingly—remember, euclidean distance is defined in terms of change in x and y, so if Na/K are represented on the y axis, its coordinate values can be scaled. Below are the initial distance calculations, and then the scaled calculations.</p>
+
+<p>$$
+\text{d(new,A) = }\sqrt{(0.05 - 0.0467)^2 + (0.25 - 0.2471)^2}\text{= 0.004393, becomes}
+$$</p>
+
+<p>$$
+\text{d(new, A) = }\sqrt{(0.05 - 0.0467)^2 + [3(0.25 - 0.2471)]^2}\text{ = 0.009305.}
+$$</p>
+
+<p>$$
+\text{d(new, B) = }\sqrt{(0.05 - 0.0533)^2 + (0.25 - 0.1912)^2}\text{ = 0.58893 becomes}
+$$</p>
+
+<p>$$
+\text{d(new, B) = }\sqrt{(0.05 - 0.0533)^2 + [3(0.25 - 0.1912)]^2}\text{ = 0.17643.}
+$$</p>
+
+<p>$$
+\text{d(new, C) = }\mathellipsis
+$$</p>
+
+<h2 id="credit-risk-classification">Credit Risk Classification</h2>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">risk</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;classifyrisk.txt&#34;</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">risk</span><span class="p">)</span></code></pre></div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mortgage</th>
+      <th>loans</th>
+      <th>age</th>
+      <th>marital_status</th>
+      <th>income</th>
+      <th>risk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>y</td>
+      <td>3</td>
+      <td>34</td>
+      <td>other</td>
+      <td>28060.70</td>
+      <td>bad loss</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>n</td>
+      <td>2</td>
+      <td>37</td>
+      <td>other</td>
+      <td>28009.34</td>
+      <td>bad loss</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>n</td>
+      <td>2</td>
+      <td>29</td>
+      <td>other</td>
+      <td>27614.60</td>
+      <td>bad loss</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>y</td>
+      <td>2</td>
+      <td>33</td>
+      <td>other</td>
+      <td>27287.18</td>
+      <td>bad loss</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>y</td>
+      <td>2</td>
+      <td>39</td>
+      <td>other</td>
+      <td>26954.06</td>
+      <td>bad loss</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>n</td>
+      <td>2</td>
+      <td>28</td>
+      <td>other</td>
+      <td>26271.86</td>
+      <td>bad loss</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>n</td>
+      <td>3</td>
+      <td>28</td>
+      <td>other</td>
+      <td>40445.00</td>
+      <td>bad loss</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+
+    <tr>
+      <th>241</th>
+      <td>y</td>
+      <td>0</td>
+      <td>51</td>
+      <td>married</td>
+      <td>46810.12</td>
+      <td>good risk</td>
+    </tr>
+    <tr>
+      <th>242</th>
+      <td>y</td>
+      <td>0</td>
+      <td>55</td>
+      <td>married</td>
+      <td>45709.78</td>
+      <td>good risk</td>
+    </tr>
+    <tr>
+      <th>243</th>
+      <td>y</td>
+      <td>0</td>
+      <td>51</td>
+      <td>married</td>
+      <td>44896.42</td>
+      <td>good risk</td>
+    </tr>
+    <tr>
+      <th>244</th>
+      <td>y</td>
+      <td>0</td>
+      <td>54</td>
+      <td>married</td>
+      <td>44301.52</td>
+      <td>good risk</td>
+    </tr>
+    <tr>
+      <th>245</th>
+      <td>y</td>
+      <td>1</td>
+      <td>60</td>
+      <td>married</td>
+      <td>54096.00</td>
+      <td>good risk</td>
+    </tr>
+  </tbody>
+</table>
+<p>246 rows × 6 columns</p>
+</div>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Random sample for training data</span>
+<span class="n">risk2</span> <span class="o">=</span> <span class="n">risk</span><span class="o">.</span><span class="n">iloc</span><span class="p">[[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="mi">78</span><span class="p">,</span> <span class="mi">86</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">140</span><span class="p">,</span> <span class="mi">149</span><span class="p">,</span> <span class="mi">161</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]]</span>
+<span class="n">risk2</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;married&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">risk2</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital_status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;married&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">risk2</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;single&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">risk2</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital_status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="sa"></span><span class="s2">&#34;single&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">risk2</span><span class="p">)</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">risk2</span><span class="o">.</span><span class="n">ix</span><span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;married&#39;</span><span class="p">])</span>
+<span class="k">del</span> <span class="n">risk2</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;mortgage&#39;</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">risk2</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital_status&#39;</span><span class="p">]</span></code></pre></div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>income</th>
+      <th>mortgage</th>
+      <th>marital_status</th>
+      <th>risk</th>
+      <th>married</th>
+      <th>single</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>50</th>
+      <td>20188.10</td>
+      <td>n</td>
+      <td>married</td>
+      <td>bad loss</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>24787.34</td>
+      <td>y</td>
+      <td>other</td>
+      <td>bad loss</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>19886.72</td>
+      <td>y</td>
+      <td>other</td>
+      <td>bad loss</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>86</th>
+      <td>43281.44</td>
+      <td>y</td>
+      <td>single</td>
+      <td>bad loss</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>123</th>
+      <td>39994.90</td>
+      <td>y</td>
+      <td>single</td>
+      <td>good risk</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>34716.50</td>
+      <td>n</td>
+      <td>single</td>
+      <td>good risk</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>55186.75</td>
+      <td>n</td>
+      <td>married</td>
+      <td>good risk</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>52726.50</td>
+      <td>n</td>
+      <td>married</td>
+      <td>good risk</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">display</span><span class="p">(</span><span class="n">risk2</span><span class="p">)</span></code></pre></div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>income</th>
+      <th>risk</th>
+      <th>married</th>
+      <th>single</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>50</th>
+      <td>20188.10</td>
+      <td>bad loss</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>64</th>
+      <td>24787.34</td>
+      <td>bad loss</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>78</th>
+      <td>19886.72</td>
+      <td>bad loss</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>86</th>
+      <td>43281.44</td>
+      <td>bad loss</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>123</th>
+      <td>39994.90</td>
+      <td>good risk</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>140</th>
+      <td>34716.50</td>
+      <td>good risk</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>55186.75</td>
+      <td>good risk</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>161</th>
+      <td>52726.50</td>
+      <td>good risk</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">new2</span> <span class="o">=</span> <span class="n">risk</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">162</span><span class="p">,</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">]]</span>
+<span class="n">new2</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;married&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">new2</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;single&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">del</span> <span class="n">new2</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;mortgage&#39;</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">new2</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital_status&#39;</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">new2</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma">income     42120.3
+married          1
+single           0
+Name: 162, dtype: object</pre></div>
+<p>================================================================================================</p>
+
+<p>This classification is dependent on three fields (predictors): Income, married, and single. The target variable is risk.</p>
+
+<p>X = All observations&rsquo; incomes and marital status (whether married and/or single is 1 or 0)</p>
+
+<p>y = All observations&rsquo; risk classification</p>
+
+<ol>
+<li>The classification model is fit with fit(X, y) as its training data</li>
+<li>The model is used to find the distance of the new observation&rsquo;s k-nearest neighbors with the kneighbors method</li>
+<li>The model predicts the classification of the new observation with the predict method</li>
+<li>The model finds the associated probability of each classification, given the nearest neighbors</li>
+</ol>
+
+<p>The new observation is classified as &lsquo;good risk.&rsquo;</p>
+
+<p>=================================================================================================</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">neigh3</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">neigh3</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">risk2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]],</span> <span class="n">risk2</span><span class="o">.</span><span class="n">iloc</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span></code></pre></div><div class="highlight"><pre class="chroma">KNeighborsClassifier(algorithm=&#39;auto&#39;, leaf_size=30, metric=&#39;minkowski&#39;,
+           metric_params=None, n_jobs=1, n_neighbors=3, p=2,
+           weights=&#39;uniform&#39;)</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Printing the euclidean distance between the new patient, and the nearest three neighbors</span>
+<span class="k">print</span><span class="p">(</span><span class="n">neigh3</span><span class="o">.</span><span class="n">kneighbors</span><span class="p">([</span><span class="n">new2</span><span class="p">]))</span>
+
+<span class="c1">#predicts the class of the &#39;new&#39; array, given its values&#39; proximity to the other values/classes</span>
+<span class="n">predictions3</span> <span class="o">=</span> <span class="n">neigh3</span><span class="o">.</span><span class="n">predict</span><span class="p">([</span><span class="n">new2</span><span class="p">])</span>
+<span class="n">prob3</span> <span class="o">=</span> <span class="n">neigh3</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">([</span><span class="n">new2</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;Class of provided data: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">predictions3</span><span class="p">)</span> <span class="o">+</span> <span class="sa"></span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">Probability of classification: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">prob3</span><span class="p">))</span></code></pre></div><div class="highlight"><pre class="chroma">(array([[ 1161.10086125,  2125.44047049,  7403.84013507]]), array([[3, 4, 5]], dtype=int64))
+Class of provided data: [&#39;good risk&#39;]
+Probability of classification: [[ 0.33333333  0.66666667]]</pre></div>
+<p><strong>Useful Resources:</strong></p>
+
+<ul>
+<li>This page is a compilation of my notes from the book <a href="https://www.amazon.com/Mining-Predictive-Analytics-Methods-Applications/dp/1118116194">Data Mining and Predictive Analytics</a>.</li>
+</ul>
+
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/" data-toggle="tooltip" data-placement="top" title="Multiple Regressions with Python">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://astonishingelixirs.github.io/post/neural-network/" data-toggle="tooltip" data-placement="top" title="Sklearn Neural Network">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "astonishingelixirs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ck_howard@yahoo.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/ckhoward" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/_ckhoward" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/-ckhoward" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://astonishingelixirs.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://ckhoward.github.io">Chris Howard</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.36.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/main.js"></script>
+<script src="https://astonishingelixirs.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

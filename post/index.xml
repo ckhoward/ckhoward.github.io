@@ -1,342 +1,233 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Post on Chris Howard</title>
-    <link>https://ckhoward.github.io/post/index.xml</link>
-    <description>Recent content in Post on Chris Howard</description>
+    <title>Posts on AstonishingElixirs</title>
+    <link>https://astonishingelixirs.github.io/post/</link>
+    <description>Recent content in Posts on AstonishingElixirs</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-US</language>
-    <lastBuildDate>Sat, 17 Jun 2017 14:50:42 -0700</lastBuildDate>
-    <atom:link href="https://ckhoward.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
+    <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
+    <lastBuildDate>Sat, 10 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://astonishingelixirs.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tor Stem API</title>
+      <link>https://astonishingelixirs.github.io/post/tor-stem-api/</link>
+      <pubDate>Sat, 10 Mar 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/tor-stem-api/</guid>
+      <description>Tor Stem Controller Just in case somebody out there is looking for an example of how to use Tor&amp;rsquo;s Stem API, here is a tiny Python script that allows the user to monitor circuit connections. Here, I&amp;rsquo;m just getting basic information like description, nickname, and address, but the API docs show much more information that you can get. Just be mindful that you will need to change the string within the authenticate method.</description>
+    </item>
+    
+    <item>
+      <title>Sklearn Neural Network</title>
+      <link>https://astonishingelixirs.github.io/post/neural-network/</link>
+      <pubDate>Sun, 04 Mar 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/neural-network/</guid>
+      <description>Artificial Neural Networks with Sci-kit Learn The Gist of Neural Nets A neural network is a supervised classification algorithm. With your help, it kind of teaches itself how to make better classifications.
+For a basic neural net, you have three primary components: an input layer, a hidden layer, and an output layer, each consisting of nodes. The nodes of the input layer are basically your input variables; the nodes of the hidden layer are neurons that contain some function that operates on your input data; and there is one output node, which uses a function on the values given by the hidden layer, putting out one final calculation.</description>
+    </item>
+    
+    <item>
+      <title>k-Nearest Neighbors Classifier</title>
+      <link>https://astonishingelixirs.github.io/post/k-nearest-neighbors/</link>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/k-nearest-neighbors/</guid>
+      <description>Classification using K-Nearest Neighbor (KNN) import numpy as np import pandas as pd from sklearn.neighbors import KNeighborsClassifier from IPython.display import display pd.set_option(&amp;#39;display.notebook_repr_html&amp;#39;, True) Prescription Drug Classification KNN bases its classifications on the nearest k-neighbors. A neighbor&amp;rsquo;s &amp;ldquo;near-ness&amp;rdquo; is based on their attributes or predictors. For example, below, the attributes are simple. Every patient at a hospital has an age attribute, and a Na/K ratio attribute. Based on those attributes, a patient is assigned a classification (or type of drug).</description>
+    </item>
+    
+    <item>
+      <title>Multiple Regressions with Python</title>
+      <link>https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/</link>
+      <pubDate>Thu, 22 Feb 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/chapter9multiple-regression-and-model-building/</guid>
+      <description>Multiple Regression and Model Building Introduction In the last chapter we were running a simple linear regression on cereal data. We wanted to see if there was a relationship between the cereal&amp;rsquo;s nutritional rating and its sugar content. There was. But with all this other data, like fiber(!), we want to see what other variables are related, in conjunction with (and without) each other. Multiple regression seems like a friendly tool we can use to do this, so that&amp;rsquo;s what we&amp;rsquo;ll be doing here.</description>
+    </item>
+    
+    <item>
+      <title>Cereal Regression with Python</title>
+      <link>https://astonishingelixirs.github.io/post/chapter8simple-linear-regression/</link>
+      <pubDate>Wed, 21 Feb 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/chapter8simple-linear-regression/</guid>
+      <description>Simple Linear Regression Cereal Nutritional Rating against Sugar Content Being the cereal enthusiasts we are, we might be interested in knowing what sort of relationship exists between a cereal&amp;rsquo;s nutrition rating and its sugar content. Therefore, we can turn to using a simple linear regression. Using a linear model, we would also be able to look at any given cereal&amp;rsquo;s sugar content, and attempt to make an estimation as to what its nutritional rating will be.</description>
+    </item>
+    
+    <item>
+      <title>Exploratory Analysis of Churn Data</title>
+      <link>https://astonishingelixirs.github.io/post/exploratory-data-analysis/</link>
+      <pubDate>Tue, 20 Feb 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/exploratory-data-analysis/</guid>
+      <description>Exploratory Data Analysis Conquering Earth by Phone It&amp;rsquo;s the year 3000 and we&amp;rsquo;re in the Futurama universe. Per usual, Lrrr has been up to no good. Scheming, he had a breakthrough. He will use Earth&amp;rsquo;s telephone services to recruit an army to conquer the planet. Unfortunately, he has many people leaving his service and joining competitors. To carry out his plan, he needs to get a better understanding of what is causing people to leave, and he will do this by employing an analyst.</description>
+    </item>
+    
+    <item>
+      <title>Quick Notes on Decision Trees</title>
+      <link>https://astonishingelixirs.github.io/post/decision-trees/</link>
+      <pubDate>Sat, 10 Feb 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/decision-trees/</guid>
+      <description>Decision Trees in Classification The Gist of Decision Trees Decision trees aren&amp;rsquo;t the most accurate method of classification, as they often lead to overfitting, but it&amp;rsquo;s still a very intuitive way of understanding how classification works.
+A decision tree is basically a collection of decision nodes, where if-thens rule. Each tier of nodes is basically a step down from significance of information, or in other words, the first node will likely contain the most useful information for the model, while the second tier of nodes will contain the second most useful information, and so forth.</description>
+    </item>
+    
+    <item>
+      <title>A Simpler Tutorial on Jupyter (IPython) Widgets</title>
+      <link>https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/</link>
+      <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/</guid>
+      <description>A Simpler Tutorial on Jupyter (IPython) Widgets Jupyter widgets are an awesome tool for creating interactive dashboards, but documentation can be a little excessive if you&amp;rsquo;re just looking for basic functionality. It really doesn&amp;rsquo;t have to be so complicated.
+Our widget use-case My data visualization team wanted to provide researchers with a GUI for visualizing species distributions, and we wanted to give them the power and flexibility to specify different parameters.</description>
+    </item>
+    
+    <item>
+      <title>Deploying a Tor Hidden Service with DigitalOcean</title>
+      <link>https://astonishingelixirs.github.io/post/tor-hidden-service/</link>
+      <pubDate>Fri, 29 Dec 2017 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/tor-hidden-service/</guid>
+      <description>Deploying a Tor Hidden Service with DigitalOcean A quick primer on Tor hidden services The Tor protocol picks 3 onion routers at random, builds circuits to them, treating them as introduction (or contact) points; since this is a circuit, there is no direct connection, so no IP addresses are shared, just public keys. These public keys work toward &amp;ldquo;shaking hands&amp;rdquo; at a rendezvous point. If the handshake happens, the rendezvous point connects Alice&amp;rsquo;s and Bob&amp;rsquo;s circuits, and then they can communicate anonymously.</description>
+    </item>
+    
+    <item>
+      <title>An Introduction to the Stylo Library [R]</title>
+      <link>https://astonishingelixirs.github.io/post/a-guide-to-stylo/</link>
+      <pubDate>Wed, 27 Dec 2017 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/a-guide-to-stylo/</guid>
+      <description>An Introduction to the Stylo Library What is Stylometry? Stylometry uses linguistic style to determine who authored some anonymous piece of writing, and it has diverse applications. The authorship of some suicide notes may be questionable. Most forum users have aliases in an attempt to anonymize themselves. And some authors publish their writings under pseudonyms. In these varying cases, stylometry can be used to deanonymize an author.
+What is Stylo?</description>
+    </item>
+    
+    <item>
+      <title>FIXBUX: A Web-extension to Safeguard Users from Themselves [Javascript]</title>
+      <link>https://astonishingelixirs.github.io/post/fixbux/</link>
+      <pubDate>Tue, 12 Dec 2017 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/fixbux/</guid>
+      <description>Overview It would seem that people are becoming more conscious of behavior&amp;rsquo;s role in retaining, taking back, and even losing privacy. Privacy technology isn&amp;rsquo;t currently a solution to privacy issues, so it is becoming more important to consider how we interact with these technologies, and how we make decisions. We have a greater propensity to share when our friends share, when we trust the technology maintainers, and defaults surprisingly dictate the way we behave, so what happens when you opt-in, by default, to share your social network data with a host of third parties?</description>
+    </item>
+    
+    <item>
+      <title>VMs and Usability Testing</title>
+      <link>https://astonishingelixirs.github.io/post/vms-for-usability-testing/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/vms-for-usability-testing/</guid>
+      <description>VMs for Usability Testing Dependency Nightmares This might be an unpopular opinion, but I imagine virtual machines could be a useful tool for usability testers. When it comes to learning a new software or using a new tool, it&amp;rsquo;s the absolute worst finding out that certain dependencies aren&amp;rsquo;t listed in the requirements, or that they are not consistent with your own. This was a pain I experienced when I first started learning Ruby on Rails and MongoDB, and the tutorials I found wouldn&amp;rsquo;t work.</description>
+    </item>
+    
+    <item>
+      <title>The Epistemology of Testimony</title>
+      <link>https://astonishingelixirs.github.io/post/testimony-and-epistemology/</link>
+      <pubDate>Wed, 04 Oct 2017 17:01:31 -0700</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/testimony-and-epistemology/</guid>
+      <description>The Epistemology of Testimony As humans, our primary way of learning about the world is through experience. But given that we aren&amp;rsquo;t omnipresent and can&amp;rsquo;t experience everything for ourselves, we have to fall back on another method—teamwork. We create information and share it with others, and they do the same. Pretty much everything we learn about the world, apart from what we learn through observation and experience, is based on testimony, or what we hear and read.</description>
+    </item>
+    
+    <item>
+      <title>Path Distance Analysis [GIS]</title>
+      <link>https://astonishingelixirs.github.io/post/path-distance-analysis/</link>
+      <pubDate>Tue, 15 Aug 2017 19:25:23 -0700</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/path-distance-analysis/</guid>
+      <description>Path-Distance Analysis //This is a fictitious scenario//
+Let&amp;rsquo;s suppose we&amp;rsquo;re a team of highly skilled NGA agents. We just received a briefing about some suspicious activity between two rival factions. These factions are typically hostile towards each other, but a trusted informant has brought forward some intel suggesting the two factions have been cooperating.
+Our team must assist in verifying these claims. Wielding the all-powerful eye in the sky — or, an array of US Government satellites — we will first identify which outposts are linked to each faction, and we will then infer the inter- and intra-faction transportation networks.</description>
+    </item>
     
     <item>
       <title>Sentiment Analysis of First GOP Debate in 2015 [R]</title>
-      <link>https://ckhoward.github.io/post/gop-debate-sentiment-analysis/</link>
+      <link>https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/</link>
       <pubDate>Sat, 17 Jun 2017 14:50:42 -0700</pubDate>
-      
-      <guid>https://ckhoward.github.io/post/gop-debate-sentiment-analysis/</guid>
-      <description>
-
-&lt;h1 id=&#34;a-statistical-analysis-of-sentiments&#34;&gt;A Statistical Analysis of Sentiments&lt;/h1&gt;
-
-&lt;p&gt;Every four years, the United States goes through the process of electing (or re-electing) its president. Politics becomes a popular topic of conversation, and inadvertently, a popular emotional outlet. Our digital landscape has — mostly textually, but sometimes by video or podcast — granted the ability for people to express their thoughts and feelings on political ideas and events, en masse. Suffice to say, an examination of people&amp;rsquo;s language in these expressions can yield many useful insights into human (or &lt;em&gt;American&lt;/em&gt;) character and the influence of rhetoric on political philosophy and national pride. Therefore, to touch on this examination of language, I will be exploring the sentiments (and their respective confidences), of Tweets pertaining to the first GOP debate, that was hosted on August 6th, 2015.&lt;/p&gt;
-
-&lt;h2 id=&#34;the-twitter-sentiment-dataset&#34;&gt;The Twitter-Sentiment Dataset&lt;/h2&gt;
-
-&lt;p&gt;The dataset being explored links Tweets to relevant data such as: issues (e.g. abortion), candidates being responded to (and respective confidence), retweet count, and other metadata, but most importantly, sentiments and their respective confidences. We can load our data into an R dataframe with the following code:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Sentiment &amp;lt;- read.csv(&amp;quot;~path/Sentiment.csv&amp;quot;)
-View(Sentiment)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/plot8.png&#34; alt=&#34;The Sentiment Table&#34; title=&#34;The Sentiment.csv Table&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The column labeled &lt;em&gt;sentiment&lt;/em&gt; is what we&amp;rsquo;re interested in so we create two frames, one for negative sentiments, and one for positive. We aren&amp;rsquo;t worried about neutral.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#Indexes the sentiment confidence for values associated with positive sentiments
-(pos &amp;lt;- Sentiment$sentiment_confidence[Sentiment$sentiment == &amp;quot;Positive&amp;quot;])
-
-#Indexes the sentiment confidence for values associated with negative sentiments
-(neg &amp;lt;- Sentiment$sentiment_confidence[Sentiment$sentiment == &amp;quot;Negative&amp;quot;])
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;confidence-hypotheses&#34;&gt;Confidence Hypotheses&lt;/h2&gt;
-
-&lt;p&gt;My alternative hypothesis is that the mean confidence of negative sentiments will be greater than the mean confidence of positive sentiments; thus, my null hypothesis is that the mean confidence of negative sentiments will be lower than, or equal to, the mean confidence of positive sentiments. The alternative hypothesis is one-tailed.&lt;/p&gt;
-
-&lt;h2 id=&#34;descriptive-statistics-of-sentiment-confidences&#34;&gt;Descriptive Statistics of Sentiment Confidences&lt;/h2&gt;
-
-&lt;p&gt;For this exploration, the mean is chosen as the measure of central tendency because the data is numerical and does not contain outliers. We can find and plot the means of the negative and positive frames quickly.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#Creates a variable for the mean of the indexed positive sentiment confidence levels
-(mean_pos = mean(pos))
-#[1] 0.7144841
-
-#Creates a variable for the mean of the indexed negative sentiment confidence levels
-(mean_neg = mean(neg))
-#[1] 0.8003269
-
-#Creates barplot with a y-scale of [0,1]
-barplot(c(mean_pos, mean_neg), names.arg = c(&amp;quot;Positive Sentiments&amp;quot;, &amp;quot;Negative Sentiments&amp;quot;), xlab = &amp;quot;Mean Confidences of Positive and Negative Sentiments&amp;quot;, width = .5, xlim = c(0, 2), ylim = c(0, 1), space = .6, col = c(&amp;quot;darkolivegreen3&amp;quot;, &amp;quot;darkorchid3&amp;quot;), main = &amp;quot;Mean Confidence per Sentiment&amp;quot;, ylab = &amp;quot;Mean Confidence Level&amp;quot;)
-
-#Creates a dotplot with diamond symbol for better visibility
-dotchart(c(mean_neg, mean_pos), labels = c(&amp;quot;Negative Sentiments&amp;quot;, &amp;quot;Positive Sentiments&amp;quot;), main = &amp;quot;Mean Confidence per Sentiment&amp;quot;, xlab = &amp;quot;Mean Confidence Level&amp;quot;, color = c(&amp;quot;darkorchid3&amp;quot;, &amp;quot;darkolivegreen3&amp;quot;), pch = 9)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/plot1.png&#34; alt=&#34;Mean Barplots&#34; title=&#34;Barplot of Positive and Negative Mean Confidences&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/plot2.png&#34; alt=&#34;Mean Dotplots&#34; title=&#34;Dotplot of Positive and Negative Mean Confidences&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Above, there are two representations comparing the mean confidence levels, per positive and negative sentiment, via the sample provided in the dataset, containing 13,871 observations. The first figure shows the different levels of confidence within the scope of the entire scale (0 to 1). It is evident that the mean confidence for negative sentiments is greater than the mean confidence of positive.&lt;/p&gt;
-
-&lt;p&gt;The second figure compares the levels of confidence within the approximate scope of the values themselves (~.70 to ~.81). When calculated, the positive mean confidence is 0.714484 while the negative mean confidence is .800327. Relative to the entire population this is not a large number of observations. Therefore, for a better representation of that population (all Tweets regarding the debate), I will bootstrap resample the observation 10,000 times.&lt;/p&gt;
-
-&lt;h2 id=&#34;inferential-statistics&#34;&gt;Inferential Statistics&lt;/h2&gt;
-
-&lt;p&gt;Bootstrapping will also be done with R code:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#Resamples pos vector, takes the mean, then replicates 10,000 times for 10,000 means, stores in variable
-(resamples_pos = replicate(10000, mean(sample(pos, replace = T))))
-
-#Resamples neg vector, takes the mean, then replicates 10,000 times for 10,000 means, stores in variable
-(resamples_neg = replicate(10000, mean(sample(neg, replace = T))))
-
-#Results in distribution of the difference in negative mean distribution and positive mean distribution, stores in variable
-(difference_distro = resamples_neg - resamples_pos) 
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;After bootstrap resampling the data 10,000 times, the calculated means are: Mean(positive) = 0.714436 and Mean(negative) = .800329, both staying relatively the same, with Mean(negative - positive) = .0859. Further, the difference in these distributions can be visualized.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#Expands margins to fit the entirety of the legend
-par(xpd=NA)
-
-#Creates histogram of positive and negative mean distributions for easy comparison
-#The add=T argument allows us to add multiple graphs in one plot
-positive_distro = hist(resamples_pos, freq = T, col = &amp;quot;darkolivegreen3&amp;quot;, xlim = c(.69, .815), ylim = c(0, 1800), main = &amp;quot;Bootstrapped Mean Confidences per Sentiment (10,000 Resamples per)&amp;quot;, xlab = &amp;quot;Confidence Level&amp;quot;)
-
-#As noted above, add = T adds this histogram distribution to the above histogram
-negative_distro = hist(resamples_neg, freq = T, col = &amp;quot;darkorchid3&amp;quot;, add = T)
-
-#Creates a legend for the histogram(s) above; inset contributes to position
-legend(&amp;quot;topright&amp;quot;, inset=c(-0.02,0), c(&amp;quot;Positive&amp;quot;, &amp;quot;Negative&amp;quot;), col = c(&amp;quot;darkolivegreen3&amp;quot;, &amp;quot;darkorchid3&amp;quot;), lwd = 5)
-
-#Produces vertical lines for the negative sentiment confidence mean, then for positive
-abline(v = mean(resamples_neg), lwd = 2)
-abline(v = mean(resamples_pos), lwd = 2)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/plot6.png&#34; alt=&#34;Bootstrap Resampling&#34; title=&#34;Bootstrapped Mean Confidences per Sentiment (10,000 Resamples&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Above, we can see the distributions of resampled means in confidence for both positive and negative sentiments, with the black vertical lines indicating the null hypothesis parameter values. This clearly shows that the mean confidence level is greater for the negative sentiment than it is for the positive. This is useful to visualize, but it might be nice to calculate and plot the actual difference in the distributions.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#Produces distribution of difference between resampled confidences per sentiment
-hist(difference_distro, col = &amp;quot;darkslategray3&amp;quot;, freq = F, main = &amp;quot;Difference of Mean Confidence Levels between Sentiments&amp;quot;, xlab = &amp;quot;Confidence Level&amp;quot;, ylab = &amp;quot;Density&amp;quot;)
-
-#Defines the C.I. being used for the hypothesis test
-#This is also used for the difference distribution
-(CI = quantile(difference_distro, c(0.05, 1))) 
-#        5%       100% 
-#0.07684648 0.10512917
-
-#Vertical line that shows the C.I. frame 
-#This is used to determine if null is rejected or not
-abline(v = CI, lwd = 2)
-
-#Further verification that neg - pos is not neg or 0, so null is rejected
-(mean_diff = mean(resamples_neg) - mean(resamples_pos))
-#[1] 0.08579504
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/plot7.png&#34; alt=&#34;Difference of Mean Confidences&#34; title=&#34;Difference of Mean Confidence Levels between Sentiments&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This last figure shows the distributed difference between the mean confidences in negative and positive sentiments. As the hypothesis is being tested with a 95% confidence interval, vertical markers have been placed at the 5% mark (at the value of .0769) and at the 100% mark (at the value of .1103).&lt;/p&gt;
-
-&lt;h1 id=&#34;discussion&#34;&gt;Discussion&lt;/h1&gt;
-
-&lt;p&gt;When assessing the null (neg. mean sent. &amp;lt;= pos. mean sent.), we can conclude that the means are not equal as 0 does not lie within the C.I. frame, and we can conclude that the negative mean confidence is not less than the positive, as there are no negative numbers within the C.I. frame. Therefore, the null hypothesis is rejected and the alternative hypothesis is supported. We can say with 95% confidence that the mean confidence of negative sentiments is greater than the mean confidence of positive sentiments. In other words, in 95 of 100 samples, the difference between the mean confidence of negative tweets and the mean confidence of positive tweets will fall within the given interval.&lt;/p&gt;
-
-&lt;p&gt;This might suggest that Twitter could be used, at least in a political context, to vent negative emotions, whether pertinent to politics or not. It could suggest something about these Twitter users in general; perhaps they are mostly liberals, who are more likely to disagree with GOP ideology and be more active online (in social media sites in particular, especially with younger people tending to be more liberal than conservative). Maybe this suggests something about the implicit and explicit nature of positive and negative language, that it&amp;rsquo;s easier to use and identify negative words than it is to use and identify positive words. Maybe candidates tend to appeal to strong emotions (typically negative) in order to appeal to potential voters. Regardless, there are more variables in this dataset that should be considered. Perhaps responses to Trump, or abortions, greatly skew the sentiments. It may be worth breaking the data down further to account for these variables (presidential candidates and issues). To come to a more significant conclusion, it is necessary to delve further into this data, data like it (other GOP debates, democratic debates, and independent debates), and data relevant to these other considerations.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; A potential issue with this analysis is the algorithm that was used to assess whether a sentiment is neutral, negative, or positive; human intuition can do a much better job in accounting for context, sarcasm, and other subtleties of human language than language-processing algorithms.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Data Source:&lt;/strong&gt; &lt;a href=&#34;https://www.kaggle.com/crowdflower/first-gop-debate-twitter-sentiment&#34;&gt;Kaggle&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/</guid>
+      <description>A Statistical Analysis of Sentiments Every four years, the United States goes through the process of electing (or re-electing) its president. Politics becomes a popular topic of conversation, and inadvertently, a popular emotional outlet. Our digital landscape has — mostly textually, but sometimes by video or podcast — granted the ability for people to express their thoughts and feelings on political ideas and events, en masse. Suffice to say, an examination of people&amp;rsquo;s language in these expressions can yield many useful insights into human (or American) character and the influence of rhetoric on political philosophy and national pride.</description>
     </item>
     
     <item>
       <title>A Little Bit of Monica in My Life</title>
-      <link>https://ckhoward.github.io/post/a-little-bit-of-monica-in-my-life/</link>
+      <link>https://astonishingelixirs.github.io/post/a-little-bit-of-monica-in-my-life/</link>
       <pubDate>Tue, 13 Jun 2017 17:01:31 -0700</pubDate>
-      
-      <guid>https://ckhoward.github.io/post/a-little-bit-of-monica-in-my-life/</guid>
-      <description>
-
-&lt;h1 id=&#34;monica-the-personal-relationship-manager&#34;&gt;Monica, The Personal Relationship Manager&lt;/h1&gt;
-
-&lt;p&gt;For those new to &lt;a href=&#34;https://monicahq.com/&#34;&gt;Monica&lt;/a&gt;, it&amp;rsquo;s a website that allows you to manage your personal relationships. You create contacts and provide information to make sure your encounters are meaningful and frequent (if that&amp;rsquo;s something you care about). You can add information about the contact&amp;rsquo;s significant other, their kids, where they might work, gifts, debts, social media accounts, birthdays, reminders, and even diets. In our busy minds, it can be hard to keep track of so many relevant details, and being human, we sometimes fall short of having &lt;em&gt;great&lt;/em&gt; personal interactions with others. A friend&amp;rsquo;s birthday might be forgotten, we might not check in with our mom as frequently as we&amp;rsquo;d like, and our conversations might not indicate that we truly care about what is going on in a friend&amp;rsquo;s life if we&amp;rsquo;ve forgotten what major life-experiences they&amp;rsquo;re going through. These mishaps might not be overtly bad, but they can prevent us from having truly connected relationships. Who wouldn&amp;rsquo;t want better relationships?&lt;/p&gt;
-
-&lt;p&gt;What&amp;rsquo;s better, is that Monica open-sources its code and emphasizes privacy. When it&amp;rsquo;s suggested that you aren&amp;rsquo;t being tracked and that your data isn&amp;rsquo;t being sold — a significant promise in an age where everybody is out for your data — it is verifiable.&lt;/p&gt;
-
-&lt;p&gt;I was initially pulled toward the platform, but two pieces of anecdata really spoke to me and cemented my feelings enough to try it out:&lt;/p&gt;
-
-&lt;p&gt;1) &lt;em&gt;danielvf&lt;/em&gt; from Hacker News &lt;a href=&#34;https://news.ycombinator.com/item?id=14498590&#34;&gt;writes&lt;/a&gt;:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;My uncle died suddenly this year. He was unbelievably caring - and not just to family -
-but to everyone he ever met. His funeral was jam packed with everyone
-from homeless people to executives of multi-billion dollar companies.&lt;/p&gt;
-
-&lt;p&gt;I always thought that his ability to always have you, and whatever you had
-last talked about with him, on his mind at any moment was some kind of
-supernatural gift. I was surprised to find out at his funeral that he
-actually kept an excel spreadsheet of everyone he met and what they
-needed and were going through. He reviewed this constantly.&lt;/p&gt;
-
-&lt;p&gt;It didn&amp;rsquo;t lessen his genuine love for everyone, just let him be a little more super human.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;2) In the book &lt;strong&gt;&lt;a href=&#34;https://www.amazon.com/How-Win-Friends-Influence-People/dp/0671027034&#34;&gt;How to Win Friends and Influence People&lt;/a&gt;&lt;/strong&gt;, a tip for getting the most out of the book is suggested:&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;The president of an important Wall Street bank once described, in
-a talk before one of my classes, a highly efficient system he used for
-self-improvement. This man had little formal schooling; yet he had
-become one of the most important financiers in America, and he
-confessed that he owed most of his success to the constant
-application of his homemade system. This is what he does, I&amp;rsquo;ll put it
-in his own words as accurately as I can remember.&lt;/p&gt;
-
-&lt;p&gt;&amp;ldquo;For years I have kept an engagement book showing all the
-appointments I had during the day. My family never made any plans
-for me on Saturday night, for the family knew that I devoted a part
-of each Saturday evening to the illuminating process of self-examination
-and review and appraisal. After dinner I went off by
-myself, opened my engagement book, and thought over all the
-interviews, discussions and meetings that had taken place during the
-week. I asked myself:&lt;/p&gt;
-
-&lt;p&gt;&amp;lsquo;What mistakes did I make that time?&amp;rsquo; &amp;lsquo;What did I do that was right and
-in what way could I have improved my performance?&amp;rsquo; &amp;lsquo;What
-lessons can I learn from that experience?&amp;rsquo;
-&amp;ldquo;I often found that this weekly review made me very unhappy. I was
-frequently astonished at my own blunders. Of course, as the years
-passed, these blunders became less frequent. Sometimes I was
-inclined to pat myself on the back a little after one of these sessions.
-This system of self-analysis, self-education, continued year after
-year, did more for me than any other one thing I have ever
-attempted.
-&amp;ldquo;It helped me improve my ability to make decisions - and it aided me
-enormously in all my contacts with people. I cannot recommend it
-too highly.&amp;rdquo;
-Why not use a similar system to check up on your application of the
-principles discussed in this book? If you do, two things will result.
-First, you will find yourself engaged in an educational process that is
-both intriguing and priceless.
-Second, you will find that your ability to meet and deal with people
-will grow enormously.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I think I could use Monica as a tool for holding myself accountable when engaging with others, in a consistent, meaningful way. Monica could also facilitate the sort of introspection noted above, with its journal, activity, and reminder features. But while this is hugely appealing, I have some concerns. What if there was a breach?&lt;/p&gt;
-
-&lt;h1 id=&#34;monica-in-the-crosshairs&#34;&gt;Monica in the Crosshairs&lt;/h1&gt;
-
-&lt;p&gt;A breach would be very dangerous. Arguably Monica stores more information (not data) than Facebook. Where a picture on Facebook might represent an event, its participants, and its location, this is described in plaintext on Monica, making it easier to draw insights. A computer can parse this text much more easily than images. Additionally, since Monica is a privacy-oriented social manager, there is more of a &lt;em&gt;feeling&lt;/em&gt; of personal security, which could likely result in far more personal disclosure, in other words the willful release of more intimate details. In some sense, this makes users more vulnerable, personally, if there ever is such a breach. For those that want to draw parallels to encrypted messaging apps, I think the average person is going to write the same content in an SMS as they will a Signal message, and even if not, as of right now these encrypted-messaging apps are far more secure, so the targeting is less of a concern. I will, however, draw parallels to Facebook, because even though Monica isn&amp;rsquo;t a social network, it is in many ways comparable, and can serve many of Facebook&amp;rsquo;s primary functions.&lt;/p&gt;
-
-&lt;p&gt;Topics of private conversation by definition aren&amp;rsquo;t shared on Facebook, but could be on Monica. Details of a relative or friend in a hospital could be implicitly and explicitly exploited. Drug addiction? Financial or spousal trouble? These are all negatives that could be taken advantage of, or could form the basis of a spear-phishing campaign. Even general data like a user&amp;rsquo;s workplace is often spoofed on Facebook, but on a platform like Monica, people will probably be more inclined to submit honest data.&lt;/p&gt;
-
-&lt;p&gt;Many people first joined Facebook because they wanted to keep track of friends and family in the way Monica does. Facebook largely shifted, became less trustworthy, and became more superficial in users&amp;rsquo; eyes. A social manager that is open-sourced and private (where people are actually themselves and don&amp;rsquo;t self-censor), is an awesome alternative to something like Facebook. But it is still worth exploring these considerations before committing large amounts of personal information to a web platform that may be extra prone to being targeted. Is there 2FA? Not yet. What security measures do their staff take when dealing with lockouts or other requests? I&amp;rsquo;m sure more is to come as the platform scales. I would still personally choose Monica over other platforms any day. I just think users should be at least a little conscious of what kind of data they&amp;rsquo;re adding to their page, without assuming it will be perfectly secure.&lt;/p&gt;
-</description>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/a-little-bit-of-monica-in-my-life/</guid>
+      <description>Monica, The Personal Relationship Manager For those new to Monica, it&amp;rsquo;s a website that allows you to manage your personal relationships. You create contacts and provide information to make sure your encounters are meaningful and frequent (if that&amp;rsquo;s something you care about). You can add information about the contact&amp;rsquo;s significant other, their kids, where they might work, gifts, debts, social media accounts, birthdays, reminders, and even diets. In our busy minds, it can be hard to keep track of so many relevant details, and being human, we sometimes fall short of having great personal interactions with others.</description>
     </item>
     
     <item>
       <title>Projecting with Python [GIS, Python]</title>
-      <link>https://ckhoward.github.io/post/Projecting-with-Python-%5BGIS,-Python%5D/</link>
+      <link>https://astonishingelixirs.github.io/post/projecting-with-python-gis-python/</link>
       <pubDate>Fri, 09 Jun 2017 12:28:59 -0700</pubDate>
-      
-      <guid>https://ckhoward.github.io/post/Projecting-with-Python-%5BGIS,-Python%5D/</guid>
-      <description>
-
-&lt;h1 id=&#34;my-introduction-to-gis-with-python&#34;&gt;My Introduction to GIS with Python&lt;/h1&gt;
-
-&lt;p&gt;Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the &lt;a href=&#34;http://www.start.umd.edu/gtd/&#34;&gt;Global Terrorism Database&lt;/a&gt; so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations. Each location has a variety of data but I will focus on country, latitude, and longitude. Specifically, I will observe attacks in Iraq. The coordinates are based on WGS1984 standards, so they will have to be converted to UTM Zone 38N in order to be mapped on a flat-surface (more on this later, no worries if you don&amp;rsquo;t understand).&lt;/p&gt;
-
-&lt;h1 id=&#34;first-step-cleaning-the-data&#34;&gt;First Step: Cleaning the Data&lt;/h1&gt;
-
-&lt;p&gt;When we first get the data, it contains way more information than we need. There are over 120 variables and as noted, we primarily want to focus on locational data and a few other variables like target type, attack type, and terrorist group responsible. We need to get rid of excess so that our script runs faster and is more relevant to our objective.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/dataset.jpg&#34; alt=&#34;alt text&#34; title=&#34;Global Terrorism Database&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You can see the list of imported modules. Pandas is used first to load the data into a DataFrame (basically a table) to be operated on. Functional programming is best suited for the overall task, as for most data analysis, so here is a simple function to clean the data:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection1.jpg&#34; alt=&#34;alt text&#34; title=&#34;Cleaning the Data with Pandas Read&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In the event that the &lt;code&gt;clean_csv()&lt;/code&gt; hasn&amp;rsquo;t been called yet, call it. If it has already been called, don&amp;rsquo;t worry about it.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection2.jpg&#34; alt=&#34;alt text&#34; title=&#34;Cleaning the Data with Pandas Read&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now we&amp;rsquo;ve cleaned our data and created a DataFrame with most of what we want. Now we can use another function to specify which country we&amp;rsquo;re interested in.&lt;/p&gt;
-
-&lt;h1 id=&#34;second-step-specifying-the-country-of-interest&#34;&gt;Second Step: Specifying the Country of Interest&lt;/h1&gt;
-
-&lt;p&gt;In our case, we&amp;rsquo;re interested in looking at Iraq. We want to see all of the terrorist attacks that occurred in Iraq. We will clean the frame a little bit more now. This step could have been done in the first function but I believe it&amp;rsquo;s more simple for a future user to read, understand, and plug the country of interest with a separate function.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection3.jpg&#34; alt=&#34;alt text&#34; title=&#34;Specifying the Country of Interest - Iraq&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Simple enough. The DataFrame object from the last function is loaded in and we create a new frame that meets our criteria; where every record&amp;rsquo;s country value is &amp;ldquo;Iraq.&amp;rdquo; Then, any records containing NaNs are dropped. Our coordinate data is still based on the WGS1984 standard — they work on 3D planes, like in Google Earth, but not on 2D planes, like almost every other map in existence. This calls for conversion.&lt;/p&gt;
-
-&lt;h1 id=&#34;third-step-converting-the-coordinates&#34;&gt;Third Step: Converting the Coordinates&lt;/h1&gt;
-
-&lt;p&gt;Coordinate systems use values that assume 3D-space and are provided by satellites. The problem is, most maps are flat, and when you&amp;rsquo;re flattening the earth there are always distortions. These distortions affect distance, direction, and scale. Check out Kai Chang&amp;rsquo;s &lt;a href=&#34;https://bl.ocks.org/syntagmatic/ba569633d51ebec6ec6e&#34;&gt;awesome visualizations&lt;/a&gt; for comparing different map projections.&lt;/p&gt;
-
-&lt;p&gt;Mathematical formulae are used to convert geographic coordinates into their flat-plane equivalents. The Python module &lt;a href=&#34;https://github.com/jswhit/pyproj&#34;&gt;Pyproj&lt;/a&gt; handles this for users, so I import this module and use it in my conversion function.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection4.jpg&#34; alt=&#34;alt text&#34; title=&#34;Python Pyproj to Convert from Geographic Coordinates to Projected UTM&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;You may have noticed I used the UTM projection (Universal Transverse Mercator). This is because distortion occurs at the poles of the earth, whereas the areas around the equator tend to be accurately preserved (due to the sizes of the zones). This is good for us since we&amp;rsquo;re observing Iraq. Iraq falls in the Zone 38N band, and must be used as an argument.&lt;/p&gt;
-
-&lt;h3 id=&#34;incorrect-pyproj-value-output&#34;&gt;Incorrect Pyproj Value Output&lt;/h3&gt;
-
-&lt;p&gt;Here, I made a common mistake. I was getting pretty wildly wrong values, where points were showing up in Ethiopia and not Iraq. Note the values for utm_lat and utm_lon toward the bottom:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection_output1.jpg&#34; alt=&#34;alt text&#34; title=&#34;Incorrect Pyproj Output&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;I wanted to verify whether or not these values were right, because I knew upon plotting them, I was getting Ethiopian areas, so I used the &lt;a href=&#34;http://home.hiwaay.net/~taylorc/toolbox/geography/geoutm.html&#34;&gt;Geographic/UTM Coordinate Converter Website&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/conversion_site.jpg&#34; alt=&#34;alt text&#34; title=&#34;Coordinate to UTM Web Tool&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Upon looking at the UTM outputs, this is obviously wrong:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;-139638 != 354377&lt;/li&gt;
-&lt;li&gt;483126 != 410805&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;My problem was that I had the parameters switched. In simple terms, I had p2(latitude, longitude), but I should have had p2(longitude, latitude). It turns out, in many Python GIS modules, longitude comes before latitude. When I changed the order of these parameters, the output was correct.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection_output2.jpg&#34; alt=&#34;alt text&#34; title=&#34;Correct Pyproj Output&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now that all of the outputs are correct, we can go to the final step.&lt;/p&gt;
-
-&lt;h1 id=&#34;fourth-and-final-step-producing-a-shapefile-with-our-new-data&#34;&gt;Fourth and Final Step: Producing a Shapefile with our New Data&lt;/h1&gt;
-
-&lt;p&gt;To create a shapefile I decided I would use Python&amp;rsquo;s Fiona and Shapely modules.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection5.jpg&#34; alt=&#34;alt text&#34; title=&#34;Using Fiona to Create a Shapefile&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The previous two functions are called:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection6.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Convert and Write Functions are Called&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Now the shapefile has been created:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection7.jpg&#34; alt=&#34;alt text&#34; title=&#34;Shapefiles in Folder&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;using-arcgis-to-map-the-shapefile&#34;&gt;Using ArcGIS to Map the Shapefile&lt;/h1&gt;
-
-&lt;p&gt;Open ArcMap. Go to the Catalog tab and click it. Navigate to the folder. Find the shapefile.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection8.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Shapefile in ArcGIS&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Right click the shapefile. Go to properties. In the &amp;lsquo;XY Coordinate System&amp;rsquo; tab, expand the &amp;lsquo;Projected Coordinate Systems&amp;rsquo; folder, expand UTM, expand WGS 1984, expand Northern Hemisphere, and then find &amp;lsquo;WGS 1984 UTM Zone 38N.&amp;rsquo; Click it and press the &amp;lsquo;Apply&amp;rsquo; and &amp;lsquo;OK&amp;rsquo; buttons. Drag the shapefile onto your canvas. And don&amp;rsquo;t forget to go to &amp;lsquo;Add Data&amp;rsquo; and &amp;lsquo;Add Basemap&amp;rsquo; to find a map to sit under the points — I chose the dark gray basemap.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection10.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Shapefile Mapped&#34; /&gt;&lt;/p&gt;
-
-&lt;p&gt;As the code indicated, I was also recording information on the target types of the attacks. When I use the identify tool on a point (or attack location), or when I open the attribute table, this information will be associated with the geometry (in our case, the point).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&#34;img/projection11.jpg&#34; alt=&#34;alt text&#34; title=&#34;The Shapefile&#39;s Associated Properties&#34; /&gt;&lt;/p&gt;
-
-&lt;h1 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h1&gt;
-
-&lt;p&gt;These functions are simple but they have vast implications. All I did was take a CSV with spatial data, filtered out data that I wasn&amp;rsquo;t interested in, transformed the data into something that I could actually work with, and then wrote the data to a shapefile. These processes give me the ability to do further geospatial analysis and to build and deploy an interactive and informative website regarding terrorist attacks. In the future, I definitely intend to take advantage of other Python geospatial libraries for map-making, like Descartes and Basemap.&lt;/p&gt;
-</description>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/projecting-with-python-gis-python/</guid>
+      <description>My Introduction to GIS with Python Python is a powerful tool in the GIS world, so I wanted to get a little bit of practice with it. I have had a lot of fun working with the Global Terrorism Database so I figured I would go from its CSV format to one that is better-supported by GIS — the shapefile. The dataset contains information related to terrorist attacks, including attack locations.</description>
     </item>
     
     <item>
-      <title>path distance analysis</title>
-      <link>https://ckhoward.github.io/post/path-distance-analysis/</link>
-      <pubDate>Tue, 30 May 2017 19:24:32 -0700</pubDate>
-      
-      <guid>https://ckhoward.github.io/post/path-distance-analysis/</guid>
+      <title>Visibility Analysis [GIS]</title>
+      <link>https://astonishingelixirs.github.io/post/visibility/</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/visibility/</guid>
+      <description>This post is intended to be informative, and not so much reproducible.
+Viewshed Analysis A viewshed is an area that is visible from an observer at a given location. The problem of visibility lends itself to many domains:
+ a guard on a prison tower must see the entire prison yard to ensure everyone&amp;rsquo;s safety a scout must maximize visibility of a battlefield for intelligence gathering autonomous vehicles must have 360-degree visibility cell-towers must provide maximum coverage  In this post, we will pay mind to the ancient world, where according to Christopherson and Guertin*, &amp;ldquo;fortified sites were often located in order to visually control their territory, sacred sites might be located to provide views of other sacred sites, and the settlement patterns of hinterland sites might be located to facilitate, or to impede, visual communication.</description>
+    </item>
+    
+    <item>
+      <title>A Working Example of a Conceptual Model</title>
+      <link>https://astonishingelixirs.github.io/post/conceptual-model/</link>
+      <pubDate>Tue, 21 Feb 2017 23:12:45 -0700</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/conceptual-model/</guid>
+      <description>A Working Example of a Conceptual Model
+An Object/Action Analysis
+Conceptual models are all about representation. And the way something is represented is important, both when understanding something, and when creating something. When attempting to understand a thing, we try to make sure our conceptual models aren’t faulty, so we practice logic and critical thinking. Else, biases or fallacious thoughts may steer us in a wrong direction while we experience a discussion with somebody, and miscommunications may happen, and/or the discussion is derailed.</description>
+    </item>
+    
+    <item>
+      <title>Your Education at Random</title>
+      <link>https://astonishingelixirs.github.io/post/your-education-at-random/</link>
+      <pubDate>Thu, 05 Jan 2017 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/your-education-at-random/</guid>
+      <description>A 160-hour, $1,500-4,000 mistake. You&amp;rsquo;re picking classes for next semester. You have four selected, and you&amp;rsquo;re now looking for a fifth. There are three options. How do you know which to pick? They&amp;rsquo;re equally interesting, albeit different routes, and they have different professors. The fact of the matter is, you have little information to base your choice off of. Likely no syllabus. Likely no knowledge of the professor. And likely no real insights.</description>
+    </item>
+    
+    <item>
+      <title>Reading List</title>
+      <link>https://astonishingelixirs.github.io/post/reading-list/</link>
+      <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/reading-list/</guid>
+      <description>Reading List I&amp;rsquo;ve wanted to get into reading for a long time now. I always had trouble finishing books when I was younger and I wanted to change that. What better time than new years? I decided in 2018, I would read and read and read. I have a huge to read list, but really I am just going to follow my interest. As I write this, I&amp;rsquo;m reading The Count of Monte Cristo which is amazing, and though I have books like Cuckoo&amp;rsquo;s Egg on my immediate list, I may follow The Count into historical novels, or some of Alexander Dumas&amp;rsquo; other works.</description>
+    </item>
+    
+    <item>
+      <title>Terrorist Targets [Exploratory]</title>
+      <link>https://astonishingelixirs.github.io/post/terrorist-org-exploration/</link>
+      <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/terrorist-org-exploration/</guid>
+      <description>If you were to start some Google searches for terrorist attacks, while specifying the terrorist organization (e.g. Boko Haram, or the Lord&amp;rsquo;s Resistance Army), you will likely see different themes within the listed results. Going to a page that aggregates LRA attacks, you get:
+and for Boko Haram:
+Assuming these sources weren&amp;rsquo;t cherry-picked, we might infer that the LRA tends to attack people and their property, with assault rifles, while Boko Haram might be more likely to attack crowded public places, with explosives.</description>
+    </item>
+    
+    <item>
+      <title>this is a no-handed post</title>
+      <link>https://astonishingelixirs.github.io/post/your-new-post/</link>
+      <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/your-new-post/</guid>
       <description></description>
     </item>
     

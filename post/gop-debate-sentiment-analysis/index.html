@@ -1,123 +1,209 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="chrome=1">
-<meta name="HandheldFriendly" content="True">
-<meta name="MobileOptimized" content="320">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="referrer" content="no-referrer">
-<meta name="description" content="Chris Howard Portfolio">
+  <title>Sentiment Analysis of First GOP Debate in 2015 [R]</title>
+  <meta property="og:title" content="Sentiment Analysis of First GOP Debate in 2015 [R]" />
+  <meta name="twitter:title" content="Sentiment Analysis of First GOP Debate in 2015 [R]" />
+  <meta name="description" content="Statistical sentiment analysis of Tweets pertaining to the first GOP debate in 2016.">
+  <meta property="og:description" content="Statistical sentiment analysis of Tweets pertaining to the first GOP debate in 2016.">
+  <meta name="twitter:description" content="Statistical sentiment analysis of Tweets pertaining to the first GOP debate in 2016.">
+  <meta name="author" content="Chris Howard"/>
+  <link href='https://astonishingelixirs.github.io/img/avatar-icon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@_ckhoward" />
+  <meta name="twitter:creator" content="@_ckhoward" />
+  <meta property="og:url" content="https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AstonishingElixirs" />
 
-<base href="https://ckhoward.github.io/">
-<title>
+  <meta name="generator" content="Hugo 0.36.1" />
+  <link rel="canonical" href="https://astonishingelixirs.github.io/post/gop-debate-sentiment-analysis/" />
+  <link rel="alternate" href="https://astonishingelixirs.github.io/index.xml" type="application/rss+xml" title="AstonishingElixirs">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://astonishingelixirs.github.io/css/codeblock.css" />
 
 
-     Chris Howard - Sentiment Analysis of First GOP Debate in 2015 [R] 
 
-</title>
-<link rel="canonical" href="https://ckhoward.github.io/post/gop-debate-sentiment-analysis/">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
 
 
-<script type="text/javascript">
-    var baseURL = 'https:\/\/ckhoward.github.io\/';
-    var host = baseURL.substring(0, baseURL.length - 1).replace(/\//g, '');
-    if ((host === window.location.host) && (window.location.protocol !== 'https:')) {
-        window.location.protocol = 'https:';
-    }
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-114707471-1', 'auto');
+ga('send', 'pageview');
 </script>
-
-
-
-
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/default.min.css">
-
-
-<link rel="stylesheet" href="https://ckhoward.github.io/css/reset.css">
-<link rel="stylesheet" href="https://ckhoward.github.io/css/pygments.css">
-<link rel="stylesheet" href="https://ckhoward.github.io/css/main.css">
-
-
-
-
-<link rel="shortcut icon"
-
-    href="https://ckhoward.github.io/img/datcactus.png"
-
->
-
-
-
-
-
+<script async src='//www.google-analytics.com/analytics.js'></script>
 
 </head>
 
-
-<body lang="en">
-
-
-
-</section>
-<section class="header"> 
-
-    <div class="container">
-        <a href="https://ckhoward.github.io/"><img class="logo" src="https://ckhoward.github.io/img/datcactus.png" /></a>
-        <div class="content">
-            <a href="https://ckhoward.github.io/"><div class="name"><h1>Chris Howard</h1></div></a>
-            <nav>
-                <ul>
-                    <a href="https://ckhoward.github.io/"><li>Blog</li></a>
-                    <a href="https://ckhoward.github.io/about/"><li>About</li></a>
-                    <a href="https://ckhoward.github.io/projects/"><li>Projects</li></a>
-                </ul>
-            </nav>
-        </div>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
     </div>
-</section>
 
-<section class="icons">
-    <div class="container">
-        <div class="content">
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Reading" href="/post/reading-list">Reading</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
 
         
-            <a href="https://github.com/ckhoward" target="_blank">
-                <i class="icon ion-social-github"></i>
-            </a>
-        
-        
-        
-            <a href="https://twitter.com/_ckhoward" target="_blank">
-                <i class="icon ion-social-twitter"></i>
-            </a>
-        
 
         
-            <a href="https://www.linkedin.com/in/-ckhoward/" target="_blank">
-                <i class="icon ion-social-linkedin"></i>
-            </a>
-        
-
-        
-            <a href="mailto:ck_howard@yahoo.com">
-                <i class="icon ion-ios-email larger"></i>
-            </a>
-        
-
-        
-            <a href="https://ckhoward.github.io/index.xml">
-                <i class="icon ion-social-rss larger"></i>
-            </a>
-        
-        </div>
+      </ul>
     </div>
-</section>
 
-<section class="main">
-    <div class="container">
-        <div class="content">
-            
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="AstonishingElixirs" href="https://astonishingelixirs.github.io">
+            <img class="avatar-img" src="https://astonishingelixirs.github.io/img/avatar-icon.png" alt="AstonishingElixirs" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Sentiment Analysis of First GOP Debate in 2015 [R]</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on June 17, 2017
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 7 minutes (1428 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
 
 <h1 id="a-statistical-analysis-of-sentiments">A Statistical Analysis of Sentiments</h1>
 
@@ -126,22 +212,16 @@
 <h2 id="the-twitter-sentiment-dataset">The Twitter-Sentiment Dataset</h2>
 
 <p>The dataset being explored links Tweets to relevant data such as: issues (e.g. abortion), candidates being responded to (and respective confidence), retweet count, and other metadata, but most importantly, sentiments and their respective confidences. We can load our data into an R dataframe with the following code:</p>
-
-<pre><code>Sentiment &lt;- read.csv(&quot;~path/Sentiment.csv&quot;)
-View(Sentiment)
-</code></pre>
-
-<p><img src="img/plot8.png" alt="The Sentiment Table" title="The Sentiment.csv Table" /></p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r">Sentiment <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&#34;~path/Sentiment.csv&#34;</span><span class="p">)</span>
+View<span class="p">(</span>Sentiment<span class="p">)</span></code></pre></div>
+<p><img src="/img/plot8.png" alt="The Sentiment Table" title="The Sentiment.csv Table" /></p>
 
 <p>The column labeled <em>sentiment</em> is what we&rsquo;re interested in so we create two frames, one for negative sentiments, and one for positive. We aren&rsquo;t worried about neutral.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">#Indexes the sentiment confidence for values associated with positive sentiments</span>
+<span class="p">(</span>pos <span class="o">&lt;-</span> Sentiment<span class="o">$</span>sentiment_confidence<span class="p">[</span>Sentiment<span class="o">$</span>sentiment <span class="o">==</span> <span class="s">&#34;Positive&#34;</span><span class="p">])</span>
 
-<pre><code>#Indexes the sentiment confidence for values associated with positive sentiments
-(pos &lt;- Sentiment$sentiment_confidence[Sentiment$sentiment == &quot;Positive&quot;])
-
-#Indexes the sentiment confidence for values associated with negative sentiments
-(neg &lt;- Sentiment$sentiment_confidence[Sentiment$sentiment == &quot;Negative&quot;])
-</code></pre>
-
+<span class="c1">#Indexes the sentiment confidence for values associated with negative sentiments</span>
+<span class="p">(</span>neg <span class="o">&lt;-</span> Sentiment<span class="o">$</span>sentiment_confidence<span class="p">[</span>Sentiment<span class="o">$</span>sentiment <span class="o">==</span> <span class="s">&#34;Negative&#34;</span><span class="p">])</span></code></pre></div>
 <h2 id="confidence-hypotheses">Confidence Hypotheses</h2>
 
 <p>My alternative hypothesis is that the mean confidence of negative sentiments will be greater than the mean confidence of positive sentiments; thus, my null hypothesis is that the mean confidence of negative sentiments will be lower than, or equal to, the mean confidence of positive sentiments. The alternative hypothesis is one-tailed.</p>
@@ -149,25 +229,22 @@ View(Sentiment)
 <h2 id="descriptive-statistics-of-sentiment-confidences">Descriptive Statistics of Sentiment Confidences</h2>
 
 <p>For this exploration, the mean is chosen as the measure of central tendency because the data is numerical and does not contain outliers. We can find and plot the means of the negative and positive frames quickly.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">#Creates a variable for the mean of the indexed positive sentiment confidence levels</span>
+<span class="p">(</span>mean_pos <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>pos<span class="p">))</span>
+<span class="c1">#[1] 0.7144841</span>
 
-<pre><code>#Creates a variable for the mean of the indexed positive sentiment confidence levels
-(mean_pos = mean(pos))
-#[1] 0.7144841
+<span class="c1">#Creates a variable for the mean of the indexed negative sentiment confidence levels</span>
+<span class="p">(</span>mean_neg <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>neg<span class="p">))</span>
+<span class="c1">#[1] 0.8003269</span>
 
-#Creates a variable for the mean of the indexed negative sentiment confidence levels
-(mean_neg = mean(neg))
-#[1] 0.8003269
+<span class="c1">#Creates barplot with a y-scale of [0,1]</span>
+barplot<span class="p">(</span><span class="kt">c</span><span class="p">(</span>mean_pos<span class="p">,</span> mean_neg<span class="p">),</span> names.arg <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#34;Positive Sentiments&#34;</span><span class="p">,</span> <span class="s">&#34;Negative Sentiments&#34;</span><span class="p">),</span> xlab <span class="o">=</span> <span class="s">&#34;Mean Confidences of Positive and Negative Sentiments&#34;</span><span class="p">,</span> width <span class="o">=</span> <span class="m">.5</span><span class="p">,</span> xlim <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> ylim <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> space <span class="o">=</span> <span class="m">.6</span><span class="p">,</span> col <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#34;darkolivegreen3&#34;</span><span class="p">,</span> <span class="s">&#34;darkorchid3&#34;</span><span class="p">),</span> main <span class="o">=</span> <span class="s">&#34;Mean Confidence per Sentiment&#34;</span><span class="p">,</span> ylab <span class="o">=</span> <span class="s">&#34;Mean Confidence Level&#34;</span><span class="p">)</span>
 
-#Creates barplot with a y-scale of [0,1]
-barplot(c(mean_pos, mean_neg), names.arg = c(&quot;Positive Sentiments&quot;, &quot;Negative Sentiments&quot;), xlab = &quot;Mean Confidences of Positive and Negative Sentiments&quot;, width = .5, xlim = c(0, 2), ylim = c(0, 1), space = .6, col = c(&quot;darkolivegreen3&quot;, &quot;darkorchid3&quot;), main = &quot;Mean Confidence per Sentiment&quot;, ylab = &quot;Mean Confidence Level&quot;)
+<span class="c1">#Creates a dotplot with diamond symbol for better visibility</span>
+dotchart<span class="p">(</span><span class="kt">c</span><span class="p">(</span>mean_neg<span class="p">,</span> mean_pos<span class="p">),</span> labels <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#34;Negative Sentiments&#34;</span><span class="p">,</span> <span class="s">&#34;Positive Sentiments&#34;</span><span class="p">),</span> main <span class="o">=</span> <span class="s">&#34;Mean Confidence per Sentiment&#34;</span><span class="p">,</span> xlab <span class="o">=</span> <span class="s">&#34;Mean Confidence Level&#34;</span><span class="p">,</span> color <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#34;darkorchid3&#34;</span><span class="p">,</span> <span class="s">&#34;darkolivegreen3&#34;</span><span class="p">),</span> pch <span class="o">=</span> <span class="m">9</span><span class="p">)</span></code></pre></div>
+<p><img src="/img/plot1.png" alt="Mean Barplots" title="Barplot of Positive and Negative Mean Confidences" /></p>
 
-#Creates a dotplot with diamond symbol for better visibility
-dotchart(c(mean_neg, mean_pos), labels = c(&quot;Negative Sentiments&quot;, &quot;Positive Sentiments&quot;), main = &quot;Mean Confidence per Sentiment&quot;, xlab = &quot;Mean Confidence Level&quot;, color = c(&quot;darkorchid3&quot;, &quot;darkolivegreen3&quot;), pch = 9)
-</code></pre>
-
-<p><img src="img/plot1.png" alt="Mean Barplots" title="Barplot of Positive and Negative Mean Confidences" /></p>
-
-<p><img src="img/plot2.png" alt="Mean Dotplots" title="Dotplot of Positive and Negative Mean Confidences" /></p>
+<p><img src="/img/plot2.png" alt="Mean Dotplots" title="Dotplot of Positive and Negative Mean Confidences" /></p>
 
 <p>Above, there are two representations comparing the mean confidence levels, per positive and negative sentiment, via the sample provided in the dataset, containing 13,871 observations. The first figure shows the different levels of confidence within the scope of the entire scale (0 to 1). It is evident that the mean confidence for negative sentiments is greater than the mean confidence of positive.</p>
 
@@ -176,60 +253,51 @@ dotchart(c(mean_neg, mean_pos), labels = c(&quot;Negative Sentiments&quot;, &quo
 <h2 id="inferential-statistics">Inferential Statistics</h2>
 
 <p>Bootstrapping will also be done with R code:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">#Resamples pos vector, takes the mean, then replicates 10,000 times for 10,000 means, stores in variable</span>
+<span class="p">(</span>resamples_pos <span class="o">=</span> <span class="kp">replicate</span><span class="p">(</span><span class="m">10000</span><span class="p">,</span> <span class="kp">mean</span><span class="p">(</span><span class="kp">sample</span><span class="p">(</span>pos<span class="p">,</span> replace <span class="o">=</span> <span class="bp">T</span><span class="p">))))</span>
 
-<pre><code>#Resamples pos vector, takes the mean, then replicates 10,000 times for 10,000 means, stores in variable
-(resamples_pos = replicate(10000, mean(sample(pos, replace = T))))
+<span class="c1">#Resamples neg vector, takes the mean, then replicates 10,000 times for 10,000 means, stores in variable</span>
+<span class="p">(</span>resamples_neg <span class="o">=</span> <span class="kp">replicate</span><span class="p">(</span><span class="m">10000</span><span class="p">,</span> <span class="kp">mean</span><span class="p">(</span><span class="kp">sample</span><span class="p">(</span>neg<span class="p">,</span> replace <span class="o">=</span> <span class="bp">T</span><span class="p">))))</span>
 
-#Resamples neg vector, takes the mean, then replicates 10,000 times for 10,000 means, stores in variable
-(resamples_neg = replicate(10000, mean(sample(neg, replace = T))))
-
-#Results in distribution of the difference in negative mean distribution and positive mean distribution, stores in variable
-(difference_distro = resamples_neg - resamples_pos) 
-</code></pre>
-
+<span class="c1">#Results in distribution of the difference in negative mean distribution and positive mean distribution, stores in variable</span>
+<span class="p">(</span>difference_distro <span class="o">=</span> resamples_neg <span class="o">-</span> resamples_pos<span class="p">)</span></code></pre></div>
 <p>After bootstrap resampling the data 10,000 times, the calculated means are: Mean(positive) = 0.714436 and Mean(negative) = .800329, both staying relatively the same, with Mean(negative - positive) = .0859. Further, the difference in these distributions can be visualized.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">#Expands margins to fit the entirety of the legend</span>
+par<span class="p">(</span>xpd<span class="o">=</span><span class="kc">NA</span><span class="p">)</span>
 
-<pre><code>#Expands margins to fit the entirety of the legend
-par(xpd=NA)
+<span class="c1">#Creates histogram of positive and negative mean distributions for easy comparison</span>
+<span class="c1">#The add=T argument allows us to add multiple graphs in one plot</span>
+positive_distro <span class="o">=</span> hist<span class="p">(</span>resamples_pos<span class="p">,</span> freq <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&#34;darkolivegreen3&#34;</span><span class="p">,</span> xlim <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">.69</span><span class="p">,</span> <span class="m">.815</span><span class="p">),</span> ylim <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1800</span><span class="p">),</span> main <span class="o">=</span> <span class="s">&#34;Bootstrapped Mean Confidences per Sentiment (10,000 Resamples per)&#34;</span><span class="p">,</span> xlab <span class="o">=</span> <span class="s">&#34;Confidence Level&#34;</span><span class="p">)</span>
 
-#Creates histogram of positive and negative mean distributions for easy comparison
-#The add=T argument allows us to add multiple graphs in one plot
-positive_distro = hist(resamples_pos, freq = T, col = &quot;darkolivegreen3&quot;, xlim = c(.69, .815), ylim = c(0, 1800), main = &quot;Bootstrapped Mean Confidences per Sentiment (10,000 Resamples per)&quot;, xlab = &quot;Confidence Level&quot;)
+<span class="c1">#As noted above, add = T adds this histogram distribution to the above histogram</span>
+negative_distro <span class="o">=</span> hist<span class="p">(</span>resamples_neg<span class="p">,</span> freq <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> col <span class="o">=</span> <span class="s">&#34;darkorchid3&#34;</span><span class="p">,</span> add <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
 
-#As noted above, add = T adds this histogram distribution to the above histogram
-negative_distro = hist(resamples_neg, freq = T, col = &quot;darkorchid3&quot;, add = T)
+<span class="c1">#Creates a legend for the histogram(s) above; inset contributes to position</span>
+legend<span class="p">(</span><span class="s">&#34;topright&#34;</span><span class="p">,</span> inset<span class="o">=</span><span class="kt">c</span><span class="p">(</span><span class="m">-0.02</span><span class="p">,</span><span class="m">0</span><span class="p">),</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#34;Positive&#34;</span><span class="p">,</span> <span class="s">&#34;Negative&#34;</span><span class="p">),</span> col <span class="o">=</span> <span class="kt">c</span><span class="p">(</span><span class="s">&#34;darkolivegreen3&#34;</span><span class="p">,</span> <span class="s">&#34;darkorchid3&#34;</span><span class="p">),</span> lwd <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
 
-#Creates a legend for the histogram(s) above; inset contributes to position
-legend(&quot;topright&quot;, inset=c(-0.02,0), c(&quot;Positive&quot;, &quot;Negative&quot;), col = c(&quot;darkolivegreen3&quot;, &quot;darkorchid3&quot;), lwd = 5)
-
-#Produces vertical lines for the negative sentiment confidence mean, then for positive
-abline(v = mean(resamples_neg), lwd = 2)
-abline(v = mean(resamples_pos), lwd = 2)
-</code></pre>
-
-<p><img src="img/plot6.png" alt="Bootstrap Resampling" title="Bootstrapped Mean Confidences per Sentiment (10,000 Resamples" /></p>
+<span class="c1">#Produces vertical lines for the negative sentiment confidence mean, then for positive</span>
+abline<span class="p">(</span>v <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>resamples_neg<span class="p">),</span> lwd <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+abline<span class="p">(</span>v <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>resamples_pos<span class="p">),</span> lwd <span class="o">=</span> <span class="m">2</span><span class="p">)</span></code></pre></div>
+<p><img src="/img/plot6.png" alt="Bootstrap Resampling" title="Bootstrapped Mean Confidences per Sentiment (10,000 Resamples" /></p>
 
 <p>Above, we can see the distributions of resampled means in confidence for both positive and negative sentiments, with the black vertical lines indicating the null hypothesis parameter values. This clearly shows that the mean confidence level is greater for the negative sentiment than it is for the positive. This is useful to visualize, but it might be nice to calculate and plot the actual difference in the distributions.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">#Produces distribution of difference between resampled confidences per sentiment</span>
+hist<span class="p">(</span>difference_distro<span class="p">,</span> col <span class="o">=</span> <span class="s">&#34;darkslategray3&#34;</span><span class="p">,</span> freq <span class="o">=</span> <span class="bp">F</span><span class="p">,</span> main <span class="o">=</span> <span class="s">&#34;Difference of Mean Confidence Levels between Sentiments&#34;</span><span class="p">,</span> xlab <span class="o">=</span> <span class="s">&#34;Confidence Level&#34;</span><span class="p">,</span> ylab <span class="o">=</span> <span class="s">&#34;Density&#34;</span><span class="p">)</span>
 
-<pre><code>#Produces distribution of difference between resampled confidences per sentiment
-hist(difference_distro, col = &quot;darkslategray3&quot;, freq = F, main = &quot;Difference of Mean Confidence Levels between Sentiments&quot;, xlab = &quot;Confidence Level&quot;, ylab = &quot;Density&quot;)
+<span class="c1">#Defines the C.I. being used for the hypothesis test</span>
+<span class="c1">#This is also used for the difference distribution</span>
+<span class="p">(</span>CI <span class="o">=</span> quantile<span class="p">(</span>difference_distro<span class="p">,</span> <span class="kt">c</span><span class="p">(</span><span class="m">0.05</span><span class="p">,</span> <span class="m">1</span><span class="p">)))</span>
+<span class="c1">#        5%       100%</span>
+<span class="c1">#0.07684648 0.10512917</span>
 
-#Defines the C.I. being used for the hypothesis test
-#This is also used for the difference distribution
-(CI = quantile(difference_distro, c(0.05, 1))) 
-#        5%       100% 
-#0.07684648 0.10512917
+<span class="c1">#Vertical line that shows the C.I. frame</span>
+<span class="c1">#This is used to determine if null is rejected or not</span>
+abline<span class="p">(</span>v <span class="o">=</span> CI<span class="p">,</span> lwd <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
 
-#Vertical line that shows the C.I. frame 
-#This is used to determine if null is rejected or not
-abline(v = CI, lwd = 2)
-
-#Further verification that neg - pos is not neg or 0, so null is rejected
-(mean_diff = mean(resamples_neg) - mean(resamples_pos))
-#[1] 0.08579504
-</code></pre>
-
-<p><img src="img/plot7.png" alt="Difference of Mean Confidences" title="Difference of Mean Confidence Levels between Sentiments" /></p>
+<span class="c1">#Further verification that neg - pos is not neg or 0, so null is rejected</span>
+<span class="p">(</span>mean_diff <span class="o">=</span> <span class="kp">mean</span><span class="p">(</span>resamples_neg<span class="p">)</span> <span class="o">-</span> <span class="kp">mean</span><span class="p">(</span>resamples_pos<span class="p">))</span>
+<span class="c1">#[1] 0.08579504</span></code></pre></div>
+<p><img src="/img/plot7.png" alt="Difference of Mean Confidences" title="Difference of Mean Confidence Levels between Sentiments" /></p>
 
 <p>This last figure shows the distributed difference between the mean confidences in negative and positive sentiments. As the hypothesis is being tested with a 95% confidence interval, vertical markers have been placed at the 5% mark (at the value of .0769) and at the 100% mark (at the value of .1103).</p>
 
@@ -243,19 +311,149 @@ abline(v = CI, lwd = 2)
 
 <p><strong>Data Source:</strong> <a href="https://www.kaggle.com/crowdflower/first-gop-debate-twitter-sentiment">Kaggle</a>.</p>
 
-        </div>
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://astonishingelixirs.github.io/post/a-little-bit-of-monica-in-my-life/" data-toggle="tooltip" data-placement="top" title="A Little Bit of Monica in My Life">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://astonishingelixirs.github.io/post/path-distance-analysis/" data-toggle="tooltip" data-placement="top" title="Path Distance Analysis [GIS]">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "astonishingelixirs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
     </div>
-</section>
+  </div>
+</div>
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
-  
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ck_howard@yahoo.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/ckhoward" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/_ckhoward" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/-ckhoward" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://astonishingelixirs.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://ckhoward.github.io">Chris Howard</a>
+            
+          
 
-  <script type="text/javascript">
-    hljs.initHighlightingOnLoad();
-  </script>
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.36.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/main.js"></script>
+<script src="https://astonishingelixirs.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/load-photoswipe.js"></script>
 
 
 
-</body>
+
+
+
+  </body>
 </html>
 

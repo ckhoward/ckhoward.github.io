@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Javascript on AstonishingElixirs</title>
+    <link>https://astonishingelixirs.github.io/tags/javascript/</link>
+    <description>Recent content in Javascript on AstonishingElixirs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
+    <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
+    <lastBuildDate>Tue, 12 Dec 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://astonishingelixirs.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>FIXBUX: A Web-extension to Safeguard Users from Themselves [Javascript]</title>
+      <link>https://astonishingelixirs.github.io/post/fixbux/</link>
+      <pubDate>Tue, 12 Dec 2017 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/fixbux/</guid>
+      <description>Overview It would seem that people are becoming more conscious of behavior&amp;rsquo;s role in retaining, taking back, and even losing privacy. Privacy technology isn&amp;rsquo;t currently a solution to privacy issues, so it is becoming more important to consider how we interact with these technologies, and how we make decisions. We have a greater propensity to share when our friends share, when we trust the technology maintainers, and defaults surprisingly dictate the way we behave, so what happens when you opt-in, by default, to share your social network data with a host of third parties?</description>
+    </item>
+    
+  </channel>
+</rss>

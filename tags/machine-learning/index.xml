@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Machine Learning on AstonishingElixirs</title>
+    <link>https://astonishingelixirs.github.io/tags/machine-learning/</link>
+    <description>Recent content in Machine Learning on AstonishingElixirs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
+    <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
+    <lastBuildDate>Sun, 04 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://astonishingelixirs.github.io/tags/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Sklearn Neural Network</title>
+      <link>https://astonishingelixirs.github.io/post/neural-network/</link>
+      <pubDate>Sun, 04 Mar 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/neural-network/</guid>
+      <description>Artificial Neural Networks with Sci-kit Learn The Gist of Neural Nets A neural network is a supervised classification algorithm. With your help, it kind of teaches itself how to make better classifications.
+For a basic neural net, you have three primary components: an input layer, a hidden layer, and an output layer, each consisting of nodes. The nodes of the input layer are basically your input variables; the nodes of the hidden layer are neurons that contain some function that operates on your input data; and there is one output node, which uses a function on the values given by the hidden layer, putting out one final calculation.</description>
+    </item>
+    
+    <item>
+      <title>k-Nearest Neighbors Classifier</title>
+      <link>https://astonishingelixirs.github.io/post/k-nearest-neighbors/</link>
+      <pubDate>Wed, 28 Feb 2018 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/k-nearest-neighbors/</guid>
+      <description>Classification using K-Nearest Neighbor (KNN) import numpy as np import pandas as pd from sklearn.neighbors import KNeighborsClassifier from IPython.display import display pd.set_option(&amp;#39;display.notebook_repr_html&amp;#39;, True) Prescription Drug Classification KNN bases its classifications on the nearest k-neighbors. A neighbor&amp;rsquo;s &amp;ldquo;near-ness&amp;rdquo; is based on their attributes or predictors. For example, below, the attributes are simple. Every patient at a hospital has an age attribute, and a Na/K ratio attribute. Based on those attributes, a patient is assigned a classification (or type of drug).</description>
+    </item>
+    
+    <item>
+      <title>An Introduction to the Stylo Library [R]</title>
+      <link>https://astonishingelixirs.github.io/post/a-guide-to-stylo/</link>
+      <pubDate>Wed, 27 Dec 2017 00:00:00 +0000</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/a-guide-to-stylo/</guid>
+      <description>An Introduction to the Stylo Library What is Stylometry? Stylometry uses linguistic style to determine who authored some anonymous piece of writing, and it has diverse applications. The authorship of some suicide notes may be questionable. Most forum users have aliases in an attempt to anonymize themselves. And some authors publish their writings under pseudonyms. In these varying cases, stylometry can be used to deanonymize an author.
+What is Stylo?</description>
+    </item>
+    
+  </channel>
+</rss>

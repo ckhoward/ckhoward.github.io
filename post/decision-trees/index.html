@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>Quick Notes on Decision Trees</title>
+  <meta property="og:title" content="Quick Notes on Decision Trees" />
+  <meta name="twitter:title" content="Quick Notes on Decision Trees" />
+  <meta name="description" content="Decision Trees in Classification The Gist of Decision Trees Decision trees aren&rsquo;t the most accurate method of classification, as they often lead to overfitting, but it&rsquo;s still a very intuitive way of understanding how classification works.
+A decision tree is basically a collection of decision nodes, where if-thens rule. Each tier of nodes is basically a step down from significance of information, or in other words, the first node will likely contain the most useful information for the model, while the second tier of nodes will contain the second most useful information, and so forth.">
+  <meta property="og:description" content="Decision Trees in Classification The Gist of Decision Trees Decision trees aren&rsquo;t the most accurate method of classification, as they often lead to overfitting, but it&rsquo;s still a very intuitive way of understanding how classification works.
+A decision tree is basically a collection of decision nodes, where if-thens rule. Each tier of nodes is basically a step down from significance of information, or in other words, the first node will likely contain the most useful information for the model, while the second tier of nodes will contain the second most useful information, and so forth.">
+  <meta name="twitter:description" content="Decision Trees in Classification The Gist of Decision Trees Decision trees aren&rsquo;t the most accurate method of classification, as they often lead to overfitting, but it&rsquo;s still a very …">
+  <meta name="author" content="Chris Howard"/>
+  <link href='https://astonishingelixirs.github.io/img/avatar-icon.png' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:image" content="https://astonishingelixirs.github.io/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@_ckhoward" />
+  <meta name="twitter:creator" content="@_ckhoward" />
+  <meta property="og:url" content="https://astonishingelixirs.github.io/post/decision-trees/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="AstonishingElixirs" />
+
+  <meta name="generator" content="Hugo 0.36.1" />
+  <link rel="canonical" href="https://astonishingelixirs.github.io/post/decision-trees/" />
+  <link rel="alternate" href="https://astonishingelixirs.github.io/index.xml" type="application/rss+xml" title="AstonishingElixirs">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://astonishingelixirs.github.io/css/highlight.min.css" /><link rel="stylesheet" href="https://astonishingelixirs.github.io/css/codeblock.css" />
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-114707471-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+</head>
+
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Reading" href="/post/reading-list">Reading</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags">Tags</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    <div class="avatar-container">
+      <div class="avatar-img-border">
+        
+          <a title="AstonishingElixirs" href="https://astonishingelixirs.github.io">
+            <img class="avatar-img" src="https://astonishingelixirs.github.io/img/avatar-icon.png" alt="AstonishingElixirs" />
+          </a>
+        
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+
+
+    
+  
+  
+  
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              <h1>Quick Notes on Decision Trees</h1>
+                
+                
+                  <span class="post-meta">
+  
+  
+  <i class="fa fa-calendar-o"></i>&nbsp;Posted on February 10, 2018
+  
+  
+  &nbsp;|&nbsp;
+  <i class="fa fa-clock-o"></i> 8 minutes (1681 words)
+  
+  
+</span>
+
+
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        
+
+<h1 id="decision-trees-in-classification">Decision Trees in Classification</h1>
+
+<h2 id="the-gist-of-decision-trees">The Gist of Decision Trees</h2>
+
+<p>Decision trees aren&rsquo;t the most accurate method of classification, as they often lead to overfitting, but it&rsquo;s still a very intuitive way of understanding how classification works.</p>
+
+<p>A decision tree is basically a collection of decision nodes, where if-thens rule. Each tier of nodes is basically a step down from significance of information, or in other words, the first node will likely contain the most useful information for the model, while the second tier of nodes will contain the second most useful information, and so forth.</p>
+
+<p>Splits in nodes have to be discrete; you either have high assets or low assets, you have high savings, low savings, or medium savings, your income is above \$50K, or less than or equal to \$50K. Depending on the algorithm used, you might have binary choices between each node, or you can have more. And the algorithms will try to optimize for different heuristics. So if we were to pretend that income weren&rsquo;t a categorical variable, and it were continuous, one algorithm might find an optimal splitting point between 20 and 30K, while another one might find it to be at 35K. One might break it down into two decisions, and another might break it down into three. So if it starts out continuous, it will be discretized.</p>
+
+<p>Leaf-nodes may have different target values contained within them, there usually aren&rsquo;t <em>pure</em> leaf-nodes, where the node represents one value. Explicitly, a terminating node might contain <sup>3</sup>&frasl;<sub>5</sub> people that are classified as bad credit-risk, and <sup>2</sup>&frasl;<sub>5</sub> people that are classified as good credit risk. So a decision tree might report that a classification in credit-risk for some customer is <em>bad</em>, with 60% confidence, as determined by the <sup>3</sup>&frasl;<sub>5</sub> of customers in this node having bad credit risk.</p>
+
+<h3 id="requirements">Requirements</h3>
+
+<ol>
+<li>Decision trees represent supervised learning, so they require preclassified target variables. A training set must be provided, with the values of the target variable.</li>
+<li>The training set should be deep and diverse, as the algorithm should have many combinations of the types of records for any possible classifications (so that some edge-case doesn&rsquo;t slip through and get mis-classified). Decision trees learn by example and need strong examples.</li>
+<li>Target attribute classes must be discrete; if they are continuous, they must be discretized in advance.</li>
+</ol>
+
+<h3 id="algorithms">Algorithms</h3>
+
+<p>In the code toward the bottom of the notebook, you will notice that the tree is instantiated with the argument <code>critereon='gini'</code>. This specifies which algorithm will be used to construct the tree. DecisionTreeClassifier() has two criteria that are supported: &lsquo;gini&rsquo; for Gini impurity and &lsquo;entropy&rsquo; for information gain. Gini impurity is the default. Both will yield around the same results but due to entropy requiring logarithmic calculations, it&rsquo;s more computationally expensive. There are many algorithms that can build a decision tree, like CART (Classification and Regression Tree) and C4.5.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">tree</span><span class="p">,</span> <span class="n">preprocessing</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Image</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;display.notebook_repr_html&#39;</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;Clem3Training.txt&#39;</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span></code></pre></div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>workclass</th>
+      <th>demogweight</th>
+      <th>education</th>
+      <th>education-num</th>
+      <th>marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>sex</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>native-country</th>
+      <th>income</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>39</td>
+      <td>State-gov</td>
+      <td>77516</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Never-married</td>
+      <td>Adm-clerical</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>2174</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>50</td>
+      <td>Self-emp-not-inc</td>
+      <td>83311</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Exec-managerial</td>
+      <td>Husband</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>13</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>38</td>
+      <td>Private</td>
+      <td>215646</td>
+      <td>HS-grad</td>
+      <td>9</td>
+      <td>Divorced</td>
+      <td>Handlers-cleaners</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>Private</td>
+      <td>234721</td>
+      <td>11th</td>
+      <td>7</td>
+      <td>Married-civ-spouse</td>
+      <td>Handlers-cleaners</td>
+      <td>Husband</td>
+      <td>Black</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>28</td>
+      <td>Private</td>
+      <td>338409</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Prof-specialty</td>
+      <td>Wife</td>
+      <td>Black</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>Cuba</td>
+      <td>&lt;=50K.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="data-preprocessing">Data Preprocessing</h2>
+
+<h3 id="categorization">Categorization</h3>
+
+<p>Some of these predictor variables have needless complexity. I mean, <em>maybe</em> being divorced you&rsquo;re going to be more susceptible to behave in a different way with money, or maybe people that are divorced tend to behave a certain way with money, but it isn&rsquo;t that likely, so we&rsquo;ll just break all of these specific marital statuses down into two, &lsquo;y&rsquo; for yes, married, and &lsquo;n&rsquo; for no, not married. The same will be done for workclass, as private companies function very differently than governmental companies.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#I&#39;m adding a new column w/ same values b/c I don&#39;t want to overwrite original data</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#So that I know which values to feed into the renaming dictionary</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+
+<span class="c1">#This dictionary is interpreted as; in column of df, the key will be replaced by the value</span>
+<span class="n">category_replacement</span> <span class="o">=</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span> <span class="p">:</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;Married-civ-spouse&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Married-AF-spouse&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Married-spouse-absent&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;y&#39;</span><span class="p">,</span>
+                                                <span class="sa"></span><span class="s1">&#39;Divorced&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Widowed&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Separated&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Never-married&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;n&#39;</span><span class="p">},</span>
+                        <span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">:</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;Federal-gov&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;Gov&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Local-gov&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;Gov&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;State-gov&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;Gov&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Self-emp-inc&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;Self&#39;</span><span class="p">,</span>
+                                           <span class="sa"></span><span class="s1">&#39;Self-emp-not-inc&#39;</span><span class="p">:</span> <span class="sa"></span><span class="s1">&#39;Self&#39;</span><span class="p">}}</span></code></pre></div><div class="highlight"><pre class="chroma">[&#39;State-gov&#39; &#39;Self-emp-not-inc&#39; &#39;Private&#39; &#39;Federal-gov&#39; &#39;Local-gov&#39; &#39;?&#39;
+ &#39;Self-emp-inc&#39; &#39;Without-pay&#39; &#39;Never-worked&#39;]
+[&#39;Never-married&#39; &#39;Married-civ-spouse&#39; &#39;Divorced&#39; &#39;Married-spouse-absent&#39;
+ &#39;Separated&#39; &#39;Married-AF-spouse&#39; &#39;Widowed&#39;]</pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">category_replacement</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span>
+
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;workclass-cats&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cat</span><span class="o">.</span><span class="n">categories</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span></code></pre></div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>workclass</th>
+      <th>demogweight</th>
+      <th>education</th>
+      <th>education-num</th>
+      <th>marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>sex</th>
+      <th>capital-gain</th>
+      <th>capital-loss</th>
+      <th>hours-per-week</th>
+      <th>native-country</th>
+      <th>income</th>
+      <th>marital-status-cats</th>
+      <th>workclass-cats</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>39</td>
+      <td>State-gov</td>
+      <td>77516</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Never-married</td>
+      <td>Adm-clerical</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>2174</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+      <td>n</td>
+      <td>Gov</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>50</td>
+      <td>Self-emp-not-inc</td>
+      <td>83311</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Exec-managerial</td>
+      <td>Husband</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>13</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+      <td>y</td>
+      <td>Self</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>38</td>
+      <td>Private</td>
+      <td>215646</td>
+      <td>HS-grad</td>
+      <td>9</td>
+      <td>Divorced</td>
+      <td>Handlers-cleaners</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+      <td>n</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>Private</td>
+      <td>234721</td>
+      <td>11th</td>
+      <td>7</td>
+      <td>Married-civ-spouse</td>
+      <td>Handlers-cleaners</td>
+      <td>Husband</td>
+      <td>Black</td>
+      <td>Male</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+      <td>y</td>
+      <td>Private</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>28</td>
+      <td>Private</td>
+      <td>338409</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Prof-specialty</td>
+      <td>Wife</td>
+      <td>Black</td>
+      <td>Female</td>
+      <td>0</td>
+      <td>0</td>
+      <td>40</td>
+      <td>Cuba</td>
+      <td>&lt;=50K.</td>
+      <td>y</td>
+      <td>Private</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="standardization">Standardization</h3>
+
+<p>The predictors here are standardized but decision trees don&rsquo;t generally require this. This is important for other methods, like K-Nearest Neighbors which relies heavily on distances, but not so much for tree-based methods. For more information on this you can check out Sebastian Raschka&rsquo;s article <a href="http://sebastianraschka.com/Articles/2014_about_feature_scaling.html#about-standardization">About Feature Scaling and Normalization</a>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Standardizing age so numeric values aren&#39;t misrepresented in calculations</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;age_z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;age&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">()))</span>
+
+<span class="c1">#Standardization of education-num, capital-gain, capital-loss, and hours-per-week</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;education-num_z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;education-num&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;education-num&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;education-num&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-gain_z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-gain&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-gain&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-gain&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-loss_z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-loss&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-loss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;capital-loss&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;hours-per-week_z&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;hours-per-week&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;hours-per-week&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span> <span class="o">/</span> <span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;hours-per-week&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">std</span><span class="p">())</span></code></pre></div>
+<h3 id="encoding">Encoding</h3>
+
+<p>Decision trees work on continuous and categorical data, but sklearn is not friendly toward categorical inputs. You might be getting a string-related ValueError if you try to use strings. Decision trees <em>do</em> work with integers. This is where encoding comes into play. Below, I use LabelEncoder() to treat &gt;50K. and &lt;=50K. as integer values (0 or 1). I could (and should) do the same for workclass, but I should use OneHotEncoder() instead of LabelEncoder(). Why? Take a look at this <a href="http://scikit-learn.org/stable/modules/preprocessing.html#encoding-categorical-features">sklearn encoding documentation:</a>
+&gt;Often features are not given as continuous values but categorical. For example a person could have features [&ldquo;male&rdquo;, &ldquo;female&rdquo;], [&ldquo;from Europe&rdquo;, &ldquo;from US&rdquo;, &ldquo;from Asia&rdquo;], [&ldquo;uses Firefox&rdquo;, &ldquo;uses Chrome&rdquo;, &ldquo;uses Safari&rdquo;, &ldquo;uses Internet Explorer&rdquo;]. Such features can be efficiently coded as integers, for instance [&ldquo;male&rdquo;, &ldquo;from US&rdquo;, &ldquo;uses Internet Explorer&rdquo;] could be expressed as [0, 1, 3] while [&ldquo;female&rdquo;, &ldquo;from Asia&rdquo;, &ldquo;uses Chrome&rdquo;] would be [1, 2, 1].</p>
+
+<blockquote>
+<p>Such integer representation can not be used directly with scikit-learn estimators, as these expect continuous input, and would interpret the categories as being ordered, which is often not desired (i.e. the set of browsers was ordered arbitrarily).</p>
+
+<p>One possibility to convert categorical features to features that can be used with scikit-learn estimators is to use a one-of-K or one-hot encoding, which is implemented in OneHotEncoder. This estimator transforms each categorical feature with m possible values into m binary features, with only one active.</p>
+</blockquote>
+
+<p>In other words, my LabelEncoder() works well for the income categorization and marital-status categorization because there are only two potential values for each: &gt;50K. or &lt;=50K., and &lsquo;y&rsquo; for married or &lsquo;n&rsquo; for not married. For each variable, one or the other gets a 0 or 1. But for workclass, there are more than two categories, so you might have [0, 1, 2, 3]. Feeding this into the model, whatever category is encoded as a 3 might be treated as more significant than the other categories, and we prefer that unexpected behaviors like this don&rsquo;t happen. OneHotEncoder() would break these down so that each category is a 0 or 1. This is essentially normalizing the encodings.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1">#Documentation is fit(X, y) where X is the predictor variables (I&#39;ve named features) and Y is the target</span>
+<span class="c1">#if interested in predictions, we can use x_test from a test dataset</span>
+
+<span class="c1">#Encoding Income</span>
+<span class="n">enc</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+
+<span class="n">label_encoder</span> <span class="o">=</span> <span class="n">enc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;income&#39;</span><span class="p">])</span>
+<span class="k">print</span> <span class="p">(</span><span class="sa"></span><span class="s2">&#34;Categorical classes:&#34;</span><span class="p">,</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+<span class="n">integer_classes</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="k">print</span> <span class="p">(</span><span class="sa"></span><span class="s2">&#34;Integer classes:&#34;</span><span class="p">,</span> <span class="n">integer_classes</span><span class="p">)</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;income&#39;</span><span class="p">])</span>
+
+
+<span class="c1">#Encoding Marital-Status</span>
+<span class="n">label_encoder</span> <span class="o">=</span> <span class="n">enc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">])</span>
+<span class="n">integer_classes</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">label_encoder</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-encoded&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;marital-status-cats&#39;</span><span class="p">])</span>
+
+<span class="c1">#Creates tree object</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">criterion</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;gini&#39;</span><span class="p">)</span>
+<span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="sa"></span><span class="s1">&#39;age_z&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;marital-encoded&#39;</span><span class="p">,</span><span class="sa"></span><span class="s1">&#39;education-num_z&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;capital-gain_z&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;capital-loss_z&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;hours-per-week_z&#39;</span><span class="p">]</span>
+
+<span class="c1"># Train the model using the training sets and check score</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;Model accuracy: &#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">features</span><span class="p">],</span> <span class="n">y</span><span class="p">)))</span>
+
+<span class="c1">#To predict any outputs</span>
+<span class="c1">#predicted = model.predict(x_test)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">())</span></code></pre></div><div class="highlight"><pre class="chroma">Categorical classes: [&#39;&lt;=50K.&#39; &#39;&gt;50K.&#39;]
+Integer classes: [0 1]
+Model accuracy: 0.91236</pre></div>
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>workclass</th>
+      <th>demogweight</th>
+      <th>education</th>
+      <th>education-num</th>
+      <th>marital-status</th>
+      <th>occupation</th>
+      <th>relationship</th>
+      <th>race</th>
+      <th>sex</th>
+      <th>...</th>
+      <th>native-country</th>
+      <th>income</th>
+      <th>marital-status-cats</th>
+      <th>workclass-cats</th>
+      <th>age_z</th>
+      <th>education-num_z</th>
+      <th>capital-gain_z</th>
+      <th>capital-loss_z</th>
+      <th>hours-per-week_z</th>
+      <th>marital-encoded</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>39</td>
+      <td>State-gov</td>
+      <td>77516</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Never-married</td>
+      <td>Adm-clerical</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>...</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+      <td>n</td>
+      <td>Gov</td>
+      <td>36.179459</td>
+      <td>9.057371</td>
+      <td>2173.854597</td>
+      <td>-0.215574</td>
+      <td>36.714646</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>50</td>
+      <td>Self-emp-not-inc</td>
+      <td>83311</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Exec-managerial</td>
+      <td>Husband</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>...</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+      <td>y</td>
+      <td>Self</td>
+      <td>47.179459</td>
+      <td>9.057371</td>
+      <td>-0.145403</td>
+      <td>-0.215574</td>
+      <td>9.714646</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>38</td>
+      <td>Private</td>
+      <td>215646</td>
+      <td>HS-grad</td>
+      <td>9</td>
+      <td>Divorced</td>
+      <td>Handlers-cleaners</td>
+      <td>Not-in-family</td>
+      <td>White</td>
+      <td>Male</td>
+      <td>...</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+      <td>n</td>
+      <td>Private</td>
+      <td>35.179459</td>
+      <td>5.057371</td>
+      <td>-0.145403</td>
+      <td>-0.215574</td>
+      <td>36.714646</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>53</td>
+      <td>Private</td>
+      <td>234721</td>
+      <td>11th</td>
+      <td>7</td>
+      <td>Married-civ-spouse</td>
+      <td>Handlers-cleaners</td>
+      <td>Husband</td>
+      <td>Black</td>
+      <td>Male</td>
+      <td>...</td>
+      <td>United-States</td>
+      <td>&lt;=50K.</td>
+      <td>y</td>
+      <td>Private</td>
+      <td>50.179459</td>
+      <td>3.057371</td>
+      <td>-0.145403</td>
+      <td>-0.215574</td>
+      <td>36.714646</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>28</td>
+      <td>Private</td>
+      <td>338409</td>
+      <td>Bachelors</td>
+      <td>13</td>
+      <td>Married-civ-spouse</td>
+      <td>Prof-specialty</td>
+      <td>Wife</td>
+      <td>Black</td>
+      <td>Female</td>
+      <td>...</td>
+      <td>Cuba</td>
+      <td>&lt;=50K.</td>
+      <td>y</td>
+      <td>Private</td>
+      <td>25.179459</td>
+      <td>9.057371</td>
+      <td>-0.145403</td>
+      <td>-0.215574</td>
+      <td>36.714646</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 23 columns</p>
+</div>
+
+<p><img src="/img/classification_tree.jpg" alt="Decision Tree" /></p>
+
+<h3 id="visualization">Visualization</h3>
+
+<p>If you use the statement below, you can write a new file that will allow you to visualize the tree in Graphviz. The above visualization, however, was done in R and is taken out of the book.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">tree</span><span class="o">.</span><span class="n">export_graphviz</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">out_file</span><span class="o">=</span><span class="sa"></span><span class="s1">&#39;tree.dot&#39;</span><span class="p">)</span></code></pre></div>
+<p><img src="https://i.ytimg.com/vi/9nOSs3rvPsI/maxresdefault.jpg" alt="great deku-cision tree" /></p>
+
+<h3 id="resources-i-found-useful">Resources I Found Useful:</h3>
+
+<ul>
+<li>Rahul Saxena&rsquo;s <a href="http://dataaspirant.com/2017/02/01/decision-tree-algorithm-python-with-scikit-learn/">Building Decision Tree Classifiers</a></li>
+<li>Analytics Vidhya&rsquo;s <a href="https://www.analyticsvidhya.com/blog/2016/04/complete-tutorial-tree-based-modeling-scratch-in-python/">Tree-Based Modeling</a></li>
+<li>Piush Vaish&rsquo;s <a href="http://adataanalyst.com/scikit-learn/decision-trees-scikit-learn/">Decision Trees in scikit-learn</a></li>
+
+<li><p>Mathematicalmonk&rsquo;s Youtube Explanation <a href="https://www.youtube.com/watch?v=p17C9q2M00Q">(ML 2.1) Classification trees (CART) </a></p></li>
+
+<li><p>This page is a compilation of my notes from the book <a href="https://www.amazon.com/Mining-Predictive-Analytics-Methods-Applications/dp/1118116194">Data Mining and Predictive Analytics</a>.</p></li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"></code></pre></div>
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://astonishingelixirs.github.io/post/a-simpler-tutorial-on-ipython-widgets/" data-toggle="tooltip" data-placement="top" title="A Simpler Tutorial on Jupyter (IPython) Widgets">&larr; Previous Post</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://astonishingelixirs.github.io/post/exploratory-data-analysis/" data-toggle="tooltip" data-placement="top" title="Exploratory Analysis of Churn Data">Next Post &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+          <div class="disqus-comments">
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "astonishingelixirs" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+          </div>
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:ck_howard@yahoo.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/ckhoward" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/_ckhoward" title="Twitter">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://linkedin.com/in/-ckhoward" title="LinkedIn">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://astonishingelixirs.github.io/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              <a href="https://ckhoward.github.io">Chris Howard</a>
+            
+          
+
+          &nbsp;&bull;&nbsp;
+          2018
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://astonishingelixirs.github.io">AstonishingElixirs</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          <a href="http://gohugo.io">Hugo v0.36.1</a> powered &nbsp;&bull;&nbsp; Theme by <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a> adapted to <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a>
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/main.js"></script>
+<script src="https://astonishingelixirs.github.io/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://astonishingelixirs.github.io/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+  </body>
+</html>
+

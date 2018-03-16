@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Philosophy on AstonishingElixirs</title>
+    <link>https://astonishingelixirs.github.io/tags/philosophy/</link>
+    <description>Recent content in Philosophy on AstonishingElixirs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>ck_howard@yahoo.com (Chris Howard)</managingEditor>
+    <webMaster>ck_howard@yahoo.com (Chris Howard)</webMaster>
+    <lastBuildDate>Wed, 04 Oct 2017 17:01:31 -0700</lastBuildDate>
+    
+	<atom:link href="https://astonishingelixirs.github.io/tags/philosophy/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The Epistemology of Testimony</title>
+      <link>https://astonishingelixirs.github.io/post/testimony-and-epistemology/</link>
+      <pubDate>Wed, 04 Oct 2017 17:01:31 -0700</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://astonishingelixirs.github.io/post/testimony-and-epistemology/</guid>
+      <description>The Epistemology of Testimony As humans, our primary way of learning about the world is through experience. But given that we aren&amp;rsquo;t omnipresent and can&amp;rsquo;t experience everything for ourselves, we have to fall back on another method—teamwork. We create information and share it with others, and they do the same. Pretty much everything we learn about the world, apart from what we learn through observation and experience, is based on testimony, or what we hear and read.</description>
+    </item>
+    
+  </channel>
+</rss>
