@@ -18,17 +18,9 @@
       <author>ck_howard@yahoo.com (Chris Howard)</author>
       <guid>https://ckhoward.github.io/page/about/</guid>
       <description>A visitor! Hi, you might be wondering who I am.
-My name is Chris Howard. I am on the cusp of graduating with a B.S. in Information Science from the University of Arizona, and just moved back to the Raleigh area.
-Have a stumble through my blog posts, you&amp;rsquo;ll get a feel for my personality. I like to solve problems, usually through software, and here are a few things I&amp;rsquo;ve enjoyed doing:</description>
-    </item>
-    
-    <item>
-      <title>Neverwhere</title>
-      <link>https://ckhoward.github.io/page/neverwhere/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://ckhoward.github.io/page/neverwhere/</guid>
-      <description>Neverwhere This is the first novel that I&amp;rsquo;ve read in a very long time, and I chose it because it seemed both intriguing and manageable. Neverwhere was in fact a decent book to start with. The two main characters felt flat, but I have to wonder if this was intentional, and common. For random example, the LOTR trilogy&amp;rsquo;s Frodo Baggins isn&amp;rsquo;t all that interesting, yet he frequently comes into contact with people like Smeagle, Gandalf, etc.</description>
+My name is Chris Howard. I am a software developer at NASA LaRC, working to make data more accessible, discoverable, and usable.
+Have a stumble through my blog posts, you&amp;rsquo;ll get a feel for my personality. I like to solve problems, usually with technology. Here are a few things I&amp;rsquo;ve enjoyed doing:
+ Building classifiers using libraries like Scikit Learn and OpenCV Deploying and maintaining web applications on DigitalOcean and AWS Designing experiments and surveys to ensure project integrity Modeling the relationships between different variables mathematically  If you happen to be less interested in tech, and more inclined toward literature or philosophy, fret not, we can enthusiastically discuss these matters on my Library page.</description>
     </item>
     
   </channel>
