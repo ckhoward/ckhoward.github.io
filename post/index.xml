@@ -78,6 +78,16 @@ A decision tree is basically a collection of decision nodes, where if-thens rule
     </item>
     
     <item>
+      <title>Reading List</title>
+      <link>https://ckhoward.github.io/post/reading-list/</link>
+      <pubDate>Wed, 03 Jan 2018 16:46:12 -0700</pubDate>
+      <author>ck_howard@yahoo.com (Chris Howard)</author>
+      <guid>https://ckhoward.github.io/post/reading-list/</guid>
+      <description>Books suck. Well, that&amp;rsquo;s not true—really, it&amp;rsquo;s just that whenever I try to get into a book, I can&amp;rsquo;t. I get bored and lose focus. This year I am dedicating a real effort to the reading experience. This page will reflect that effort. I&amp;rsquo;ve been missing out on expansive knowledge, fantastical worlds, beautiful prose, and unique perspectives for too long.
+Books of 2018 Currently Reading Les Misérables Annoyingly inspiring? After picking it up and putting it down twice, and finally picking it up again, I felt an urgency to build a website to help readers make better decisions about what they should or shouldn&amp;rsquo;t spend their time reading.</description>
+    </item>
+    
+    <item>
       <title>A Simpler Tutorial on Jupyter (IPython) Widgets</title>
       <link>https://ckhoward.github.io/post/a-simpler-tutorial-on-ipython-widgets/</link>
       <pubDate>Wed, 03 Jan 2018 00:00:00 +0000</pubDate>
@@ -211,16 +221,6 @@ Assuming these sources weren&amp;rsquo;t cherry-picked, we might infer that the 
       <author>ck_howard@yahoo.com (Chris Howard)</author>
       <guid>https://ckhoward.github.io/post/your-education-at-random/</guid>
       <description>A 160-hour, $1,500-4,000 mistake. You&amp;rsquo;re picking classes for next semester. You have four selected, and you&amp;rsquo;re now looking for a fifth. There are three options. How do you know which to pick? They&amp;rsquo;re equally interesting, albeit different routes, and they have different professors. The fact of the matter is, you have little information to base your choice off of. Likely no syllabus. Likely no knowledge of the professor. And likely no real insights.</description>
-    </item>
-    
-    <item>
-      <title>Reading List</title>
-      <link>https://ckhoward.github.io/post/reading-list/</link>
-      <pubDate>Tue, 03 Jan 2017 16:46:12 -0700</pubDate>
-      <author>ck_howard@yahoo.com (Chris Howard)</author>
-      <guid>https://ckhoward.github.io/post/reading-list/</guid>
-      <description>Books suck. Well, that&amp;rsquo;s not true—really, it&amp;rsquo;s just that whenever I try to get into a book, I can&amp;rsquo;t. I get bored and lose focus. This year I am dedicating a real effort to the reading experience. This page will reflect that effort. I&amp;rsquo;ve been missing out on expansive knowledge, fantastical worlds, beautiful prose, and unique perspectives for too long.
-Books of 2018 Currently Reading Les Misérables Annoyingly inspiring? After picking it up and putting it down twice, and finally picking it up again, I felt an urgency to build a website to help readers make better decisions about what they should or shouldn&amp;rsquo;t spend their time reading.</description>
     </item>
     
     <item>
